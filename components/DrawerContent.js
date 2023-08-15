@@ -6,7 +6,7 @@ import {
    DrawerItem
 } from '@react-navigation/drawer';
 import { Drawer } from 'react-native-paper';
-import { colors, pageInfo } from '../constant';
+import { colors, def_Page } from '../constant';
 
 
 export function DrawerContent(props) {
@@ -14,15 +14,15 @@ export function DrawerContent(props) {
 
       <View style={{ flex: 1, backgroundColor: colors.outerContentBackground }}>
          <View style={styles.drawerHeader}>
-            <Text style={styles.drawerHeaderText} accessibilityLabel="Accessiblity Demo" accessibilityRole='header'>Accessiblity Demo</Text>
+            <Text style={styles.drawerHeaderText} accessibilityLabel={def_Page.drawerTitle} accessibilityRole='header'>{def_Page.drawerTitle}</Text>
          </View>
          <DrawerContentScrollView>
             <Drawer.Section style={{ flex: 1, marginTop: 15, backgroundColor: colors.innerContentBackground }}>
 
                <DrawerItem
-                  label={pageInfo.page1MenuName}
+                  label={def_Page.page1MenuName}
                   onPress={() => {
-                     props.navigation.navigate('Home');
+                     props.navigation.navigate(def_Page.page1Name);
                   }}
                   labelStyle={[
                      styles.drawerItemLabel,
@@ -33,8 +33,8 @@ export function DrawerContent(props) {
                   ]}
                />
                <DrawerItem
-                  label={pageInfo.page2MenuName}
-                  onPress={() => { props.navigation.navigate('AltText'); }}
+                  label={def_Page.page2MenuName}
+                  onPress={() => { props.navigation.navigate(def_Page.page2Name); }}
                   labelStyle={[
                      styles.drawerItemLabel,
                      {
@@ -44,9 +44,9 @@ export function DrawerContent(props) {
                   ]}
                />
                <DrawerItem
-                  label={pageInfo.page3MenuName}
+                  label={def_Page.page3MenuName}
                   onPress={() => {
-                     props.navigation.navigate('Work');
+                     props.navigation.navigate(def_Page.page3Name);
                   }}
                   labelStyle={[
                      styles.drawerItemLabel,
@@ -57,9 +57,9 @@ export function DrawerContent(props) {
                   ]}
                />
                <DrawerItem
-                  label={pageInfo.page4MenuName}
+                  label={def_Page.page4MenuName}
                   onPress={() => {
-                     props.navigation.navigate('Services');
+                     props.navigation.navigate(def_Page.page4Name);
                   }}
                   labelStyle={[
                      styles.drawerItemLabel,
@@ -70,9 +70,9 @@ export function DrawerContent(props) {
                   ]}
                />
                <DrawerItem
-                  label={pageInfo.page5MenuName}
+                  label={def_Page.page5MenuName}
                   onPress={() => {
-                     props.navigation.navigate('Contact');
+                     props.navigation.navigate(def_Page.page5Name);
                   }}
                   labelStyle={[
                      styles.drawerItemLabel,
