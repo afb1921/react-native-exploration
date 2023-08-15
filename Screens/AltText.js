@@ -3,7 +3,7 @@ import { View, Text, AccessibilityInfo, TouchableOpacity} from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
 
-function AboutScreen() {
+function AltText() {
 
   const firstElementRef = useRef(null);
   //When the page loads (everytime) the useFocusEffect is triggered
@@ -13,7 +13,7 @@ function AboutScreen() {
      const reactTag = firstElementRef.current._nativeTag;
      // Set accessibility focus to the component
     AccessibilityInfo.setAccessibilityFocus(reactTag);
-    console.log('Focus Effect');
+    console.log('AboutScreen Focus Effect');
   });
 
   const handleButtonClick = () => {
@@ -22,7 +22,7 @@ function AboutScreen() {
 
   return (
     <View>
-      <Text ref={firstElementRef}>About Page</Text>
+      <Text ref={firstElementRef}>Alt Text Page</Text>
       <TouchableOpacity onPress={handleButtonClick}>
         <Text>Set Focus</Text>
       </TouchableOpacity>
@@ -30,4 +30,4 @@ function AboutScreen() {
   );
 }
 
-export default AboutScreen;
+export default AltText;

@@ -6,21 +6,21 @@ import {
    DrawerItem
 } from '@react-navigation/drawer';
 import { Drawer } from 'react-native-paper';
-import { colors } from '../constant';
+import { colors, pageInfo } from '../constant';
 
 
 export function DrawerContent(props) {
    return (
 
-      <View style={{ flex: 1, backgroundColor: colors.drawerContentBackground }}>
+      <View style={{ flex: 1, backgroundColor: colors.outerContentBackground }}>
          <View style={styles.drawerHeader}>
             <Text style={styles.drawerHeaderText} accessibilityLabel="Accessiblity Demo" accessibilityRole='header'>Accessiblity Demo</Text>
          </View>
          <DrawerContentScrollView>
-            <Drawer.Section style={{ flex: 1, marginTop: 15 }}>
+            <Drawer.Section style={{ flex: 1, marginTop: 15, backgroundColor: colors.innerContentBackground }}>
 
                <DrawerItem
-                  label="Home"
+                  label={pageInfo.page1MenuName}
                   onPress={() => {
                      props.navigation.navigate('Home');
                   }}
@@ -33,8 +33,8 @@ export function DrawerContent(props) {
                   ]}
                />
                <DrawerItem
-                  label="About Us"
-                  onPress={() => { props.navigation.navigate('About'); }}
+                  label={pageInfo.page2MenuName}
+                  onPress={() => { props.navigation.navigate('AltText'); }}
                   labelStyle={[
                      styles.drawerItemLabel,
                      {
@@ -44,7 +44,7 @@ export function DrawerContent(props) {
                   ]}
                />
                <DrawerItem
-                  label="What We Do"
+                  label={pageInfo.page3MenuName}
                   onPress={() => {
                      props.navigation.navigate('Work');
                   }}
@@ -57,7 +57,7 @@ export function DrawerContent(props) {
                   ]}
                />
                <DrawerItem
-                  label="Services"
+                  label={pageInfo.page4MenuName}
                   onPress={() => {
                      props.navigation.navigate('Services');
                   }}
@@ -70,7 +70,7 @@ export function DrawerContent(props) {
                   ]}
                />
                <DrawerItem
-                  label="Contact Us"
+                  label={pageInfo.page5MenuName}
                   onPress={() => {
                      props.navigation.navigate('Contact');
                   }}

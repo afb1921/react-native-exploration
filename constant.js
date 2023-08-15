@@ -4,18 +4,20 @@ export const colors = {
 //App Colors//-----------------------
 
 lightGrey: '#ebeded', //custom light grey color
-primaryBlue: "#1DA1F2",
+primaryBlue: "#1DA1F2", //Twitter Blue
+brightBlue: "#039fff", 
 
     //Drawer Colors//-----------------------
-    drawerHeader: 'blue', //Color for drawer header
+    drawerHeader: '#039fff', //Color for drawer header
     drawerHeaderText: 'white', //Color for drawer header text
-    drawerContentBackground: 'white', //Color for drawer content background
+    outerContentBackground: '#ebeded', //Color for drawer Outer content background
+    innerContentBackground: 'white', //Color for drawer inner content background
 
-    inactiveText: 'black', //Color for inactive navigation
-    activeText: 'white', //Color for active navigation
+    inactiveText: 'black', //Color for inactive navigation Text
+    activeText: 'white', //Color for active navigation Text
 
-    inactiveBackground: 'white',
-    activeBackground: "#1DA1F2",
+    inactiveBackground: 'white', //Color for inactive navigation Background
+    activeBackground: "#1DA1F2", //Color for active navigation Background
 
 
     //Header Colors//-----------------------
@@ -26,12 +28,17 @@ primaryBlue: "#1DA1F2",
     //Status Bar Colors//-----------------------
     statusBarColor: "black", //Color for status bar
     iconColor: 'light-content', //*NOTE* only options include (dark-content, light-content)
-
-
-
-
-
 //------------------------------------
 }
 
+export const pageInfo ={
+    page1MenuName: 'Home',
 
+    page2MenuName: 'Alt Text Info',
+
+    page3MenuName: 'Work',
+
+    page4MenuName: 'Services',
+
+    page5MenuName: 'Contact',
+}

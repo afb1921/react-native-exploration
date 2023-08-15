@@ -13,7 +13,7 @@ function HomeScreen() {
      const reactTag = firstElementRef.current._nativeTag;
      // Set accessibility focus to the component
     AccessibilityInfo.setAccessibilityFocus(reactTag);
-    console.log('Focus Effect');
+    console.log('HomeSceen Focus Effect');
   });
 
   const handleButtonClick = () => {
