@@ -1,19 +1,33 @@
 // DrawerContent.js
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, Dimensions } from 'react-native';
 import {
    DrawerContentScrollView,
    DrawerItem
 } from '@react-navigation/drawer';
 import { Drawer } from 'react-native-paper';
 import { colors, def_Page } from '../constant';
-
+import { FontAwesome } from '@expo/vector-icons';
 
 export function DrawerContent(props) {
+
+   // // Get screen dimensions
+   const { width, height } = Dimensions.get('window');
+
+   // console.log(Dimensions.get('window')) //For debug purposes console log the dimensions of the device screen
+
+
    return (
 
       <View style={{ flex: 1, backgroundColor: colors.outerContentBackground }}>
-         <View style={styles.drawerHeader}>
+
+         {/* //This adjusts screen size of content inside the drawer */}
+         <View 
+            style={
+               [styles.drawerHeader, height >= 850 && height<=900 ? {marginTop: 35, marginBottom: -40, paddingBottom: 20} : { }]
+            }>
+         {/* //---------------------------------------------------------------- */}
+
             <Text style={styles.drawerHeaderText} accessibilityLabel={def_Page.drawerTitle} accessibilityRole='header'>{def_Page.drawerTitle}</Text>
          </View>
          <DrawerContentScrollView>
