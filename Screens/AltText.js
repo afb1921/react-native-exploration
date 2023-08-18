@@ -1,28 +1,59 @@
-import React, { useEffect, useRef, useLayoutEffect } from 'react';
-import { View, Text, AccessibilityInfo, TouchableOpacity, StyleSheet} from 'react-native';
+import React, { useEffect, useRef, useLayoutEffect, useState } from 'react';
+import { View, Text, AccessibilityInfo, TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
 import { colors, def_Page, heading } from '../constant';
 
+import { FontAwesome } from '@expo/vector-icons';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'; // Import responsive dimensions
 
 
 function AltText() {
   
-  const firstElementRef = useRef(null); //firstElementRef is used to focus on the first element
+  // State to store the screen dimensions
+  const [screenDimensions, setScreenDimensions] = useState(Dimensions.get('window'));
 
-  // When the page loads (everytime) the useFocusEffect is triggered
-  // This is used to bring focus on the first element
-  useFocusEffect(() => {
-     // Get the reactTag of the component to set focus on
-     const reactTag = firstElementRef.current._nativeTag;
-     // Set accessibility focus to the component
-    AccessibilityInfo.setAccessibilityFocus(reactTag); //This sets the accessibility focus to the given element (this case first element)
-    console.log('AltText Focus Effect');
-  });
+  // Register an event listener to handle dimension changes
+  useEffect(() => {
+    const updateScreenDimensions = () => {
+      setScreenDimensions(Dimensions.get('window'));
+    };
+    
+    // Add the event listener
+    Dimensions.addEventListener('change', updateScreenDimensions);
 
-  const handleButtonClick = () => {
-    console.log('Hello world!');
-  };
+    // Clean up the event listener when the component unmounts
+    return () => {
+      Dimensions.removeEventListener('change', updateScreenDimensions);
+    };
+  }, []);
+
+ 
+  // First Element Set Focus for Screen Reader
+  //----------------------------------------------------------------
+ const firstElementRef = useRef(null);
+
+ //When the page loads (everytime) the useFocusEffect is triggered
+ //This is used to bring focus on the first element
+ useFocusEffect(() => {
+
+   // Add a time delay before executing the focus logic, 
+   //This is important so the it gives it a chance to find the firstElement during loading.
+   const delay = 250; // Delay in milliseconds
+
+   setTimeout(() => {
+     if (firstElementRef.current) {
+       const reactTag = firstElementRef.current._nativeTag;
+       AccessibilityInfo.setAccessibilityFocus(reactTag);
+       console.log('Focus set on Alt Screen'); //Debuging purposes
+     }
+   }, delay);
+ });
+
+ const handleButtonClick = () => {
+   console.log('Hello world!');
+ };
+
 
   return (
     <View style={styles.container}>
@@ -30,28 +61,27 @@ function AltText() {
       {/* // heading.Heading is a custom heading style set in constant.js */}
       {/* //first Element set here -------------------------------------------*/}
       
-      <View style={{alignItems:"center"}}>
-        <heading.Heading1 
-          ref={firstElementRef}>Importance of Alternative Text
+      <View style={styles.containerHeader}>
+        <heading.Heading1
+          ref={firstElementRef}
+          style={styles.containerHeaderText}
+          accessible={true}
+          accessibilityLabel="Importance of Alternative Text"
+          accessibilityRole="header"
+          accessibilityState={{ selected: true }}
+        >
+          
+          Importance of Alternative Text
         </heading.Heading1> 
       </View>
+
       {/* // -----------------------------------------------------------------*/}
+      <View>
+        <FontAwesome name="universal-access" size={32} color="red"/>
+      </View>
 
-
-
-
-
-     
-     
-     
-     
+      
       <heading.Heading1>Testing</heading.Heading1>
-
-
-
-
-
-
       <TouchableOpacity onPress={handleButtonClick}>
         <Text>Set Focus</Text>
       </TouchableOpacity>
@@ -63,8 +93,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    // alignItems: 'center', //Aligns content horizontally center
   },
+  containerHeader:{
+    alignItems: 'center', //Aligns content horizontally center
+    backgroundColor: colors.primaryBlue,
+    paddingTop: 10,
+  },
+  containerHeaderText: {
+    color: "white",
+  }
   
 
 });
