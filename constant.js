@@ -4,16 +4,39 @@ import {Text} from 'react-native';
 export const heading = {
 
     // Heading Styles
-    Heading1: React.forwardRef(({ children, ...restProps }, ref) => {
+    Heading1: React.forwardRef(({ children, style, ...restProps }, ref) => {
+        const defaultStyles = {
+          fontSize: 24,
+          fontWeight: 'bold',
+          marginBottom: 16,
+          color: 'black', // Default text color
+        };
+    
         return (
           <Text
             {...restProps}
             ref={ref}
-            style={{
-              fontSize: 24,
-              fontWeight: 'bold',
-              marginBottom: 16,
-            }}
+            style={[defaultStyles, style]} // Merge defaultStyles with the provided style prop
+            accessibilityRole='header'
+          >
+            {children}
+          </Text>
+        );
+      }),
+
+      Heading2: React.forwardRef(({ children, style, ...restProps }, ref) => {
+        const defaultStyles = {
+          fontSize: 20,
+          fontWeight: 'bold',
+          marginBottom: 16,
+          color: 'black', // Default text color
+        };
+    
+        return (
+          <Text
+            {...restProps}
+            ref={ref}
+            style={[defaultStyles, style]} // Merge defaultStyles with the provided style prop
             accessibilityRole='header'
           >
             {children}
@@ -21,33 +44,19 @@ export const heading = {
         );
       }),
     
-      Heading2: React.forwardRef(({ children, ...restProps }, ref) => {
-        return (
-          <Text
-            {...restProps}
-            ref={ref}
-            style={{
-              fontSize: 20,
-              fontWeight: 'bold',
-              marginBottom: 16,
-            }}
-            accessibilityRole='header'
-          >
-            {children}
-          </Text>
-        );
-      }),
+      Heading3: React.forwardRef(({ children, style, ...restProps }, ref) => {
+        const defaultStyles = {
+          fontSize: 18,
+          fontWeight: 'bold',
+          marginBottom: 16,
+          color: 'black', // Default text color
+        };
     
-      Heading3: React.forwardRef(({ children, ...restProps }, ref) => {
         return (
           <Text
             {...restProps}
             ref={ref}
-            style={{
-              fontSize: 18,
-              fontWeight: 'bold',
-              marginBottom: 16,
-            }}
+            style={[defaultStyles, style]} // Merge defaultStyles with the provided style prop
             accessibilityRole='header'
           >
             {children}
@@ -78,7 +87,7 @@ brightBlue: "#039fff",
     activeBackground: "#1DA1F2", //Color for active navigation Background
 
 
-    //Header Colors//-----------------------
+    //Header Menu Colors//-----------------------
     headerBackground: '#1f1f1f', //Color for header background for each page
     titleColor: 'white', //Color for title for each page
     hamburgerIcon: 'white', //Color for hamburger icon
@@ -101,7 +110,7 @@ export const def_Page ={
 
     //------------------------------------------------
 
-    drawerTitle: "Accessibility Demo", // drawerTitle sets the title of the drawer when opened
+    drawerTitle: "Menu", // drawerTitle sets the title of the drawer when opened
 
     page1Name: "Home",  // pageName sets the name of the page when displayed on the header menu (Name displayed outside of drawer)
     page1MenuName: 'Home', // pageMenuName sets the name displayed inside the drawer (Name displayed inside drawer)
