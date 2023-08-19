@@ -1,37 +1,21 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, AccessibilityInfo, TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
+import React, {useRef} from 'react';
+import { View, Text, Image, AccessibilityInfo, TouchableOpacity, StyleSheet} from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
 import { colors, def_Page, heading } from '../constant';
 import { FontAwesome } from '@expo/vector-icons';
-
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'; // Import responsive dimensions
-
+import imageSource from '../assets/images/mudkip.png';
+import {darkMode, lightMode} from '../Themes/defaultThemes';
 
 function HomeScreen() {
 
-   // State to store the screen dimensions
-   const [screenDimensions, setScreenDimensions] = useState(Dimensions.get('window'));
-
-   // Register an event listener to handle dimension changes
-   useEffect(() => {
-     const updateScreenDimensions = () => {
-       setScreenDimensions(Dimensions.get('window'));
-     };
-     
-     // Add the event listener
-     Dimensions.addEventListener('change', updateScreenDimensions);
- 
-     // Clean up the event listener when the component unmounts
-     return () => {
-       Dimensions.removeEventListener('change', updateScreenDimensions);
-     };
-   }, []);
-
-  
-   // First Element Set Focus for Screen Reader
+  // First Element Set Focus for Screen Reader
    //----------------------------------------------------------------
   const firstElementRef = useRef(null);
+
+  const handleButtonClick = () => {
+    console.log('Hello world!');
+  };
 
   //When the page loads (everytime) the useFocusEffect is triggered
   //This is used to bring focus on the first element
@@ -49,10 +33,6 @@ function HomeScreen() {
       }
     }, delay);
   });
-
-  const handleButtonClick = () => {
-    console.log('Hello world!');
-  };
 
   return (
     <View style={styles.container}>
@@ -77,17 +57,36 @@ function HomeScreen() {
 
       {/* //This is a icon from fontAwesome displayed */}
       <View style={styles.iconContainer}> 
-        <FontAwesome name="universal-access" size={wp('10%')} color="red" /> 
+        <FontAwesome name="universal-access" color="red" style={{fontSize: 30}}/> 
       </View>
      {/* //---------------------------------------------------------------- */}
 
 
 
-      <heading.Heading1>Testing</heading.Heading1>
+      <heading.Heading1 
+        style={styles.contentColor}>
+          Testing
+      </heading.Heading1>
 
+      <View>
+        <Image 
+          source={imageSource}
+          style={{ width: 200, height: 200}}
+          resizeMode="contain"
+          accessibilityLabel='mudkip'
+        />
+      </View>
       <TouchableOpacity onPress={handleButtonClick}>
-        <Text>Set Focus</Text>
+        <Text style={styles.contentColor}>Set Focus</Text>
       </TouchableOpacity>
+
+      {/* <TouchableOpacity onPress={toggleDarkMode}>
+      <Text style={styles.contentColor}>
+        {darkMode ? 'Turn Off Dark Mode' : 'Turn On Dark Mode'}
+      </Text>
+    </TouchableOpacity> */}
+
+
     </View>
   );
 }
@@ -95,7 +94,9 @@ function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: def_Page.setDarkMode
+    ? darkMode.contentBackground
+    : lightMode.contentBackground,
   },
   containerHeader:{
     alignItems: 'center', //Aligns content horizontally center
@@ -107,8 +108,14 @@ const styles = StyleSheet.create({
   },
   iconContainer: {
     alignItems: 'center',
-    marginTop: hp('3%'),
   },
+  contentColor:{
+    color: def_Page.setDarkMode
+    ? darkMode.textColor
+    : lightMode.textColor,
+  },
+  
+  
   
 
 });
