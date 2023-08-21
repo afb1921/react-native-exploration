@@ -1,34 +1,24 @@
-import React, { useEffect, useRef, useLayoutEffect, useState } from 'react';
-import { View, Text, Image, AccessibilityInfo, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import React, { useRef, useContext} from 'react';
+import { View, Text, Image, AccessibilityInfo, StyleSheet} from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
 import { colors, def_Page, heading } from '../constant';
 
 import { FontAwesome } from '@expo/vector-icons';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'; // Import responsive dimensions
 import imageSource from '../assets/images/mudkip.png';
 import { darkMode, lightMode } from '../Themes/defaultThemes';
 
+//Theme Managment Imports------------------------------------------
+import themeContext from '../Themes/themeContext';
+//-----------------------------------------------------------------
+
+
+
 function AltText() {
 
-  // State to store the screen dimensions
-  // const [screenDimensions, setScreenDimensions] = useState(Dimensions.get('window'));
-
-  // Register an event listener to handle dimension changes
-  // useEffect(() => {
-  //   const updateScreenDimensions = () => {
-  //     setScreenDimensions(Dimensions.get('window'));
-  //   };
-
-  //   // Add the event listener
-  //   Dimensions.addEventListener('change', updateScreenDimensions);
-
-  //   // Clean up the event listener when the component unmounts
-  //   return () => {
-  //     Dimensions.removeEventListener('change', updateScreenDimensions);
-  //   };
-  // }, []);
-
+  //Theme Manangement-----------------------------------------------
+  const theme = useContext(themeContext)
+  //----------------------------------------------------------------
 
   // First Element Set Focus for Screen Reader
   //----------------------------------------------------------------
@@ -57,7 +47,8 @@ function AltText() {
 
 
   return (
-    <View style={styles.container}>
+
+    <View style={[styles.container, {backgroundColor: theme.contentBackground}]}>
 
       {/* // heading.Heading is a custom heading style set in constant.js */}
       {/* //first Element set here -------------------------------------------*/}
@@ -78,10 +69,10 @@ function AltText() {
 
       {/* // -----------------------------------------------------------------*/}
 
-      <View style={[styles.altTextInfoContainer, styles.borderBottom]}>
+      <View style={[styles.altTextInfoContainer, {borderColor: theme.borderColor}]}>
 
         <heading.Heading2
-          style={[styles.textContent, styles.contentColor]}
+          style={[styles.textContent, {color: theme.textColor}]}
           accessible={true}
           accessibilityLabel="Importance of Alternative Text"
           accessibilityRole="header"
@@ -93,12 +84,12 @@ function AltText() {
 
         <FontAwesome 
           name="info-circle" 
-          style={[styles.altTextInfoIcon, , styles.contentColor]}
+          style={[styles.altTextInfoIcon, , {color: theme.textColor}]}
           importantForAccessibility='no' 
         />
 
         <Text
-          style={[styles.contentColor, styles.textContent]}
+          style={[styles.textContent, {color: theme.textColor}]}
         >
           Text alternatives are crucial for ensuring
           digital accessibility. They provide a way for
@@ -113,7 +104,7 @@ function AltText() {
 
       <View style={styles.imageSectionContainer}>
         <Text 
-          style={[styles.contentColor, styles.textContent]}
+          style={[styles.textContent, {color: theme.textColor}]}
         >
           Displayed under this text is a image.
         </Text>
@@ -125,7 +116,7 @@ function AltText() {
         />
 
         <Text 
-          style={[styles.contentColor, styles.textContent]}
+          style={[styles.textContent, {color: theme.textColor}]}
         >
 
         Since its a image we should only expect name, role"
@@ -144,6 +135,7 @@ function AltText() {
 
 
     </View>
+
   );
 }
 
@@ -152,13 +144,9 @@ const styles = StyleSheet.create({
   //This affects the entire page
   container: {
     flex: 1,
-    backgroundColor: def_Page.setDarkMode
-    ? darkMode.contentBackground
-    : lightMode.contentBackground,
   },
   //----------------------------
   
-
   //Header Styles relating to "Importance of Text Alternatives"
   containerHeader: {
     alignItems: 'center', //Aligns content horizontally center
@@ -169,8 +157,6 @@ const styles = StyleSheet.create({
     color: "white",
   },
   //----------------------------
-
-
 
 //Alt Text Info section specifc styles
   altTextInfoContainer: {
@@ -199,17 +185,6 @@ const styles = StyleSheet.create({
   //----------------------------
 
   //General Styles--- 
-  contentColor:{                  //This style is to switch color between dark and light modes
-    color: def_Page.setDarkMode
-    ? darkMode.textColor
-    : lightMode.textColor,
-  },
-
-  borderBottom: {                     //This style switches border color between dark and light modes
-    borderColor: def_Page.setDarkMode
-    ? darkMode.borderColor
-    : lightMode.borderColor,
-  },
 
   textContent: {        //This style is general text style
     paddingTop: 10,

@@ -2,6 +2,8 @@
 
 export const darkMode = {
 
+    theme: 'dark',
+
     //Drawer Colors//-----------------------
     drawerHeader: '#039fff', //Color for drawer header
     drawerHeaderText: 'white', //Color for drawer header text
@@ -18,6 +20,10 @@ export const darkMode = {
     innerBorderColor: '#ebeded', //Color for border
     outerBorderColor: "#181818",
 
+    innerBorderRadius: 8,
+    borderBottomWidth: 3,
+    borderLeftWidth: 5,
+
 
     //Header Menu Colors//-----------------------
     headerBackground: '#1f1f1f', //Color for header background for each page
@@ -27,7 +33,6 @@ export const darkMode = {
 
     //Status Bar Colors//-----------------------
     statusBarColor: "black", //Color for status bar
-    iconColor: 'light-content', //*NOTE* only options include (dark-content, light-content)
     //------------------------------------
 
     //page Content Colors//-----------------------
@@ -39,10 +44,12 @@ export const darkMode = {
 };
 
 export const lightMode = {
+    theme: "light",
 
     //Drawer Colors//-----------------------
     drawerHeader: '#039fff', //Color for drawer header
     drawerHeaderText: 'white', //Color for drawer header text
+
     outerContentBackground: '#ebeded', //Color for drawer Outer content background
     innerContentBackground: '#ebeded', //Color for drawer inner content background
 
@@ -52,6 +59,12 @@ export const lightMode = {
     inactiveBackground: 'white', //Color for inactive navigation Background
     activeBackground: "#1DA1F2", //Color for active navigation Background
 
+    innerBorderColor: '#ebeded', //Color for border
+    outerBorderColor: "#181818",
+
+    innerBorderRadius: 0,
+    borderBottomWidth: 0,
+    borderLeftWidth: 0,
 
     //Header Menu Colors//-----------------------
     headerBackground: '#1f1f1f', //Color for header background for each page
@@ -61,7 +74,6 @@ export const lightMode = {
 
     //Status Bar Colors//-----------------------
     statusBarColor: "black", //Color for status bar
-    iconColor: 'light-content', //*NOTE* only options include (dark-content, light-content)
     //------------------------------------
 
     contentBackground: "white",

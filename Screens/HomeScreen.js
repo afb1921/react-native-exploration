@@ -1,17 +1,30 @@
-import React, {useRef} from 'react';
-import { View, Text, Image, AccessibilityInfo, TouchableOpacity, StyleSheet} from 'react-native';
+import React, {useRef, useState, useContext} from 'react';
+import { View, Text, Image, AccessibilityInfo, 
+  TouchableOpacity, StyleSheet} from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
-
-import { colors, def_Page, heading } from '../constant';
 import { FontAwesome } from '@expo/vector-icons';
-import imageSource from '../assets/images/mudkip.png';
-import {darkMode, lightMode} from '../Themes/defaultThemes';
 
-function HomeScreen() {
+//Theme Managment Imports------------------------------------------
+import themeContext from '../Themes/themeContext';
+//-----------------------------------------------------------------
+
+//Custom Imports---------------------------------------------------
+import { colors, heading } from '../constant';
+import imageSource from '../assets/images/mudkip.png';
+//-----------------------------------------------------------------
+
+function HomeScreen(){
+
+
+  //Theme Manangement-----------------------------------------------
+  const theme = useContext(themeContext)
+  //----------------------------------------------------------------
+  
 
   // First Element Set Focus for Screen Reader
-   //----------------------------------------------------------------
+   //---------------------------------------------------------------
   const firstElementRef = useRef(null);
+  //----------------------------------------------------------------
 
   const handleButtonClick = () => {
     console.log('Hello world!');
@@ -20,6 +33,7 @@ function HomeScreen() {
   //When the page loads (everytime) the useFocusEffect is triggered
   //This is used to bring focus on the first element
   useFocusEffect(() => {
+    
 
     // Add a time delay before executing the focus logic, 
     //This is important so the it gives it a chance to find the firstElement during loading.
@@ -35,7 +49,7 @@ function HomeScreen() {
   });
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor: theme.contentBackground}]}>
 
       
       {/* //first Element set here -------------------------------------------*/}
@@ -64,7 +78,7 @@ function HomeScreen() {
 
 
       <heading.Heading1 
-        style={styles.contentColor}>
+        style={{color: theme.textColor}}>
           Testing
       </heading.Heading1>
 
@@ -77,15 +91,8 @@ function HomeScreen() {
         />
       </View>
       <TouchableOpacity onPress={handleButtonClick}>
-        <Text style={styles.contentColor}>Set Focus</Text>
+        <Text style={{color: theme.textColor}}>Set Focus</Text>
       </TouchableOpacity>
-
-      {/* <TouchableOpacity onPress={toggleDarkMode}>
-      <Text style={styles.contentColor}>
-        {darkMode ? 'Turn Off Dark Mode' : 'Turn On Dark Mode'}
-      </Text>
-    </TouchableOpacity> */}
-
 
     </View>
   );
@@ -94,9 +101,6 @@ function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: def_Page.setDarkMode
-    ? darkMode.contentBackground
-    : lightMode.contentBackground,
   },
   containerHeader:{
     alignItems: 'center', //Aligns content horizontally center
@@ -110,14 +114,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   contentColor:{
-    color: def_Page.setDarkMode
-    ? darkMode.textColor
-    : lightMode.textColor,
   },
   
-  
-  
-
 });
 
 export default HomeScreen;

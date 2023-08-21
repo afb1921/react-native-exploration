@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, StyleSheet, StatusBar } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { NavigationContainer } from '@react-navigation/native';
-import { FontAwesome } from '@expo/vector-icons';
-import {ThemeProvider} from 'styled-components';
+import { NavigationContainer, useFocusEffect } from '@react-navigation/native';
 
-//Constants
-import { colors, def_Page, heading } from './constant';
+import { FontAwesome } from '@expo/vector-icons';
+import { EventRegister } from 'react-native-event-listeners';
+
+
+//Custom Imports------------------------------------------------
+import { colors, def_Page } from './constant';
 import { darkMode, lightMode } from './Themes/defaultThemes';
+//---------------------------------------------------------------
 
 //Components-----------------------------------------------------
 import { DrawerContent } from './components/DrawerContent';
 import CustomHeaderRight from './components/CustomHeaderRight';
+import themeContext from './Themes/themeContext';
 //---------------------------------------------------------------
 
 //Screens--------------------------------------------------------
@@ -26,8 +30,25 @@ const Drawer = createDrawerNavigator();
 
 function App() {
 
-  // Define an array of screen configurations
+  //Theme Managment----------------------------------------------------------
+  const [darkModeTheme, setDarkMode] = useState(false);
+  const theme = darkModeTheme ? darkMode : lightMode;
 
+  useEffect(() => {
+    const listener = EventRegister.addEventListener('ChangeTheme', (data) => {
+      setDarkMode(data)
+
+      console.log(data) //debug prints Theme State
+      console.log(theme) //debug prints Theme CSS
+    })
+    return () => {
+      EventRegister.removeAllListeners(listener);
+    }
+  }, [darkModeTheme])
+  //------------------------------------------------------------------------
+
+  // Define an array of screen configurations
+  //--------------------------------------------------------------------------------------------------
   //name is the name of the screen set in def_Page if commonLabel is set to "false" it will display
   //component is the name of the imported component under "Screens" in this file!
   //icon is the name of the icon you want displayed using font awesome icons
@@ -41,26 +62,27 @@ function App() {
     { name: def_Page.page5Name, component: Contact, icon: 'envelope' },
   ];
 
+  //------------------------------------------------------------------------------------------------
+
   return (
+    <themeContext.Provider value={darkModeTheme === true ? darkMode : lightMode}>
       <View style={styles.container}>
-        {/* Status Bar */}
+
+        {/* Status Bar --------------------------- */}
         <StatusBar
-
-          barStyle={def_Page.setDarkMode
-            ? darkMode.iconColor
-            : lightMode.iconColor}
-
-          backgroundColor={def_Page.setDarkMode
-            ? darkMode.statusBarColor
-            : lightMode.statusBarColor}
+          barStyle={"light-content"}
+          backgroundColor={theme.statusBarColor}
         />
+        {/* //-------------------------------------*/}
+
+
         {/* Navigation Container */}
         <NavigationContainer>
+
           <Drawer.Navigator
             drawerContent={(props) => <DrawerContent {...props} />}
             screenOptions={({ navigation }) => ({
-              headerStyle: styles.headerBackground,
-              headerTintColor: colors.titleColor,
+              headerStyle: { backgroundColor: theme.headerBackground },
               drawerPosition: 'right', //Drawer will slide from direction given
               headerLeft: false, //Default Hamburger is on left, header left set to false for custom right side hamburger menu
               headerRight: () => <CustomHeaderRight navigation={navigation} />, //custom right side hamburger
@@ -77,11 +99,11 @@ function App() {
                     <View style={styles.headerContainer}>
                       <FontAwesome
                         name={screen.icon} //This is configurable in the screens array
-                        style={styles.headerIcon}
+                        style={[styles.headerIcon, { color: theme.headerIcon }]}
                         importantForAccessibility='no' //This hides the icon from screen readers its decoration therefore needs hidden
                       />
                       <Text
-                        style={styles.headerText}
+                        style={[styles.headerText, { color: theme.titleColor }]}
                       >
                         {/* if def_Page.setCommonLabel is true then text will be def_Page.commonLabel else screen.name */}
                         {def_Page.setCommonLabel ? def_Page.commonLabel : screen.name}
@@ -94,6 +116,7 @@ function App() {
           </Drawer.Navigator>
         </NavigationContainer>
       </View>
+    </themeContext.Provider>
   );
 }
 
@@ -108,26 +131,12 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: def_Page.setDarkMode
-      ? darkMode.titleColor
-      : lightMode.titleColor,
-
   },
   headerIcon: {
     fontSize: 30,
     marginRight: 10,
-    color: def_Page.setDarkMode
-      ? darkMode.headerIcon
-      : lightMode.headerIcon,
+
   },
-  headerBackground: {
-    backgroundColor: def_Page.setDarkMode
-      ? darkMode.headerBackground
-      : lightMode.headerBackground,
-  },
-
-
-
 
 });
 
