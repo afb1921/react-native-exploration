@@ -1,11 +1,13 @@
-import React, { useRef, useContext} from 'react';
-import { View, Text, Image, AccessibilityInfo, StyleSheet} from 'react-native';
+import React, { useRef, useContext, useState } from 'react';
+import { View, Text, Image, AccessibilityInfo, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
+
 import { useFocusEffect } from '@react-navigation/native';
 
 import { colors, def_Page, heading } from '../constant';
 
 import { FontAwesome } from '@expo/vector-icons';
-import imageSource from '../assets/images/mudkip.png';
+import dog_with_glasses from '../assets/images/dog_With_Glasses.jpg';
 import { darkMode, lightMode } from '../Themes/defaultThemes';
 
 //Theme Managment Imports------------------------------------------
@@ -15,6 +17,9 @@ import themeContext from '../Themes/themeContext';
 
 
 function AltText() {
+
+  const [selectedValue, setSelectedValue] = useState('');
+
 
   //Theme Manangement-----------------------------------------------
   const theme = useContext(themeContext)
@@ -48,93 +53,115 @@ function AltText() {
 
   return (
 
-    <View style={[styles.container, {backgroundColor: theme.contentBackground}]}>
+    <ScrollView>
 
-      {/* // heading.Heading is a custom heading style set in constant.js */}
-      {/* //first Element set here -------------------------------------------*/}
+      <View style={[styles.container, { backgroundColor: theme.contentBackground }]}>
 
-      <View style={styles.containerHeader}>
-        <heading.Heading1
-          ref={firstElementRef}
-          style={styles.containerHeaderText}
-          accessible={true}
-          accessibilityLabel="Text Alternatives"
-          accessibilityRole="header"
-          accessibilityState={{ selected: true }}
-        >
+        {/* // heading.Heading is a custom heading style set in constant.js */}
+        {/* //first Element set here -------------------------------------------*/}
 
-          Text Alternatives
-        </heading.Heading1>
+        <View style={styles.containerHeader}>
+          <heading.Heading1
+            ref={firstElementRef}
+            style={styles.containerHeaderText}
+            accessible={true}
+            accessibilityLabel="Text Alternatives"
+            accessibilityRole="header"
+            accessibilityState={{ selected: true }}
+          >
+
+            Text Alternatives
+          </heading.Heading1>
+        </View>
+
+        {/* // -----------------------------------------------------------------*/}
+
+        <View style={[styles.altTextInfoContainer, { borderColor: theme.borderColor }]}>
+
+          <heading.Heading2
+            style={[styles.textContent, { color: theme.textColor }]}
+            accessible={true}
+            accessibilityLabel="Importance of Alternative Text"
+            accessibilityRole="header"
+            accessibilityState={{ selected: true }}
+          >
+
+            Importance of Alternative Text
+          </heading.Heading2>
+
+          <FontAwesome
+            name="info-circle"
+            style={[styles.altTextInfoIcon, , { color: theme.textColor }]}
+            importantForAccessibility='no'
+          />
+
+          <Text
+            style={[styles.textContent, { color: theme.textColor }]}
+          >
+            Text alternatives are crucial for ensuring
+            digital accessibility. They provide a way for
+            people with disabilities, especially those who
+            rely on assistive technologies such as screen
+            readers, to understand and interact with non-text
+            content, such as images, videos, graphs, charts,
+            and more.
+          </Text>
+
+        </View>
+
+        <View style={styles.imageSectionContainer}>
+          <Text
+            style={[styles.textContent, { color: theme.textColor }]}
+          >
+            Displayed under this text is a image.
+          </Text>
+
+          <Image
+            source={dog_with_glasses}
+            style={styles.imageStyle}
+            accessibilityLabel='A Labrador Retriever wearing sun glasses'
+          />
+
+          <Text style={[styles.textContent, { color: theme.textColor }]}>
+            Since its an image we should only expect
+            <Text style={{ fontWeight: 'bold' }}> "name, role"</Text>
+            {"\n"}
+            The image has an accessibilityLabel set to
+            <Text style={{ fontStyle: 'italic' }}>
+              "A Labrador Retriever wearing sun glasses"
+            </Text>
+            , and a role of image, therefore the screen reader will make an announcement as
+            <Text style={{ color: theme.textHighlight }}>
+              {"\n"}
+              "A Labrador Retriever wearing sun glasses, image"
+            </Text>
+            !
+          </Text>
+
+          </View>
+
+          {/* <View>
+            <Picker
+              selectedValue={selectedValue}
+              onValueChange={(itemValue) => setSelectedValue(itemValue)}
+              accessibilityLabel='Test'
+
+
+            >
+              <Picker.Item label="Option 1" value="option1" />
+              <Picker.Item label="Option 2" value="option2" />
+              <Picker.Item label="Option 3" value="option3" />
+              <Picker.Item label="None" value=""/>
+          
+              {/* Add more options as needed */}
+            {/* </Picker>
+            <Text>Selected Value: {selectedValue}</Text>
+
+          </View> */} 
+
       </View>
 
-      {/* // -----------------------------------------------------------------*/}
-
-      <View style={[styles.altTextInfoContainer, {borderColor: theme.borderColor}]}>
-
-        <heading.Heading2
-          style={[styles.textContent, {color: theme.textColor}]}
-          accessible={true}
-          accessibilityLabel="Importance of Alternative Text"
-          accessibilityRole="header"
-          accessibilityState={{ selected: true }}
-        >
-
-          Importance of Alternative Text
-        </heading.Heading2>
-
-        <FontAwesome 
-          name="info-circle" 
-          style={[styles.altTextInfoIcon, , {color: theme.textColor}]}
-          importantForAccessibility='no' 
-        />
-
-        <Text
-          style={[styles.textContent, {color: theme.textColor}]}
-        >
-          Text alternatives are crucial for ensuring
-          digital accessibility. They provide a way for
-          people with disabilities, especially those who
-          rely on assistive technologies such as screen
-          readers, to understand and interact with non-text
-          content, such as images, videos, graphs, charts,
-          and more.
-        </Text>
-
-      </View>
-
-      <View style={styles.imageSectionContainer}>
-        <Text 
-          style={[styles.textContent, {color: theme.textColor}]}
-        >
-          Displayed under this text is a image.
-        </Text>
-        
-        <Image 
-          source={imageSource}
-          style={styles.imageStyle}
-          accessibilityLabel='mudkip'
-        />
-
-        <Text 
-          style={[styles.textContent, {color: theme.textColor}]}
-        >
-
-        Since its a image we should only expect name, role"
-
-        The image has a accessibilityLabel set to "mudkip", and a role of image,
-        the screen reader will make an annoucement as "mudkip, image"!
-        </Text>
-      </View>
-
-
-
-
-
-
-
-
-
-    </View>
+    </ScrollView>
 
   );
 }
@@ -146,7 +173,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   //----------------------------
-  
+
   //Header Styles relating to "Importance of Text Alternatives"
   containerHeader: {
     alignItems: 'center', //Aligns content horizontally center
@@ -158,7 +185,7 @@ const styles = StyleSheet.create({
   },
   //----------------------------
 
-//Alt Text Info section specifc styles
+  //Alt Text Info section specifc styles
   altTextInfoContainer: {
     borderBottomWidth: 5,
     alignItems: 'center',
@@ -166,20 +193,20 @@ const styles = StyleSheet.create({
 
   altTextInfoIcon: {
     fontSize: 40,
-    paddingTop: 10,
   },
   //----------------------------
 
   //Image section Styles
 
-  imageSectionContainer:{
+  imageSectionContainer: {
     alignItems: 'center', //Aligns content horizontally center
   },
 
   imageStyle: {
-    width: 200, 
+    width: 200,
     height: 200,
     resizeMode: 'contain',
+    borderRadius: 20,
   },
 
   //----------------------------
