@@ -104,12 +104,12 @@ export const def_Page = {
   page2Name: "AltText",
   page2MenuName: 'Alt Text Info',
 
-  page3Name: "Work",
-  page3MenuName: 'Work',
+  page3Name: "Page 3",
+  page3MenuName: 'Page 3 (PLACEHOLDER)',
 
-  page4Name: "Services",
-  page4MenuName: 'Services',
+  page4Name: "Page 4",
+  page4MenuName: 'Page 4 (PLACEHOLDER)',
 
-  page5Name: "Contact",
-  page5MenuName: 'Contact',
+  page5Name: "Page 5",
+  page5MenuName: "Page 5 (PLACEHOLDER)",
 }
