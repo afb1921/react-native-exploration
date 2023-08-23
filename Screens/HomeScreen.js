@@ -10,7 +10,7 @@ import themeContext from '../Themes/themeContext';
 
 //Custom Imports---------------------------------------------------
 import { colors, heading } from '../constant';
-import imageSource from '../assets/images/mudkip.png';
+import dog_with_glasses from '../assets/images/dog_With_Glasses.jpg';
 //-----------------------------------------------------------------
 
 function HomeScreen(){
@@ -84,10 +84,11 @@ function HomeScreen(){
 
       <View>
         <Image 
-          source={imageSource}
+          source={dog_with_glasses}
           style={{ width: 200, height: 200}}
           resizeMode="contain"
-          accessibilityLabel='mudkip'
+          accessibilityLabel='A Labrador Retriever wearing sun glasses'
+
         />
       </View>
       <TouchableOpacity onPress={handleButtonClick}>
