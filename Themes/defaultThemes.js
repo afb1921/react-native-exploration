@@ -38,6 +38,7 @@ export const darkMode = {
     //page Content Colors//-----------------------
     contentBackground: "black",
     textColor: "white",
+    textHighlight: "orange",
     borderColor: "white",
     //--------------------------------
 
@@ -78,6 +79,8 @@ export const lightMode = {
 
     contentBackground: "white",
     textColor: "black",
+    textHighlight: "red",
+
     borderColor: "black",
 
 };
