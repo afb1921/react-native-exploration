@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { View, Text, StyleSheet, StatusBar } from 'react-native';
+import { View, Text, StyleSheet, StatusBar} from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer, useFocusEffect } from '@react-navigation/native';
 
@@ -19,11 +19,28 @@ import themeContext from './Themes/themeContext';
 //---------------------------------------------------------------
 
 //Screens--------------------------------------------------------
+
+//To add a new screen--------------------------
+//Step 1: Create and Rename the Screen under the "Screens" folder (Use my default Template)
+
+//Step 2: import the screen in this format "import ScreenComponentName from "file location";"
+  //EXAMPLE: import HomeScreen from './Screens/HomeScreen';
+
+//Step 3: Open the constant.js file and add your screen labeling settings heres an exmaple for home screen:
+  //page1Name: "Home",  // pageName sets the name of the page when displayed on the header menu (Name displayed outside of drawer)
+  //page1MenuName: 'Home', // pageMenuName sets the name displayed inside the drawer (Name displayed inside drawer)
+
+//Step 3: Visit the Screen configuration section in this file and app your screen settings here's an example for home screen:
+  //{ name: def_Page.page1Name, component: HomeScreen, icon: 'universal-access' },
+
+//Step 4: After that the screen should be all hooked up and work in the drawer menu
+//-----------------------------------------------
+
 import HomeScreen from './Screens/HomeScreen';
 import AltText from './Screens/AltText';
-import WorkScreen from './Screens/WorkScreen';
-import ServicesScreen from './Screens/ServicesScreen';
-import Contact from './Screens/Contact';
+import Page3Screen from './Screens/Page3';
+import Page4Screen from './Screens/Page4';
+import Page5Screen from './Screens/Page5';
 // --------------------------------------------------------------
 
 const Drawer = createDrawerNavigator();
@@ -35,17 +52,17 @@ function App() {
   const theme = darkModeTheme ? darkMode : lightMode;
 
   useEffect(() => {
+    console.log(theme) //debug prints Theme CSS
     const listener = EventRegister.addEventListener('ChangeTheme', (data) => {
       setDarkMode(data)
 
-      console.log(data) //debug prints Theme State
-      console.log(theme) //debug prints Theme CSS
     })
     return () => {
       EventRegister.removeAllListeners(listener);
     }
   }, [darkModeTheme])
   //------------------------------------------------------------------------
+
 
   // Define an array of screen configurations
   //--------------------------------------------------------------------------------------------------
@@ -57,15 +74,19 @@ function App() {
   const screens = [
     { name: def_Page.page1Name, component: HomeScreen, icon: 'universal-access' },
     { name: def_Page.page2Name, component: AltText, icon: 'universal-access' },
-    { name: def_Page.page3Name, component: WorkScreen, icon: 'briefcase' },
-    { name: def_Page.page4Name, component: ServicesScreen, icon: 'cog' },
-    { name: def_Page.page5Name, component: Contact, icon: 'envelope' },
+    { name: def_Page.page3Name, component: Page3Screen, icon: 'briefcase' },
+    { name: def_Page.page4Name, component: Page4Screen, icon: 'cog' },
+    { name: def_Page.page5Name, component: Page5Screen, icon: 'envelope' },
   ];
 
   //------------------------------------------------------------------------------------------------
 
   return (
     <themeContext.Provider value={darkModeTheme === true ? darkMode : lightMode}>
+      
+      
+
+
       <View style={styles.container}>
 
         {/* Status Bar --------------------------- */}
@@ -74,7 +95,7 @@ function App() {
           backgroundColor={theme.statusBarColor}
         />
         {/* //-------------------------------------*/}
-
+        
 
         {/* Navigation Container */}
         <NavigationContainer>
@@ -116,6 +137,8 @@ function App() {
           </Drawer.Navigator>
         </NavigationContainer>
       </View>
+      
+
     </themeContext.Provider>
   );
 }
