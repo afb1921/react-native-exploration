@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react';
-import { View, StyleSheet, Text, Dimensions, Switch } from 'react-native';
+import React, { useContext, useState, useRef } from 'react';
+import { View, StyleSheet, Text, Dimensions, Switch, AccessibilityInfo } from 'react-native';
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { Drawer } from 'react-native-paper';
 
@@ -13,6 +13,8 @@ import themeContext from '../Themes/themeContext';
 //---------------------------------------------------------------
 
 export function DrawerContent(props) {
+
+   const switchRef = useRef(null);
 
 
    //Theme Management------------------------------------------
@@ -50,7 +52,7 @@ export function DrawerContent(props) {
    //---------------------------------------------------------
 
    return (
-      <View style={[styles.drawerOuterContent, {backgroundColor: theme.outerContentBackground, borderLeftWidth: theme.borderLeftWidth, borderColor: theme.outerBorderColor }]}>
+      <View style={[styles.drawerOuterContent, { backgroundColor: theme.outerContentBackground, borderLeftWidth: theme.borderLeftWidth, borderColor: theme.outerBorderColor }]}>
          <View
             style={[
 
@@ -60,11 +62,11 @@ export function DrawerContent(props) {
                   ? { marginTop: 35, marginBottom: -40, paddingBottom: 20 }
                   : {},
 
-               {backgroundColor: theme.drawerHeader},
+               { backgroundColor: theme.drawerHeader },
             ]}
          >
             <Text
-               style={[styles.drawerHeaderText, {color: theme.drawerHeaderText}]}
+               style={[styles.drawerHeaderText, { color: theme.drawerHeaderText }]}
                accessibilityLabel={def_Page.drawerTitle}
                accessibilityRole='header'
             >
@@ -76,12 +78,13 @@ export function DrawerContent(props) {
          <DrawerContentScrollView>
 
             <Drawer.Section style={[
-               styles.drawerInnerSection, 
-               {borderRadius: theme.innerBorderRadius, 
-               borderBottomWidth: theme.borderBottomWidth, 
-               borderColor: theme.innerBorderColor,
-               backgroundColor: theme.innerContentBackground,
-               } ]}
+               styles.drawerInnerSection,
+               {
+                  borderRadius: theme.innerBorderRadius,
+                  borderBottomWidth: theme.borderBottomWidth,
+                  borderColor: theme.innerBorderColor,
+                  backgroundColor: theme.innerContentBackground,
+               }]}
             >
                {renderDrawerItem(0, def_Page.page1MenuName, def_Page.page1Name)}
                {renderDrawerItem(1, def_Page.page2MenuName, def_Page.page2Name)}
@@ -91,22 +94,28 @@ export function DrawerContent(props) {
 
             </Drawer.Section>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-               <Text 
-                  style ={{color: theme.textColor}}
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+               <Text
+                  style={{ color: theme.textColor }}
                >
-               Dark Mode
+                  Dark Mode
                </Text>
-               
+
                <Switch
                   value={darkModeTheme}
+                  ref={switchRef}
                   onValueChange={(value) => {
                      setDarkMode(value);
                      EventRegister.emit('ChangeTheme', value)
+                     // Set focus on the switch
+                     
                   }}
 
                />
+
             </View>
+
+
          </DrawerContentScrollView>
 
 
