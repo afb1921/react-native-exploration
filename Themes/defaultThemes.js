@@ -39,8 +39,13 @@ export const darkMode = {
     contentBackground: "black",
     textColor: "white",
     textHighlight: "orange",
+    textHighlightBackground: "white",
     borderColor: "white",
     //--------------------------------
+
+    //Drop Down Colors//-----------------------
+    dropDownFocusColor: "white",
+    dropDownFocusBackground: "#1DA1F2",
 
 };
 
@@ -77,10 +82,18 @@ export const lightMode = {
     statusBarColor: "black", //Color for status bar
     //------------------------------------
 
+
+    //Content Related Colors//-----------------------
     contentBackground: "white",
     textColor: "black",
+
     textHighlight: "red",
+    textHighlightBackground: "black",
 
     borderColor: "black",
+
+    //Drop Down Colors//-----------------------
+    dropDownFocusColor: "white",
+    dropDownFocusBackground: "#1DA1F2",
 
 };
