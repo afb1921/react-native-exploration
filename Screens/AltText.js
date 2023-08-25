@@ -1,61 +1,75 @@
-import React, { useRef, useContext, useState } from 'react';
+import React, { useRef, useContext, useState, useEffect } from 'react';
 import { View, Text, Image, AccessibilityInfo, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
-
 import { useFocusEffect } from '@react-navigation/native';
 
 import { colors, def_Page, heading } from '../constant';
 
 import { FontAwesome } from '@expo/vector-icons';
 import dog_with_glasses from '../assets/images/dog_With_Glasses.jpg';
-import { darkMode, lightMode } from '../Themes/defaultThemes';
 
-//Theme Managment Imports------------------------------------------
+import CustomDropdown from '../components/CustomDropdown';
+
+//Theme Managment Imports==========================================
 import themeContext from '../Themes/themeContext';
 //-----------------------------------------------------------------
 
 
-
 function AltText() {
 
-  const [selectedValue, setSelectedValue] = useState('');
-
-
-  //Theme Manangement-----------------------------------------------
+  //Theme Manangement
+  //===============================================================
   const theme = useContext(themeContext)
   //----------------------------------------------------------------
 
-  // First Element Set Focus for Screen Reader
-  //----------------------------------------------------------------
+  // First Element Set Focus for Screen Reader & Reset Scroll View
+  //===============================================================
   const firstElementRef = useRef(null);
+  const scrollViewRef = useRef(null);
 
   //When the page loads (everytime) the useFocusEffect is triggered
   //This is used to bring focus on the first element
   useFocusEffect(() => {
+    console.log("focus effect on alt screen")
 
-    // Add a time delay before executing the focus logic, 
-    //This is important so the it gives it a chance to find the firstElement during loading.
-    const delay = 250; // Delay in milliseconds
+      //Reset Scroll View to the top of the page
+      if (scrollViewRef.current) {
+        console.log("Scroll")
+        scrollViewRef.current.scrollTo({ y: 0 });
+      }
+      //-----------------------------------------------------------
 
-    setTimeout(() => {
-      if (firstElementRef.current) {
+      // Add a time delay before executing the focus logic, 
+      //This is important so the it gives it a chance to find the firstElement during loading.
+      const delay = 250; // Delay in milliseconds
+
+      setTimeout(() => {
         const reactTag = firstElementRef.current._nativeTag;
         AccessibilityInfo.setAccessibilityFocus(reactTag);
-        console.log('Focus set on Alt Screen'); //Debuging purposes
-      }
-    }, delay);
-  });
+        console.log('Focus set on Alt Screen');
+      }, delay);
+      
+    }
+
+  );
+
+  //---------------------------------------------------------------
+
+
+
+
 
   const handleButtonClick = () => {
     console.log('Hello world!');
   };
 
 
+
+
   return (
 
-    <ScrollView>
+    <ScrollView ref={scrollViewRef} style={[styles.container, { backgroundColor: theme.contentBackground }]}>
 
-      <View style={[styles.container, { backgroundColor: theme.contentBackground }]}>
+      <View>
 
         {/* // heading.Heading is a custom heading style set in constant.js */}
         {/* //first Element set here -------------------------------------------*/}
@@ -68,6 +82,7 @@ function AltText() {
             accessibilityLabel="Text Alternatives"
             accessibilityRole="header"
             accessibilityState={{ selected: true }}
+
           >
 
             Text Alternatives
@@ -109,7 +124,11 @@ function AltText() {
 
         </View>
 
-        <View style={styles.imageSectionContainer}>
+        <View
+          style={styles.imageSectionContainer}
+        >
+
+
           <Text
             style={[styles.textContent, { color: theme.textColor }]}
           >
@@ -123,41 +142,27 @@ function AltText() {
           />
 
           <Text style={[styles.textContent, { color: theme.textColor }]}>
-            Since its an image we should only expect
-            <Text style={{ fontWeight: 'bold' }}> "name, role"</Text>
-            {"\n"}
-            The image has an accessibilityLabel set to
+
+            <Text>
+              The image has an accessibilityLabel set to{"\n"}
+            </Text>
             <Text style={{ fontStyle: 'italic' }}>
-              "A Labrador Retriever wearing sun glasses"
+              {"\"A Labrador Retriever wearing sun glasses\""}{"\n"}
             </Text>
-            , and a role of image, therefore the screen reader will make an announcement as
-            <Text style={{ color: theme.textHighlight }}>
-              {"\n"}
-              "A Labrador Retriever wearing sun glasses, image"
+            <Text>
+              and a role of image, therefore the screen reader will make an announcement as{"\n"}
             </Text>
-            !
+            <Text style={{ color: theme.textHighlight }} accessible={true}>
+              {"\"A Labrador Retriever wearing sun glasses, image\""}{"\n"}
+            </Text>
+
           </Text>
 
-          </View>
+          <CustomDropdown options={["Hello World", "Computer Science", "Python"]}/>
 
-          {/* <View>
-            <Picker
-              selectedValue={selectedValue}
-              onValueChange={(itemValue) => setSelectedValue(itemValue)}
-              accessibilityLabel='Test'
+        </View>
 
 
-            >
-              <Picker.Item label="Option 1" value="option1" />
-              <Picker.Item label="Option 2" value="option2" />
-              <Picker.Item label="Option 3" value="option3" />
-              <Picker.Item label="None" value=""/>
-          
-              {/* Add more options as needed */}
-            {/* </Picker>
-            <Text>Selected Value: {selectedValue}</Text>
-
-          </View> */} 
 
       </View>
 
@@ -215,7 +220,7 @@ const styles = StyleSheet.create({
 
   textContent: {        //This style is general text style
     paddingTop: 10,
-    paddingBottom: 10,
+    paddingBottom: 5,
     fontWeight: 'bold',
     fontSize: 18,
     textAlign: 'center',

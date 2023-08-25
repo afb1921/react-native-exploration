@@ -1,7 +1,9 @@
-import React, {useRef, useState, useContext} from 'react';
-import { View, Text, Image, AccessibilityInfo, 
-  TouchableOpacity, StyleSheet} from 'react-native';
-import { useFocusEffect } from '@react-navigation/native';
+import React, { useRef, useState, useContext, useEffect, useCallback, forwardRef } from 'react';
+import {
+  View, Text, Image, AccessibilityInfo,
+  TouchableOpacity, StyleSheet, Modal, Button, AccessibilityActionInfo
+} from 'react-native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
 
 //Theme Managment Imports------------------------------------------
@@ -11,29 +13,33 @@ import themeContext from '../Themes/themeContext';
 //Custom Imports---------------------------------------------------
 import { colors, heading } from '../constant';
 import dog_with_glasses from '../assets/images/dog_With_Glasses.jpg';
+import CustomDropdown from '../components/CustomDropdown';
 //-----------------------------------------------------------------
 
-function HomeScreen(){
+function HomeScreen() {
 
+  useEffect(() => {
+    console.log("use effect home screen")
+  });
+
+  const dropdownRef = useRef(null)
 
   //Theme Manangement-----------------------------------------------
   const theme = useContext(themeContext)
   //----------------------------------------------------------------
-  
+
 
   // First Element Set Focus for Screen Reader
-   //---------------------------------------------------------------
+  //---------------------------------------------------------------
   const firstElementRef = useRef(null);
   //----------------------------------------------------------------
-
-  const handleButtonClick = () => {
-    console.log('Hello world!');
-  };
 
   //When the page loads (everytime) the useFocusEffect is triggered
   //This is used to bring focus on the first element
   useFocusEffect(() => {
-    
+
+    console.log("Focus Effect Home")
+
 
     // Add a time delay before executing the focus logic, 
     //This is important so the it gives it a chance to find the firstElement during loading.
@@ -43,15 +49,16 @@ function HomeScreen(){
       if (firstElementRef.current) {
         const reactTag = firstElementRef.current._nativeTag;
         AccessibilityInfo.setAccessibilityFocus(reactTag);
-        console.log('Focus set on Home Screen'); //Debuging purposes
+        console.log('Focus set on Home Screen\n'); //Debuging purposes
+
       }
     }, delay);
   });
 
   return (
-    <View style={[styles.container, {backgroundColor: theme.contentBackground}]}>
+    <View style={[styles.container, { backgroundColor: theme.contentBackground }]}>
 
-      
+
       {/* //first Element set here -------------------------------------------*/}
       {/* // heading.Heading is a custom heading style set in constant.js */}
 
@@ -64,36 +71,25 @@ function HomeScreen(){
           accessibilityRole="header"
         >
           Home Screen
-        </heading.Heading1> 
+        </heading.Heading1>
       </View>
       {/* // -----------------------------------------------------------------*/}
 
-
-      {/* //This is a icon from fontAwesome displayed */}
-      <View style={styles.iconContainer}> 
-        <FontAwesome name="universal-access" color="red" style={{fontSize: 30}}/> 
-      </View>
-     {/* //---------------------------------------------------------------- */}
-
-
-
-      <heading.Heading1 
-        style={{color: theme.textColor}}>
-          Testing
-      </heading.Heading1>
-
-      <View>
-        <Image 
-          source={dog_with_glasses}
-          style={{ width: 200, height: 200}}
-          resizeMode="contain"
-          accessibilityLabel='A Labrador Retriever wearing sun glasses'
+      <View style={styles.container}>
+        <CustomDropdown
+          options={["Option 1", "Option 2", "Option 3"]} 
+          ref={dropdownRef}
 
         />
+
       </View>
-      <TouchableOpacity onPress={handleButtonClick}>
-        <Text style={{color: theme.textColor}}>Set Focus</Text>
-      </TouchableOpacity>
+
+
+
+
+
+
+
 
     </View>
   );
@@ -103,7 +99,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  containerHeader:{
+  containerHeader: {
     alignItems: 'center', //Aligns content horizontally center
     backgroundColor: colors.primaryBlue,
     paddingTop: 10,
@@ -114,9 +110,9 @@ const styles = StyleSheet.create({
   iconContainer: {
     alignItems: 'center',
   },
-  contentColor:{
+  contentColor: {
   },
-  
+
 });
 
 export default HomeScreen;
