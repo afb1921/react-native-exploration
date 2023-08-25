@@ -52,7 +52,7 @@ function App() {
   const theme = darkModeTheme ? darkMode : lightMode;
 
   useEffect(() => {
-    console.log(theme) //debug prints Theme CSS
+    // console.log(theme) //debug prints Theme CSS
     const listener = EventRegister.addEventListener('ChangeTheme', (data) => {
       setDarkMode(data)
 
