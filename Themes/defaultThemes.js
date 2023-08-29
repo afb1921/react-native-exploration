@@ -44,8 +44,18 @@ export const darkMode = {
     //--------------------------------
 
     //Drop Down Colors//-----------------------
-    dropDownFocusColor: "white",
+
+    modalHeaderText: "white",
+    modalHeaderColor: "#1DA1F2",
+    modalBorderColor: "black",
+
+    dropDownFocusText: "white",
     dropDownFocusBackground: "#1DA1F2",
+
+    dropDownText: "black",
+    dropDownTextBackground: "white",
+
+    dropDownBackground: "#ebeded",
 
 };
 
@@ -93,7 +103,20 @@ export const lightMode = {
     borderColor: "black",
 
     //Drop Down Colors//-----------------------
-    dropDownFocusColor: "white",
+
+    modalHeaderText: "white",
+    modalHeaderColor: "#1DA1F2",
+    modalBorderColor: "black",
+
+
+    dropDownFocusText: "white",
     dropDownFocusBackground: "#1DA1F2",
+
+    dropDownText: "black",
+    dropDownTextBackground: "white",
+
+    dropDownBackground: "#ebeded",
+   
+
 
 };

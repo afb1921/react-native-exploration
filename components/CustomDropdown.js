@@ -1,108 +1,169 @@
-//Custom Drop Down Menu with Accessibility in Mind
-//TalkBack Tested on a Note 20 Ultra (8/24/23)
-
-import React, { useState, useRef, useImperativeHandle, forwardRef, useEffect } from 'react';
+import React, { useState, useRef, useImperativeHandle, forwardRef, useContext, useEffect } from 'react';
 import { View, Text, Modal, TouchableOpacity, StyleSheet, AccessibilityInfo } from 'react-native';
 
-const CustomDropdown = forwardRef(({ options}, ref) => {
+import { colors } from "../constant.js"
+import themeContext from '../Themes/themeContext';
+
+const CustomDropdown = forwardRef(({ options, dropDownTitle }, ref) => {
+    const { theme } = useContext(themeContext);
     const [showDropdown, setShowDropdown] = useState(false);
-
     const [selectedValue, setSelectedValue] = useState('None');
-
     const modalRef = useRef(null);
     const dropDownRef = useRef(null);
 
-     useImperativeHandle(ref, () => ({ //ACCES FROM PARENT REF
-        openDropdown: () => {
-            setShowDropdown(true);
-        },
-        closeDropdown: () => {
-            setShowDropdown(false);
-        },
-        
+    useImperativeHandle(ref, () => ({
+        openDropdown: () => setShowDropdown(true),
+        closeDropdown: () => setShowDropdown(false),
         isOpen: () => showDropdown
-
     }));
 
-    const handleOptionPress = (option, index) => { //ON OPTION SELECT
+    const handleOptionPress = (option, index) => {
         setSelectedValue(option);
         setShowDropdown(false);
-        console.log(`Selected Option: ${option}, Index: ${index}`);
-        // onModalClose();
-
         if (dropDownRef.current) {
-            reactTag = dropDownRef.current._nativeTag;
-            AccessibilityInfo.setAccessibilityFocus(reactTag);
+            AccessibilityInfo.setAccessibilityFocus(dropDownRef.current._nativeTag);
         }
-
     };
 
-
-    const handleModalClose = () => { //ON CLOSE
+    const handleModalClose = () => {
         setShowDropdown(false);
-        // onModalClose();
         if (dropDownRef.current) {
-            reactTag = dropDownRef.current._nativeTag;
-            AccessibilityInfo.setAccessibilityFocus(reactTag);
-        }   
+            AccessibilityInfo.setAccessibilityFocus(dropDownRef.current._nativeTag);
+        }
     };
 
+    const handleDropdownClick = () => setShowDropdown(true);
 
-    const handleDropdownClick = () => { //on OPEN
-        setShowDropdown(true);
+    const [maxButtonWidth, setMaxButtonWidth] = useState(0);
+
+    useEffect(() => {
+        let maxWidth = 0;
+        const minWidth = 220; // You can adjust this value as needed
+    
+        options.forEach((option) => {
+            const textWidth = measureTextWidth(option);
+            maxWidth = Math.max(maxWidth, textWidth);
+        });
+    
+        setMaxButtonWidth(Math.max(maxWidth, minWidth));
+    }, [options]);
+    
+    const measureTextWidth = (text) => {
+        const textWidth = text.length * 13; // You can adjust the factor as needed
+        return textWidth;
     };
+
+    
+  
 
     return (
-        <View >
-            <TouchableOpacity 
-                onPress={handleDropdownClick}
-                ref={dropDownRef}
-            >
-                <Text
-                    accessibilityLabel={`${selectedValue} selected`}
-                >
-                    {selectedValue}
-                </Text>
-            </TouchableOpacity>
+        <View>
+            <View style={[styles.dropDownButton]}>
+                <View style={styles.dropDownTitleContainer}>
+                    <Text style={[styles.textContent, styles.centeredContent]}>
+                        {dropDownTitle}
+                    </Text>
+                </View>
+                <TouchableOpacity onPress={handleDropdownClick} ref={dropDownRef} style={[styles.dropDownButtonContainer, styles.centeredContent]}>
+                    <Text 
+                        style={[styles.dropDownButtonText, styles.textContent, {paddingHorizontal: maxButtonWidth > 220 ? "" : 30}]} 
+                        accessibilityLabel={`${selectedValue} selected`}
+                    >
+                        {selectedValue}
+                    </Text>
+                </TouchableOpacity>
+            </View>
 
-            <Modal
-                visible={showDropdown}
-                transparent={true}
-                animationType='slide'
-                onRequestClose={handleModalClose}
-                ref={modalRef}
-            >
 
+
+
+            <Modal visible={showDropdown} transparent={true} animationType='slide' onRequestClose={handleModalClose} ref={modalRef}>
                 <View style={styles.modalContainer}>
-                    <View style={styles.modalContent}>
-                        <Text importantForAccessibility='no'>Select your Option</Text>
+                    <View style={[styles.modalContent, { backgroundColor: theme.dropDownBackground }]}>
+                        <View style={[styles.modalHeader, 
+                                { backgroundColor: theme.modalHeaderColor, width: maxButtonWidth+20, }
+                            
+                            ]}>
+                            <Text style={[styles.textContent, styles.modalHeaderText, { color: theme.modalHeaderText }]} role="heading">
+                                Select your Option For:{'\n'}
+                                <Text style={[styles.textContent, styles.modalHeaderText, { color: theme.modalHeaderText }]}>
+                                    {dropDownTitle}
+                                </Text>
+                            </Text>
+                        </View>
+
 
                         {options.map((option, index) => (
                             <TouchableOpacity
                                 key={option}
                                 onPress={() => handleOptionPress(option, index)}
                                 accessibilityLabel={`${option}, Item ${index + 1} of ${options.length}`}
-                                accessibilityRole='menuitem'
-                                style={styles.dropdownItem}
+                                accessibilityRole='menuitem'>
 
-                            >
-                                <Text>{option}</Text>
+                                <View style={[styles.roundedTextContainer, 
+                                    { 
+                                        backgroundColor: (option === selectedValue) ? theme.dropDownFocusBackground : theme.dropDownTextBackground, 
+                                        width: maxButtonWidth,
+                                    }
+                                    ]}>
+                                    <Text style={[styles.textContent, styles.dropdownItem, { color: (option === selectedValue) ? theme.dropDownFocusText : theme.dropDownText }]}>
+                                        {option}
+                                    </Text>
+                                </View>
                             </TouchableOpacity>
                         ))}
 
-                        <TouchableOpacity onPress={handleModalClose} style={styles.cancelButton}>
-                            <Text>Cancel</Text>
-                        </TouchableOpacity>
 
+
+                        <TouchableOpacity onPress={handleModalClose} style={styles.cancelButton}>
+                            <Text style={[styles.textContent, { color: theme.dropDownText }]} role="button">
+                                Cancel
+                            </Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
-
             </Modal>
         </View>
     );
 });
 
 const styles = StyleSheet.create({
+
+    //Basic Style to style Text
+    textContent: {
+        fontWeight: "bold",
+        fontSize: 18,
+
+    },
+
+    centeredContent: {
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    //------------------------
+
+    //Styles for Displaying OUTSIDE THE MODAL
+    dropDownButton: {
+        alignItems: 'center',
+    },
+
+    dropDownTitleContainer:{
+        paddingVertical: 10,
+    },
+    dropDownButtonContainer: {
+        padding: 10,
+        borderRadius: 10,
+        alignItems: "center",
+        backgroundColor: "red",
+
+    },
+    dropDownButtonText: {
+        color: "white"
+    },
+    //-------------------------------------
+
+
+    //Styles for WHEN MODAL IS OPENED
     modalContainer: {
         flex: 1,
         justifyContent: 'center',
@@ -110,15 +171,43 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background for the entire screen
     },
     modalContent: {
-        backgroundColor: 'white',
-        padding: 20,
         borderRadius: 10,
-        width: '80%', // Adjust the width as needed
+        alignItems: 'center',
+        
     },
-    cancelButton: {
-        marginTop: 10,
+    modalHeader: {
+        alignItems: "center",
+        padding: 10,
+        borderTopRightRadius: 10,
+        borderTopLeftRadius: 10,
+
+    },
+    modalHeaderText:{
+        textAlign: 'center', // Center-align the text horizontally
+        textAlignVertical: 'center', // Center-align the text vertically
+    },
+    roundedTextContainer: {
+        marginVertical: 5,
+        paddingVertical: 10,
+        borderColor: colors.lightGrey,
+        borderRadius: 10,
+        borderWidth: 2,
+        justifyContent: 'center', // Center vertically
+        alignItems: 'center',     // Center horizontally
+        flexDirection: 'row',    // Added to allow multi-line text to be centered
+
+
+    },
+    dropdownItem: {
         alignItems: 'center',
     },
+    cancelButton: {
+        marginVertical: 10,
+        alignItems: 'center',
+    },
+
+
+
 });
 
 
