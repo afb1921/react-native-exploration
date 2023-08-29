@@ -1,5 +1,5 @@
 import React, { useRef, useContext, useEffect, useState} from 'react';
-import {View, Text, Image, AccessibilityInfo, StyleSheet} from 'react-native';
+import {View, Text, Image, AccessibilityInfo, StyleSheet, SectionList} from 'react-native';
 import { useFocusEffect, useRoute} from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -12,9 +12,25 @@ import themeContext from '../Themes/themeContext';
 import { colors, heading } from '../constant';
 import dog_with_glasses from '../assets/images/dog_With_Glasses.jpg';
 import CustomDropdown from '../components/CustomDropdown';
+import HorizontalTable from '../components/HorizontalTable';
 //-----------------------------------------------------------------
 
 function HomeScreen() {
+
+  const dataTable = [
+        {
+            title: 'Test',
+            data: [
+                { id: 'History', col1: 'Data 1', col2: 'Data 2', col3: 'Value 1', col4: 'Value 2'},
+                { id: 'Math', col1: 'Data 2', col2: 'Data 2', col3: 'Value 1', col4: 'Value 2' },
+                { id: 'English', col1: 'Data 3', col2: 'Data 2', col3: 'Value 1', col4: 'Value 2' },
+                { id: 'Science', col1: 'Data 4', col2: 'Data 2', col3: 'Value 1', col4: 'Value 2' },
+            ],
+        },
+    ];
+  
+
+
 
   //Theme Manangement-----------------------------------------------
  
@@ -75,15 +91,30 @@ function HomeScreen() {
       </View>
       {/* // -----------------------------------------------------------------*/}
 
-      <View style={styles.container}>
+      <View>
         <CustomDropdown
           dropDownTitle="This is a Test Title!"
           options={["O", "Y", "X"]} 
           ref={dropdownRef}
+        />
+      </View>
 
+      <View>
+
+      <HorizontalTable
+        data={dataTable}
         />
 
+      
+
+
       </View>
+
+
+
+
+
+
 
     </View>
   );
@@ -106,6 +137,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   contentColor: {
+  },
+
+
+
+  tableRow: {
+    flexDirection: 'row',
+  },
+  tableCell: {
+    flex: 1,
+    padding: 8,
+    borderWidth: 1,
+    borderColor: 'black',
+  },
+  headerCell: {
+    fontWeight: 'bold',
+    backgroundColor: 'lightgray',
   },
 
 });
