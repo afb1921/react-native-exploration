@@ -18,6 +18,8 @@ export const heading = {
         ref={ref}
         style={[defaultStyles, style]} // Merge defaultStyles with the provided style prop
         accessibilityRole='header'
+        accessible={true}
+        accessibilityHint='This is a level 1 Heading'
       >
         {children}
       </Text>
@@ -38,6 +40,8 @@ export const heading = {
         ref={ref}
         style={[defaultStyles, style]} // Merge defaultStyles with the provided style prop
         accessibilityRole='header'
+        accessible={true}
+        accessibilityHint='This is a level 2 Heading'
       >
         {children}
       </Text>
@@ -58,6 +62,9 @@ export const heading = {
         ref={ref}
         style={[defaultStyles, style]} // Merge defaultStyles with the provided style prop
         accessibilityRole='header'
+        accessible={true}
+        accessibilityHint='This is a level 3 Heading'
+    
       >
         {children}
       </Text>
