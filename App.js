@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { View, Text, StyleSheet, StatusBar} from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer, useFocusEffect } from '@react-navigation/native';
@@ -50,6 +50,7 @@ function App() {
   //Theme Managment----------------------------------------------------------
   const [darkModeTheme, setDarkMode] = useState(false);
   const theme = darkModeTheme ? darkMode : lightMode;
+  const toggleButtonRef = useRef(null);
 
   useEffect(() => {
     // console.log(theme) //debug prints Theme CSS
@@ -82,10 +83,8 @@ function App() {
   //------------------------------------------------------------------------------------------------
 
   return (
-    <themeContext.Provider value={darkModeTheme === true ? darkMode : lightMode}>
-      
-      
 
+    <themeContext.Provider value={{theme, toggleButtonRef}}>
 
       <View style={styles.container}>
 
@@ -95,7 +94,6 @@ function App() {
           backgroundColor={theme.statusBarColor}
         />
         {/* //-------------------------------------*/}
-        
 
         {/* Navigation Container */}
         <NavigationContainer>
@@ -106,7 +104,10 @@ function App() {
               headerStyle: { backgroundColor: theme.headerBackground },
               drawerPosition: 'right', //Drawer will slide from direction given
               headerLeft: false, //Default Hamburger is on left, header left set to false for custom right side hamburger menu
-              headerRight: () => <CustomHeaderRight navigation={navigation} />, //custom right side hamburger
+              headerRight: () => 
+                <CustomHeaderRight 
+                  navigation={navigation}
+                />, //custom right side hamburger
             })}
           >
             {screens.map((screen, index) => (
@@ -118,11 +119,15 @@ function App() {
                   title: def_Page.setCommonLabel ? def_Page.commonLabel : screen.name,
                   headerTitle: () => (
                     <View style={styles.headerContainer}>
+
+                      {/* Header Menu Icon ----------------------------------------*/}
                       <FontAwesome
                         name={screen.icon} //This is configurable in the screens array
                         style={[styles.headerIcon, { color: theme.headerIcon }]}
                         importantForAccessibility='no' //This hides the icon from screen readers its decoration therefore needs hidden
+                        accessible={false}
                       />
+                      {/* //---------------------------------------------------------------- */}
                       <Text
                         style={[styles.headerText, { color: theme.titleColor }]}
                       >
@@ -131,6 +136,7 @@ function App() {
                       </Text>
                     </View>
                   ),
+
                 })}
               />
             ))}

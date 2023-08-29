@@ -8,17 +8,17 @@ import { def_Page } from '../constant';
 //---------------------------------------------------------------
 
 //For Theme------------------------------------------------------
-import { EventRegister } from 'react-native-event-listeners'; //Event Register used to switch theme (switch button essentially)
 import themeContext from '../Themes/themeContext';
 //---------------------------------------------------------------
 
+import DarkModeSwitch from './DarkModeSwitch'
+
 export function DrawerContent(props) {
 
-   const switchRef = useRef(null);
-
-
    //Theme Management------------------------------------------
-   const theme = useContext(themeContext)
+   const { theme} = useContext(themeContext);
+   //---------------------------------------------------------- 
+
    const [darkModeTheme, setDarkMode] = useState(false) //For switch theme (switch button essentially)
    //----------------------------------------------------------
 
@@ -37,14 +37,13 @@ export function DrawerContent(props) {
 
    //---------------------------------------------------------
 
-
-
    // Render A Drawer Item------------------------------------
    const renderDrawerItem = (index, label, pageName) => (
       <DrawerItem
          label={label}
+         accessibilityLabel={props.state.index === index ? `Current Page: ${label}` : label}
          onPress={() => {
-            props.navigation.navigate(pageName);
+         props.navigation.navigate(pageName);
          }}
          labelStyle={[styles.drawerItemLabel, getPageStyle(index)]}
       />
@@ -94,28 +93,13 @@ export function DrawerContent(props) {
 
             </Drawer.Section>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-               <Text
-                  style={{ color: theme.textColor }}
-               >
-                  Dark Mode
-               </Text>
-
-               <Switch
-                  value={darkModeTheme}
-                  ref={switchRef}
-                  onValueChange={(value) => {
-                     setDarkMode(value);
-                     EventRegister.emit('ChangeTheme', value)
-                     // Set focus on the switch
-                     
-                  }}
-
-               />
-
-            </View>
-
-
+            <DarkModeSwitch
+               darkModeTheme={darkModeTheme}
+               setDarkMode={setDarkMode}
+               onToggle={() => {
+                  // console.log(toggleButtonRef.current._nativeTag)
+               }}
+            />
          </DrawerContentScrollView>
 
 

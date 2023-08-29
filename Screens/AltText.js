@@ -16,9 +16,14 @@ import themeContext from '../Themes/themeContext';
 
 function AltText() {
 
+  useEffect(() => {
+    console.log("use Effect Alt Text")
+  });
+
   //Theme Manangement
   //===============================================================
-  const theme = useContext(themeContext)
+  const { theme, toggleButtonRef } = useContext(themeContext);
+
   //----------------------------------------------------------------
 
   // First Element Set Focus for Screen Reader & Reset Scroll View
@@ -54,17 +59,6 @@ function AltText() {
 
   //---------------------------------------------------------------
 
-
-
-
-
-  const handleButtonClick = () => {
-    console.log('Hello world!');
-  };
-
-
-
-
   return (
 
     <ScrollView ref={scrollViewRef} style={[styles.container, { backgroundColor: theme.contentBackground }]}>
@@ -78,11 +72,7 @@ function AltText() {
           <heading.Heading1
             ref={firstElementRef}
             style={styles.containerHeaderText}
-            accessible={true}
             accessibilityLabel="Text Alternatives"
-            accessibilityRole="header"
-            accessibilityState={{ selected: true }}
-
           >
 
             Text Alternatives
@@ -94,11 +84,8 @@ function AltText() {
         <View style={[styles.altTextInfoContainer, { borderColor: theme.borderColor }]}>
 
           <heading.Heading2
-            style={[styles.textContent, { color: theme.textColor }]}
-            accessible={true}
+            style={[styles.headingContent, { color: theme.textColor }]}
             accessibilityLabel="Importance of Alternative Text"
-            accessibilityRole="header"
-            accessibilityState={{ selected: true }}
           >
 
             Importance of Alternative Text
@@ -108,6 +95,7 @@ function AltText() {
             name="info-circle"
             style={[styles.altTextInfoIcon, , { color: theme.textColor }]}
             importantForAccessibility='no'
+            accessible={false}
           />
 
           <Text
@@ -139,6 +127,7 @@ function AltText() {
             source={dog_with_glasses}
             style={styles.imageStyle}
             accessibilityLabel='A Labrador Retriever wearing sun glasses'
+            accessible={true}
           />
 
           <Text style={[styles.textContent, { color: theme.textColor }]}>
@@ -223,6 +212,12 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
     fontWeight: 'bold',
     fontSize: 18,
+    textAlign: 'center',
+  },
+  headingContent: {        //This style is general heading style
+    paddingTop: 10,
+    paddingBottom: 5,
+    fontWeight: 'bold',
     textAlign: 'center',
   },
   //----------------------------

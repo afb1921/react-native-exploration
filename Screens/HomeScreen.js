@@ -1,10 +1,8 @@
-import React, { useRef, useState, useContext, useEffect, useCallback, forwardRef } from 'react';
-import {
-  View, Text, Image, AccessibilityInfo,
-  TouchableOpacity, StyleSheet, Modal, Button, AccessibilityActionInfo
-} from 'react-native';
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import React, { useRef, useContext, useEffect, useState} from 'react';
+import {View, Text, Image, AccessibilityInfo, StyleSheet} from 'react-native';
+import { useFocusEffect, useRoute} from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
+
 
 //Theme Managment Imports------------------------------------------
 import themeContext from '../Themes/themeContext';
@@ -18,42 +16,44 @@ import CustomDropdown from '../components/CustomDropdown';
 
 function HomeScreen() {
 
-  useEffect(() => {
-    console.log("use effect home screen")
-  });
+  //Theme Manangement-----------------------------------------------
+ 
+  const { theme} = useContext(themeContext);
 
   const dropdownRef = useRef(null)
 
-  //Theme Manangement-----------------------------------------------
-  const theme = useContext(themeContext)
   //----------------------------------------------------------------
 
 
-  // First Element Set Focus for Screen Reader
+  // Focus Managment 
   //---------------------------------------------------------------
   const firstElementRef = useRef(null);
   //----------------------------------------------------------------
 
   //When the page loads (everytime) the useFocusEffect is triggered
   //This is used to bring focus on the first element
-  useFocusEffect(() => {
+  useFocusEffect( 
+    React.useCallback(() => {
 
-    console.log("Focus Effect Home")
-
-
-    // Add a time delay before executing the focus logic, 
-    //This is important so the it gives it a chance to find the firstElement during loading.
+    console.log("use Focus Effect Home")
+ 
+    // // Add a time delay before executing the focus logic, 
+    // //This is important so the it gives it a chance to find the firstElement during loading.
     const delay = 250; // Delay in milliseconds
 
-    setTimeout(() => {
+     setTimeout(() => {
+            
       if (firstElementRef.current) {
         const reactTag = firstElementRef.current._nativeTag;
         AccessibilityInfo.setAccessibilityFocus(reactTag);
-        console.log('Focus set on Home Screen\n'); //Debuging purposes
+        console.log('First Element===========n\n'); //Debuging purposes
 
       }
-    }, delay);
-  });
+    },delay)
+    },[])
+
+  )
+  
 
   return (
     <View style={[styles.container, { backgroundColor: theme.contentBackground }]}>
@@ -77,19 +77,13 @@ function HomeScreen() {
 
       <View style={styles.container}>
         <CustomDropdown
-          options={["Option 1", "Option 2", "Option 3"]} 
+          dropDownTitle="This is a Test Title!"
+          options={["O", "Y", "X"]} 
           ref={dropdownRef}
 
         />
 
       </View>
-
-
-
-
-
-
-
 
     </View>
   );
@@ -103,6 +97,7 @@ const styles = StyleSheet.create({
     alignItems: 'center', //Aligns content horizontally center
     backgroundColor: colors.primaryBlue,
     paddingTop: 10,
+    
   },
   containerHeaderText: {
     color: "white",
