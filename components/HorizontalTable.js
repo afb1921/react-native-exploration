@@ -1,70 +1,82 @@
-import React, {} from 'react';
-import { View, Text, Image, AccessibilityInfo, StyleSheet, SectionList } from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 
-//Theme Managment Imports------------------------------------------
-import themeContext from '../Themes/themeContext';
-//-----------------------------------------------------------------
+//EXAMPLE TABLE FOR HORIZONTAL STYLE
 
-//Custom Imports---------------------------------------------------
-import { colors, heading } from '../constant';
+//-------------------------------
+
+// const dataTable = [
+//       {
+//           title: 'Test',
+//           data: [
+//               { id: 'History', col1: 'Data 1', col2: 'Data 2', col3: 'Value 1', col4: 'Value 2'},
+//               { id: 'Math', col1: 'Data 2', col2: 'Data 2', col3: 'Value 1', col4: 'Value 2' },
+//               { id: 'English', col1: 'Data 3', col2: 'Data 2', col3: 'Value 1', col4: 'Value 2' },
+//               { id: 'Science', col1: 'Data 4', col2: 'Data 2', col3: 'Value 1', col4: 'Value 2' },
+//           ],
+//       },
+//   ];
+
+//----------------------------
 
 
-const HorizontalTable = ({data}) => {
+const HorizontalTable = ({ data }) => {
+    const columnKeys = data.length > 0 ? Object.keys(data[0].data[0]) : []; // Get keys from the first item
 
-    const renderItem = ({ item }) => (
-        <View style={styles.tableRow}>
-            {Object.keys(item).map((key, index) => (
-                <Text
-                    key={key}
-                    style={[
-                        styles.tableCell,
-                        index === 0 ? styles.headerCell : null,
-                    ]}
-                    accessibilityLabel={
-                        index === 0
-                            ? `${item.id} Row`
-                            : `${item[key]} of ${item.id} Column ${index}`
-                    }
-                >
-                    {item[key]} {/* Display the value of the current column */}
-                </Text>
-            ))}
-        </View>
+    return (
+        <ScrollView horizontal>
+            <View style={styles.container}>
+                {data.map((section) => (
+                    <View key={section.title} style={[styles.section]}>
+                        <Text style={[styles.sectionTitle]}>{section.title}</Text>
+                        {columnKeys.map((columnKey) => (
+                            <View key={columnKey} style={[styles.row]}>
+                                {section.data.map((item) => (
+                                    <View
+                                        key={item.id}
+                                        style={[
+                                            styles.cell,
+                                            columnKey === 'id' ? styles.headerCell : null,
+                                        ]}
+                                    >
+                                        <Text>{item[columnKey]}</Text>
+                                    </View>
+                                ))}
+                            </View>
+                        ))}
+                    </View>
+                ))}
+            </View>
+        </ScrollView>
     );
-
-    return ( 
-        <SectionList
-        sections={data}
-        keyExtractor={(item) => item.id}
-        renderItem={renderItem}
-        renderSectionHeader={({ section: { title } }) => (
-          <Text style={styles.header}>{title}</Text>
-        )}
-      />
-    );
-
-}
-
+};
 
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-    },
-    tableRow: {
         flexDirection: 'row',
     },
-    tableCell: {
-        flex: 1,
-        padding: 8,
-        borderWidth: 1,
-        borderColor: 'black',
+    section: {
+        // marginRight: 20,
     },
     headerCell: {
         fontWeight: 'bold',
         backgroundColor: 'lightgray',
     },
-
+    sectionTitle: {
+        fontWeight: 'bold',
+        marginBottom: 8,
+    },
+    row: {
+        flexDirection: 'row',
+    },
+    cell: {
+        borderWidth: 1,
+        borderColor: 'black',
+        padding: 8,
+        // marginRight: 8,
+        minWidth: 100,
+    },
 });
 
 export default HorizontalTable;

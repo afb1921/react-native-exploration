@@ -12,7 +12,9 @@ import themeContext from '../Themes/themeContext';
 import { colors, heading } from '../constant';
 import dog_with_glasses from '../assets/images/dog_With_Glasses.jpg';
 import CustomDropdown from '../components/CustomDropdown';
+import VerticalTable from '../components/VerticalTable';
 import HorizontalTable from '../components/HorizontalTable';
+
 //-----------------------------------------------------------------
 
 function HomeScreen() {
@@ -28,9 +30,10 @@ function HomeScreen() {
             ],
         },
     ];
+
+ 
   
-
-
+  
 
   //Theme Manangement-----------------------------------------------
  
@@ -101,9 +104,21 @@ function HomeScreen() {
 
       <View>
 
+      <VerticalTable
+        data={dataTable}
+      />
+
+
+      <View style={{flexDirection: "row"}}>
+
       <HorizontalTable
         data={dataTable}
-        />
+      />
+
+
+      </View>
+
+
 
       
 
