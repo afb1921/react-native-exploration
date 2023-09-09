@@ -14,6 +14,7 @@ import dog_with_glasses from '../assets/images/dog_With_Glasses.jpg';
 import CustomDropdown from '../components/CustomDropdown';
 import VerticalTable from '../components/VerticalTable';
 import HorizontalTable from '../components/HorizontalTable';
+import TwoVariableTable from '../components/TwoVariableTable';
 
 //-----------------------------------------------------------------
 
@@ -30,6 +31,18 @@ function HomeScreen() {
             ],
         },
     ];
+
+
+
+    const data = {
+      columns: ['Year 1', 'Year 2', 'Year 3'],
+      rows: [
+          { label: 'Food 1', values: ['10', '20', "30"] },
+          { label: 'Food 2', values: ['5', '10', '15'] },
+          { label: 'Food 3', values: ['1', '2', "3"] },
+      ],
+  };
+
 
  
   
@@ -106,17 +119,19 @@ function HomeScreen() {
 
       <VerticalTable
         data={dataTable}
-      />
+      /> 
 
-
-      <View style={{flexDirection: "row"}}>
-
-      <HorizontalTable
+      {/* <HorizontalTable
         data={dataTable}
-      />
+      />  */}
 
 
-      </View>
+
+      {/* <TwoVariableTable data={data} /> */}
+
+
+
+      
 
 
 
