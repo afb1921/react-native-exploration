@@ -15,42 +15,21 @@ import CustomDropdown from '../components/CustomDropdown';
 import VerticalTable from '../components/VerticalTable';
 import HorizontalTable from '../components/HorizontalTable';
 import TwoVariableTable from '../components/TwoVariableTable';
+import OrderedList from '../components/OrderedList';
+import UnorderedList from '../components/UnorderedList';
 
 //-----------------------------------------------------------------
 
 function HomeScreen() {
 
-  const table_data = [
-        {
-            title: 'Test',
-            data: [
-                { id: 'History', col1: 'Data 1H', col2: 'Data 2H', col3: 'Value 1H', col4: 'Value 2H'},
-                { id: 'Math', col1: 'Data 2M', col2: 'Data 2M', col3: 'Value 1M', col4: 'Value 2M' },
-                // { id: 'English', col1: 'Data 3E', col2: 'Data 2E', col3: 'Value 1E', col4: 'Value 2E' },
-                // { id: 'Science', col1: 'Data 4S', col2: 'Data 2S', col3: 'Value 1S', col4: 'Value 2S' },
-            ],
-        },
-    ];
+  const data = [
+    'Item 1',
+    'Item 2',
+    'Item 3',
+    'Item 4',
+    // Add more items here
+  ];
 
-    
-
-
-
-    const TwoVariableTable_data = {
-      columns: ['Year 1', 'Year 2', 'Year 3'],
-      rows: [
-          { label: 'Food 1', values: ['100,000,000', '20', "30"] },
-          { label: 'Food 2', values: ['5', '10', '15'] },
-          { label: 'Food 3', values: ['1', '2', "3"] },
-          { label: 'Food 4', values: ['1', '2', "3"] },
-
-      ],
-    };
-
-
- 
-  
-  
 
   //Theme Manangement-----------------------------------------------
  
@@ -111,39 +90,9 @@ function HomeScreen() {
       </View>
       {/* // -----------------------------------------------------------------*/}
 
-      <View>
-        <CustomDropdown
-          dropDownTitle="Hello world!"
-          options={["O", "Y", "X"]} 
-          ref={dropdownRef}
-          accessible={true}
-        />
-      </View>
+     <UnorderedList unorderedListData={data}/>
 
-      <View>
-
-      {/* <VerticalTable
-        data={table_data}
-      />  */}
-
-      {/* <HorizontalTable
-        data={table_data}
-      />  */}
-
-
-
-      <TwoVariableTable data={TwoVariableTable_data} />
-
-
-
-      
-
-
-
-      
-
-
-      </View>
+    
 
 
 
