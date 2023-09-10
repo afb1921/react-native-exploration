@@ -32,7 +32,7 @@ const VerticalTable = ({data}) => {
     const renderItem = ({ item }) => (
         <View style={styles.tableRow}>
             {Object.keys(item).map((key, index) => (
-                console.log(`${key}`),
+                // console.log(`${key}`),
                 <Text
                     key={`${item.id}`+index}
                     style={[

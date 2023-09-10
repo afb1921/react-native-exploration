@@ -59,18 +59,39 @@ const CustomDropdown = forwardRef(({ options, dropDownTitle }, ref) => {
     return (
         <View>
             <View style={[styles.dropDownButton]}>
-                <View style={styles.dropDownTitleContainer}>
-                    <Text style={[styles.textContent, styles.centeredContent]}>
+
+                {/* This section is for the dropdown button title */}
+                <View 
+                    style={styles.dropDownTitleContainer} 
+                >
+                    
+                    <Text 
+                        style={[styles.textContent, styles.centeredContent]}
+                        accessible={false}
+                        importantForAccessibility='no'
+                    >
                         {dropDownTitle}
                     </Text>
+
                 </View>
-                <TouchableOpacity onPress={handleDropdownClick} ref={dropDownRef} style={[styles.dropDownButtonContainer, styles.centeredContent]}>
+                {/* //---------------------------------------------- */}
+
+
+                <TouchableOpacity 
+                    onPress={handleDropdownClick} 
+                    ref={dropDownRef} 
+                    style={[styles.dropDownButtonContainer, styles.centeredContent]}
+                    accessibilityLabel={`selected: ${selectedValue} for ${dropDownTitle} popup selection`}
+                    accessibilityRole='button'
+                >
                     <Text 
                         style={[styles.dropDownButtonText, styles.textContent, {paddingHorizontal: maxButtonWidth > 220 ? "" : 30}]} 
                         accessibilityLabel={`${selectedValue} selected`}
                     >
                         {selectedValue}
                     </Text>
+
+
                 </TouchableOpacity>
             </View>
 

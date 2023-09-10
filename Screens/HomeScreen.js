@@ -20,28 +20,32 @@ import TwoVariableTable from '../components/TwoVariableTable';
 
 function HomeScreen() {
 
-  const dataTable = [
+  const table_data = [
         {
             title: 'Test',
             data: [
-                { id: 'History', col1: 'Data 1', col2: 'Data 2', col3: 'Value 1', col4: 'Value 2'},
-                { id: 'Math', col1: 'Data 2', col2: 'Data 2', col3: 'Value 1', col4: 'Value 2' },
-                { id: 'English', col1: 'Data 3', col2: 'Data 2', col3: 'Value 1', col4: 'Value 2' },
-                { id: 'Science', col1: 'Data 4', col2: 'Data 2', col3: 'Value 1', col4: 'Value 2' },
+                { id: 'History', col1: 'Data 1H', col2: 'Data 2H', col3: 'Value 1H', col4: 'Value 2H'},
+                { id: 'Math', col1: 'Data 2M', col2: 'Data 2M', col3: 'Value 1M', col4: 'Value 2M' },
+                // { id: 'English', col1: 'Data 3E', col2: 'Data 2E', col3: 'Value 1E', col4: 'Value 2E' },
+                // { id: 'Science', col1: 'Data 4S', col2: 'Data 2S', col3: 'Value 1S', col4: 'Value 2S' },
             ],
         },
     ];
 
+    
 
 
-    const data = {
+
+    const TwoVariableTable_data = {
       columns: ['Year 1', 'Year 2', 'Year 3'],
       rows: [
-          { label: 'Food 1', values: ['10', '20', "30"] },
+          { label: 'Food 1', values: ['100,000,000', '20', "30"] },
           { label: 'Food 2', values: ['5', '10', '15'] },
           { label: 'Food 3', values: ['1', '2', "3"] },
+          { label: 'Food 4', values: ['1', '2', "3"] },
+
       ],
-  };
+    };
 
 
  
@@ -109,25 +113,26 @@ function HomeScreen() {
 
       <View>
         <CustomDropdown
-          dropDownTitle="This is a Test Title!"
+          dropDownTitle="Hello world!"
           options={["O", "Y", "X"]} 
           ref={dropdownRef}
+          accessible={true}
         />
       </View>
 
       <View>
 
-      <VerticalTable
-        data={dataTable}
-      /> 
+      {/* <VerticalTable
+        data={table_data}
+      />  */}
 
       {/* <HorizontalTable
-        data={dataTable}
+        data={table_data}
       />  */}
 
 
 
-      {/* <TwoVariableTable data={data} /> */}
+      <TwoVariableTable data={TwoVariableTable_data} />
 
 
 

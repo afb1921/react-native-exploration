@@ -21,24 +21,59 @@ const TwoVariableTable = ({ data }) => {
     const renderHeader = () => (
         <View style={styles.headerRow}>
             <View style={styles.headerCell} />
+
+            {/* Horizontal Variable----------------------------------------------- */}
             {data.columns.map((column) => (
+                console.log(column),
                 <View key={column} style={styles.headerCell}>
-                    <Text>{column}</Text>
+                    <Text accessibilityLabel={`${column} Column`}
+                    >{column}</Text>
                 </View>
             ))}
+            {/* ---------------------------------------------------------------- */}
+
+
         </View>
     );
 
     const renderRow = (row) => (
+
+        
+
+
         <View style={styles.row} key={row.label}>
+
+            {/* Row Label (Vertical Variable)-------------------------------------- */}
             <View style={styles.rowLabelCell}>
-                <Text>{row.label}</Text>
+                <Text 
+                    accessibilityLabel={`${row.label} row`}
+                >
+                    {row.label}
+                </Text>
             </View>
-            {row.values.map((value) => (
+
+            {/* //---------------------------------------------------------------- */}
+
+
+
+
+            {/* Renders the data */}
+            {row.values.map((value, valueIndex) => (
+                console.log(value),
                 <View key={value} style={styles.cell}>
-                    <Text>{value}</Text>
+                    <Text 
+                        style={styles.cellText}
+                        accessibilityLabel={`${value} of: Row ${row.label}, Column ${data.columns[valueIndex]} `}
+
+                    >{value}</Text>
                 </View>
-            ))}
+            ))} 
+            {/* ---------------------------
+             {/* Renders the data
+
+    {/* --------------------------- */}
+
+
         </View>
     );
 
@@ -74,18 +109,22 @@ const styles = StyleSheet.create({
     rowLabelCell: {
         borderWidth: 1,
         borderColor: 'black',
-        padding: 8,
         minWidth: 100,
         backgroundColor: 'lightgray',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     cell: {
         borderWidth: 1,
         borderColor: 'black',
-        padding: 8,
         minWidth: 100,
         alignItems: 'center',
         justifyContent: 'center',
     },
+    cellText:{
+        // paddingHorizontal: 40,
+        paddingVertical: 10,
+    }
 });
 
 export default TwoVariableTable;
