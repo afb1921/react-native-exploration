@@ -4,6 +4,19 @@ import { View, Text, Modal, TouchableOpacity, StyleSheet, AccessibilityInfo } fr
 import { colors } from "../constant.js"
 import themeContext from '../Themes/themeContext';
 
+
+// Example Use:
+{/* <View>
+    <CustomDropdown
+        dropDownTitle="Hello world!"
+        options={["O", "Y", "X"]} 
+        ref={dropdownRef}
+        accessible={true}
+    />
+</View> */}
+
+// ----
+
 const CustomDropdown = forwardRef(({ options, dropDownTitle }, ref) => {
     const { theme } = useContext(themeContext);
     const [showDropdown, setShowDropdown] = useState(false);
