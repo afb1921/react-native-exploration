@@ -15,7 +15,6 @@ const UnorderedList = ({unorderedListData}) => {
       data={unorderedListData}
       keyExtractor={(item, index) => index.toString()}
       renderItem={({ item }) => (
-        console.log(item),
         <View style={styles.listItem}>
           <View style={styles.bullet}>
             <Text 
