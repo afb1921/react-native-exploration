@@ -93,12 +93,12 @@ const CustomDropdown = forwardRef(({ options, dropDownTitle }, ref) => {
                 <TouchableOpacity 
                     onPress={handleDropdownClick} 
                     ref={dropDownRef} 
-                    style={[styles.dropDownButtonContainer, styles.centeredContent]}
+                    style={[styles.dropDownButtonContainer, styles.centeredContent, {backgroundColor: theme.buttonBackground}]}
                     accessibilityLabel={`selected: ${selectedValue} for ${dropDownTitle} popup selection`}
                     accessibilityRole='button'
                 >
                     <Text 
-                        style={[styles.dropDownButtonText, styles.textContent, {paddingHorizontal: maxButtonWidth > 220 ? "" : 30}]} 
+                        style={[styles.textContent, {paddingHorizontal: maxButtonWidth > 220 ? "" : 30, color: theme.buttonTextColor}]} 
                         accessibilityLabel={`${selectedValue} selected`}
                     >
                         {selectedValue}
@@ -113,7 +113,7 @@ const CustomDropdown = forwardRef(({ options, dropDownTitle }, ref) => {
 
             <Modal visible={showDropdown} transparent={true} animationType='slide' onRequestClose={handleModalClose} ref={modalRef}>
                 <View style={styles.modalContainer}>
-                    <View style={[styles.modalContent, { backgroundColor: theme.dropDownBackground }]}>
+                    <View style={[styles.modalContent, { backgroundColor: theme.modalBackground }]}>
                         <View style={[styles.modalHeader, 
                                 { backgroundColor: theme.modalHeaderColor, width: maxButtonWidth+20, }
                             
@@ -136,11 +136,11 @@ const CustomDropdown = forwardRef(({ options, dropDownTitle }, ref) => {
 
                                 <View style={[styles.roundedTextContainer, 
                                     { 
-                                        backgroundColor: (option === selectedValue) ? theme.dropDownFocusBackground : theme.dropDownTextBackground, 
+                                        backgroundColor: (option === selectedValue) ? theme.selectedItemBackground : theme.nonSelectedItemBackground, 
                                         width: maxButtonWidth,
                                     }
                                     ]}>
-                                    <Text style={[styles.textContent, styles.dropdownItem, { color: (option === selectedValue) ? theme.dropDownFocusText : theme.dropDownText }]}>
+                                    <Text style={[styles.textContent, styles.dropdownItem, { color: (option === selectedValue) ? theme.selectedItemTextColor : theme.itemTextColor }]}>
                                         {option}
                                     </Text>
                                 </View>
@@ -150,7 +150,7 @@ const CustomDropdown = forwardRef(({ options, dropDownTitle }, ref) => {
 
 
                         <TouchableOpacity onPress={handleModalClose} style={styles.cancelButton}>
-                            <Text style={[styles.textContent, { color: theme.dropDownText }]} role="button">
+                            <Text style={[styles.textContent, { color: theme.itemTextColor }]} role="button">
                                 Cancel
                             </Text>
                         </TouchableOpacity>
@@ -188,11 +188,7 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 10,
         alignItems: "center",
-        backgroundColor: "red",
 
-    },
-    dropDownButtonText: {
-        color: "white"
     },
     //-------------------------------------
 

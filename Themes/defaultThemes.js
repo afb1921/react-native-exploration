@@ -1,5 +1,8 @@
 //Default Themes (Light and Dark)
 
+import { colors} from '../constant';
+
+
 export const darkMode = {
 
     theme: 'dark',
@@ -45,17 +48,41 @@ export const darkMode = {
 
     //Drop Down Colors//-----------------------
 
+    //Drop Down Modal Colors//---
     modalHeaderText: "white",
     modalHeaderColor: "#1DA1F2",
     modalBorderColor: "black",
+    modalBackground: "#ebeded",
+    //-------
 
-    dropDownFocusText: "white",
-    dropDownFocusBackground: "#1DA1F2",
+    //Drop Down Button Color
+    buttonBackground: "white",
+    buttonTextColor: "black",
+    //----------------
 
-    dropDownText: "black",
-    dropDownTextBackground: "white",
+    //Selected Item In Modal----
+    selectedItemTextColor: "white",
+    selectedItemBackground: "#1DA1F2",
+    //------
 
-    dropDownBackground: "#ebeded",
+    //NonSelected Item In Modal---
+    itemTextColor: "black",
+    nonSelectedItemBackground: "white",
+    //------
+
+    //Vertical Table Colors------------------
+
+    verticalTableHeaderCellBackground: colors.lightGrey,
+    verticalTableHeaderCellTextColor: 'black',
+
+    
+    verticalTableCellBackground: "black",
+    tableCellTextColor: "white",
+
+    verticalTableBorderColor: 'white',
+
+    //Horizontal Table Colors------------------
+
 
 };
 
@@ -104,19 +131,43 @@ export const lightMode = {
 
     //Drop Down Colors//-----------------------
 
+    //Drop Down Modal Colors//---
     modalHeaderText: "white",
     modalHeaderColor: "#1DA1F2",
     modalBorderColor: "black",
+    modalBackground: "#ebeded",
+    //-------
+
+    //Drop Down Button Color
+    buttonBackground: "black",
+    buttonTextColor: "white",
+    //----------------
+
+    //Selected Item In Modal----
+    selectedItemTextColor: "white",
+    selectedItemBackground: "#1DA1F2",
+    //------
+
+    //NonSelected Item In Modal---
+    itemTextColor: "black",
+    nonSelectedItemBackground: "white",
+    //------   
+
+    //Vertical Table Colors------------------
+
+    verticalTableHeaderCellBackground: colors.lightGrey,
+    verticalTableHeaderCellTextColor: 'black',
+
+    
+    verticalTableCellBackground: "white",
+    tableCellTextColor: "black",
+
+    verticalTableBorderColor: 'black',
 
 
-    dropDownFocusText: "white",
-    dropDownFocusBackground: "#1DA1F2",
+    //Horizontal Table Colors------------------
 
-    dropDownText: "black",
-    dropDownTextBackground: "white",
 
-    dropDownBackground: "#ebeded",
-   
 
 
 };
