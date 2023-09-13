@@ -81,10 +81,10 @@ function AltText() {
 
         {/* // -----------------------------------------------------------------*/}
 
-        <View style={[styles.altTextInfoContainer, { borderColor: theme.borderColor }]}>
+        <View style={[styles.altTextInfoContainer, { borderColor: theme.border}]}>
 
           <heading.Heading2
-            style={[styles.headingContent, { color: theme.textColor }]}
+            style={[styles.headingContent, { color: theme.text}]}
             accessibilityLabel="Importance of Alternative Text"
           >
 
@@ -93,13 +93,13 @@ function AltText() {
 
           <FontAwesome
             name="info-circle"
-            style={[styles.altTextInfoIcon, , { color: theme.textColor }]}
+            style={[styles.altTextInfoIcon, , { color: theme.text}]}
             importantForAccessibility='no'
             accessible={false}
           />
 
           <Text
-            style={[styles.textContent, { color: theme.textColor }]}
+            style={[styles.textContent, { color: theme.text}]}
           >
             Text alternatives are crucial for ensuring
             digital accessibility. They provide a way for
@@ -118,7 +118,7 @@ function AltText() {
 
 
           <Text
-            style={[styles.textContent, { color: theme.textColor }]}
+            style={[styles.textContent, { color: theme.text}]}
           >
             Displayed under this text is a image.
           </Text>
@@ -130,7 +130,7 @@ function AltText() {
             accessible={true}
           />
 
-          <Text style={[styles.textContent, { color: theme.textColor }]}>
+          <Text style={[styles.textContent, { color: theme.text}]}>
 
             <Text>
               The image has an accessibilityLabel set to{"\n"}

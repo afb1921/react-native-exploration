@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useRef, useEffect, useState } from 'react';
 import { View, Text, Switch, AccessibilityInfo } from 'react-native';
 import { EventRegister } from 'react-native-event-listeners';
 
@@ -10,7 +10,14 @@ const DarkModeSwitch = (({ darkModeTheme, setDarkMode, onToggle}) => {
 
     //================================
     const { theme, toggleButtonRef } = useContext(themeContext);
+    const [initialDarkMode, setInitialDarkMode] = useState(darkModeTheme);
+
     //===============================
+
+    useEffect(() => {
+      // Set the initial switch state once the theme context is available
+      setInitialDarkMode(darkModeTheme);
+    }, [darkModeTheme]);
 
   
     const handleToggle = (value) => {
@@ -30,7 +37,7 @@ const DarkModeSwitch = (({ darkModeTheme, setDarkMode, onToggle}) => {
         </Text>
   
         <Switch
-          value={darkModeTheme}
+          value={initialDarkMode}
           ref={toggleButtonRef}
           accessibilityLabel='Dark Mode Toggle'
           onValueChange={(value) => {

@@ -7,18 +7,21 @@ import { FontAwesome } from '@expo/vector-icons';
 import { EventRegister } from 'react-native-event-listeners';
 
 
-//Custom Imports------------------------------------------------
+//Custom Imports
+//================================================================
 import { colors, def_Page } from './constant';
 import { darkMode, lightMode } from './Themes/defaultThemes';
-//---------------------------------------------------------------
+//================================================================
 
-//Components-----------------------------------------------------
+//Component
+//================================================================
 import { DrawerContent } from './components/DrawerContent';
 import CustomHeaderRight from './components/CustomHeaderRight';
 import themeContext from './Themes/themeContext';
-//---------------------------------------------------------------
+//================================================================
 
-//Screens--------------------------------------------------------
+//Screens
+//================================================================
 
 //To add a new screen--------------------------
 //Step 1: Create and Rename the Screen under the "Screens" folder (Use my default Template)
@@ -41,22 +44,22 @@ import AltText from './Screens/AltText';
 import Page3Screen from './Screens/Page3';
 import Page4Screen from './Screens/Page4';
 import Page5Screen from './Screens/Page5';
-// --------------------------------------------------------------
+//================================================================
 
 const Drawer = createDrawerNavigator();
 
 function App() {
 
   //Theme Managment----------------------------------------------------------
-  const [darkModeTheme, setDarkMode] = useState(false);
-  const theme = darkModeTheme ? darkMode : lightMode;
-  const toggleButtonRef = useRef(null);
+  const initalDarkModeState = false;
+  const [darkModeTheme, setDarkMode] = useState(initalDarkModeState); //setDarkMode switches the state of darkModeTheme state
+  const theme = darkModeTheme ? darkMode : lightMode;  ///This controls the inital state of the theme
+  const toggleButtonRef = useRef(null); //Reference of toggleButton
 
   useEffect(() => {
-    // console.log(theme) //debug prints Theme CSS
-    const listener = EventRegister.addEventListener('ChangeTheme', (data) => {
+    // console.log(darkModeTheme)
+    const listener = EventRegister.addEventListener('ChangeTheme', (data) => { //listens to if the theme changes
       setDarkMode(data)
-
     })
     return () => {
       EventRegister.removeAllListeners(listener);
@@ -84,14 +87,14 @@ function App() {
 
   return (
 
-    <themeContext.Provider value={{theme, toggleButtonRef}}>
+    <themeContext.Provider value={{theme, toggleButtonRef}}> 
 
       <View style={styles.container}>
 
         {/* Status Bar --------------------------- */}
         <StatusBar
           barStyle={"light-content"}
-          backgroundColor={theme.statusBarColor}
+          backgroundColor={theme.statusBar}
         />
         {/* //-------------------------------------*/}
 
@@ -99,9 +102,13 @@ function App() {
         <NavigationContainer>
 
           <Drawer.Navigator
-            drawerContent={(props) => <DrawerContent {...props} />}
+            drawerContent={(props) => 
+              <DrawerContent {...props}
+              darkModeTheme={darkModeTheme} // Pass darkModeTheme as a prop
+              setDarkMode={setDarkMode} // Pass setDarkMode as a prop
+            />}
             screenOptions={({ navigation }) => ({
-              headerStyle: { backgroundColor: theme.headerBackground },
+              headerStyle: { backgroundColor: theme.headerMenu},
               drawerPosition: 'right', //Drawer will slide from direction given
               headerLeft: false, //Default Hamburger is on left, header left set to false for custom right side hamburger menu
               headerRight: () => 
@@ -129,7 +136,7 @@ function App() {
                       />
                       {/* //---------------------------------------------------------------- */}
                       <Text
-                        style={[styles.headerText, { color: theme.titleColor }]}
+                        style={[styles.headerText, { color: theme.titleText }]}
                       >
                         {/* if def_Page.setCommonLabel is true then text will be def_Page.commonLabel else screen.name */}
                         {def_Page.setCommonLabel ? def_Page.commonLabel : screen.name}

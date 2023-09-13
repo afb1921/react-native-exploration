@@ -1,5 +1,8 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
+//Theme Managment Imports------------------------------------------
+import themeContext from '../Themes/themeContext';
+//-----------------------------------------------------------------
 
 // Example Use:
 
@@ -16,14 +19,21 @@ import { View, Text, FlatList, StyleSheet } from 'react-native';
 
 // -------------------------
 
-const OrderedList = ({orderedListData}) => {
+
+
+const OrderedList = ({data}) => {
+
+  const {theme} = useContext(themeContext);
+
   return (
     <FlatList
-      data={orderedListData}
+      data={data}
       keyExtractor={(item, index) => index.toString()}
       renderItem={({ item, index }) => (
         <View style={styles.listItem}>
-          <Text>{`${index + 1}. ${item}`}</Text>
+          <Text style={{color: theme.orderedListText}}>
+            {`${index + 1}. ${item}`}
+          </Text>
         </View>
       )}
     />

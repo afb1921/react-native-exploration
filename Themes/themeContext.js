@@ -1,8 +1,8 @@
 import React, {createContext} from 'react';
-import { lightMode } from './defaultThemes'; // Import your default theme
+import { lightMode, darkMode } from './defaultThemes'; // Import your default theme
 
 const themeContext = createContext({
-    theme: lightMode,
+    theme: "",
     toggleButtonRef: null,
   });
 

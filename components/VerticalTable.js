@@ -39,8 +39,8 @@ const VerticalTable = ({data}) => {
                 <Text
                     key={`${item.id}`+index}
                     style={[
-                        [styles.tableCell, {color: theme.tableCellTextColor, borderColor: theme.verticalTableBorderColor, backgroundColor: theme.verticalTableCellBackground} ],
-                        index === 0 ? [styles.headerCell, {backgroundColor: theme.verticalTableHeaderCellBackground, color: theme.verticalTableHeaderCellTextColor}] : null,
+                        [styles.tableCell, {color: theme.tableCellText, borderColor: theme.verticalTableBorder, backgroundColor: theme.verticalTableCell} ],
+                        index === 0 ? [styles.headerCell, {backgroundColor: theme.verticalTableHeaderCell, color: theme.verticalTableHeaderCellText}] : null,
                     ]}
                     accessibilityLabel={
                         index === 0

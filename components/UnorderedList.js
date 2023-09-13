@@ -1,5 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
+
+//Theme Managment Imports------------------------------------------
+import themeContext from '../Themes/themeContext';
+//-----------------------------------------------------------------
+
 
 // const unorderedListData = [
 //   'Item 1',
@@ -9,16 +14,19 @@ import { View, Text, FlatList, StyleSheet } from 'react-native';
 //   // Add more items here
 // ];
 
-const UnorderedList = ({unorderedListData}) => {
+const UnorderedList = ({data}) => {
+
+  const {theme} = useContext(themeContext);
+
   return (
     <FlatList
-      data={unorderedListData}
+      data={data}
       keyExtractor={(item, index) => index.toString()}
       renderItem={({ item }) => (
         <View style={styles.listItem}>
           <View style={styles.bullet}>
             <Text 
-                style={styles.bulletText}
+                style={[styles.bulletText, {color: theme.unorderedListBullet}]}
                 importantForAccessibility='no'
                 accessible={false}
             >
@@ -26,10 +34,11 @@ const UnorderedList = ({unorderedListData}) => {
             </Text>
           </View>
           <Text     
-            style={styles.listItemText}
+            style={[styles.listItemText, {color: theme.unorderedListText}]}
             accessibilityLabel={`Bullet ${item}`} 
-        >
-          {item}</Text>
+          >
+            {item}
+          </Text>
         </View>
       )}
     />

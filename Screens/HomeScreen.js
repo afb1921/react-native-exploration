@@ -1,5 +1,5 @@
 import React, { useRef, useContext, useEffect, useState} from 'react';
-import {View, Text, Image, AccessibilityInfo, StyleSheet, SectionList} from 'react-native';
+import {View, Text, Image, AccessibilityInfo, StyleSheet, TextInput} from 'react-native';
 import { useFocusEffect, useRoute} from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -17,7 +17,7 @@ import HorizontalTable from '../components/HorizontalTable';
 import TwoVariableTable from '../components/TwoVariableTable';
 import OrderedList from '../components/OrderedList';
 import UnorderedList from '../components/UnorderedList';
-
+import TextField from '../components/TextField';
 //-----------------------------------------------------------------
 
 function HomeScreen() {
@@ -30,10 +30,31 @@ function HomeScreen() {
     // Add more items here
   ];
 
+  const table_data1 = [
+        {
+            data: [
+                { id: 'Students', col1: 'Alex', col2: 'Sam', col3: 'Ben'},
+                { id: 'Classes', col1: 'Math', col2: 'Science', col3: 'English'},
+            ],
+        },
+    ];
+
+    
+    const table_data2 = {
+    columns: ['Year 1', 'Year 2', 'Year 3'],
+    rows: [
+        { label: 'Food 1', values: ['10', '20', "30"] },
+        { label: 'Food 2', values: ['5', '10', '15'] },
+        { label: 'Food 3', values: ['1', '2', "3"] },
+    ],
+};
+
+//   //----------------------------
+
 
   //Theme Manangement-----------------------------------------------
  
-  const { theme} = useContext(themeContext);
+  const {theme} = useContext(themeContext);
 
   const dropdownRef = useRef(null)
 
@@ -87,10 +108,22 @@ function HomeScreen() {
         >
           Home Screen
         </heading.Heading1>
+        
       </View>
       {/* // -----------------------------------------------------------------*/}
+ 
+      {/* <View>
+        <TextField
+          title="Hello world!"
+          placeholderText="Placeholder here..."
+        />
+      </View> */}
+      
 
-     <UnorderedList unorderedListData={data}/>
+      <UnorderedList data={data}/>
+      
+
+      
 
     
 

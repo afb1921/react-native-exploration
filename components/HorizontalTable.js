@@ -37,9 +37,9 @@ const HorizontalTable = ({data}) => {
 
               {section.data.map((item) => (
                 
-                <View key={item.id} style={[styles.column, {borderColor: theme.horizontalTableBorderColor}]}>
+                <View key={item.id} style={[styles.column, {borderColor: theme.horizontalTableBorder}]}>
                     <Text 
-                        style={[styles.columnHeader, {backgroundColor: theme.horizontalTableHeaderBackground, color: theme.horizontalTableHeaderTextColor}]}
+                        style={[styles.columnHeader, {backgroundColor: theme.horizontalTableHeader, color: theme.horizontalTableHeaderText}]}
                         accessibilityLabel={`${item.id} Column`}
                     >
                         {item.id}
@@ -50,7 +50,7 @@ const HorizontalTable = ({data}) => {
                     if (key !== 'id') {
                       return <Text 
                                 key={key}
-                                style={[styles.cell, {color: theme.horizontalTableTextColor, borderColor: theme.horizontalTableBorderColor, backgroundColor: theme.horizontalTableBackground}]}
+                                style={[styles.cell, {color: theme.horizontalTableText, borderColor: theme.horizontalTableBorder, backgroundColor: theme.horizontalTable}]}
                                 accessibilityLabel={`${item[key]} of ${item.id} Row ${index}`}
                              >
                                 {item[key]}

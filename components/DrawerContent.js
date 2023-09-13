@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from 'react';
+import React, {useContext, useState, useRef } from 'react';
 import { View, StyleSheet, Text, Dimensions, Switch, AccessibilityInfo } from 'react-native';
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { Drawer } from 'react-native-paper';
@@ -14,12 +14,22 @@ import themeContext from '../Themes/themeContext';
 import DarkModeSwitch from './DarkModeSwitch'
 
 export function DrawerContent(props) {
+   const { darkModeTheme, setDarkMode } = props; // Extract darkModeTheme and setDarkMode from props
+
 
    //Theme Management------------------------------------------
-   const { theme} = useContext(themeContext);
-   //---------------------------------------------------------- 
 
-   const [darkModeTheme, setDarkMode] = useState(false) //For switch theme (switch button essentially)
+   console.log(darkModeTheme)
+   const { theme} = useContext(themeContext);
+
+   const handleToggle = (value) => {
+      setDarkMode(value);
+      // You can emit the 'ChangeTheme' event here if needed
+    };
+
+   //----------------------------------------------------------
+   
+   // const [darkModeTheme, setDarkMode] = useState(true) //For switch theme (switch button essentially)
    //----------------------------------------------------------
 
    //Size Management-------------------------------------------
@@ -29,10 +39,10 @@ export function DrawerContent(props) {
    //Item in Drawer get Style Base on Theme--------------------
    const getPageStyle = (index) => ({
       backgroundColor: props.state.index === index ?
-         theme.activeBackground : theme.inactiveBackground,
+         theme.drawerActive : theme.drawerInactive,
 
       color: props.state.index === index ?
-         theme.activeText : theme.inactiveText,
+         theme.drawerActiveText : theme.drawerInactiveText,
    });
 
    //---------------------------------------------------------
@@ -51,7 +61,16 @@ export function DrawerContent(props) {
    //---------------------------------------------------------
 
    return (
-      <View style={[styles.drawerOuterContent, { backgroundColor: theme.outerContentBackground, borderLeftWidth: theme.borderLeftWidth, borderColor: theme.outerBorderColor }]}>
+      <View 
+
+         style={[
+            styles.drawerOuterContent, { 
+               backgroundColor: theme.drawerOuterContent, 
+               borderLeftWidth: theme.drawerBorderLeftWidth, 
+               borderColor: theme.drawerOuterBorder 
+            }
+         ]}>
+
          <View
             style={[
 
@@ -79,10 +98,10 @@ export function DrawerContent(props) {
             <Drawer.Section style={[
                styles.drawerInnerSection,
                {
-                  borderRadius: theme.innerBorderRadius,
-                  borderBottomWidth: theme.borderBottomWidth,
-                  borderColor: theme.innerBorderColor,
-                  backgroundColor: theme.innerContentBackground,
+                  borderRadius: theme.drawerInnerBorderRadius,
+                  borderBottomWidth: theme.drawerBorderBottomWidth,
+                  borderColor: theme.drawerInnerBorder,
+                  backgroundColor: theme.drawerInnerContent,
                }]}
             >
                {renderDrawerItem(0, def_Page.page1MenuName, def_Page.page1Name)}
