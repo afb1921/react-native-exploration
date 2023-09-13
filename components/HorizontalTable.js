@@ -1,5 +1,7 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import themeContext from '../Themes/themeContext';
+
 
 // const tableData = [
 //   {
@@ -12,7 +14,14 @@ import { View, Text, ScrollView, StyleSheet } from 'react-native';
 //   },
 // ];
 
+
+
+
 const HorizontalTable = ({data}) => {
+  
+
+  const { theme } = useContext(themeContext);
+
   return (
     <ScrollView horizontal>
       <View style={styles.container}>
@@ -28,9 +37,9 @@ const HorizontalTable = ({data}) => {
 
               {section.data.map((item) => (
                 
-                <View key={item.id} style={[styles.column]}>
+                <View key={item.id} style={[styles.column, {borderColor: theme.horizontalTableBorderColor}]}>
                     <Text 
-                        style={[styles.columnHeader]}
+                        style={[styles.columnHeader, {backgroundColor: theme.horizontalTableHeaderBackground, color: theme.horizontalTableHeaderTextColor}]}
                         accessibilityLabel={`${item.id} Column`}
                     >
                         {item.id}
@@ -41,7 +50,7 @@ const HorizontalTable = ({data}) => {
                     if (key !== 'id') {
                       return <Text 
                                 key={key}
-                                style={[styles.cell]}
+                                style={[styles.cell, {color: theme.horizontalTableTextColor, borderColor: theme.horizontalTableBorderColor, backgroundColor: theme.horizontalTableBackground}]}
                                 accessibilityLabel={`${item[key]} of ${item.id} Row ${index}`}
                              >
                                 {item[key]}
@@ -75,19 +84,16 @@ const styles = StyleSheet.create({
   },
   columnHeader: {
     fontWeight: 'bold',
-    backgroundColor: 'lightgray',
     padding: 10,
     textAlign: 'center', // Center text horizontally
     alignItems: 'center', // Center text vertically
   },
   column: {
     borderWidth: 1,
-    borderColor: 'black',
     minWidth: 100,
   },
   cell: {
     borderWidth: 1,
-    borderColor: 'black', // Ensure consistent border color
     borderTopWidth: 1, // Add top border
     borderBottomWidth: 1, // Add bottom border
     borderLeftWidth: 0, // Remove left border to avoid double borders

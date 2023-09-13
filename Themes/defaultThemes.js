@@ -82,6 +82,19 @@ export const darkMode = {
     verticalTableBorderColor: 'white',
 
     //Horizontal Table Colors------------------
+    horizontalTableHeaderBackground: colors.lightGrey,
+    horizontalTableHeaderTextColor: "black",
+    horizontalTableBorderColor: 'white', 
+    
+    horizontalTableBackground: 'black',
+    horizontalTableTextColor: "white",
+
+    //TwoVariable Table Colors------------------
+    twoVarTableHeaderBackground: colors.lightGrey,
+    twoVarTableCellTextColor: 'white',
+    twoVarTableBorderColor: 'white', 
+    twoVarTableBackgroundColor: 'black',
+    twoVarTableHeaderTextColor: 'black', 
 
 
 };
@@ -166,8 +179,17 @@ export const lightMode = {
 
 
     //Horizontal Table Colors------------------
+    horizontalTableHeaderBackground: colors.lightGrey,
+    horizontalTableTextColor: "black",
+    horizontalTableBorderColor: 'black', 
+    
+    horizontalTableBackground: 'white',
+    horizontalTableCellTextColor: "black",
 
-
-
-
+    //TwoVariable Table Colors------------------
+    twoVarTableHeaderBackground: colors.lightGrey,
+    twoVarTableCellTextColor: 'black',
+    twoVarTableBorderColor: 'black', 
+    twoVarTableBackgroundColor: 'white',
+    twoVarTableHeaderTextColor: 'black', 
 };
