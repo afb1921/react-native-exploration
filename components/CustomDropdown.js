@@ -1,28 +1,47 @@
 import React, { useState, useRef, useImperativeHandle, forwardRef, useContext, useEffect } from 'react';
 import { View, Text, Modal, TouchableOpacity, StyleSheet, AccessibilityInfo } from 'react-native';
 
+//Custom Imports
+//==================================================
 import { colors } from "../constant.js"
+//==================================================
+
+//Theme Imports
+//==================================================
 import themeContext from '../Themes/themeContext';
+//==================================================
 
 
-// Example Use:
+// Example Use: using the component
+//==================================
 {/* <View>
     <CustomDropdown
-        dropDownTitle="Hello world!"
+        title="Hello world!"
         options={["O", "Y", "X"]} 
         ref={dropdownRef}
         accessible={true}
     />
 </View> */}
+//==================================
 
-// ----
+const CustomDropdown = forwardRef(({ options, title }, ref) => {
 
-const CustomDropdown = forwardRef(({ options, dropDownTitle }, ref) => {
+    //For Theme Management
+    //================================
     const { theme } = useContext(themeContext);
-    const [showDropdown, setShowDropdown] = useState(false);
-    const [selectedValue, setSelectedValue] = useState('None');
+    //================================
+
+    const [showDropdown, setShowDropdown] = useState(false); //This set the state of the dropdown if it should be shown or not
+    const [selectedValue, setSelectedValue] = useState('None'); //The current selected value
     const modalRef = useRef(null);
     const dropDownRef = useRef(null);
+    const handleDropdownClick = () => setShowDropdown(true); //Opens the dropdown when the dropdown is clicked button is clicked
+
+    //================================
+
+    //This hook is used to expose custom methods (openDropdown, closeDropdown, and isOpen) 
+    //to the parent component through the ref prop. These methods allow you to control the 
+    //dropdown programmatically.
 
     useImperativeHandle(ref, () => ({
         openDropdown: () => setShowDropdown(true),
@@ -30,7 +49,9 @@ const CustomDropdown = forwardRef(({ options, dropDownTitle }, ref) => {
         isOpen: () => showDropdown
     }));
 
-    const handleOptionPress = (option, index) => {
+    //================================
+
+    const handleOptionPress = (option, index) => { //Sets the selected option then closes the dropdown
         setSelectedValue(option);
         setShowDropdown(false);
         if (dropDownRef.current) {
@@ -38,20 +59,20 @@ const CustomDropdown = forwardRef(({ options, dropDownTitle }, ref) => {
         }
     };
 
-    const handleModalClose = () => {
+    const handleModalClose = () => { //Closes the dropdown when the modal is closed
         setShowDropdown(false);
         if (dropDownRef.current) {
             AccessibilityInfo.setAccessibilityFocus(dropDownRef.current._nativeTag);
         }
     };
 
-    const handleDropdownClick = () => setShowDropdown(true);
-
+    //Text Width Calcuation
+    //==================================================
     const [maxButtonWidth, setMaxButtonWidth] = useState(0);
 
     useEffect(() => {
         let maxWidth = 0;
-        const minWidth = 220; // You can adjust this value as needed
+        const minWidth = 220; 
     
         options.forEach((option) => {
             const textWidth = measureTextWidth(option);
@@ -62,39 +83,38 @@ const CustomDropdown = forwardRef(({ options, dropDownTitle }, ref) => {
     }, [options]);
     
     const measureTextWidth = (text) => {
-        const textWidth = text.length * 13; // You can adjust the factor as needed
+        const textWidth = text.length * 13; 
         return textWidth;
     };
-
-    
-  
+    //=================================================
 
     return (
         <View>
             <View style={[styles.dropDownButton]}>
 
-                {/* This section is for the dropdown button title */}
+                {/* This section is for the modal button title (displayed above modal button) */}
+                {/* //================================================ */}
                 <View 
                     style={styles.dropDownTitleContainer} 
                 >
-                    
                     <Text 
-                        style={[styles.textContent, styles.centeredContent]}
+                        style={[styles.textContent, styles.centeredContent, {color: theme.text}]}
                         accessible={false}
                         importantForAccessibility='no'
                     >
-                        {dropDownTitle}
+                        {title}
                     </Text>
 
                 </View>
-                {/* //---------------------------------------------- */}
+                {/* //============================================*/}
 
 
+                {/* //The modal button ============*/}
                 <TouchableOpacity 
                     onPress={handleDropdownClick} 
                     ref={dropDownRef} 
                     style={[styles.dropDownButtonContainer, styles.centeredContent, {backgroundColor: theme.button}]}
-                    accessibilityLabel={`selected: ${selectedValue} for ${dropDownTitle} popup selection`}
+                    accessibilityLabel={`selected: ${selectedValue} for ${title} popup selection`}
                     accessibilityRole='button'
                 >
                     <Text 
@@ -103,14 +123,12 @@ const CustomDropdown = forwardRef(({ options, dropDownTitle }, ref) => {
                     >
                         {selectedValue}
                     </Text>
-
-
                 </TouchableOpacity>
+                {/* //============================ */}
             </View>
 
-
-
-
+            {/* //This is the modal popup displayed when the button is clicked
+            ============================================================ */}
             <Modal visible={showDropdown} transparent={true} animationType='slide' onRequestClose={handleModalClose} ref={modalRef}>
                 <View style={styles.modalContainer}>
                     <View style={[styles.modalContent, { backgroundColor: theme.modal}]}>
@@ -121,13 +139,13 @@ const CustomDropdown = forwardRef(({ options, dropDownTitle }, ref) => {
                             <Text style={[styles.textContent, styles.modalHeaderText, { color: theme.modalHeaderText }]} role="heading">
                                 Select your Option For:{'\n'}
                                 <Text style={[styles.textContent, styles.modalHeaderText, { color: theme.modalHeaderText }]}>
-                                    {dropDownTitle}
+                                    {title}
                                 </Text>
                             </Text>
                         </View>
 
 
-                        {options.map((option, index) => (
+                        {options.map((option, index) => ( //For every option
                             <TouchableOpacity
                                 key={option}
                                 onPress={() => handleOptionPress(option, index)}
@@ -148,12 +166,16 @@ const CustomDropdown = forwardRef(({ options, dropDownTitle }, ref) => {
                         ))}
 
 
-
+                        {/* This is the cancel button */}
+                        {/* =============================== */}
                         <TouchableOpacity onPress={handleModalClose} style={styles.cancelButton}>
                             <Text style={[styles.textContent, { color: theme.modalItemText}]} role="button">
                                 Cancel
                             </Text>
                         </TouchableOpacity>
+                        {/* ============================== */}
+
+
                     </View>
                 </View>
             </Modal>

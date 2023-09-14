@@ -1,11 +1,16 @@
 import React, {useContext} from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
+
+//Theme Imports
+//================================================
 import themeContext from '../Themes/themeContext';
+//================================================
 
 
-// Two-Variable Data Table Layout--
+//Example Two-Variable Data Table
+//================================================================
 
-//     const data = {
+//     const table_data = {
 //     columns: ['Year 1', 'Year 2', 'Year 3'],
 //     rows: [
 //         { label: 'Food 1', values: ['10', '20', "30"] },
@@ -14,19 +19,27 @@ import themeContext from '../Themes/themeContext';
 //     ],
 // };
 
-//--------------------------------
+//================================================================
+
+// Using the component:
+// =================================================================
+// <TwoVariableTable data={table_data} /> 
+// =================================================================
 
 const TwoVariableTable = ({data}) => {
 
+    //Theme Management
+    //================================================================
     const { theme } = useContext(themeContext);
+    //================================================================
  
     const renderHeader = () => (
         <View style={styles.headerRow}>
             <View style={[styles.headerCell, {backgroundColor: theme.twoVarTableHeader, borderColor: theme.twoVarTableBorder}]} />
 
-            {/* Horizontal Variable----------------------------------------------- */}
+            {/* Horizontal Variable=============================*/}
             {data.columns.map((column) => (
-                console.log(column),
+                // console.log(column),
                 <View key={column} style={[styles.headerCell, {backgroundColor: theme.twoVarTableHeader, borderColor: theme.twoVarTableBorder}]}>
                     <Text 
                         accessibilityLabel={`${column} Column`}
@@ -36,9 +49,7 @@ const TwoVariableTable = ({data}) => {
                     </Text>
                 </View>
             ))}
-            {/* ---------------------------------------------------------------- */}
-
-
+            {/*===================================================*/}
         </View>
     );
 
@@ -46,7 +57,7 @@ const TwoVariableTable = ({data}) => {
 
         <View style={[styles.row, {backgroundColor: theme.twoVarTable}]} key={row.label}>
 
-            {/* Row Label (Vertical Variable)-------------------------------------- */}
+            {/* Row Label (Vertical Variable)===============================*/}
             <View style={[styles.rowLabelCell, {backgroundColor: theme.twoVarTableHeader, borderColor: theme.twoVarTableBorder}]}>
                 <Text 
                     accessibilityLabel={`${row.label} row`}
@@ -56,12 +67,12 @@ const TwoVariableTable = ({data}) => {
                 </Text>
             </View>
 
-            {/* //---------------------------------------------------------------- */}
+            {/*=====================================================*/}
 
 
 
 
-            {/* Renders the data */}
+            {/* Renders the data for each cell============================================= */}
             {row.values.map((value, valueIndex) => (
                 console.log(value),
                 <View key={value} style={[styles.cell, {borderColor: theme.twoVarTableBorder}]}>
@@ -72,6 +83,7 @@ const TwoVariableTable = ({data}) => {
                     >{value}</Text>
                 </View>
             ))} 
+            {/* //================================================================ */}
             
         </View>
     );

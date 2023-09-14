@@ -77,7 +77,6 @@ export const colors = {
 
   primaryBlue: "#1DA1F2", //Twitter Blue
   brightBlue: "#039fff",
-
   lightBlack: "#121212",
   darkerGrey: "#181818",
   darkGrey: "#282828",
@@ -97,9 +96,11 @@ export const def_Page = {
 
   commonLabel: "Accessibility Demo",
 
-  //SWITCHES APP COLORS BETWEEN "lightMode" AND "darkMode"
+  //***INITAL STATE OF THEME***
+  //================================================
+  //SWITCHES APP COLORS BETWEEN "lightMode" AND "darkMode" 
   setDarkMode: true, // OPTIONS 'true' or 'false'
-  //------------------------------------------------------
+  //================================================
 
   //------------------------------------------------
 

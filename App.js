@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import { View, Text, StyleSheet, StatusBar} from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { NavigationContainer, useFocusEffect } from '@react-navigation/native';
+import { NavigationContainer} from '@react-navigation/native';
 
 import { FontAwesome } from '@expo/vector-icons';
 import { EventRegister } from 'react-native-event-listeners';
@@ -9,7 +9,7 @@ import { EventRegister } from 'react-native-event-listeners';
 
 //Custom Imports
 //================================================================
-import { colors, def_Page } from './constant';
+import { def_Page } from './constant';
 import { darkMode, lightMode } from './Themes/defaultThemes';
 //================================================================
 
@@ -51,11 +51,11 @@ const Drawer = createDrawerNavigator();
 function App() {
 
   //Theme Managment----------------------------------------------------------
-  const initalDarkModeState = false;
-  const [darkModeTheme, setDarkMode] = useState(initalDarkModeState); //setDarkMode switches the state of darkModeTheme state
+  const [darkModeTheme, setDarkMode] = useState(def_Page.setDarkMode); //setDarkMode switches the state of darkModeTheme state
   const theme = darkModeTheme ? darkMode : lightMode;  ///This controls the inital state of the theme
   const toggleButtonRef = useRef(null); //Reference of toggleButton
 
+  //Use effect will trigger everytime the app is first loaded
   useEffect(() => {
     // console.log(darkModeTheme)
     const listener = EventRegister.addEventListener('ChangeTheme', (data) => { //listens to if the theme changes
@@ -76,11 +76,11 @@ function App() {
 
 
   const screens = [
-    { name: def_Page.page1Name, component: HomeScreen, icon: 'universal-access' },
-    { name: def_Page.page2Name, component: AltText, icon: 'universal-access' },
-    { name: def_Page.page3Name, component: Page3Screen, icon: 'briefcase' },
-    { name: def_Page.page4Name, component: Page4Screen, icon: 'cog' },
-    { name: def_Page.page5Name, component: Page5Screen, icon: 'envelope' },
+    { name: def_Page.page1Name, menu_name: def_Page.page1MenuName, component: HomeScreen, icon: 'universal-access' },
+    { name: def_Page.page2Name, menu_name: def_Page.page2MenuName, component: AltText, icon: 'universal-access' },
+    { name: def_Page.page3Name, menu_name: def_Page.page3MenuName, component: Page3Screen, icon: 'briefcase' },
+    { name: def_Page.page4Name, menu_name: def_Page.page4MenuName, component: Page4Screen, icon: 'cog' },
+    { name: def_Page.page5Name, menu_name: def_Page.page4MenuName, component: Page5Screen, icon: 'envelope' },
   ];
 
   //------------------------------------------------------------------------------------------------
@@ -91,12 +91,12 @@ function App() {
 
       <View style={styles.container}>
 
-        {/* Status Bar --------------------------- */}
+        {/* Status Bar=============== */}
         <StatusBar
           barStyle={"light-content"}
           backgroundColor={theme.statusBar}
         />
-        {/* //-------------------------------------*/}
+        {/* //=========================*/}
 
         {/* Navigation Container */}
         <NavigationContainer>
@@ -106,6 +106,7 @@ function App() {
               <DrawerContent {...props}
               darkModeTheme={darkModeTheme} // Pass darkModeTheme as a prop
               setDarkMode={setDarkMode} // Pass setDarkMode as a prop
+              screens={screens} //pass screens as a prop
             />}
             screenOptions={({ navigation }) => ({
               headerStyle: { backgroundColor: theme.headerMenu},
@@ -123,23 +124,22 @@ function App() {
                 name={screen.name} //This is configurable in the screens array
                 component={screen.component}
                 options={() => ({
-                  title: def_Page.setCommonLabel ? def_Page.commonLabel : screen.name,
                   headerTitle: () => (
                     <View style={styles.headerContainer}>
 
-                      {/* Header Menu Icon ----------------------------------------*/}
+                      {/* Header Menu Icon=========================*/}
                       <FontAwesome
-                        name={screen.icon} //This is configurable in the screens array
+                        name={screen.icon} //The icon, This is configurable in the screens array
                         style={[styles.headerIcon, { color: theme.headerIcon }]}
                         importantForAccessibility='no' //This hides the icon from screen readers its decoration therefore needs hidden
                         accessible={false}
                       />
-                      {/* //---------------------------------------------------------------- */}
+                      {/* //=========================================*/}
                       <Text
                         style={[styles.headerText, { color: theme.titleText }]}
                       >
                         {/* if def_Page.setCommonLabel is true then text will be def_Page.commonLabel else screen.name */}
-                        {def_Page.setCommonLabel ? def_Page.commonLabel : screen.name}
+                        {def_Page.setCommonLabel ? def_Page.commonLabel : screen.name} 
                       </Text>
                     </View>
                   ),

@@ -1,5 +1,5 @@
-import React, { useRef, useContext, useState, useEffect } from 'react';
-import { View, Text, Image, AccessibilityInfo, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import React, { useRef, useContext, useEffect } from 'react';
+import { View, Text, Image, AccessibilityInfo, StyleSheet, ScrollView} from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
 import { colors, def_Page, heading } from '../constant';
@@ -11,7 +11,7 @@ import CustomDropdown from '../components/CustomDropdown';
 
 //Theme Managment Imports==========================================
 import themeContext from '../Themes/themeContext';
-//-----------------------------------------------------------------
+//=================================================================
 
 
 function AltText() {
@@ -23,8 +23,8 @@ function AltText() {
   //Theme Manangement
   //===============================================================
   const { theme, toggleButtonRef } = useContext(themeContext);
+  //===============================================================
 
-  //----------------------------------------------------------------
 
   // First Element Set Focus for Screen Reader & Reset Scroll View
   //===============================================================

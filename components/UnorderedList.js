@@ -5,8 +5,10 @@ import { View, Text, FlatList, StyleSheet } from 'react-native';
 import themeContext from '../Themes/themeContext';
 //-----------------------------------------------------------------
 
+//Example Unordered List Data
+//================================================================
 
-// const unorderedListData = [
+// const data = [
 //   'Item 1',
 //   'Item 2',
 //   'Item 3',
@@ -14,9 +16,19 @@ import themeContext from '../Themes/themeContext';
 //   // Add more items here
 // ];
 
+//================================================================
+
+// Using the component:
+// =================================================================
+// <UnorderedList data={data} /> 
+// =================================================================
+
 const UnorderedList = ({data}) => {
 
+  //Theme Management
+  //================================================================
   const {theme} = useContext(themeContext);
+  //================================================================
 
   return (
     <FlatList
@@ -30,7 +42,8 @@ const UnorderedList = ({data}) => {
                 importantForAccessibility='no'
                 accessible={false}
             >
-                {'\u2022'}
+                {/* This is the bullet "\u2022"  */}
+                {'\u2022'} 
             </Text>
           </View>
           <Text     

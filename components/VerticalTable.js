@@ -1,31 +1,29 @@
 import React, {useContext} from 'react';
-import { View, Text, Image, AccessibilityInfo, StyleSheet, SectionList } from 'react-native';
+import { View, Text, StyleSheet, SectionList } from 'react-native';
 
 //Theme Managment Imports------------------------------------------
 import themeContext from '../Themes/themeContext';
 //-----------------------------------------------------------------
 
-//Custom Imports---------------------------------------------------
-import { colors, heading } from '../constant';
+//EXAMPLE TABLE FOR VERTICAL DATA:
+//===============================================================
+// const table_data = [
+//   {
+//       title: "Test Table",
+//       data: [
+//           { id: 'Students', col1: 'Alex', col2: 'Sam', col3: 'Ben'},
+//           { id: 'Classes', col1: 'Math', col2: 'Science', col3: 'English'},
+              //Add more rows here...
+//       ],
+//   },
+// ];
+//================================================================
 
 
-//EXAMPLE TABLE FOR VERTICAL STYLE
-
-//-------------------------------
-
-// const data = [
-//         {
-//             title: 'Test',
-//             data: [
-//                 { id: 'History', col1: 'Data 1', col2: 'Data 2', col3: 'Value 1', col4: 'Value 2'},
-//                 { id: 'Math', col1: 'Data 2', col2: 'Data 2', col3: 'Value 1', col4: 'Value 2' },
-//                 { id: 'English', col1: 'Data 3', col2: 'Data 2', col3: 'Value 1', col4: 'Value 2' },
-//                 { id: 'Science', col1: 'Data 4', col2: 'Data 2', col3: 'Value 1', col4: 'Value 2' },
-//             ],
-//         },
-//     ];
-
-//   //----------------------------
+// Using the component:
+// =================================================================
+//  <VerticalTable data={table_data} /> 
+// =================================================================
 
 
 const VerticalTable = ({data}) => {

@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useEffect, useState} from 'react';
+import React, { useRef, useContext} from 'react';
 import {View, Text, Image, AccessibilityInfo, StyleSheet, TextInput} from 'react-native';
 import { useFocusEffect, useRoute} from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
@@ -32,6 +32,7 @@ function HomeScreen() {
 
   const table_data1 = [
         {
+            title: "Test Table",
             data: [
                 { id: 'Students', col1: 'Alex', col2: 'Sam', col3: 'Ben'},
                 { id: 'Classes', col1: 'Math', col2: 'Science', col3: 'English'},
@@ -120,7 +121,9 @@ function HomeScreen() {
       </View> */}
       
 
-      <UnorderedList data={data}/>
+      <View>
+        <HorizontalTable data={table_data1}/>
+      </View>
       
 
       

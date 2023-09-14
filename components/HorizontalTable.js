@@ -1,32 +1,43 @@
 import React, {useContext} from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
+
+//Theme Imports
+//============================================================
 import themeContext from '../Themes/themeContext';
+//============================================================
 
-
-// const tableData = [
+// Example For Horizontal Table Data:
+//===============================================================
+// const table_data = [
 //   {
-//     title: 'Test',
-//     data: [
-//       { id: 'History', col1: 'Data 1H', col2: 'Data 2H', col3: 'Value 1H', col4: 'Value 2H' },
-//       { id: 'Math', col1: 'Data 2M', col2: 'Data 2M', col3: 'Value 1M', col4: 'Value 2M' },
-//       // Add more data objects here
-//     ],
+//       title: "Test Table",
+//       data: [
+//           { id: 'Students', col1: 'Alex', col2: 'Sam', col3: 'Ben'},
+//           { id: 'Classes', col1: 'Math', col2: 'Science', col3: 'English'},
+              //Add more rows here...
+//       ],
 //   },
 // ];
+//================================================================
 
-
-
+// Using the component:
+// =================================================================
+// <HorizontalTable data={table_data} /> 
+// =================================================================
 
 const HorizontalTable = ({data}) => {
   
-
+  //Theme Management
+  //================================================
   const { theme } = useContext(themeContext);
+  //================================================
 
   return (
     <ScrollView horizontal>
       <View style={styles.container}>
+
         {data.map((section) => (
-          <View key={section.title} style={[styles.section]}>
+          <View key={section} style={[styles.section]}>
             <Text 
                 style={[styles.sectionTitle]}
             >
@@ -48,11 +59,13 @@ const HorizontalTable = ({data}) => {
                   {Object.keys(item).map((key, index) => {
 
                     if (key !== 'id') {
-                      return <Text 
-                                key={key}
+                      // console.log(`${item.id}-${key}-${index}`)
+                      return  <Text 
+                                key={`${item.id}-${key}-${index}`} // Use a unique key here
+                                
                                 style={[styles.cell, {color: theme.horizontalTableText, borderColor: theme.horizontalTableBorder, backgroundColor: theme.horizontalTable}]}
                                 accessibilityLabel={`${item[key]} of ${item.id} Row ${index}`}
-                             >
+                              >
                                 {item[key]}
                             </Text>;
                     }

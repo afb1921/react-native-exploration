@@ -1,10 +1,12 @@
 import React, {useContext} from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
+
 //Theme Managment Imports------------------------------------------
 import themeContext from '../Themes/themeContext';
 //-----------------------------------------------------------------
 
-// Example Use:
+//Example OrderedList Data
+//================================================================
 
 // const data = [
 //   'Item 1',
@@ -14,16 +16,20 @@ import themeContext from '../Themes/themeContext';
 //   // Add more items here
 // ];
 
+//================================================================
 
-{/* <OrderedList orderedListData={data}/> */}
-
-// -------------------------
-
-
+// Using the component:
+// =================================================================
+// <OrderedList data={data} /> 
+// =================================================================
 
 const OrderedList = ({data}) => {
 
+
+  //Theme management
+  //================================================================
   const {theme} = useContext(themeContext);
+  //================================================================
 
   return (
     <FlatList

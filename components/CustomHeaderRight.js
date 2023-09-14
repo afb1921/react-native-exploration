@@ -3,22 +3,22 @@ import { TouchableOpacity, StyleSheet, AccessibilityInfo } from 'react-native';
 import { DrawerActions} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-//Theme Imports---------------------------------------------------
+//Theme Imports
+//================================================================
 import themeContext from '../Themes/themeContext';
-//----------------------------------------------------------------
+//================================================================
 
 const CustomHeaderRight = ({navigation}) => {
 
-  //Theme Manangement-----------------------------------------------
+  //Theme Manangement
+  //================================================================
   const { theme} = useContext(themeContext);
-  //----------------------------------------------------------------
+  //================================================================
 
-  const handleMenuPress = () => {
+  const handleMenuPress = () => { //When the menu hamburger icon is clicked
 
-    navigation.dispatch(DrawerActions.openDrawer());
-
+    navigation.dispatch(DrawerActions.openDrawer()); //opens the drawer
     const delay = 200
-
     setTimeout(() => {
       AccessibilityInfo.announceForAccessibility('Opened Menu Drawer');
       console.log("Opened Menu Drawer ==================")
