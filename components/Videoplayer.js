@@ -5,7 +5,7 @@ import {Video} from 'expo-av';
 import Slider from "@react-native-community/slider"
 import {colors} from '../constant'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { useNavigation } from '@react-navigation/native'; // Import useNavigation
+import { useNavigation } from '@react-navigation/native'; 
 
 
 
@@ -80,9 +80,9 @@ const VideoPlayer = ({video, videoName}) => {
                     accessibilityLabel={isPlaying ? 'Pause' : 'Play video'}
                     accessibilityRole="button">
                     <Text>{isPlaying ? 
-                        <Icon name="pause-circle" size={30}/> 
+                        <Icon name="pause-circle" size={45}/> 
                         : 
-                        <Icon name="play-circle" size={30}/>
+                        <Icon name="play-circle" size={45}/>
                     }</Text>
                 </TouchableOpacity>
             </View>

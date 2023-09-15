@@ -20,6 +20,7 @@ import UnorderedList from '../components/UnorderedList';
 import TextField from '../components/TextField';
 import pokemon_video from '../assets/videos/videoplayback.mp4';
 import Videoplayer from '../components/Videoplayer';
+import RadioButton from '../components/RadioButton';
 //-----------------------------------------------------------------
 
 function HomeScreen() {
@@ -130,20 +131,13 @@ function HomeScreen() {
       </View> */}
 
 
-
-
-      {/* <View style={styles.videoContainer}>
-        <Video
-          style={styles.video}
-          source={pokemon_video}
-          useNativeControls
-          resizeMode='contain'
-          onError={(error) => console.error("Video Error:", error)}
-        />
-      </View> */}
       <View style={styles.container}>
-        <Videoplayer video={pokemon_video} videoName={"pokemon Video"}/>
-        {/* <HorizontalTable data={table_data1}/> */}
+        <Videoplayer video={pokemon_video} videoName="Pokemon Video"/>
+        <RadioButton data={data}/>
+        
+        
+
+
       </View>
       
 
