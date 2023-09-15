@@ -1,8 +1,8 @@
-import React, { useRef, useContext} from 'react';
-import {View, Text, Image, AccessibilityInfo, StyleSheet, TextInput} from 'react-native';
-import { useFocusEffect, useRoute} from '@react-navigation/native';
+import React, { useRef, useContext } from 'react';
+import { View, Text, Image, AccessibilityInfo, StyleSheet, TextInput } from 'react-native';
+import { useFocusEffect, useRoute } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
-
+import { Calendar } from 'react-native-calendars';
 
 //Theme Managment Imports------------------------------------------
 import themeContext from '../Themes/themeContext';
@@ -18,9 +18,12 @@ import TwoVariableTable from '../components/TwoVariableTable';
 import OrderedList from '../components/OrderedList';
 import UnorderedList from '../components/UnorderedList';
 import TextField from '../components/TextField';
+import pokemon_video from '../assets/videos/videoplayback.mp4';
+import Videoplayer from '../components/Videoplayer';
 //-----------------------------------------------------------------
 
 function HomeScreen() {
+
 
   const data = [
     'Item 1',
@@ -31,31 +34,31 @@ function HomeScreen() {
   ];
 
   const table_data1 = [
-        {
-            title: "Test Table",
-            data: [
-                { id: 'Students', col1: 'Alex', col2: 'Sam', col3: 'Ben'},
-                { id: 'Classes', col1: 'Math', col2: 'Science', col3: 'English'},
-            ],
-        },
-    ];
+    {
+      title: "Test Table",
+      data: [
+        { id: 'Students', col1: 'Alex', col2: 'Sam', col3: 'Ben' },
+        { id: 'Classes', col1: 'Math', col2: 'Science', col3: 'English' },
+      ],
+    },
+  ];
 
-    
-    const table_data2 = {
+
+  const table_data2 = {
     columns: ['Year 1', 'Year 2', 'Year 3'],
     rows: [
-        { label: 'Food 1', values: ['10', '20', "30"] },
-        { label: 'Food 2', values: ['5', '10', '15'] },
-        { label: 'Food 3', values: ['1', '2', "3"] },
+      { label: 'Food 1', values: ['10', '20', "30"] },
+      { label: 'Food 2', values: ['5', '10', '15'] },
+      { label: 'Food 3', values: ['1', '2', "3"] },
     ],
-};
+  };
 
-//   //----------------------------
+  //   //----------------------------
 
 
   //Theme Manangement-----------------------------------------------
- 
-  const {theme} = useContext(themeContext);
+
+  const { theme } = useContext(themeContext);
 
   const dropdownRef = useRef(null)
 
@@ -69,28 +72,28 @@ function HomeScreen() {
 
   //When the page loads (everytime) the useFocusEffect is triggered
   //This is used to bring focus on the first element
-  useFocusEffect( 
+  useFocusEffect(
     React.useCallback(() => {
 
-    console.log("use Focus Effect Home")
- 
-    // // Add a time delay before executing the focus logic, 
-    // //This is important so the it gives it a chance to find the firstElement during loading.
-    const delay = 250; // Delay in milliseconds
+      console.log("use Focus Effect Home")
 
-     setTimeout(() => {
-            
-      if (firstElementRef.current) {
-        const reactTag = firstElementRef.current._nativeTag;
-        AccessibilityInfo.setAccessibilityFocus(reactTag);
-        console.log('First Element===========n\n'); //Debuging purposes
+      // // Add a time delay before executing the focus logic, 
+      // //This is important so the it gives it a chance to find the firstElement during loading.
+      const delay = 250; // Delay in milliseconds
 
-      }
-    },delay)
-    },[])
+      setTimeout(() => {
+
+        if (firstElementRef.current) {
+          const reactTag = firstElementRef.current._nativeTag;
+          AccessibilityInfo.setAccessibilityFocus(reactTag);
+          console.log('First Element===========n\n'); //Debuging purposes
+
+        }
+      }, delay)
+    }, [])
 
   )
-  
+
 
   return (
     <View style={[styles.container, { backgroundColor: theme.contentBackground }]}>
@@ -109,30 +112,40 @@ function HomeScreen() {
         >
           Home Screen
         </heading.Heading1>
-        
+
       </View>
       {/* // -----------------------------------------------------------------*/}
- 
+
       {/* <View>
         <TextField
           title="Hello world!"
           placeholderText="Placeholder here..."
         />
       </View> */}
-      
 
-      <View>
-        <HorizontalTable data={table_data1}/>
+      {/* <View>
+        <Calendar
+          enableSwipeMonths={true}
+        />
+      </View> */}
+
+
+
+
+      {/* <View style={styles.videoContainer}>
+        <Video
+          style={styles.video}
+          source={pokemon_video}
+          useNativeControls
+          resizeMode='contain'
+          onError={(error) => console.error("Video Error:", error)}
+        />
+      </View> */}
+      <View style={styles.container}>
+        <Videoplayer video={pokemon_video} videoName={"pokemon Video"}/>
+        {/* <HorizontalTable data={table_data1}/> */}
       </View>
       
-
-      
-
-    
-
-
-
-
 
 
 
@@ -142,13 +155,14 @@ function HomeScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+  flex: 1,
+    
   },
   containerHeader: {
     alignItems: 'center', //Aligns content horizontally center
     backgroundColor: colors.primaryBlue,
     paddingTop: 10,
-    
+
   },
   containerHeaderText: {
     color: "white",
@@ -159,21 +173,6 @@ const styles = StyleSheet.create({
   contentColor: {
   },
 
-
-
-  tableRow: {
-    flexDirection: 'row',
-  },
-  tableCell: {
-    flex: 1,
-    padding: 8,
-    borderWidth: 1,
-    borderColor: 'black',
-  },
-  headerCell: {
-    fontWeight: 'bold',
-    backgroundColor: 'lightgray',
-  },
 
 });
 
