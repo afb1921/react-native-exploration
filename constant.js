@@ -99,7 +99,7 @@ export const def_Page = {
   //***INITAL STATE OF THEME***
   //================================================
   //SWITCHES APP COLORS BETWEEN "lightMode" AND "darkMode" 
-  setDarkMode: true, // OPTIONS 'true' or 'false'
+  setDarkMode: false, // OPTIONS 'true' or 'false'
   //================================================
 
   //------------------------------------------------
