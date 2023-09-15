@@ -28,7 +28,8 @@ import themeContext from '../Themes/themeContext';
 const HorizontalTable = ({data}) => {
   
   //Theme Management
-  //================================================
+  //================================================import Slider from 'react-native-slider';
+
   const { theme } = useContext(themeContext);
   //================================================
 
