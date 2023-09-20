@@ -10,7 +10,7 @@ import { RadioButton } from 'react-native-paper';
 //     // Add more items here
 //   ];
 
-const RadioButtonExample = ({data}) => {
+const CustomRadioButton = ({data}) => {
     const [selectedItem, setSelectedItem] = useState(null);
 
 
@@ -41,5 +41,5 @@ const RadioButtonExample = ({data}) => {
 
   };
   
-  export default RadioButtonExample;
+  export default CustomRadioButton;
   
