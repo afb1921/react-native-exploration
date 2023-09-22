@@ -32,9 +32,10 @@ const UnorderedList = ({data}) => {
 
   return (
     <FlatList
+      accessibilityRole='list'
       data={data}
       keyExtractor={(item, index) => index.toString()}
-      renderItem={({ item }) => (
+      renderItem={({ item, index }) => (
         <View style={styles.listItem}>
           <View style={styles.bullet}>
             <Text 
@@ -48,7 +49,8 @@ const UnorderedList = ({data}) => {
           </View>
           <Text     
             style={[styles.listItemText, {color: theme.unorderedListText}]}
-            accessibilityLabel={`Bullet ${item}`} 
+            accessibilityLabel={`${item}, Bullet ${index+1} of ${data.length}`}
+
           >
             {item}
           </Text>

@@ -1,23 +1,39 @@
-import React from 'react';
-
-import {View, Text} from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, FlatList } from 'react-native';
 import CheckBox from 'expo-checkbox';
 
-const CustomCheckBox = ({title}) => {
-    const [toggleCheckBox, setToggleCheckBox] = React.useState(false)
+const CustomCheckBox = ({ data, title }) => {
+  const [checkboxStates, setCheckboxStates] = useState(data.map(() => false));
 
-    return (
-        <View>
-            <CheckBox
-                disabled={false}
-                value={toggleCheckBox}
-                onValueChange={(newValue) => setToggleCheckBox(newValue)}
-                accessibilityLabel={`${title}`}
-           />
-            {/* <Text>{toggleCheckBox ? 'Checked' : 'Unchecked'}</Text> */}
+  const toggleCheckbox = (index) => {
+    const newCheckboxStates = [...checkboxStates];
+    newCheckboxStates[index] = !newCheckboxStates[index];
+    setCheckboxStates(newCheckboxStates);
+  };
+
+  return (
+    <FlatList
+      data={data}
+      keyExtractor={(item, index) => index.toString()}
+      accessibilityRole='list'
+
+      renderItem={({ item, index }) => (
+        <View style={{ flexDirection: 'row', alignItems: 'center', margin: 10 }}>
+          <CheckBox
+            disabled={false}
+            value={checkboxStates[index]}
+            onValueChange={() => toggleCheckbox(index)}
+            accessibilityLabel={(data.length > 1) ? `${item}, ${index + 1} of ${data.length}` : `${item}`}
+          />
+          <Text importantForAccessibility='no' accessible={false} style={{ marginLeft: 10 }}>
+            {item}
+          </Text>
         </View>
-    );
-
-}
+      )}
+    />
+  );
+};
 
 export default CustomCheckBox;
+
+

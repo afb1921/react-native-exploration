@@ -32,17 +32,23 @@ const OrderedList = ({data}) => {
   //================================================================
 
   return (
+    <View>
     <FlatList
+      accessibilityRole='list'
       data={data}
       keyExtractor={(item, index) => index.toString()}
       renderItem={({ item, index }) => (
         <View style={styles.listItem}>
-          <Text style={{color: theme.orderedListText}}>
+          <Text 
+            style={{color: theme.orderedListText}}
+            accessibilityLabel={`${item}, Item ${index+1} of ${data.length}`}
+          >
             {`${index + 1}. ${item}`}
           </Text>
         </View>
       )}
     />
+    </View>
   );
 };
 
