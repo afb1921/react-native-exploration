@@ -39,7 +39,7 @@ const UnorderedList = ({data}) => {
         <View style={styles.listItem}>
           <View style={styles.bullet}>
             <Text 
-                style={[styles.bulletText, {color: theme.unorderedListBullet}]}
+                style={[styles.bulletText, {color: theme.unorderedList.bullet}]}
                 importantForAccessibility='no'
                 accessible={false}
             >
@@ -48,7 +48,7 @@ const UnorderedList = ({data}) => {
             </Text>
           </View>
           <Text     
-            style={[styles.listItemText, {color: theme.unorderedListText}]}
+            style={[styles.listItemText, {color: theme.unorderedList.text}]}
             accessibilityLabel={`${item}, Bullet ${index+1} of ${data.length}`}
 
           >

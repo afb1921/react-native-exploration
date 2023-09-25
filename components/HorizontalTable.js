@@ -1,78 +1,69 @@
-import React, {useContext} from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
-
-//Theme Imports
-//============================================================
+import React, { useContext } from 'react';
+import { View, Text, ScrollView, StyleSheet, FlatList } from 'react-native';
 import themeContext from '../Themes/themeContext';
-//============================================================
 
-// Example For Horizontal Table Data:
-//===============================================================
-// const table_data = [
-//   {
-//       title: "Test Table",
-//       data: [
-//           { id: 'Students', col1: 'Alex', col2: 'Sam', col3: 'Ben'},
-//           { id: 'Classes', col1: 'Math', col2: 'Science', col3: 'English'},
-              //Add more rows here...
-//       ],
-//   },
-// ];
-//================================================================
-
-// Using the component:
-// =================================================================
-// <HorizontalTable data={table_data} /> 
-// =================================================================
-
-const HorizontalTable = ({data}) => {
-  
-  //Theme Management
-  //================================================import Slider from 'react-native-slider';
-
+const HorizontalTable = ({ data }) => {
   const { theme } = useContext(themeContext);
-  //================================================
+
+  const renderHeader = (headerText) => (
+    <Text
+      style={[
+        styles.columnHeader,
+        {
+          backgroundColor: theme.horizontal_Table.headerCell,
+          color: theme.horizontal_Table.headerCellText,
+        },
+      ]}
+      accessibilityRole="header"
+    >
+      {headerText}
+    </Text>
+  );
+
+  const renderCell = (item, key, index) => (
+    <Text
+      key={`${item.id}-${key}-${index}`}
+      style={[
+        styles.cell,
+        {
+          color: theme.horizontal_Table.cellText,
+          borderColor: theme.horizontal_Table.border,
+          backgroundColor: theme.horizontal_Table.cell,
+        },
+      ]}
+      accessibilityLabel={`${item[key]} of ${item.id}`}
+    >
+      {item[key]}
+    </Text>
+  );
 
   return (
-    <ScrollView horizontal>
+    <ScrollView>
       <View style={styles.container}>
-
         {data.map((section) => (
-          <View key={section} style={[styles.section]}>
-            <Text 
-                style={[styles.sectionTitle]}
-            >
-                {section.title}
-            </Text>
-
-            <View style={[styles.row]}>
-
-              {section.data.map((item) => (
-                
-                <View key={item.id} style={[styles.column, {borderColor: theme.horizontalTableBorder}]}>
-                    <Text 
-                        style={[styles.columnHeader, {backgroundColor: theme.horizontalTableHeader, color: theme.horizontalTableHeaderText}]}
-                        accessibilityLabel={`${item.id} Column`}
-                    >
-                        {item.id}
-                    </Text>
-
-                  {Object.keys(item).map((key, index) => {
-
-                    if (key !== 'id') {
-                      // console.log(`${item.id}-${key}-${index}`)
-                      return  <Text 
-                                key={`${item.id}-${key}-${index}`} // Use a unique key here
-                                
-                                style={[styles.cell, {color: theme.horizontalTableText, borderColor: theme.horizontalTableBorder, backgroundColor: theme.horizontalTable}]}
-                                accessibilityLabel={`${item[key]} of ${item.id} Row ${index}`}
-                              >
-                                {item[key]}
-                            </Text>;
-                    }
-                  })}
-                </View>
-              ))}
+          <View key={section.title} style={styles.section}>
+            <Text style={styles.sectionTitle}>{section.title}</Text>
+            <View style={styles.row}>
+              <FlatList
+                accessibilityRole="grid"
+                keyExtractor={(item, index) => index.toString()}
+                horizontal={true}
+                data={section.data}
+                renderItem={({ item }) => (
+                  <View
+                    key={item.id}
+                    style={[
+                      styles.column,
+                      { borderColor: theme.horizontal_Table.border },
+                    ]}
+                  >
+                    {renderHeader(item.id)}
+                    {Object.keys(item).map((key, index) =>
+                      key !== 'id' ? renderCell(item, key, index) : null
+                    )}
+                  </View>
+                )}
+              />
             </View>
           </View>
         ))}
@@ -86,7 +77,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   section: {
-    marginRight: 20, // Adjust the spacing between data objects
+    marginRight: 20,
   },
   sectionTitle: {
     fontSize: 18,
@@ -99,8 +90,8 @@ const styles = StyleSheet.create({
   columnHeader: {
     fontWeight: 'bold',
     padding: 10,
-    textAlign: 'center', // Center text horizontally
-    alignItems: 'center', // Center text vertically
+    textAlign: 'center',
+    alignItems: 'center',
   },
   column: {
     borderWidth: 1,
@@ -108,15 +99,17 @@ const styles = StyleSheet.create({
   },
   cell: {
     borderWidth: 1,
-    borderTopWidth: 1, // Add top border
-    borderBottomWidth: 1, // Add bottom border
-    borderLeftWidth: 0, // Remove left border to avoid double borders
-    borderRightWidth: 0, // Remove right border to avoid double borders
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
     padding: 10,
     minWidth: 100,
-    textAlign: 'center', // Center text horizontally
-   },
+    textAlign: 'center',
+  },
 });
 
 export default HorizontalTable;
+
+
 

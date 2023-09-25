@@ -94,7 +94,7 @@ function App() {
         {/* Status Bar=============== */}
         <StatusBar
           barStyle={"light-content"}
-          backgroundColor={theme.statusBar}
+          backgroundColor={theme.app_Header.statusBar}
         />
         {/* //=========================*/}
 
@@ -109,7 +109,7 @@ function App() {
               screens={screens} //pass screens as a prop
             />}
             screenOptions={({ navigation }) => ({
-              headerStyle: { backgroundColor: theme.headerMenu},
+              headerStyle: { backgroundColor: theme.app_Header.headerMenu},
               drawerPosition: 'right', //Drawer will slide from direction given
               headerLeft: false, //Default Hamburger is on left, header left set to false for custom right side hamburger menu
               headerRight: () => 
@@ -130,13 +130,13 @@ function App() {
                       {/* Header Menu Icon=========================*/}
                       <FontAwesome
                         name={screen.icon} //The icon, This is configurable in the screens array
-                        style={[styles.headerIcon, { color: theme.headerIcon }]}
+                        style={[styles.headerIcon, { color: theme.app_Header.headerIcon }]}
                         importantForAccessibility='no' //This hides the icon from screen readers its decoration therefore needs hidden
                         accessible={false}
                       />
                       {/* //=========================================*/}
                       <Text
-                        style={[styles.headerText, { color: theme.titleText }]}
+                        style={[styles.headerText, { color: theme.app_Header.titleText }]}
                       >
                         {/* if def_Page.setCommonLabel is true then text will be def_Page.commonLabel else screen.name */}
                         {def_Page.setCommonLabel ? def_Page.commonLabel : screen.name} 

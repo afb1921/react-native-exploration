@@ -34,7 +34,7 @@ const CustomHeaderRight = ({navigation}) => {
       <Icon 
         name="bars" 
         size={30} 
-        style={[styles.hamburgerIcon, {color: theme.hamburgerIcon}]} 
+        style={[styles.hamburgerIcon, {color: theme.app_Header.hamburgerIcon}]} 
         accessibilityLabel='Menu Drawer' 
         accessibilityRole='menu' 
       />

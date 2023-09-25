@@ -1,4 +1,4 @@
-import React, { useState, useRef, useImperativeHandle, forwardRef, useContext, useEffect } from 'react';
+import React, { useRef, useImperativeHandle, forwardRef, useContext, useEffect } from 'react';
 import { View, Text, Modal, TouchableOpacity, StyleSheet, AccessibilityInfo } from 'react-native';
 
 //Custom Imports
@@ -31,8 +31,8 @@ const CustomDropdown = forwardRef(({ options, title }, ref) => {
     const { theme } = useContext(themeContext);
     //================================
 
-    const [showDropdown, setShowDropdown] = useState(false); //This set the state of the dropdown if it should be shown or not
-    const [selectedValue, setSelectedValue] = useState('None'); //The current selected value
+    const [showDropdown, setShowDropdown] = React.useState(false); //This set the state of the dropdown if it should be shown or not
+    const [selectedValue, setSelectedValue] = React.useState('None'); //The current selected value
     const modalRef = useRef(null);
     const dropDownRef = useRef(null);
     const handleDropdownClick = () => setShowDropdown(true); //Opens the dropdown when the dropdown is clicked button is clicked
@@ -68,7 +68,7 @@ const CustomDropdown = forwardRef(({ options, title }, ref) => {
 
     //Text Width Calcuation
     //==================================================
-    const [maxButtonWidth, setMaxButtonWidth] = useState(0);
+    const [maxButtonWidth, setMaxButtonWidth] = React.useState(0);
 
     useEffect(() => {
         let maxWidth = 0;
@@ -98,7 +98,7 @@ const CustomDropdown = forwardRef(({ options, title }, ref) => {
                     style={styles.dropDownTitleContainer} 
                 >
                     <Text 
-                        style={[styles.textContent, styles.centeredContent, {color: theme.text}]}
+                        style={[styles.textContent, styles.centeredContent, {color: theme.page.text}]}
                         accessible={false}
                         importantForAccessibility='no'
                     >
@@ -113,12 +113,12 @@ const CustomDropdown = forwardRef(({ options, title }, ref) => {
                 <TouchableOpacity 
                     onPress={handleDropdownClick} 
                     ref={dropDownRef} 
-                    style={[styles.dropDownButtonContainer, styles.centeredContent, {backgroundColor: theme.button}]}
+                    style={[styles.dropDownButtonContainer, styles.centeredContent, {backgroundColor: theme.button.color}]}
                     accessibilityLabel={`selected: ${selectedValue} for ${title} popup selection`}
                     accessibilityRole='button'
                 >
                     <Text 
-                        style={[styles.textContent, {paddingHorizontal: maxButtonWidth > 220 ? "" : 30, color: theme.buttonText}]} 
+                        style={[styles.textContent, {paddingHorizontal: maxButtonWidth > 220 ? "" : 30, color: theme.button.text}]} 
                         accessibilityLabel={`${selectedValue} selected`}
                     >
                         {selectedValue}
@@ -131,14 +131,14 @@ const CustomDropdown = forwardRef(({ options, title }, ref) => {
             ============================================================ */}
             <Modal visible={showDropdown} transparent={true} animationType='slide' onRequestClose={handleModalClose} ref={modalRef}>
                 <View style={styles.modalContainer}>
-                    <View style={[styles.modalContent, { backgroundColor: theme.modal}]}>
+                    <View style={[styles.modalContent, { backgroundColor: theme.modal.background}]}>
                         <View style={[styles.modalHeader, 
-                                { backgroundColor: theme.modalHeader, width: maxButtonWidth+20, }
+                                { backgroundColor: theme.modal.header, width: maxButtonWidth+20, }
                             
                             ]}>
-                            <Text style={[styles.textContent, styles.modalHeaderText, { color: theme.modalHeaderText }]} role="heading">
+                            <Text style={[styles.textContent, styles.modalHeaderText, { color: theme.modal.headerText }]} role="heading">
                                 Select your Option For:{'\n'}
-                                <Text style={[styles.textContent, styles.modalHeaderText, { color: theme.modalHeaderText }]}>
+                                <Text style={[styles.textContent, styles.modalHeaderText, { color: theme.modal.headerText }]}>
                                     {title}
                                 </Text>
                             </Text>
@@ -154,11 +154,11 @@ const CustomDropdown = forwardRef(({ options, title }, ref) => {
 
                                 <View style={[styles.roundedTextContainer, 
                                     { 
-                                        backgroundColor: (option === selectedValue) ? theme.modalSelectedItem : theme.modalNonselectedItem, 
+                                        backgroundColor: (option === selectedValue) ? theme.modal.selectedItem : theme.modal.nonselectedItem, 
                                         width: maxButtonWidth,
                                     }
                                     ]}>
-                                    <Text style={[styles.textContent, styles.dropdownItem, { color: (option === selectedValue) ? theme.modalSelectedItemText : theme.modalItemText }]}>
+                                    <Text style={[styles.textContent, styles.dropdownItem, { color: (option === selectedValue) ? theme.modal.selectedItemText : theme.modal.itemText }]}>
                                         {option}
                                     </Text>
                                 </View>
@@ -169,7 +169,7 @@ const CustomDropdown = forwardRef(({ options, title }, ref) => {
                         {/* This is the cancel button */}
                         {/* =============================== */}
                         <TouchableOpacity onPress={handleModalClose} style={styles.cancelButton}>
-                            <Text style={[styles.textContent, { color: theme.modalItemText}]} role="button">
+                            <Text style={[styles.textContent, { color: theme.modal.itemText}]} role="button">
                                 Cancel
                             </Text>
                         </TouchableOpacity>

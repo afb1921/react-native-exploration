@@ -1,145 +1,208 @@
-import React, {useContext} from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
-
-//Theme Imports
-//================================================
+import React, { useContext, useEffect } from 'react';
+import { View, Text, StyleSheet, ScrollView, FlatList } from 'react-native';
 import themeContext from '../Themes/themeContext';
-//================================================
 
+const TwoVariableTable = ({ data }) => {
+  const { theme } = useContext(themeContext);
+  const [maxCellWidth, setMaxCellWidth] = React.useState(7);
+  const [currentFontSize, setFontSize] = React.useState(15);
 
-//Example Two-Variable Data Table
-//================================================================
+  useEffect(() => {
+    for (const row of data.rows) {
+      // console.log(`Row Label: ${row.label}`);
+      if (row.label.length > maxCellWidth) {
+        setMaxCellWidth(row.label.length);
+      }
+      for (let i = 0; i < data.columns.length; i++) {
+        const column = data.columns[i];
+        const value = row.values[i];
+        if (column.length > maxCellWidth) {
+          // console.log(column.length);
+          setMaxCellWidth(column.length);
+        }
+        if (value.length > maxCellWidth) {
+          setMaxCellWidth(value.length);
+        }
+        // console.log(`Column: ${column}, Value: ${value}`);
+      }
+    }
+  }, [data]);
 
-//     const table_data = {
-//     columns: ['Year 1', 'Year 2', 'Year 3'],
-//     rows: [
-//         { label: 'Food 1', values: ['10', '20', "30"] },
-//         { label: 'Food 2', values: ['5', '10', '15'] },
-//         { label: 'Food 3', values: ['1', '2', "3"] },
-//     ],
-// };
+  const cellMinWidth = maxCellWidth * (currentFontSize - 2);
 
-//================================================================
+  // useEffect(() => {
+  //   console.log(maxCellWidth); //Log the maximum length found for the data
+  //   console.log(cellMinWidth); //Log the minimum length to display data
+  // }, [maxCellWidth]);
 
-// Using the component:
-// =================================================================
-// <TwoVariableTable data={table_data} /> 
-// =================================================================
+  const renderHeader = () => (
+    <View style={styles.headerRow}>
+      <View
+        style={[
+          styles.headerCell,
+          {
+            backgroundColor: theme.twoVar_Table.headerCell,
+            borderColor: theme.twoVar_Table.border,
+            minWidth: cellMinWidth + 2,
+          },
+        ]}
+      />
 
-const TwoVariableTable = ({data}) => {
-
-    //Theme Management
-    //================================================================
-    const { theme } = useContext(themeContext);
-    //================================================================
- 
-    const renderHeader = () => (
-        <View style={styles.headerRow}>
-            <View style={[styles.headerCell, {backgroundColor: theme.twoVarTableHeader, borderColor: theme.twoVarTableBorder}]} />
-
-            {/* Horizontal Variable=============================*/}
-            {data.columns.map((column) => (
-                // console.log(column),
-                <View key={column} style={[styles.headerCell, {backgroundColor: theme.twoVarTableHeader, borderColor: theme.twoVarTableBorder}]}>
-                    <Text 
-                        accessibilityLabel={`${column} Column`}
-                        style={[styles.headerText, {color: theme.twoVarTableHeaderText}]}
-                    >
-                        {column}
-                    </Text>
-                </View>
-            ))}
-            {/*===================================================*/}
+      {data.columns.map((column) => (
+        // console.log(column), log the current column
+        <View
+          key={column}
+          style={[
+            styles.headerCell,
+            {
+              backgroundColor: theme.twoVar_Table.headerCell,
+              borderColor: theme.twoVar_Table.border,
+              minWidth: cellMinWidth,
+              justifyContent: 'center',
+            },
+          ]}
+        >
+          <Text
+            accessibilityLabel={`${column} Column`}
+            accessibilityRole='header'
+            style={[
+              styles.headerText,
+              {
+                color: theme.twoVar_Table.headerText,
+                fontSize: currentFontSize,
+                minWidth: cellMinWidth,
+                textAlign: 'center',
+              },
+            ]}
+          >
+            {column}
+          </Text>
         </View>
-    );
+      ))}
+    </View>
+  );
 
-    const renderRow = (row) => (
+  const renderRow = ({ item: row }) => (
+    // console.log(row.label), //Log the current row label
+    <View
+      style={[
+        styles.row, {
+          backgroundColor: theme.twoVar_Table.cell
+        }]
+      }
+      key={row.label}
+    >
+      <View
+        style={[
+          styles.rowLabelCell,
+          {
+            backgroundColor: theme.twoVar_Table.headerCell,
+            borderColor: theme.twoVar_Table.border,
+            minWidth: cellMinWidth,
+            justifyContent: 'center', // Center vertically
+          },
+        ]}
+      >
+        <Text
+          accessibilityLabel={`${row.label} row`}
+          accessibilityRole='header'
+          style={[
+            styles.rowLabelText,
+            {
+              color: theme.twoVar_Table.headerText,
+              fontSize: currentFontSize,
+              minWidth: cellMinWidth,
+              textAlign: 'center', // Center horizontally
+            },
+          ]}
+        >
+          {row.label}
+        </Text>
+      </View>
 
-        <View style={[styles.row, {backgroundColor: theme.twoVarTable}]} key={row.label}>
+      {row.values.map((value, valueIndex) => {
+        const column = data.columns[valueIndex]; // Get the current column name
+        // console.log(value, row.label, column); // Log the value, row label, and column name
+        return (
+          <View
+            key={value+[valueIndex]}
+            style={[
+              styles.cell, {
+                borderColor: theme.twoVar_Table.border,
+                minWidth: cellMinWidth
+              }
+            ]}
+          >
+            <Text
+              style={[
+                styles.cellText,
+                {
+                  color: theme.twoVar_Table.cellText,
+                  fontSize: currentFontSize,
+                  minWidth: cellMinWidth,
+                  textAlign: 'center', // Center horizontally
+                },
+              ]}
+              accessibilityLabel={`${value} of: Row ${row.label}, Column ${column}`}
+            >
+              {value}
+            </Text>
+          </View>
+        );
+      })}
+    </View>
+  );
 
-            {/* Row Label (Vertical Variable)===============================*/}
-            <View style={[styles.rowLabelCell, {backgroundColor: theme.twoVarTableHeader, borderColor: theme.twoVarTableBorder}]}>
-                <Text 
-                    accessibilityLabel={`${row.label} row`}
-                    style={[styles.rowLabelText, {color: theme.twoVarTableHeaderText}]}
-                >
-                    {row.label}
-                </Text>
-            </View>
-
-            {/*=====================================================*/}
 
 
 
-
-            {/* Renders the data for each cell============================================= */}
-            {row.values.map((value, valueIndex) => (
-                console.log(value),
-                <View key={value} style={[styles.cell, {borderColor: theme.twoVarTableBorder}]}>
-                    <Text 
-                        style={[styles.cellText, {color: theme.twoVarTableCellText}]}
-                        accessibilityLabel={`${value} of: Row ${row.label}, Column ${data.columns[valueIndex]} `}
-
-                    >{value}</Text>
-                </View>
-            ))} 
-            {/* //================================================================ */}
-            
-        </View>
-    );
-
-    return (
-        <ScrollView horizontal>
-            <View style={styles.container}>
-                {renderHeader()}
-                {data.rows.map((row) => renderRow(row))}
-            </View>
-        </ScrollView>
-    );
+  return (
+    <ScrollView horizontal={true}>
+      <FlatList
+        accessibilityRole="grid"
+        data={data.rows}
+        keyExtractor={(item) => item.label}
+        ListHeaderComponent={renderHeader}
+        renderItem={renderRow}
+      />
+    </ScrollView>
+  );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'column',
-    },
-    headerRow: {
-        flexDirection: 'row',
-    },
-    headerCell: {
-        borderWidth: 1,
-        padding: 8,
-        minWidth: 100,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    row: {
-        flexDirection: 'row',
-    },
-    rowLabelCell: {
-        borderWidth: 1,
-        minWidth: 100,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    cell: {
-        borderWidth: 1,
-        minWidth: 100,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    cellText:{
-        // paddingHorizontal: 40,
-        paddingVertical: 10,
-    },
-    headerText: {
-    },
-    rowLabelText: {
-    },
+  container: {
+    flexDirection: 'column',
+  },
+  headerRow: {
+    flexDirection: 'row',
+  },
+  headerCell: {
+    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1, // Equal flex to center content
+  },
+  row: {
+    flexDirection: 'row',
+  },
+  rowLabelCell: {
+    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1, // Equal flex to center content
+  },
+  cell: {
+    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1, // Equal flex to center content
+  },
+  cellText: {
+    // Center text within the cell
+    textAlign: 'center',
+  },
+  headerText: {},
+  rowLabelText: {},
 });
 
 export default TwoVariableTable;
-
-
-
-
-

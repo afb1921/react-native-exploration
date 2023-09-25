@@ -1,93 +1,154 @@
-import React, {useContext} from 'react';
-import { View, Text, StyleSheet, SectionList } from 'react-native';
-
-//Theme Managment Imports------------------------------------------
+import React, { useContext, useEffect, useState } from 'react';
+import { View, Text, StyleSheet, FlatList, ScrollView } from 'react-native';
 import themeContext from '../Themes/themeContext';
-//-----------------------------------------------------------------
 
-//EXAMPLE TABLE FOR VERTICAL DATA:
-//===============================================================
-// const table_data = [
-//   {
-//       title: "Test Table",
-//       data: [
-//           { id: 'Students', col1: 'Alex', col2: 'Sam', col3: 'Ben'},
-//           { id: 'Classes', col1: 'Math', col2: 'Science', col3: 'English'},
-              //Add more rows here...
-//       ],
-//   },
-// ];
-//================================================================
-
-
-// Using the component:
-// =================================================================
-//  <VerticalTable data={table_data} /> 
-// =================================================================
+// // //EXAMPLE TABLE FOR VERTICAL DATA:
+// // //===============================================================
+// // // const table_data = [
+// // //   {
+// // //       title: "Test Table",
+// // //       data: [
+// // //           { id: 'Students', col1: 'Alex', col2: 'Sam', col3: 'Ben'},
+// // //           { id: 'Classes', col1: 'Math', col2: 'Science', col3: 'English'},
+// //               //Add more rows here...
+// // //       ],
+// // //   },
+// // // ];
+// // //================================================================
 
 
-const VerticalTable = ({data}) => {
+// // // Using the component:
+// // // =================================================================
+// // //  <VerticalTable data={table_data} /> 
+// // // =================================================================
 
-    const { theme } = useContext(themeContext);
+const VerticalTable = ({ data }) => {
+  const { theme } = useContext(themeContext);
+  const [maxCellWidth, setMaxCellWidth] = useState(7);
+  const [currentFontSize, setFontSize] = useState(15);
 
-    const renderItem = ({ item }) => (
-        <View style={[styles.tableRow]}>
-            {Object.keys(item).map((key, index) => (
-                // console.log(`${key}`),
-                <Text
-                    key={`${item.id}`+index}
-                    style={[
-                        [styles.tableCell, {color: theme.tableCellText, borderColor: theme.verticalTableBorder, backgroundColor: theme.verticalTableCell} ],
-                        index === 0 ? [styles.headerCell, {backgroundColor: theme.verticalTableHeaderCell, color: theme.verticalTableHeaderCellText}] : null,
-                    ]}
-                    accessibilityLabel={
-                        index === 0
-                            ? `${item.id} Row`
-                            : `${item[key]} of ${item.id} Column ${index}`
-                    }
-                >
-                    {item[key]} {/* Display the value of the current column */}
-                    
-                </Text>
-                
-            ))}
-        </View>
-    );
+  useEffect(() => {
+    // Iterate through the data to find the maximum cell width
+    data.forEach((section) => {
+      section.data.forEach((item) => {
+        Object.keys(item).forEach((key) => {
+          if (item[key].length > maxCellWidth) {
+            setMaxCellWidth(item[key].length);
+          }
+        });
+      });
+    });
+  }, [data]);
 
-    return ( 
-        <SectionList
-        sections={data}
-        keyExtractor={(item) => item.id}
-        renderItem={renderItem}
-        renderSectionHeader={({ section: { title } }) => (
-          <Text style={styles.header}>{title}</Text>
-        )}
-      />
-    );
+  const renderHeader = (headerText) => (
+    <Text
+      style={[
+        styles.columnHeader,
+        {
+          backgroundColor: theme.vertical_Table.headerCell,
+          color: theme.vertical_Table.headerCellText,
+          fontSize: currentFontSize,
+          minWidth: maxCellWidth * (currentFontSize - 2) + 5,
+        },
+      ]}
+      accessibilityRole="header"
+    >
+      {headerText}
+    </Text>
+  );
 
-}
+  const renderItem = (item, index) => (
+    <View
+      key={`${item.id}-${index}`}
+      style={[
+        styles.column,
+        { borderColor: theme.vertical_Table.border },
+      ]}
+    >
+      {renderHeader(item.id)}
+      {Object.keys(item).map((key, subIndex) => {
+        if (key !== 'id') {
+          return (
+            <Text
+              key={`${item.id}-${key}-${subIndex}`}
+              style={[
+                styles.cell,
+                {
+                  color: theme.vertical_Table.cellText,
+                  borderColor: theme.vertical_Table.border,
+                  backgroundColor: theme.vertical_Table.cell,
+                  fontSize: currentFontSize,
+                  minWidth: maxCellWidth * (currentFontSize - 2) + 5,
+                },
+              ]}
+              accessibilityLabel={`${item[key]}, ${item.id} ${subIndex} of ${
+                Object.keys(item).filter((k) => k !== 'id').length
+              }`}
+            >
+              {item[key]}
+            </Text>
+          );
+        }
+      })}
+    </View>
+  );
 
-
+  return (
+    <ScrollView horizontal={true}>
+      <View style={styles.container}>
+        {data.map((section) => (
+          <View key={section.title} style={styles.section}>
+            <Text style={styles.sectionTitle}>{section.title}</Text>
+            <View style={styles.row}>
+              <FlatList
+                accessibilityRole="grid"
+                keyExtractor={(item, index) => index.toString()}
+                data={section.data}
+                renderItem={({ item, index }) => renderItem(item, index)}
+              />
+            </View>
+          </View>
+        ))}
+      </View>
+    </ScrollView>
+  );
+};
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    tableRow: {
-        flexDirection: 'row',
-
-    },
-    tableCell: {
-        flex: 1,
-        padding: 8,
-        borderWidth: 1,
-        textAlign: 'center',
-    },
-    headerCell: {
-        fontWeight: 'bold',
-        textAlign: 'left',
-    },
-
+  container: {
+    flexDirection: 'row',
+  },
+  section: {
+    marginRight: 20,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 8,
+  },
+  row: {
+    flexDirection: 'row',
+  },
+  columnHeader: {
+    fontWeight: 'bold',
+    padding: 10,
+    textAlign: 'center',
+  },
+  column: {
+    borderWidth: 1,
+    flexDirection: 'row',
+    marginRight: 20,
+  },
+  cell: {
+    borderWidth: 1,
+    borderTopWidth: 0,
+    borderBottomWidth: 0,
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
+    padding: 10,
+    textAlign: 'center',
+  },
 });
 
 export default VerticalTable;
+

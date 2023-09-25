@@ -6,186 +6,228 @@ export const darkMode = {
 
     theme: 'dark',
 
+    drawer:{
     //Drawer Colors (& three styles)
     //================================================
-
     //-----------------------------------------------
         //These are all used in './components/DrawerContent.js'
     //------------------------------------------------
+        header: '#039fff', //Color for drawer header
+        headerText: 'white', //Color for drawer header text
 
-    drawerHeader: '#039fff', //Color for drawer header
-    drawerHeaderText: 'white', //Color for drawer header text
+        outerContent: '#181818', //Color for drawer Outer content background
+        innerContent: '#282828', //Color for drawer inner content background
 
-    drawerOuterContent: '#181818', //Color for drawer Outer content background
-    drawerInnerContent: '#282828', //Color for drawer inner content background
+        inactiveText: 'black', //Color for inactive navigation Text
+        activeText: 'white', //Color for active navigation Text
 
-    drawerInactiveText: 'black', //Color for inactive navigation Text
-    drawerActiveText: 'white', //Color for active navigation Text
+        inactive: 'white', //Color for inactive navigation Background
+        active: "#1DA1F2", //Color for active navigation Background
 
-    drawerInactive: 'white', //Color for inactive navigation Background
-    drawerActive: "#1DA1F2", //Color for active navigation Background
+        innerBorder: '#ebeded', //Color for drawer inner border
+        outerBorder: "#181818", //Color for drawer outer border
 
-    drawerInnerBorder: '#ebeded', //Color for drawer inner border
-    drawerOuterBorder: "#181818", //Color for drawer outer border
-
-    drawerInnerBorderRadius: 8, //drawer inner border radius
-    drawerBorderBottomWidth: 3, //drawer border bottom width
-    drawerBorderLeftWidth: 5, //drawer border left width
-
+        innerBorderRadius: 8, //drawer inner border radius
+        borderBottomWidth: 3, //drawer border bottom width
+        borderLeftWidth: 5, //drawer border left width
     //=================================================
+    },
 
-
+    app_Header: {
     //Header Menu Colors
     //=================================================
-
     //-----------------------------------------------
         //hamburgerIcon is used in './components/CustomHeaderRight.js
         //headerMenu is used in 'App.js'
         //headerIcon is used in 'App.js'
         //titleText is used in 'App.js'
     //------------------------------------------------
-    headerMenu: '#1f1f1f', //Color of header background for each page
-    titleText: 'white', //Color of title for each page
-
-    hamburgerIcon: 'white', //Color of hamburger icon
-    headerIcon: "#039fff", //Color for header icon
-    //=================================================
-
+        headerMenu: '#1f1f1f', //Color of header background for each page
+        titleText: 'white', //Color of title for each page
+        hamburgerIcon: 'white', //Color of hamburger icon
+        headerIcon: "#039fff", //Color for header icon
 
     //Status Bar Colors
     //=================================================
         //Used in 'App.js'
-    statusBar: "black", //Color for status bar
+        statusBar: "black", //Color for status bar
     //=================================================
+    },
 
-
+    page:{
     //Page Content Colors
     //=================================================
     //--------------------------------
         //These are used on all the pages
+        //Used in DarkModeSwitch.js
+        //User in CustomDropdown.js
     //--------------------------------
-    contentBackground: "black",
-    text: "white",
-    textHighlight: "orange",
-    textHighlightBackground: "white",
-    border: "white",
+        contentBackground: "black",
+        text: "white",
+        textHighlight: "orange",
+        textHighlightBackground: "white",
+        border: "white",
     //=================================================
+    },
 
-
+    modal: {
     //Modal Colors
     //=================================================
     //--------------------------------
         //These are used in './components/CustomDropdown,js'
     //--------------------------------
-    modalHeaderText: "white",
-    modalHeader: "#1DA1F2", //modal header background 
-    modalBorderColor: "black",
-    modal: "#ebeded", //modal background
+        headerText: "white",
+        header: "#1DA1F2", //modal header background 
+        borderColor: "black",
+        background: "#ebeded", //modal background
 
     //Selected Item In Modal----
-    modalSelectedItemText: "white",
-    modalSelectedItem: "#1DA1F2", //modal selected item background
+        selectedItemText: "white",
+        selectedItem: "#1DA1F2", //modal selected item background
 
     //NonSelected Item In Modal---
-    modalItemText: "black",
-    modalNonselectedItem: "white", //modal unselected item background
+        itemText: "black",
+        nonselectedItem: "white", //modal unselected item background
     //=================================================
+    },
 
+    button: {
     //Button Colors
     //================================================
     //--------------------------------
         //Used on pages when buttons are used
+        //Used in CustomDropdown.js
     //--------------------------------
-    button: "white", //button background
-    buttonText: "black",
+        color: "white", //button background
+        text: "black",
     //=================================================
+    },
 
+    vertical_Table: {
     //Vertical Table Colors
     //=================================================
     //--------------------------------
-        //Used on pages when vertical tables are used
+        //Used in VerticalTable.js
     //--------------------------------
-    verticalTableHeaderCell: colors.lightGrey, //vertical table header cell background
-    verticalTableHeaderCellText: 'black',
+        headerCell: colors.lightGrey, //vertical table header cell background
+        headerCellText: 'black',
+        cell: "black", //vertical table background
+        cellText: "white",
+        border: 'white', //vertical table border color
+    },
 
-    verticalTableCell: "black", //vertical table background
-    tableCellText: "white",
-
-    verticalTableBorder: 'white', //vertical table border color
-
+    horizontal_Table: {
     //Horizontal Table Colors
     //=================================================
     //--------------------------------
-        //Used on pages when horizontal tables are used
+        //used in HorizontalTable.js
     //--------------------------------
-    horizontalTableHeader: colors.lightGrey, //horizontal table header background
-    horizontalTableHeaderText: "black",
-    horizontalTableBorder: 'white', //horizontal table border color
-    
-    horizontalTable: 'black', //horizontal table background
-    horizontalTableText: "white",
+        headerCell: colors.lightGrey, //horizontal table header background
+        headerCellText: "black",
+        border: 'white', //horizontal table border color
+        cell: 'black', //horizontal table background
+        cellText: "white",
     //=================================================
+    },
 
-
+    twoVar_Table: {
     //TwoVariable Table Colors
     //=================================================
     //--------------------------------
-        //Used on pages when two variable is used
+        //Used in TwoVariableTable.js
     //--------------------------------
-    twoVarTableHeader: colors.lightGrey, //two variable table header background
-    twoVarTableCellText: 'white',
-    twoVarTableBorder: 'white',  //two variable table border
-    twoVarTable: 'black', //two variable background
-    twoVarTableHeaderText: 'black', 
+        headerCell: colors.lightGrey, //two variable table header background
+        cellText: 'white',
+        border: 'white',  //two variable table border
+        cell: 'black', //two variable background
+        headerText: 'black', 
     //================================================== 
 
+    },
 
+    orderedList: {
     //Ordered List
     //=================================================
     //--------------------------------
-        //Used on pages when ordered list is used
+        //Used in OrderedList.js
     //--------------------------------
-    orderedListText: 'white',
+        text: 'white',
     //==================================================
+    },
 
+    unorderedList: {
     //Unordered List
     //=================================================
     //--------------------------------
-        //Used on pages when unordered list is used
+        //Used in UnorderedList.js
     //--------------------------------
-    unorderedListText: 'white',
-    unorderedListBullet: 'orange',
+        text: 'white',
+        bullet: 'orange',
     //==================================================
+    },
+
+    accordion: {
+    //Accordion
+    //================================================
+    //--------------------------------
+        //Used in Accordion.js
+    //--------------------------------
+        background: colors.primaryBlue,
+        text: "white",
+    },
+
+    //Radio Button
+    //================================================
+    //--------------------------------
+        //Used in Radio Button.js
+    //--------------------------------
+    radioButton: {
+        text: "white",
+    },
+
+    checkBox: {
+    //CheckBox
+    //================================================
+    //--------------------------------
+        //Used in CheckBox.js
+    //--------------------------------
+        text: "white",
+    
+    },
 };
 
 export const lightMode = {
     theme: "light",
 
+    drawer: {
     //Drawer Colors
     //=================================================
     //------------------------------
         //These are all used in './components/DrawerContent.js'
     //------------------------------
-    drawerHeader: '#039fff', //Color for drawer header
-    drawerHeaderText: 'white', //Color for drawer header text
+        header: '#039fff', //Color for drawer header
+        headerText: 'white', //Color for drawer header text
 
-    drawerOuterContent: '#ebeded', //Color for drawer Outer content background
-    drawerInnerContent: '#ebeded', //Color for drawer inner content background
+        outerContent: '#ebeded', //Color for drawer Outer content background
+        innerContent: '#ebeded', //Color for drawer inner content background
 
-    drawerInactiveText: 'black', //Color for inactive navigation Text
-    drawerActiveText: 'white', //Color for active navigation Text
+        inactiveText: 'black', //Color for inactive navigation Text
+        activeText: 'white', //Color for active navigation Text
 
-    drawerInactive: 'white', //Color for inactive navigation Background
-    drawerActive: "#1DA1F2", //Color for active navigation Background
+        inactive: 'white', //Color for inactive navigation Background
+        active: "#1DA1F2", //Color for active navigation Background
 
-    drawerInnerBorder: '#ebeded', //drawer inner border color
-    drawerOuterBorder: "#181818", //drawer outer border color
+        innerBorder: '#ebeded', //drawer inner border color
+        outerBorder: "#181818", //drawer outer border color
 
-    drawerInnerBorderRadius: 0, //drawer inner border radius
-    drawerBorderBottomWidth: 0, //drawer border bottom width
-    drawerBorderLeftWidth: 0, //drawer border left width
+        innerBorderRadius: 0, //drawer inner border radius
+        borderBottomWidth: 0, //drawer border bottom width
+        borderLeftWidth: 0, //drawer border left width
+
+    },
     //===================================================
 
+    app_Header: {
     //Header Menu Colors
     //===================================================
     //-----------------------------------------------
@@ -193,112 +235,162 @@ export const lightMode = {
         //headerMenu is used in 'App.js'
         //headerIcon is used in 'App.js'
         //titleText is used in 'App.js'
+        //statusBar is used in 'App.js'
     //------------------------------------------------
-    headerMenu: '#1f1f1f', //Color for header background for each page
-    titleText: 'white', //Color for title for each page
-    hamburgerIcon: 'white', //Color for hamburger icon
-    headerIcon: "#039fff", //Color for header icon
-    //==================================================
+        headerMenu: '#1f1f1f', //Color for header background for each page
+        titleText: 'white', //Color for title for each page
+        hamburgerIcon: 'white', //Color for hamburger icon
+        headerIcon: "#039fff", //Color for header icon
 
     //Status Bar Colors
     //==================================================
-        //Used in 'App.js'
-    statusBar: "black", //Color for status bar
+    //Used in 'App.js'
+
+        statusBar: "black", //Color for status bar
     //------------------------------------
+    //==================================================
+    },
+    
 
-
+    page: {
     //Page Contnt Colors
     //=================================================
     //--------------------------------
         //These are used on all the pages
+        //Used in DarkModeSwitch.js
+        //User in CustomDropdown.js
     //--------------------------------
-    contentBackground: "white",
-    text: "black",
-    textHighlight: "red",
-    textHighlightBackground: "black",
-    border: "black",
+        contentBackground: "white",
+        text: "black",
+        textHighlight: "red",
+        textHighlightBackground: "black",
+        border: "black",
     //================================================
+    },
 
+    modal: {
     //Modal Colors====================================
     //--------------------------------
         //These are used in './components/CustomDropdown,js'
     //--------------------------------
-    modalHeaderText: "white",
-    modalHeader: "#1DA1F2", //modal header background
-    modalBorder: "black", //modal border cor
-    modal: "#ebeded", //modal background
+        headerText: "white",
+        header: "#1DA1F2", //modal header background
+        border: "black", //modal border cor
+        background: "#ebeded", //modal background
 
     //Selected Item In Modal----
-    modalSelectedItemText: "white",
-    modalSelectedItem: "#1DA1F2", //modal selected item background
+        selectedItemText: "white",
+        selectedItem: "#1DA1F2", //modal selected item background
 
     //NonSelected Item In Modal---
-    modalItemText: "black",
-    modalNonselectedItem: "white", //modal unselected item background
+        itemText: "black",
+        nonselectedItem: "white", //modal unselected item background
     //================================================
+    },
 
+    button: {
     //Button Colors
     //================================================
     //--------------------------------
         //Used on pages when buttons are used
+        //Used in CustomDropdown.js
     //--------------------------------
-    button: "black",
-    buttonText: "white",
+        color: "black",
+        text: "white",
     //================================================
+    },
 
+    vertical_Table: {
     //Vertical Table Colors
     //================================================
     //--------------------------------
-        //Used on pages when vertical tables are used
+        //Used in VerticalTable.js
     //--------------------------------
-    verticalTableHeaderCell: colors.lightGrey, //vertical table header background
-    verticalTableHeaderCellText: 'black',
-
-    verticalTableCell: "white", //vertical table background
-    tableCellText: "black",
-
-    verticalTableBorder: 'black', //vertical table border color
+        headerCell: colors.lightGrey, //vertical table header background
+        headerCellText: 'black',
+        cell: "white", //vertical table background
+        cellText: "black",
+        border: 'black', //vertical table border color
     //================================================
+    },
 
+    horizontal_Table: {
     //Horizontal Table Colors
     //================================================
     //--------------------------------
         //Used on pages when horizontal tables are used
     //--------------------------------
-    horizontalTableHeader: colors.lightGrey, //horizontal table header background
-    horizontalTableText: "black",
-    horizontalTableBorder: 'black', //horizontal table border color
-    
-    horizontalTable: 'white', //horizontal table background
-    horizontalTableCellText: "black",
+        headerCell: colors.lightGrey, //horizontal table header background
+        headerCellText: "black",
+        border: 'black', //horizontal table border color
+        cell: 'white', //horizontal table background
+        cellText: "black",
     //================================================
+    },
 
+    twoVar_Table: {
     //TwoVariable Table Colors
     //================================================
     //--------------------------------
-        //Used on pages when two variable tables are used
+        //Used in TwoVariableTable.js
     //--------------------------------
-    twoVarTableHeader: colors.lightGrey, //two variable table header background
-    twoVarTableCellText: 'black',
-    twoVarTableBorder: 'black', //two variable border color
-    twoVarTable: 'white', //two variable table background
-    twoVarTableHeaderText: 'black', 
+        headerCell: colors.lightGrey, //two variable table header background
+        cellText: 'black',
+        border: 'black', //two variable border color
+        cell: 'white', //two variable table background
+        headerText: 'black', 
     //================================================
+    },
 
+    orderedList: {
     //Ordered List
     //================================================
     //--------------------------------
-        //Used on pages when ordered lists are used
+        //Used in OrderedList.js
     //--------------------------------
-    orderedListText: 'black',
+        text: 'black',
     //================================================
+    },
 
+    unorderedList: {
     //Unordered List
     //================================================
     //--------------------------------
-        //Used on pages when unordered lists are used
+        //Used in UnorderedList.js
     //--------------------------------
-    unorderedListText: 'black',
-    unorderedListBullet: 'black',
+        text: 'black',
+        bullet: 'black',
     //================================================
+    },
+
+    accordion: {
+    //Accordion
+    //================================================
+    //--------------------------------
+        //Used in Accordion.js
+    //--------------------------------
+        background: colors.primaryBlue,
+        text: "white",
+    },
+
+    radioButton: {
+    //Radio Button
+    //================================================
+    //--------------------------------
+        //Used in Radio Button.js
+    //--------------------------------
+        text: "black",
+    },
+
+    checkBox: {
+    //CheckBox
+    //================================================
+    //--------------------------------
+        //Used in CheckBox.js
+    //--------------------------------
+        text: "black",
+
+    },
+
+
 };

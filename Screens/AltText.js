@@ -61,7 +61,7 @@ function AltText() {
 
   return (
 
-    <ScrollView ref={scrollViewRef} style={[styles.container, { backgroundColor: theme.contentBackground }]}>
+    <ScrollView ref={scrollViewRef} style={[styles.container, { backgroundColor: theme.page.contentBackground }]}>
 
       <View>
 
@@ -81,10 +81,10 @@ function AltText() {
 
         {/* // -----------------------------------------------------------------*/}
 
-        <View style={[styles.altTextInfoContainer, { borderColor: theme.border}]}>
+        <View style={[styles.altTextInfoContainer, { borderColor: theme.page.border}]}>
 
           <heading.Heading2
-            style={[styles.headingContent, { color: theme.text}]}
+            style={[styles.headingContent, { color: theme.page.text}]}
             accessibilityLabel="Importance of Alternative Text"
           >
 
@@ -93,13 +93,13 @@ function AltText() {
 
           <FontAwesome
             name="info-circle"
-            style={[styles.altTextInfoIcon, , { color: theme.text}]}
+            style={[styles.altTextInfoIcon, , { color: theme.page.text}]}
             importantForAccessibility='no'
             accessible={false}
           />
 
           <Text
-            style={[styles.textContent, { color: theme.text}]}
+            style={[styles.textContent, { color: theme.page.text}]}
           >
             Text alternatives are crucial for ensuring
             digital accessibility. They provide a way for
@@ -118,7 +118,7 @@ function AltText() {
 
 
           <Text
-            style={[styles.textContent, { color: theme.text}]}
+            style={[styles.textContent, { color: theme.page.text}]}
           >
             Displayed under this text is a image.
           </Text>
@@ -130,7 +130,7 @@ function AltText() {
             accessible={true}
           />
 
-          <Text style={[styles.textContent, { color: theme.text}]}>
+          <Text style={[styles.textContent, { color: theme.page.text}]}>
 
             <Text>
               The image has an accessibilityLabel set to{"\n"}
@@ -141,7 +141,7 @@ function AltText() {
             <Text>
               and a role of image, therefore the screen reader will make an announcement as{"\n"}
             </Text>
-            <Text style={{ color: theme.textHighlight }} accessible={true}>
+            <Text style={{ color: theme.page.textHighlight }} accessible={true}>
               {"\"A Labrador Retriever wearing sun glasses, image\""}{"\n"}
             </Text>
 

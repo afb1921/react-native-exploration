@@ -1,9 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, FlatList } from 'react-native';
 import CheckBox from 'expo-checkbox';
 
+//Theme Imports
+//==================================================
+import themeContext from '../Themes/themeContext';
+//==================================================
+
 const CustomCheckBox = ({ data, title }) => {
-  const [checkboxStates, setCheckboxStates] = useState(data.map(() => false));
+
+  //For Theme Management
+    //================================
+    const { theme } = React.useContext(themeContext);
+    //================================
+
+  const [checkboxStates, setCheckboxStates] = React.useState(data.map(() => false));
 
   const toggleCheckbox = (index) => {
     const newCheckboxStates = [...checkboxStates];
@@ -25,7 +36,10 @@ const CustomCheckBox = ({ data, title }) => {
             onValueChange={() => toggleCheckbox(index)}
             accessibilityLabel={(data.length > 1) ? `${item}, ${index + 1} of ${data.length}` : `${item}`}
           />
-          <Text importantForAccessibility='no' accessible={false} style={{ marginLeft: 10 }}>
+          <Text 
+            importantForAccessibility='no' 
+            accessible={false} 
+            style={{ marginLeft: 10, color: theme.checkBox.text }}>
             {item}
           </Text>
         </View>

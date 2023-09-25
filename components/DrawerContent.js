@@ -31,10 +31,10 @@ export function DrawerContent(props) {
    //================================================
    const getPageStyle = (index) => ({
       backgroundColor: props.state.index === index ?
-         theme.drawerActive : theme.drawerInactive,
+         theme.drawer.active : theme.drawer.inactive,
 
       color: props.state.index === index ?
-         theme.drawerActiveText : theme.drawerInactiveText,
+         theme.drawer.activeText : theme.drawer.inactiveText,
    });
 
    //================================================
@@ -60,9 +60,9 @@ export function DrawerContent(props) {
       <View
          style={[
             styles.drawerOuterContent, { 
-               backgroundColor: theme.drawerOuterContent, 
-               borderLeftWidth: theme.drawerBorderLeftWidth, 
-               borderColor: theme.drawerOuterBorder 
+               backgroundColor: theme.drawer.outerContent, 
+               borderLeftWidth: theme.drawer.borderLeftWidth, 
+               borderColor: theme.drawer.outerBorder 
             }
          ]}>
 
@@ -74,11 +74,11 @@ export function DrawerContent(props) {
                   ? { marginTop: 35, marginBottom: -40, paddingBottom: 20 } //If the first set of conditions are true the styles will be applied (marginTop, marginBottom, and paddingBottom)
                   : {},
 
-               { backgroundColor: theme.drawerHeader },
+               { backgroundColor: theme.drawer.header },
             ]}
          >
             <Text
-               style={[styles.drawerHeaderText, { color: theme.drawerHeaderText }]}
+               style={[styles.drawerHeaderText, { color: theme.drawer.headerText }]}
                accessibilityLabel={def_Page.drawerTitle}
                accessibilityRole='header'
             >
@@ -92,10 +92,10 @@ export function DrawerContent(props) {
             <Drawer.Section style={[
                styles.drawerInnerSection,
                {
-                  borderRadius: theme.drawerInnerBorderRadius,
-                  borderBottomWidth: theme.drawerBorderBottomWidth,
-                  borderColor: theme.drawerInnerBorder,
-                  backgroundColor: theme.drawerInnerContent,
+                  borderRadius: theme.drawer.innerBorderRadius,
+                  borderBottomWidth: theme.drawer.borderBottomWidth,
+                  borderColor: theme.drawer.innerBorder,
+                  backgroundColor: theme.drawer.innerContent,
                }]}
             >
                {renderDrawerItems()}

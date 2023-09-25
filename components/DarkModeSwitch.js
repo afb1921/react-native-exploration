@@ -25,7 +25,7 @@ const DarkModeSwitch = (({ darkModeTheme, setDarkMode, onToggle}) => {
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
 
         <Text
-          style={{ color: theme.text }}
+          style={{ color: theme.page.text }}
           accessible={false}
           importantForAccessibility='no'
         >
