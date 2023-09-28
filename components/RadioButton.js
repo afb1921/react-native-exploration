@@ -7,15 +7,40 @@ import { RadioButton } from 'react-native-paper';
 import themeContext from '../Themes/themeContext';
 //==================================================
 
-// const data = [
-//     'Item 1',
-//     'Item 2',
-//     'Item 3',
-//     'Item 4',
-//     // Add more items here
-//   ];
+//EXAMPLE USE IN PAGE
+//================================================
+//This stores the selected Values of the checkbox
+//--------------------------------
+// const [selectedValues, setSelectedValues] = React.useState([]);
+//--------------------------------
 
-const CustomRadioButton = ({data, title}) => {
+//This handles updating the selected Value for the selected value state (Shown above)
+//NOTE each RadioButton needs its own unique handleValueChangeRadio and using its unique setSelectedValues
+//--------------------------------
+// const handleValueChangeRadio = (value) => {
+//     setSelectedValues(value)
+//   }
+//--------------------------------
+
+//Example Data:
+//--------------------------------
+// const data = [
+//   'Apple',
+//   'Orange',
+//   'Banana',
+//   'Grapes',
+//   // Add more items here
+// ];
+//--------------------------------
+
+//Rendering the componenet
+//-------------------------------
+{/* <Text>Selected Values: {selectedValues}</Text>
+<RadioButton data={data} title="Select an option" onValueChange={handleValueChangeRadio} /> */}
+//-------------------------------
+
+
+const CustomRadioButton = ({data, title, onValueChange}) => {
 
     //For Theme Management
     //================================
@@ -38,7 +63,13 @@ const CustomRadioButton = ({data, title}) => {
                         accessibilityLabel={(data.length > 1) ? `${item}, ${index+1} of ${data.length}` : `${item}`}
                         value={item}
                         status={selectedItem === item ? 'checked' : 'unchecked'}
-                        onPress={() => setSelectedItem(item)}
+                        onPress={() => {
+                            setSelectedItem(item);
+                            onValueChange(item);
+                        }}
+
+                        color={theme.radioButton.selectedColor}
+                        uncheckedColor={theme.radioButton.unselectedColor}
                     />
                     <Text 
                         importantForAccessibility='no' 
