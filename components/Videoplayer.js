@@ -7,9 +7,17 @@ import {colors} from '../constant'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native'; 
 
-
+//Theme Imports
+//==================================================
+import themeContext from '../Themes/themeContext';
+//==================================================
 
 const VideoPlayer = ({video, videoName}) => {
+
+  //For Theme Management
+  //================================
+  const { theme } = React.useContext(themeContext);
+  //================================
     
   const videoRef = React.useRef(null);
   const [isPlaying, setIsPlaying] = React.useState(false);
@@ -63,7 +71,7 @@ const VideoPlayer = ({video, videoName}) => {
                 importantForAccessibility='yes'
                 accessible={true}
                 isLooping
-                accessibilityLabel={videoName}
+                accessibilityLabel={`${videoName}, video screen`}
                 shouldPlay={isPlaying}
                 onPlaybackStatusUpdate={(status) => {
                     if (status.positionMillis && status.durationMillis) {
@@ -80,9 +88,9 @@ const VideoPlayer = ({video, videoName}) => {
                     accessibilityLabel={isPlaying ? 'Pause' : 'Play video'}
                     accessibilityRole="button">
                     <Text>{isPlaying ? 
-                        <Icon name="pause-circle" size={45}/> 
+                        <Icon name="pause-circle" size={45} style={{color: theme.videoPlayer.pause}}/> 
                         : 
-                        <Icon name="play-circle" size={45}/>
+                        <Icon name="play-circle" size={45} style={{color: theme.videoPlayer.play}}/>
                     }</Text>
                 </TouchableOpacity>
             </View>
@@ -95,8 +103,8 @@ const VideoPlayer = ({video, videoName}) => {
                     maximumValue={1}
                     value={sliderValue}
                     onValueChange={onSliderValueChange}
-                    thumbTintColor={colors.brightBlue} 
-                    minimumTrackTintColor={colors.brightBlue} 
+                    thumbTintColor={theme.videoPlayer.thumbTintColor} 
+                    minimumTrackTintColor={theme.videoPlayer.minimumTrackTintColor}
                 />
 
             </View>
@@ -110,13 +118,13 @@ const VideoPlayer = ({video, videoName}) => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
       },
       video: {
         width: 300,
         height: 200,
+        backgroundColor: "white",
       },
       controls: {
         flexDirection: 'row',
