@@ -104,7 +104,7 @@ export const def_Page = {
 
   //------------------------------------------------
 
-  drawerTitle: "Menu", // drawerTitle sets the title of the drawer when opened
+  drawerTitle: "Demo Pages", // drawerTitle sets the title of the drawer when opened
 
   page1Name: "Home",  // pageName sets the name of the page when displayed on the header menu (Name displayed outside of drawer)
   page1MenuName: 'Home', // pageMenuName sets the name displayed inside the drawer (Name displayed inside drawer)
