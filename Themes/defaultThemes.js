@@ -183,6 +183,8 @@ export const darkMode = {
     //--------------------------------
     radioButton: {
         text: "white",
+        selectedColor: "orange",
+        unselectedColor: "white",
     },
 
     checkBox: {
@@ -192,8 +194,23 @@ export const darkMode = {
         //Used in CheckBox.js
     //--------------------------------
         text: "white",
-    
+        color: "orange",
+        uncheckedColor: "white",
     },
+
+    videoPlayer :{
+    //Video Player
+    //================================================
+    //--------------------------------
+        //Used in Videoplayer.js
+    //--------------------------------
+    
+    thumbTintColor: "orange",
+    minimumTrackTintColor: "orange",
+    play: "orange",
+    pause: "orange",
+
+    }
 };
 
 export const lightMode = {
@@ -380,6 +397,9 @@ export const lightMode = {
         //Used in Radio Button.js
     //--------------------------------
         text: "black",
+        selectedColor: "black",
+        unselectedColor: "black",
+
     },
 
     checkBox: {
@@ -389,8 +409,23 @@ export const lightMode = {
         //Used in CheckBox.js
     //--------------------------------
         text: "black",
+        color: "black",
+        uncheckedColor: "black",
 
     },
+    videoPlayer :{
+        //Video Player
+        //================================================
+        //--------------------------------
+            //Used in Videoplayer.js
+        //--------------------------------
+        
+        thumbTintColor: colors.brightBlue,
+        minimumTrackTintColor: colors.brightBlue,
+        play: "black",
+        pause: "black",  
 
+
+    }
 
 };
