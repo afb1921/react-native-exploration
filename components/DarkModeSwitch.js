@@ -37,7 +37,8 @@ const DarkModeSwitch = (({ darkModeTheme, setDarkMode, onToggle}) => {
         <Switch
           value={darkModeTheme}
           ref={toggleButtonRef}
-          accessibilityLabel='Dark Mode Toggle'
+          accessibilityLabel='Dark Mode'
+          accessibilityRole='switch'
           onValueChange={(value) => {
             handleToggle(value);
           }}
