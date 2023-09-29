@@ -12,24 +12,24 @@ export const darkMode = {
     //-----------------------------------------------
         //These are all used in './components/DrawerContent.js'
     //------------------------------------------------
-        header: '#039fff', //Color for drawer header
-        headerText: 'white', //Color for drawer header text
+        header: '#039fff', // (backgroundColor) Color for drawer header
+        headerText: 'white', // (Color) Color for drawer header text
 
-        outerContent: '#181818', //Color for drawer Outer content background
-        innerContent: '#282828', //Color for drawer inner content background
+        outerContent: '#181818', // (backgroundColor) Color for drawer Outer content background
+        innerContent: '#282828', // (backgroundColor) Color for drawer inner content background
 
-        inactiveText: 'black', //Color for inactive navigation Text
-        activeText: 'white', //Color for active navigation Text
+        inactiveText: 'black', // (color) Color for inactive navigation Text
+        activeText: 'white', // (color) Color for active navigation Text
 
-        inactive: 'white', //Color for inactive navigation Background
-        active: "#1DA1F2", //Color for active navigation Background
+        inactive: 'white', // (backgroundColor) Color for inactive navigation Background
+        active: "#1DA1F2", // (backgroundColor) background Color for active navigation Background
 
-        innerBorder: '#ebeded', //Color for drawer inner border
-        outerBorder: "#181818", //Color for drawer outer border
+        innerBorder: '#ebeded', // (borderColor) Color for drawer inner border
+        outerBorder: "#181818", // (borderColor) Color for drawer outer border
 
-        innerBorderRadius: 8, //drawer inner border radius
-        borderBottomWidth: 3, //drawer border bottom width
-        borderLeftWidth: 5, //drawer border left width
+        innerBorderRadius: 8, // (borderRadius) drawer inner border radius
+        borderBottomWidth: 3, // (borderBottomWidth) drawer border bottom width
+        borderLeftWidth: 5, // (borderLeftWidth) drawer border left width
     //=================================================
     },
 
@@ -60,13 +60,13 @@ export const darkMode = {
     //--------------------------------
         //These are used on all the pages
         //Used in DarkModeSwitch.js
-        //User in CustomDropdown.js
+        //Used in CustomDropdown.js
     //--------------------------------
-        contentBackground: "black",
-        text: "white",
-        textHighlight: "orange",
-        textHighlightBackground: "white",
-        border: "white",
+        contentBackground: "black", // (backgroundColor)
+        text: "white", // (color)
+        textHighlight: "orange", // (color)
+        textHighlightBackground: "white", // (backgroundColor)
+        border: "white", // (borderColor)
     //=================================================
     },
 
@@ -76,18 +76,18 @@ export const darkMode = {
     //--------------------------------
         //These are used in './components/CustomDropdown,js'
     //--------------------------------
-        headerText: "white",
-        header: "#1DA1F2", //modal header background 
-        borderColor: "black",
-        background: "#ebeded", //modal background
+        headerText: "white", // (color)
+        header: "#1DA1F2", // (backgroundColor) modal header background 
+        borderColor: "black", // (borderColor)
+        background: "#ebeded", // (backgroundColor) modal background
 
     //Selected Item In Modal----
-        selectedItemText: "white",
-        selectedItem: "#1DA1F2", //modal selected item background
+        selectedItemText: "white", // (color)
+        selectedItem: "#1DA1F2", // (backgroundColor) modal selected item background
 
     //NonSelected Item In Modal---
-        itemText: "black",
-        nonselectedItem: "white", //modal unselected item background
+        itemText: "black", // (color)
+        nonselectedItem: "white", // (backgroundColor) modal unselected item background
     //=================================================
     },
 
@@ -98,8 +98,8 @@ export const darkMode = {
         //Used on pages when buttons are used
         //Used in CustomDropdown.js
     //--------------------------------
-        color: "white", //button background
-        text: "black",
+        color: "white", // (backgroundColor) button background
+        text: "black", // (color)
     //=================================================
     },
 
@@ -109,11 +109,11 @@ export const darkMode = {
     //--------------------------------
         //Used in VerticalTable.js
     //--------------------------------
-        headerCell: colors.lightGrey, //vertical table header cell background
-        headerCellText: 'black',
-        cell: "black", //vertical table background
-        cellText: "white",
-        border: 'white', //vertical table border color
+        headerCell: colors.lightGrey, // (backgroundColor) vertical table header cell background
+        headerCellText: 'black', // (color)
+        cell: "black", // (backgroundColor) vertical table background
+        cellText: "white", // (color)
+        border: 'white', // (borderColor) vertical table border color
     },
 
     horizontal_Table: {
@@ -122,11 +122,11 @@ export const darkMode = {
     //--------------------------------
         //used in HorizontalTable.js
     //--------------------------------
-        headerCell: colors.lightGrey, //horizontal table header background
-        headerCellText: "black",
-        border: 'white', //horizontal table border color
-        cell: 'black', //horizontal table background
-        cellText: "white",
+        headerCell: colors.lightGrey, // (backgrounColor) horizontal table header background
+        headerCellText: "black", // (color)
+        border: 'white', // (borderColor) horizontal table border color
+        cell: 'black', // (backgroundColor) horizontal table background
+        cellText: "white", // (color)
     //=================================================
     },
 
@@ -136,11 +136,11 @@ export const darkMode = {
     //--------------------------------
         //Used in TwoVariableTable.js
     //--------------------------------
-        headerCell: colors.lightGrey, //two variable table header background
-        cellText: 'white',
-        border: 'white',  //two variable table border
-        cell: 'black', //two variable background
-        headerText: 'black', 
+        headerCell: colors.lightGrey, // (backgroundColor) two variable table header background
+        cellText: 'white', // (color)
+        border: 'white',  // (borderColor) two variable table border
+        cell: 'black', // (backgroundColor) two variable background
+        headerText: 'black', // (color)
     //================================================== 
 
     },
@@ -151,7 +151,7 @@ export const darkMode = {
     //--------------------------------
         //Used in OrderedList.js
     //--------------------------------
-        text: 'white',
+        text: 'white', // (color)
     //==================================================
     },
 
@@ -161,8 +161,8 @@ export const darkMode = {
     //--------------------------------
         //Used in UnorderedList.js
     //--------------------------------
-        text: 'white',
-        bullet: 'orange',
+        text: 'white', // (color)
+        bullet: 'orange', // (color)
     //==================================================
     },
 
@@ -172,8 +172,8 @@ export const darkMode = {
     //--------------------------------
         //Used in Accordion.js
     //--------------------------------
-        background: colors.primaryBlue,
-        text: "white",
+        background: colors.primaryBlue, // (backgroundColor)
+        text: "white", // (color)
     },
 
     //Radio Button
@@ -182,9 +182,10 @@ export const darkMode = {
         //Used in Radio Button.js
     //--------------------------------
     radioButton: {
-        text: "white",
-        selectedColor: "orange",
-        unselectedColor: "white",
+        text: "white", // (color)
+        title: "white", // (color)
+        selectedColor: "orange", // (color)
+        unselectedColor: "white", // (color)
     },
 
     checkBox: {
@@ -193,9 +194,10 @@ export const darkMode = {
     //--------------------------------
         //Used in CheckBox.js
     //--------------------------------
-        text: "white",
-        color: "orange",
-        uncheckedColor: "white",
+        text: "white", // (color)
+        title: "white", // (color)
+        color: "orange", // (color)
+        uncheckedColor: "white", // (color)
     },
 
     videoPlayer :{
@@ -204,11 +206,35 @@ export const darkMode = {
     //--------------------------------
         //Used in Videoplayer.js
     //--------------------------------
-    
-    thumbTintColor: "orange",
-    minimumTrackTintColor: "orange",
-    play: "orange",
-    pause: "orange",
+    thumbTintColor: "orange", // (thumbTintColor)
+    minimumTrackTintColor: "orange", // (minimumTrackTintColor)
+    play: "orange", // (color)
+    pause: "orange", // (color)
+    },
+
+    spinButton:{
+        //Spin Button
+        //================================================
+        //--------------------------------
+            //Used in Spin Button.js
+        //--------------------------------
+        backgroundColor: "black", // (backgroundColor)
+        increment: "white", // (color)
+        decrement: "white", // (color)
+        text: "white", // (color)
+        borderColor: "#ccc", // (borderColor)
+        title: "white", // (color)
+
+    },
+
+    textField: {
+        //Text Field
+        //================================================
+        //--------------------------------
+            //Used in TextField.js
+        //--------------------------------
+        text: "white", // (color)
+        title: "white", // (color)
 
     }
 };
@@ -222,24 +248,24 @@ export const lightMode = {
     //------------------------------
         //These are all used in './components/DrawerContent.js'
     //------------------------------
-        header: '#039fff', //Color for drawer header
-        headerText: 'white', //Color for drawer header text
+        header: '#039fff', // (backgroundColor) Color for drawer header
+        headerText: 'white', // (Color) Color for drawer header text
 
-        outerContent: '#ebeded', //Color for drawer Outer content background
-        innerContent: '#ebeded', //Color for drawer inner content background
+        outerContent: '#ebeded', // (backgroundColor) Color for drawer Outer content background
+        innerContent: '#ebeded', // (backgroundColor) Color for drawer inner content background
 
-        inactiveText: 'black', //Color for inactive navigation Text
-        activeText: 'white', //Color for active navigation Text
+        inactiveText: 'black', // (Color) Color for inactive navigation Text
+        activeText: 'white', // (Color) Color for active navigation Text
 
-        inactive: 'white', //Color for inactive navigation Background
-        active: "#1DA1F2", //Color for active navigation Background
+        inactive: 'white', // (backgroundColor) Color for inactive navigation Background
+        active: "#1DA1F2", // (backgroundColor) Color for active navigation Background
 
-        innerBorder: '#ebeded', //drawer inner border color
-        outerBorder: "#181818", //drawer outer border color
+        innerBorder: '#ebeded', // (borderColor) drawer inner border color
+        outerBorder: "#181818", // (borderColor) drawer outer border color
 
-        innerBorderRadius: 0, //drawer inner border radius
-        borderBottomWidth: 0, //drawer border bottom width
-        borderLeftWidth: 0, //drawer border left width
+        innerBorderRadius: 0, // (borderRadius) drawer inner border radius
+        borderBottomWidth: 0, // (borderBottomWidth) borderdrawer border bottom width
+        borderLeftWidth: 0, // (borderLeftWidth) drawer border left width
 
     },
     //===================================================
@@ -254,34 +280,34 @@ export const lightMode = {
         //titleText is used in 'App.js'
         //statusBar is used in 'App.js'
     //------------------------------------------------
-        headerMenu: '#1f1f1f', //Color for header background for each page
-        titleText: 'white', //Color for title for each page
-        hamburgerIcon: 'white', //Color for hamburger icon
-        headerIcon: "#039fff", //Color for header icon
+        headerMenu: '#1f1f1f', // (backgroundColor) Color for header background for each page
+        titleText: 'white', // (color) Color for title for each page
+        hamburgerIcon: 'white', // (color) Color for hamburger icon
+        headerIcon: "#039fff", // (color) Color for header icon
 
     //Status Bar Colors
     //==================================================
     //Used in 'App.js'
 
-        statusBar: "black", //Color for status bar
+        statusBar: "black", // (backgroundColor) Color for status bar
     //------------------------------------
     //==================================================
     },
     
 
     page: {
-    //Page Contnt Colors
+    //Page Content Colors
     //=================================================
     //--------------------------------
         //These are used on all the pages
         //Used in DarkModeSwitch.js
-        //User in CustomDropdown.js
+        //Used in CustomDropdown.js
     //--------------------------------
-        contentBackground: "white",
-        text: "black",
-        textHighlight: "red",
-        textHighlightBackground: "black",
-        border: "black",
+        contentBackground: "white", // (backgroundColor) 
+        text: "black", // (color) 
+        textHighlight: "red", // (color) 
+        textHighlightBackground: "black", // (backgroundColor) 
+        border: "black", // (borderColor) 
     //================================================
     },
 
@@ -290,18 +316,18 @@ export const lightMode = {
     //--------------------------------
         //These are used in './components/CustomDropdown,js'
     //--------------------------------
-        headerText: "white",
-        header: "#1DA1F2", //modal header background
-        border: "black", //modal border cor
-        background: "#ebeded", //modal background
+        headerText: "white", // (color)
+        header: "#1DA1F2", // (backgroundColor) modal header background 
+        border: "black", // (borderColor) modal border color
+        background: "#ebeded", // (backgroundColor) modal background
 
     //Selected Item In Modal----
-        selectedItemText: "white",
-        selectedItem: "#1DA1F2", //modal selected item background
+        selectedItemText: "white", // (color)
+        selectedItem: "#1DA1F2", // (backgroundColor) modal selected item background
 
     //NonSelected Item In Modal---
-        itemText: "black",
-        nonselectedItem: "white", //modal unselected item background
+        itemText: "black", //(color)
+        nonselectedItem: "white", // (backgroundColor) modal unselected item background
     //================================================
     },
 
@@ -312,8 +338,8 @@ export const lightMode = {
         //Used on pages when buttons are used
         //Used in CustomDropdown.js
     //--------------------------------
-        color: "black",
-        text: "white",
+        color: "black", // (backgroundColor)
+        text: "white", // (color)
     //================================================
     },
 
@@ -323,11 +349,11 @@ export const lightMode = {
     //--------------------------------
         //Used in VerticalTable.js
     //--------------------------------
-        headerCell: colors.lightGrey, //vertical table header background
-        headerCellText: 'black',
-        cell: "white", //vertical table background
-        cellText: "black",
-        border: 'black', //vertical table border color
+        headerCell: colors.lightGrey, // (backgroundColor) vertical table header background
+        headerCellText: 'black', // (color)
+        cell: "white", // (backgroundColor) vertical table background
+        cellText: "black", // (color)
+        border: 'black', // (borderColor) vertical table border color
     //================================================
     },
 
@@ -337,11 +363,11 @@ export const lightMode = {
     //--------------------------------
         //Used on pages when horizontal tables are used
     //--------------------------------
-        headerCell: colors.lightGrey, //horizontal table header background
+        headerCell: colors.lightGrey, // (backgroundColor) horizontal table header background
         headerCellText: "black",
-        border: 'black', //horizontal table border color
-        cell: 'white', //horizontal table background
-        cellText: "black",
+        border: 'black', // (borderColor) horizontal table border color
+        cell: 'white', // (backgroundColor) horizontal table background
+        cellText: "black", // (color)
     //================================================
     },
 
@@ -351,11 +377,11 @@ export const lightMode = {
     //--------------------------------
         //Used in TwoVariableTable.js
     //--------------------------------
-        headerCell: colors.lightGrey, //two variable table header background
-        cellText: 'black',
-        border: 'black', //two variable border color
-        cell: 'white', //two variable table background
-        headerText: 'black', 
+        headerCell: colors.lightGrey, // (backgroundColor) two variable table header background
+        cellText: 'black', // (color)
+        border: 'black', // (borderColor) two variable border color
+        cell: 'white', // (backgroundColor) two variable table background
+        headerText: 'black', // (color) 
     //================================================
     },
 
@@ -365,7 +391,7 @@ export const lightMode = {
     //--------------------------------
         //Used in OrderedList.js
     //--------------------------------
-        text: 'black',
+        text: 'black', // (color)
     //================================================
     },
 
@@ -375,8 +401,8 @@ export const lightMode = {
     //--------------------------------
         //Used in UnorderedList.js
     //--------------------------------
-        text: 'black',
-        bullet: 'black',
+        text: 'black', // (color)
+        bullet: 'black', // (color)
     //================================================
     },
 
@@ -386,8 +412,8 @@ export const lightMode = {
     //--------------------------------
         //Used in Accordion.js
     //--------------------------------
-        background: colors.primaryBlue,
-        text: "white",
+        background: colors.primaryBlue, // (backgroundColor)
+        text: "white", // (color)
     },
 
     radioButton: {
@@ -396,9 +422,10 @@ export const lightMode = {
     //--------------------------------
         //Used in Radio Button.js
     //--------------------------------
-        text: "black",
-        selectedColor: "black",
-        unselectedColor: "black",
+        text: "black", // (color)
+        title: "black", // (color)
+        selectedColor: "black", // (color)
+        unselectedColor: "black", // (color)
 
     },
 
@@ -408,9 +435,10 @@ export const lightMode = {
     //--------------------------------
         //Used in CheckBox.js
     //--------------------------------
-        text: "black",
-        color: "black",
-        uncheckedColor: "black",
+        text: "black", // (color)
+        title: "black", // (color)
+        color: "black", // (color)
+        uncheckedColor: "black", // (color)
 
     },
     videoPlayer :{
@@ -420,10 +448,34 @@ export const lightMode = {
             //Used in Videoplayer.js
         //--------------------------------
         
-        thumbTintColor: colors.brightBlue,
-        minimumTrackTintColor: colors.brightBlue,
-        play: "black",
-        pause: "black",  
+        thumbTintColor: colors.brightBlue, // (thumbTintColor)
+        minimumTrackTintColor: colors.brightBlue, // (minimumTrackTintColor)
+        play: "black", // (color)
+        pause: "black", // (color)
+    },
+
+    spinButton:{
+        //Spin Button
+        //================================================
+        //--------------------------------
+            //Used in Spin Button.js
+        //--------------------------------
+        backgroundColor: "white", // (backgroundColor)
+        increment: "black", // (color)
+        decrement: "black", // (color)
+        text: "black", // (color)
+        borderColor: "#ccc", // (borderColor)
+        title: "black", // (color)
+    },
+
+    textField: {
+        //Text Field
+        //================================================
+        //--------------------------------
+            //Used in TextField.js
+        //--------------------------------
+        text: "black", // (color)
+        title: "black", // (color)
 
 
     }
