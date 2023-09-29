@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text} from "react-native";
+import { StyleSheet, View, Text, ScrollView} from "react-native";
 import React, {useEffect} from 'react';
 import { TouchableOpacity } from "react-native-gesture-handler";
 import {Video} from 'expo-av';
@@ -60,7 +60,7 @@ const VideoPlayer = ({video, videoName}) => {
   };
 
     return (
-        <View style={styles.container}>
+        <ScrollView contentContainerStyle={styles.container}>
             
             
             <Video 
@@ -110,7 +110,7 @@ const VideoPlayer = ({video, videoName}) => {
             </View>
             
 
-        </View>
+        </ScrollView>
 
     );
 

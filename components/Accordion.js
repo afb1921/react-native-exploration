@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, AccessibilityInfo, StyleSheet } from 'react-native';
+import { View, Text, AccessibilityInfo, StyleSheet, ScrollView } from 'react-native';
 import Collapsible from 'react-native-collapsible';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import {colors} from '../constant'
@@ -28,7 +28,7 @@ const Accordion = ({title, collapsedData}) => {
         setCollapsed(!collapsed);
     }
     return (
-        <View style={styles.container}>
+        <ScrollView contentContainerStyle={styles.container}>
             <TouchableOpacity
                 style={[styles.button, {backgroundColor: theme.accordion.background}]}
                 onPress={toggleExpand}
@@ -45,7 +45,7 @@ const Accordion = ({title, collapsedData}) => {
             <Collapsible collapsed={collapsed}>
                 {collapsedData}
             </Collapsible>
-        </View>
+        </ScrollView>
 
     );
 

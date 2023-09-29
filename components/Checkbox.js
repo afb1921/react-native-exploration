@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, ScrollView } from 'react-native';
 import CheckBox from 'expo-checkbox';
 
 //Theme Imports
@@ -59,11 +59,12 @@ const CustomCheckBox = ({ data, title, onValueChange }) => {
   };
 
   return (
+    <View>
+      <Text style={{color: theme.checkBox.title}}>{title}</Text>
     <FlatList
       data={data}
       keyExtractor={(item, index) => index.toString()}
       accessibilityRole='list'
-
       renderItem={({ item, index }) => (
         <View style={{ flexDirection: 'row', alignItems: 'center', margin: 10 }}>
           <CheckBox
@@ -83,6 +84,7 @@ const CustomCheckBox = ({ data, title, onValueChange }) => {
         </View>
       )}
     />
+    </View>
   );
 };
 

@@ -51,6 +51,8 @@ const CustomRadioButton = ({data, title, onValueChange}) => {
 
 
     return (
+        <View>
+            <Text style={{color: theme.spinButton.title}}>{title}</Text>
         <FlatList 
             accessibilityRole={"list"}
             keyExtractor={(item, index) => index.toString()}
@@ -83,6 +85,7 @@ const CustomRadioButton = ({data, title, onValueChange}) => {
             )}
 
         />
+        </View>
 
     );
 
