@@ -35,7 +35,7 @@ import themeContext from '../Themes/themeContext';
 
 //Rendering the componenet
 //-------------------------------
-{/* <Text>Selected Values: {selectedValues}</Text>
+{/* <Text>Selected Values: {selectedValues}</Text> //Make sure to style the text
 <RadioButton data={data} title="Select an option" onValueChange={handleValueChangeRadio} /> */}
 //-------------------------------
 

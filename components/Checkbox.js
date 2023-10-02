@@ -39,7 +39,7 @@ import themeContext from '../Themes/themeContext';
 
 //Rendering the componenet
 //-------------------------------
-{/* <Text>Selected Values: {selectedValues.join(', ')}</Text>
+{/* <Text>Selected Values: {selectedValues.join(', ')}</Text> //Make sure to style the text
 <CheckBox data={data} title="Test" onValueChange={handleValueChangeCheckbox}/> */}
 //-------------------------------
 
