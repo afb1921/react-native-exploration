@@ -172,7 +172,7 @@ export const darkMode = {
     //--------------------------------
         //Used in Accordion.js
     //--------------------------------
-        background: colors.primaryBlue, // (backgroundColor)
+        background: colors.darkBlue, // (backgroundColor)
         text: "white", // (color)
     },
 
@@ -236,7 +236,37 @@ export const darkMode = {
         text: "white", // (color)
         title: "white", // (color)
 
-    }
+    },
+    dropDown: {
+        //Drop Down
+        //================================================
+        //--------------------------------
+            //Used in Dropdown.js
+        //--------------------------------
+        title: "white", // (color)
+        selectedText: "white", // (color)
+        itemText: "white", // (color)
+        selectedBackgroundColor: colors.darkBlue, // (backgroundColor)
+        listBackgroundColor: "black", // (backgroundColor)
+        borderColor: "white", // (borderColor)
+
+    },
+
+    comboBox: {
+        //Combo Box
+        //================================================
+        //--------------------------------
+            //Used in ComboBox.js
+        //--------------------------------
+        title: "white", // (color)
+        selectedText: "white", // (color)
+        itemText: "white", // (color)
+        selectedBackgroundColor: colors.darkBlue, // (backgroundColor)
+        listBackgroundColor: "black", // (backgroundColor)
+        borderColor: "white", // (borderColor)
+        placeholderText: colors.lightGrey, // (color)
+
+    },
 };
 
 export const lightMode = {
@@ -412,7 +442,7 @@ export const lightMode = {
     //--------------------------------
         //Used in Accordion.js
     //--------------------------------
-        background: colors.primaryBlue, // (backgroundColor)
+        background: colors.darkBlue, // (backgroundColor)
         text: "white", // (color)
     },
 
@@ -476,8 +506,34 @@ export const lightMode = {
         //--------------------------------
         text: "black", // (color)
         title: "black", // (color)
+    },
 
+    dropDown: {
+        //Drop Down
+        //================================================
+        //--------------------------------
+            //Used in Dropdown.js
+        //--------------------------------
+        title: "black", // (color)
+        selectedText: "white", // (color)
+        itemText: "black", // (color)
+        selectedBackgroundColor: colors.darkBlue, // (backgroundColor)
+        listBackgroundColor: "white", // (backgroundColor)
+        borderColor: colors.mediumGrey, // (borderColor)
+    },
 
+    comboBox: {
+        //Combo Box
+        //================================================
+            //Used in ComboBox.js
+        //--------------------------------
+        title: "black", // (color)
+        selectedText: "white", // (color)
+        itemText: "black", // (color)
+        selectedBackgroundColor: colors.darkBlue, // (backgroundColor)
+        listBackgroundColor: "white", // (backgroundColor)
+        borderColor: colors.mediumGrey, // (borderColor)   
+        placeholderText: colors.lightGrey, // (color)
     }
 
 };

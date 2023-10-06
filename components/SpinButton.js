@@ -13,9 +13,9 @@ import themeContext from '../Themes/themeContext';
 //--------------------------------
 
 //This handles updating the Value for the value state (Shown above)
-//NOTE each SpinButton needs its own unique handleValueChangeSpinButton and using its unique setSelectedValues
+//NOTE each SpinButton needs its own unique handleChange and using its unique setSelectedValues
 //--------------------------------
-// const handleValueChangeSpinButton = (value) => {
+// const handleChange = (value) => {
 //     setSelectedValues(value)
 //   }
 //--------------------------------
@@ -33,19 +33,22 @@ const SpinButton = ({ title, onValueChange }) => {
     const { theme } = useContext(themeContext);
     //-----------------------------------------------
 
-    const [value, setValue] = useState(0);
+    const [value, setValue] = useState(0); //The current state, and sets state, the inital value is 0
 
-    useEffect(() => {
-        // This code will run after the state update is complete
-        AccessibilityInfo.announceForAccessibility(`Current Value, ${value}`);
-        onValueChange(value); 
-      }, [value]); // Run this effect whenever `value` changes
+    useEffect(() => {// Run this effect whenever `value` changes
+        const delay = 190
+        setTimeout(() => {
+            // This code will run after the state update is complete
+            AccessibilityInfo.announceForAccessibility(`Current Value, ${value}`);
+            onValueChange(value);
+        }, delay)
+    }, [value]); 
 
-    const incrementValue = () => {
+    const incrementValue = () => { //This will increment the value by 1
         setValue(value + 1);
     };
 
-    const decrementValue = () => {
+    const decrementValue = () => { //This will decrement the value by 1
         if (value > 0) {
             setValue(value - 1);
         }
@@ -53,35 +56,34 @@ const SpinButton = ({ title, onValueChange }) => {
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
-            
-            <Text style={{color: theme.spinButton.title}}>{title}</Text>
-            <View style={[styles.spinContainer, {backgroundColor: theme.spinButton.backgroundColor, borderColor: theme.spinButton.borderColor}]}>
-            <TouchableOpacity onPress={decrementValue} style={[styles.button]} accessibilityRole='button'>
-                <Text 
-                    style={[styles.buttonText, {color: theme.spinButton.decrement}]}
-                    accessibilityLabel='decrement'
 
+            <Text style={{ color: theme.spinButton.title }}>{title}</Text>
+            <View style={[styles.spinContainer, { backgroundColor: theme.spinButton.backgroundColor, borderColor: theme.spinButton.borderColor }]}>
+                <TouchableOpacity onPress={decrementValue} style={[styles.button]} accessibilityRole='button'>
+                    <Text
+                        style={[styles.buttonText, { color: theme.spinButton.decrement }]}
+                        accessibilityLabel='decrement'
+                    >
+                        -
+                    </Text>
+                </TouchableOpacity>
+                <Text
+                    style={[styles.input, { color: theme.spinButton.text }]}
+                    accessibilityLabel={`SpinButton Value, ${value}`}
                 >
-                    -
+                    {value.toString()}
                 </Text>
-            </TouchableOpacity>
-            <Text 
-                style={[styles.input, {color: theme.spinButton.text}]}
-                accessibilityLabel={`SpinButton Value, ${value}`}
-            >
-                {value.toString()}
-            </Text>
-            <TouchableOpacity 
-                style={styles.button} accessibilityRole='button'
-                onPress={incrementValue} 
-            >
-                <Text 
-                    style={[styles.buttonText, {color: theme.spinButton.increment}]}
-                    accessibilityLabel='Increment'
+                <TouchableOpacity
+                    style={styles.button} accessibilityRole='button'
+                    onPress={incrementValue}
                 >
-                    +
-                </Text>
-            </TouchableOpacity>
+                    <Text
+                        style={[styles.buttonText, { color: theme.spinButton.increment }]}
+                        accessibilityLabel='Increment'
+                    >
+                        +
+                    </Text>
+                </TouchableOpacity>
             </View>
         </ScrollView>
     );
@@ -89,7 +91,7 @@ const SpinButton = ({ title, onValueChange }) => {
 };
 
 const styles = StyleSheet.create({
-    container:{
+    container: {
         alignItems: 'center',
         justifyContent: 'center',
     },
