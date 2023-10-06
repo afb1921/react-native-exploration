@@ -76,6 +76,7 @@ export const colors = {
   //App Colors//-----------------------
 
   primaryBlue: "#1DA1F2", //Twitter Blue
+  darkBlue: "#2d60fa",
   brightBlue: "#039fff",
   lightBlack: "#121212",
   darkerGrey: "#181818",
