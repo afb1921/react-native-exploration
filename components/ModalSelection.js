@@ -1,4 +1,4 @@
-import React, { useRef, useImperativeHandle, forwardRef, useContext, useEffect } from 'react';
+import React, { useRef, useContext, useEffect } from 'react';
 import { View, Text, Modal, TouchableOpacity, StyleSheet, AccessibilityInfo } from 'react-native';
 
 //Custom Imports
@@ -15,54 +15,44 @@ import themeContext from '../Themes/themeContext.js';
 // Example Use: using the component
 //==================================
 {/* <View>
-    <CustomDropdown
+    <ModalSelection
         title="Hello world!"
         options={["O", "Y", "X"]} 
-        ref={dropdownRef}
-        accessible={true}
     />
 </View> */}
 //==================================
 
-const CustomDropdown = forwardRef(({ options, title }, ref) => {
+const ModalSelection = ({ options, title }) => {
 
     //For Theme Management
     //================================
     const { theme } = useContext(themeContext);
     //================================
 
-    const [showDropdown, setShowDropdown] = React.useState(false); //This set the state of the dropdown if it should be shown or not
+    const [showModal, setShowModal] = React.useState(false); //This set the state of the modal if it should be shown or not
     const [selectedValue, setSelectedValue] = React.useState('None'); //The current selected value
-    const modalRef = useRef(null);
-    const dropDownRef = useRef(null);
-    const handleDropdownClick = () => setShowDropdown(true); //Opens the dropdown when the dropdown is clicked button is clicked
+    const modalRef = useRef(null); //This is a ref for the modal
+    const selectedRef = useRef(null); //This is a ref for the selected value
+    const handleModalClick = () => setShowModal(true); //Opens the modal when button clicked
 
-    //================================
-
-    //This hook is used to expose custom methods (openDropdown, closeDropdown, and isOpen) 
-    //to the parent component through the ref prop. These methods allow you to control the 
-    //dropdown programmatically.
-
-    useImperativeHandle(ref, () => ({
-        openDropdown: () => setShowDropdown(true),
-        closeDropdown: () => setShowDropdown(false),
-        isOpen: () => showDropdown
-    }));
-
-    //================================
-
-    const handleOptionPress = (option, index) => { //Sets the selected option then closes the dropdown
+    const handleOptionPress = (option, index) => { //Sets the selected option then closes the modal
         setSelectedValue(option);
-        setShowDropdown(false);
-        if (dropDownRef.current) {
-            AccessibilityInfo.setAccessibilityFocus(dropDownRef.current._nativeTag);
-        }
-    };
+        setShowModal(false);
 
-    const handleModalClose = () => { //Closes the dropdown when the modal is closed
-        setShowDropdown(false);
-        if (dropDownRef.current) {
-            AccessibilityInfo.setAccessibilityFocus(dropDownRef.current._nativeTag);
+        if (Platform.OS === 'ios') { //Re focus to the modal when a item has been selected (for IOS)
+            const delay = 250
+            setTimeout(() => {
+                if (modalRef.current) {
+                    AccessibilityInfo.setAccessibilityFocus(modalRef.current._nativeTag);
+                }
+            }, delay)
+        }
+    }
+        
+    const handleModalClose = () => { //Closes the modal
+        setShowModal(false);
+        if (modalRef.current) {
+            AccessibilityInfo.setAccessibilityFocus(modalRef.current._nativeTag);
         }
     };
 
@@ -90,12 +80,12 @@ const CustomDropdown = forwardRef(({ options, title }, ref) => {
 
     return (
         <View>
-            <View style={[styles.dropDownButton]}>
+            <View style={[styles.modalButton]}>
 
                 {/* This section is for the modal button title (displayed above modal button) */}
                 {/* //================================================ */}
                 <View 
-                    style={styles.dropDownTitleContainer} 
+                    style={styles.modalTitleContainer} 
                 >
                     <Text 
                         style={[styles.textContent, styles.centeredContent, {color: theme.page.text}]}
@@ -111,9 +101,9 @@ const CustomDropdown = forwardRef(({ options, title }, ref) => {
 
                 {/* //The modal button ============*/}
                 <TouchableOpacity 
-                    onPress={handleDropdownClick} 
-                    ref={dropDownRef} 
-                    style={[styles.dropDownButtonContainer, styles.centeredContent, {backgroundColor: theme.button.color}]}
+                    onPress={handleModalClick} 
+                    ref={modalRef} 
+                    style={[styles.modalButtonContainer, styles.centeredContent, {backgroundColor: theme.button.color}]}
                     accessibilityLabel={`selected: ${selectedValue} for ${title} popup selection`}
                     accessibilityRole='button'
                 >
@@ -129,7 +119,7 @@ const CustomDropdown = forwardRef(({ options, title }, ref) => {
 
             {/* //This is the modal popup displayed when the button is clicked
             ============================================================ */}
-            <Modal visible={showDropdown} transparent={true} animationType='slide' onRequestClose={handleModalClose} ref={modalRef}>
+            <Modal visible={showModal} transparent={true} animationType='slide' onRequestClose={handleModalClose} ref={selectedRef}>
                 <View style={styles.modalContainer}>
                     <View style={[styles.modalContent, { backgroundColor: theme.modal.background}]}>
                         <View style={[styles.modalHeader, 
@@ -181,7 +171,7 @@ const CustomDropdown = forwardRef(({ options, title }, ref) => {
             </Modal>
         </View>
     );
-});
+};
 
 const styles = StyleSheet.create({
 
@@ -199,14 +189,14 @@ const styles = StyleSheet.create({
     //------------------------
 
     //Styles for Displaying OUTSIDE THE MODAL
-    dropDownButton: {
+    modalButton: {
         alignItems: 'center',
     },
 
-    dropDownTitleContainer:{
+    modalTitleContainer:{
         paddingVertical: 10,
     },
-    dropDownButtonContainer: {
+    modalButtonContainer: {
         padding: 10,
         borderRadius: 10,
         alignItems: "center",
@@ -250,7 +240,7 @@ const styles = StyleSheet.create({
 
 
     },
-    dropdownItem: {
+    modalItem: {
         alignItems: 'center',
     },
     cancelButton: {
@@ -263,4 +253,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default CustomDropdown;
+export default ModalSelection;
