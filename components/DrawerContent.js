@@ -27,7 +27,7 @@ export function DrawerContent(props) {
   const { width, height } = Dimensions.get('window'); // Get the dimensions of the screen
   //================================================
 
-  // Item in Drawer get Style Base on Theme
+  // Item in Drawer get Style on Theme
   //================================================
   const getPageStyle = (index) => ({
     backgroundColor: props.state.index === index ?

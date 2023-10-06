@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useContext} from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 
@@ -9,15 +9,15 @@ import themeContext from '../Themes/themeContext';
 
 //EXAMPLE USE IN PAGE
 //================================================
-//This stores the selected Values of the checkbox
+//This stores the selected Values of the Radio Button
 //--------------------------------
 // const [selectedValues, setSelectedValues] = React.useState([]);
 //--------------------------------
 
 //This handles updating the selected Value for the selected value state (Shown above)
-//NOTE each RadioButton needs its own unique handleValueChangeRadio and using its unique setSelectedValues
+//NOTE each RadioButton needs its own unique handleChange and using its unique setSelectedValues
 //--------------------------------
-// const handleValueChangeRadio = (value) => {
+// const handleChange = (value) => {
 //     setSelectedValues(value)
 //   }
 //--------------------------------
@@ -40,56 +40,55 @@ import themeContext from '../Themes/themeContext';
 //-------------------------------
 
 
-const CustomRadioButton = ({data, title, onValueChange}) => {
+const CustomRadioButton = ({ data, title, onValueChange }) => {
 
     //For Theme Management
     //================================
-    const { theme } = React.useContext(themeContext);
+    const { theme } = useContext(themeContext);
     //================================
 
-    const [selectedItem, setSelectedItem] = React.useState(null);
-
+    const [selectedItem, setSelectedItem] = useState(null);  //Sets the selected item
 
     return (
         <View>
-            <Text style={{color: theme.spinButton.title}}>{title}</Text>
-        <FlatList 
-            accessibilityRole={"list"}
-            keyExtractor={(item, index) => index.toString()}
-            data={data}
-        
-            renderItem={({ item, index }) => (
+            <Text style={{ color: theme.spinButton.title }}>{title}</Text>
+            <FlatList
+                accessibilityRole={"list"}
+                keyExtractor={(item, index) => index.toString()}
+                data={data}
 
-                <View key={index} style={{flexDirection: 'row', alignItems: 'center'}}> 
-                    <RadioButton.Android
-                        accessibilityLabel={(data.length > 1) ? `${item}, ${index+1} of ${data.length}` : `${item}`}
-                        value={item}
-                        status={selectedItem === item ? 'checked' : 'unchecked'}
-                        onPress={() => {
-                            setSelectedItem(item);
-                            onValueChange(item);
-                        }}
+                renderItem={({ item, index }) => (
 
-                        color={theme.radioButton.selectedColor}
-                        uncheckedColor={theme.radioButton.unselectedColor}
-                    />
-                    <Text 
-                        importantForAccessibility='no' 
-                        accessible={false}
-                        style={{color: theme.radioButton.text}}
-                    >
-                        {item}
-                    </Text>
-                </View>
-    
-            )}
+                    <View key={index} style={{ flexDirection: 'row', alignItems: 'center' }}>
+                        <RadioButton.Android
+                            accessibilityLabel={(data.length > 1) ? `${item}, ${index + 1} of ${data.length}` : `${item}`}
+                            value={item}
+                            status={selectedItem === item ? 'checked' : 'unchecked'}
+                            onPress={() => {
+                                setSelectedItem(item);
+                                onValueChange(item);
+                            }}
 
-        />
+                            color={theme.radioButton.selectedColor}
+                            uncheckedColor={theme.radioButton.unselectedColor}
+                        />
+                        <Text
+                            importantForAccessibility='no'
+                            accessible={false}
+                            style={{ color: theme.radioButton.text }}
+                        >
+                            {item}
+                        </Text>
+                    </View>
+
+                )}
+
+            />
         </View>
 
     );
 
-  };
-  
-  export default CustomRadioButton;
-  
+};
+
+export default CustomRadioButton;
+

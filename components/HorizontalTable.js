@@ -2,10 +2,30 @@ import React, { useContext } from 'react';
 import { View, Text, ScrollView, StyleSheet, FlatList } from 'react-native';
 import themeContext from '../Themes/themeContext';
 
+//EXAMPLE TABLE FOR HORIZONTAL DATA:
+//===============================================================
+// const table_data = [
+//   {
+//       title: "Test Table",
+//       data: [
+//           { id: 'Students', col1: 'Alex', col2: 'Sam', col3: 'Ben'},
+//           { id: 'Classes', col1: 'Math', col2: 'Science', col3: 'English'},
+              //Add more rows here...
+//       ],
+//   },
+// ];
+//================================================================
+
+
+// Using the component:
+// =================================================================
+//  <HorizontalTable data={table_data} /> 
+// =================================================================
+
 const HorizontalTable = ({ data }) => {
   const { theme } = useContext(themeContext);
 
-  const renderHeader = (headerText) => (
+  const renderHeader = (headerText) => ( //This will render the header of each Column
     <Text
       style={[
         styles.columnHeader,
@@ -14,13 +34,13 @@ const HorizontalTable = ({ data }) => {
           color: theme.horizontal_Table.headerCellText,
         },
       ]}
-      accessibilityRole="header"
+      accessibilityRole="header" //Each header will have a role of header
     >
       {headerText}
     </Text>
   );
 
-  const renderCell = (item, key, index) => (
+  const renderCell = (item, key, index) => ( //This will render the cell for each column
     <Text
       key={`${item.id}-${key}-${index}`}
       style={[
@@ -31,7 +51,7 @@ const HorizontalTable = ({ data }) => {
           backgroundColor: theme.horizontal_Table.cell,
         },
       ]}
-      accessibilityLabel={`${item[key]} of ${item.id}`}
+      accessibilityLabel={`${item[key]} of ${item.id}`} //This will announce each cell's label
     >
       {item[key]}
     </Text>
@@ -40,7 +60,7 @@ const HorizontalTable = ({ data }) => {
   return (
     <ScrollView>
       <View style={styles.container}>
-        {data.map((section) => (
+        {data.map((section) => ( //For every section
           <View key={section.title} style={styles.section}>
             <Text style={styles.sectionTitle}>{section.title}</Text>
             <View style={styles.row}>

@@ -2,6 +2,25 @@ import React, { useContext, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, FlatList } from 'react-native';
 import themeContext from '../Themes/themeContext';
 
+//EXAMPLE TABLE FOR HORIZONTAL DATA:
+//===============================================================
+// const table_data1 = {
+//   columns: ['Year 1', 'Year 2', 'Year 3'],
+//   rows: [
+//     { label: 'Food 1', values: ['100', '20', "30"] },
+//     { label: 'Food 2', values: ['5', '10', "15"] },
+//     { label: 'Food 3', values: ['1', '2', "3"] },
+//   ],
+// };
+//================================================================
+
+
+// Using the component:
+// =================================================================
+//<TwoVariableTable data={table_data1}/>
+// =================================================================
+
+
 const TwoVariableTable = ({ data }) => {
   const { theme } = useContext(themeContext);
   const [maxCellWidth, setMaxCellWidth] = React.useState(7);

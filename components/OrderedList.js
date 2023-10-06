@@ -5,6 +5,30 @@ import { View, Text, FlatList, StyleSheet } from 'react-native';
 import themeContext from '../Themes/themeContext';
 //-----------------------------------------------------------------
 
+//EXAMPLE DATA FOR ORDEREDLIST
+//===============================================================
+// const dataList = [
+//   { label: 'Item 1', subItems: [] },
+//   {
+//     label: 'Item 2', subItems: [
+//       { label: 'Sub-Item 2.1', subItems: [] },
+//       {
+//         label: 'Sub-Item 2.2', subItems: [
+//           { label: 'Sub-Sub-Item 2.2.1', subItems: [] },
+//           { label: 'Sub-Sub-Item 2.2.2', subItems: [] },
+//         ]
+//       },
+//     ]
+//   },
+//   { label: 'Item 3', subItems: [] },
+// ];
+//================================================================
+
+// Using the component: STYLES INCLUDE(number, roman, lettered-upper, lettered-lower)
+// =================================================================
+{/* <OrderedList data={dataList} numberingStyle="number" /> */}
+// =================================================================
+
 const OrderedList = ({ data, numberingStyle }) => {
   //Theme management
   //================================================================

@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, FlatList, ScrollView } from 'react-native';
+import React, { useState, useContext } from 'react';
+import { View, Text, FlatList } from 'react-native';
 import CheckBox from 'expo-checkbox';
 
 //Theme Imports
@@ -43,16 +43,17 @@ import themeContext from '../Themes/themeContext';
 <CheckBox data={data} title="Test" onValueChange={handleValueChangeCheckbox}/> */}
 //-------------------------------
 
-const CustomCheckBox = ({ data, title, onValueChange }) => {
+const CustomCheckBox = ({ data, title, onValueChange }) => { //Give data, title, and onValueChange prop, data is the array of values for the checkbox, 
+                                                              //onValueChange is a function that can be called by the parent when a value changes
 
   //For Theme Management
-    //================================
-    const { theme } = React.useContext(themeContext);
-    //================================
+  //================================
+  const { theme } = useContext(themeContext);
+  //================================
 
-  const [checkboxStates, setCheckboxStates] = React.useState(data.map(() => false));
+  const [checkboxStates, setCheckboxStates] = useState(data.map(() => false)); //Sets the state of each checkbox, it will initialize each state to be false
 
-  const toggleCheckbox = (index) => {
+  const toggleCheckbox = (index) => { //When the checkbox state changes this will set the checkbox state
     const newCheckboxStates = [...checkboxStates];
     newCheckboxStates[index] = !newCheckboxStates[index];
     setCheckboxStates(newCheckboxStates);
@@ -60,30 +61,30 @@ const CustomCheckBox = ({ data, title, onValueChange }) => {
 
   return (
     <View>
-      <Text style={{color: theme.checkBox.title}}>{title}</Text>
-    <FlatList
-      data={data}
-      keyExtractor={(item, index) => index.toString()}
-      accessibilityRole='list'
-      renderItem={({ item, index }) => (
-        <View style={{ flexDirection: 'row', alignItems: 'center', margin: 10 }}>
-          <CheckBox
-            disabled={false}
-            value={checkboxStates[index]}
-            onValueChange={() => {toggleCheckbox(index); onValueChange(item);}}
-            accessibilityLabel={(data.length > 1) ? `${item}, ${index + 1} of ${data.length}` : `${item}`}
-            color={checkboxStates[index] ? theme.checkBox.color : theme.checkBox.uncheckedColor}
+      <Text style={{ color: theme.checkBox.title }}>{title}</Text>
+      <FlatList
+        data={data}
+        keyExtractor={(item, index) => index.toString()} //the index of the item is the key
+        accessibilityRole='list'
+        renderItem={({ item, index }) => (
+          <View style={{ flexDirection: 'row', alignItems: 'center', margin: 10 }}>
+            <CheckBox
+              disabled={false} //This allows the user to interact with the checkbox. (Setting to true will make the checkbox usable by the user)
+              value={checkboxStates[index]}
+              onValueChange={() => { toggleCheckbox(index); onValueChange(item); }} //When a value is changed it will trigger toggleCheckbox and onValueChange
+              accessibilityLabel={(data.length > 1) ? `${item}, ${index + 1} of ${data.length}` : `${item}`}
+              color={checkboxStates[index] ? theme.checkBox.color : theme.checkBox.uncheckedColor}
 
-          />
-          <Text 
-            importantForAccessibility='no' 
-            accessible={false} 
-            style={{ marginLeft: 10, color: theme.checkBox.text }}>
-            {item}
-          </Text>
-        </View>
-      )}
-    />
+            />
+            <Text
+              importantForAccessibility='no'
+              accessible={false}
+              style={{ marginLeft: 10, color: theme.checkBox.text }}>
+              {item}
+            </Text>
+          </View>
+        )}
+      />
     </View>
   );
 };

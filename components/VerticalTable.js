@@ -2,25 +2,25 @@ import React, { useContext, useEffect, useState } from 'react';
 import { View, Text, StyleSheet, FlatList, ScrollView } from 'react-native';
 import themeContext from '../Themes/themeContext';
 
-// // //EXAMPLE TABLE FOR VERTICAL DATA:
-// // //===============================================================
-// // // const table_data = [
-// // //   {
-// // //       title: "Test Table",
-// // //       data: [
-// // //           { id: 'Students', col1: 'Alex', col2: 'Sam', col3: 'Ben'},
-// // //           { id: 'Classes', col1: 'Math', col2: 'Science', col3: 'English'},
-// //               //Add more rows here...
-// // //       ],
-// // //   },
-// // // ];
-// // //================================================================
+//EXAMPLE TABLE FOR VERTICAL DATA:
+//===============================================================
+// const table_data = [
+//   {
+//       title: "Test Table",
+//       data: [
+//           { id: 'Students', col1: 'Alex', col2: 'Sam', col3: 'Ben'},
+//           { id: 'Classes', col1: 'Math', col2: 'Science', col3: 'English'},
+              //Add more rows here...
+//       ],
+//   },
+// ];
+//================================================================
 
 
-// // // Using the component:
-// // // =================================================================
-// // //  <VerticalTable data={table_data} /> 
-// // // =================================================================
+// Using the component:
+// =================================================================
+//  <VerticalTable data={table_data} /> 
+// =================================================================
 
 const VerticalTable = ({ data }) => {
   const { theme } = useContext(themeContext);
