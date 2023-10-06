@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import themeContext from '../Themes/themeContext';
 //================================================================
 
-const CustomHeaderRight = ({navigation}) => {
+const HeaderRight = ({navigation}) => {
 
   //Theme Manangement
   //================================================================
@@ -25,7 +25,6 @@ const CustomHeaderRight = ({navigation}) => {
     }, delay);
     
   };
-
 
   return (
     <TouchableOpacity 
@@ -49,4 +48,4 @@ const styles = StyleSheet.create({
   
 });
 
-export default CustomHeaderRight;
+export default HeaderRight;
