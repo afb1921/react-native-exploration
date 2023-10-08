@@ -1,8 +1,8 @@
-// Page3.js
+// AccessibilityProperties.js
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 
-function Page3Screen() {
+function AccessibilityProperties() {
   return (
     <View>
       <Text>Welcome to the Page 3 Screen!</Text>
@@ -12,4 +12,4 @@ function Page3Screen() {
   );
 }
 
-export default Page3Screen;
+export default AccessibilityProperties;

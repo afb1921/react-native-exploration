@@ -75,9 +75,10 @@ export const heading = {
 export const colors = {
   //App Colors//-----------------------
 
-  primaryBlue: "#1DA1F2", //Twitter Blue
+  primaryBlue: "#1DA1F2", //Twitter Blue 
   darkBlue: "#2d60fa",
   brightBlue: "#039fff",
+  lightGreen: "#42f5a1",
   lightBlack: "#121212",
   darkerGrey: "#181818",
   darkGrey: "#282828",
@@ -113,11 +114,11 @@ export const def_Page = {
   page2Name: "AltText",
   page2MenuName: 'Alt Text Info',
 
-  page3Name: "Page 3",
-  page3MenuName: 'Page 3 (PLACEHOLDER)',
+  page3Name: "Accessibility Properties",
+  page3MenuName: 'Accessibility Properties',
 
-  page4Name: "Page 4",
-  page4MenuName: 'Page 4 (PLACEHOLDER)',
+  page4Name: "Example Components",
+  page4MenuName: 'Example Components',
 
   page5Name: "Page 5",
   page5MenuName: "Page 5 (PLACEHOLDER)",

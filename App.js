@@ -41,8 +41,8 @@ import themeContext from './Themes/themeContext';
 
 import HomeScreen from './Screens/HomeScreen';
 import AltText from './Screens/AltText';
-import Page3Screen from './Screens/Page3';
-import Page4Screen from './Screens/Page4';
+import AccessibilityProperties from './Screens/AccessibilityProperties';
+import ExampleComponents from './Screens/ExampleComponents';
 import Page5Screen from './Screens/Page5';
 //================================================================
 
@@ -78,9 +78,9 @@ function App() {
   const screens = [
     { name: def_Page.page1Name, menu_name: def_Page.page1MenuName, component: HomeScreen, icon: 'universal-access' },
     { name: def_Page.page2Name, menu_name: def_Page.page2MenuName, component: AltText, icon: 'universal-access' },
-    { name: def_Page.page3Name, menu_name: def_Page.page3MenuName, component: Page3Screen, icon: 'briefcase' },
-    { name: def_Page.page4Name, menu_name: def_Page.page4MenuName, component: Page4Screen, icon: 'cog' },
-    { name: def_Page.page5Name, menu_name: def_Page.page4MenuName, component: Page5Screen, icon: 'envelope' },
+    { name: def_Page.page3Name, menu_name: def_Page.page3MenuName, component: AccessibilityProperties, icon: 'briefcase' },
+    { name: def_Page.page4Name, menu_name: def_Page.page4MenuName, component: ExampleComponents, icon: 'cog' },
+    { name: def_Page.page5Name, menu_name: def_Page.page5MenuName, component: Page5Screen, icon: 'envelope' },
   ];
 
   //------------------------------------------------------------------------------------------------
