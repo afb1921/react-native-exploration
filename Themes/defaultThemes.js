@@ -12,20 +12,20 @@ export const darkMode = {
     //-----------------------------------------------
         //These are all used in './components/DrawerContent.js'
     //------------------------------------------------
-        header: '#039fff', // (backgroundColor) Color for drawer header
+        header: colors.brightBlue, // (backgroundColor) Color for drawer header
         headerText: 'white', // (Color) Color for drawer header text
 
-        outerContent: '#181818', // (backgroundColor) Color for drawer Outer content background
-        innerContent: '#282828', // (backgroundColor) Color for drawer inner content background
+        outerContent: colors.darkerGrey, // (backgroundColor) Color for drawer Outer content background
+        innerContent: colors.darkGrey, // (backgroundColor) Color for drawer inner content background
 
         inactiveText: 'black', // (color) Color for inactive navigation Text
         activeText: 'white', // (color) Color for active navigation Text
 
         inactive: 'white', // (backgroundColor) Color for inactive navigation Background
-        active: "#1DA1F2", // (backgroundColor) background Color for active navigation Background
+        active: colors.darkBlue, // (backgroundColor) background Color for active navigation Background
 
-        innerBorder: '#ebeded', // (borderColor) Color for drawer inner border
-        outerBorder: "#181818", // (borderColor) Color for drawer outer border
+        innerBorder: colors.lighterGrey, // (borderColor) Color for drawer inner border
+        outerBorder: colors.darkerGrey, // (borderColor) Color for drawer outer border
 
         innerBorderRadius: 8, // (borderRadius) drawer inner border radius
         borderBottomWidth: 3, // (borderBottomWidth) drawer border bottom width
@@ -42,10 +42,10 @@ export const darkMode = {
         //headerIcon is used in 'App.js'
         //titleText is used in 'App.js'
     //------------------------------------------------
-        headerMenu: '#1f1f1f', //Color of header background for each page
+        headerMenu: colors.darkerGrey, //Color of header background for each page
         titleText: 'white', //Color of title for each page
         hamburgerIcon: 'white', //Color of hamburger icon
-        headerIcon: "#039fff", //Color for header icon
+        headerIcon: colors.brightBlue, //Color for header icon
 
     //Status Bar Colors
     //=================================================
@@ -77,13 +77,13 @@ export const darkMode = {
         //These are used in './components/CustomDropdown,js'
     //--------------------------------
         headerText: "white", // (color)
-        header: "#1DA1F2", // (backgroundColor) modal header background 
+        header: colors.darkBlue, // (backgroundColor) modal header background 
         borderColor: "black", // (borderColor)
-        background: "#ebeded", // (backgroundColor) modal background
+        background: colors.lighterGrey, // (backgroundColor) modal background
 
     //Selected Item In Modal----
         selectedItemText: "white", // (color)
-        selectedItem: "#1DA1F2", // (backgroundColor) modal selected item background
+        selectedItem: colors.primaryBlue, // (backgroundColor) modal selected item background
 
     //NonSelected Item In Modal---
         itemText: "black", // (color)
@@ -114,6 +114,7 @@ export const darkMode = {
         cell: "black", // (backgroundColor) vertical table background
         cellText: "white", // (color)
         border: 'white', // (borderColor) vertical table border color
+        title: 'white', // (color) vertical table title
     },
 
     horizontal_Table: {
@@ -127,6 +128,7 @@ export const darkMode = {
         border: 'white', // (borderColor) horizontal table border color
         cell: 'black', // (backgroundColor) horizontal table background
         cellText: "white", // (color)
+        title: 'white', // (color) horizontal table title
     //=================================================
     },
 
@@ -141,6 +143,7 @@ export const darkMode = {
         border: 'white',  // (borderColor) two variable table border
         cell: 'black', // (backgroundColor) two variable background
         headerText: 'black', // (color)
+        title: 'white', // (color) two variable table title
     //================================================== 
 
     },
@@ -278,20 +281,20 @@ export const lightMode = {
     //------------------------------
         //These are all used in './components/DrawerContent.js'
     //------------------------------
-        header: '#039fff', // (backgroundColor) Color for drawer header
+        header: colors.brightBlue, // (backgroundColor) Color for drawer header
         headerText: 'white', // (Color) Color for drawer header text
 
-        outerContent: '#ebeded', // (backgroundColor) Color for drawer Outer content background
-        innerContent: '#ebeded', // (backgroundColor) Color for drawer inner content background
+        outerContent: colors.lighterGrey, // (backgroundColor) Color for drawer Outer content background
+        innerContent: colors.lighterGrey, // (backgroundColor) Color for drawer inner content background
 
         inactiveText: 'black', // (Color) Color for inactive navigation Text
         activeText: 'white', // (Color) Color for active navigation Text
 
         inactive: 'white', // (backgroundColor) Color for inactive navigation Background
-        active: "#1DA1F2", // (backgroundColor) Color for active navigation Background
+        active: colors.darkBlue, // (backgroundColor) Color for active navigation Background
 
-        innerBorder: '#ebeded', // (borderColor) drawer inner border color
-        outerBorder: "#181818", // (borderColor) drawer outer border color
+        innerBorder: colors.lighterGrey, // (borderColor) drawer inner border color
+        outerBorder: colors.darkerGrey, // (borderColor) drawer outer border color
 
         innerBorderRadius: 0, // (borderRadius) drawer inner border radius
         borderBottomWidth: 0, // (borderBottomWidth) borderdrawer border bottom width
@@ -310,10 +313,10 @@ export const lightMode = {
         //titleText is used in 'App.js'
         //statusBar is used in 'App.js'
     //------------------------------------------------
-        headerMenu: '#1f1f1f', // (backgroundColor) Color for header background for each page
+        headerMenu: colors.darkerGrey, // (backgroundColor) Color for header background for each page
         titleText: 'white', // (color) Color for title for each page
         hamburgerIcon: 'white', // (color) Color for hamburger icon
-        headerIcon: "#039fff", // (color) Color for header icon
+        headerIcon: colors.brightBlue, // (color) Color for header icon
 
     //Status Bar Colors
     //==================================================
@@ -347,13 +350,13 @@ export const lightMode = {
         //These are used in './components/CustomDropdown,js'
     //--------------------------------
         headerText: "white", // (color)
-        header: "#1DA1F2", // (backgroundColor) modal header background 
+        header: colors.primaryBlue, // (backgroundColor) modal header background 
         border: "black", // (borderColor) modal border color
-        background: "#ebeded", // (backgroundColor) modal background
+        background: colors.lighterGrey, // (backgroundColor) modal background
 
     //Selected Item In Modal----
         selectedItemText: "white", // (color)
-        selectedItem: "#1DA1F2", // (backgroundColor) modal selected item background
+        selectedItem: colors.darkBlue, // (backgroundColor) modal selected item background
 
     //NonSelected Item In Modal---
         itemText: "black", //(color)
@@ -384,6 +387,7 @@ export const lightMode = {
         cell: "white", // (backgroundColor) vertical table background
         cellText: "black", // (color)
         border: 'black', // (borderColor) vertical table border color
+        title: 'black', // (color) vertical table title
     //================================================
     },
 
@@ -398,6 +402,7 @@ export const lightMode = {
         border: 'black', // (borderColor) horizontal table border color
         cell: 'white', // (backgroundColor) horizontal table background
         cellText: "black", // (color)
+        title: 'black', // (color) horizontal table title
     //================================================
     },
 
@@ -411,7 +416,8 @@ export const lightMode = {
         cellText: 'black', // (color)
         border: 'black', // (borderColor) two variable border color
         cell: 'white', // (backgroundColor) two variable table background
-        headerText: 'black', // (color) 
+        headerText: 'black', // (color)
+        title: 'black', // (color) two variable
     //================================================
     },
 
