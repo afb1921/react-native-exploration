@@ -52,6 +52,7 @@ const VerticalTable = ({ data }) => {
         },
       ]}
       accessibilityRole="header"
+      accessibilityHint='cell header'
     >
       {headerText}
     </Text>
@@ -98,7 +99,7 @@ const VerticalTable = ({ data }) => {
       <View style={styles.container}>
         {data.map((section) => (
           <View key={section.title} style={styles.section}>
-            <Text style={styles.sectionTitle}>{section.title}</Text>
+            <Text accessibilityRole="header" accessibilityHint="Table Title" style={[styles.sectionTitle, {color: theme.vertical_Table.title}]}>{section.title}</Text> 
             <View style={styles.row}>
               <FlatList
                 accessibilityRole="grid"

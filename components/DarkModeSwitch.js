@@ -1,6 +1,7 @@
-import React, { useContext} from 'react';
+import React, { useContext, useState} from 'react';
 import { View, Text, Switch} from 'react-native';
 import { EventRegister } from 'react-native-event-listeners';
+import {colors} from '../constant';
 
 //Theme Imports
 //================================================================
@@ -35,6 +36,8 @@ const DarkModeSwitch = (({ darkModeTheme, setDarkMode, onToggle}) => {
         {/* The dark mode switch */}
         {/* ============================= */}
         <Switch
+         thumbColor={darkModeTheme ? 'orange' : colors.darkBlue}
+         trackColor={{ false: colors.lightGreen, true: colors.lightGreen }} // Specify colors for off and on states
           value={darkModeTheme}
           ref={toggleButtonRef}
           accessibilityLabel='Dark Mode'

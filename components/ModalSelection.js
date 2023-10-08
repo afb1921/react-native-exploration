@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useEffect } from 'react';
+import React, { useRef, useContext, useEffect, useState } from 'react';
 import { View, Text, Modal, TouchableOpacity, StyleSheet, AccessibilityInfo } from 'react-native';
 
 //Custom Imports
@@ -11,26 +11,45 @@ import { colors } from "../constant.js"
 import themeContext from '../Themes/themeContext.js';
 //==================================================
 
+//EXAMPLE USE IN PAGE
+//================================================
+//This stores the selected Values of the Modal Selection
+//--------------------------------
+// const [selectedValues, setSelectedValues] = React.useState([]);
+//--------------------------------
+
+//This handles updating the selected Values for the selected values state (Shown above)
+//NOTE each modal Selection needs its own unique handleChange and using its unique setSelectedValues
+//--------------------------------
+// const handleChange = (value) => {
+//     setSelectedValues(value);
+//   };
+//--------------------------------
+
 
 // Example Use: using the component
 //==================================
 {/* <View>
+
+    <Text>{selectedValues}</Text> //The selected value(s) will be displayed using this text ensure its styled properly
+    
     <ModalSelection
+        onValueChange={selectedValues}
         title="Hello world!"
         options={["O", "Y", "X"]} 
     />
 </View> */}
 //==================================
 
-const ModalSelection = ({ options, title }) => {
+const ModalSelection = ({ options, title, onValueChange }) => {
 
     //For Theme Management
     //================================
     const { theme } = useContext(themeContext);
     //================================
 
-    const [showModal, setShowModal] = React.useState(false); //This set the state of the modal if it should be shown or not
-    const [selectedValue, setSelectedValue] = React.useState('None'); //The current selected value
+    const [showModal, setShowModal] = useState(false); //This set the state of the modal if it should be shown or not
+    const [selectedValue, setSelectedValue] = useState('None'); //The current selected value
     const modalRef = useRef(null); //This is a ref for the modal
     const selectedRef = useRef(null); //This is a ref for the selected value
     const handleModalClick = () => setShowModal(true); //Opens the modal when button clicked
@@ -138,7 +157,7 @@ const ModalSelection = ({ options, title }) => {
                         {options.map((option, index) => ( //For every option
                             <TouchableOpacity
                                 key={option}
-                                onPress={() => handleOptionPress(option, index)}
+                                onPress={() => {handleOptionPress(option, index), onValueChange(option)}}
                                 accessibilityLabel={`${option}, Item ${index + 1} of ${options.length}`}
                                 accessibilityRole='menuitem'>
 

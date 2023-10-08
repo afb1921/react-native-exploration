@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View, Text, ScrollView, StyleSheet, FlatList } from 'react-native';
+import { View, Text, FlatList, StyleSheet, ScrollView } from 'react-native';
 import themeContext from '../Themes/themeContext';
 
 //EXAMPLE TABLE FOR HORIZONTAL DATA:
@@ -22,10 +22,11 @@ import themeContext from '../Themes/themeContext';
 //  <HorizontalTable data={table_data} /> 
 // =================================================================
 
+
 const HorizontalTable = ({ data }) => {
   const { theme } = useContext(themeContext);
 
-  const renderHeader = (headerText) => ( //This will render the header of each Column
+  const renderHeader = (headerText) => (
     <Text
       style={[
         styles.columnHeader,
@@ -34,13 +35,14 @@ const HorizontalTable = ({ data }) => {
           color: theme.horizontal_Table.headerCellText,
         },
       ]}
-      accessibilityRole="header" //Each header will have a role of header
+      accessibilityRole="header"
+      accessibilityHint='cell Header'
     >
       {headerText}
     </Text>
   );
 
-  const renderCell = (item, key, index) => ( //This will render the cell for each column
+  const renderCell = (item, key, index) => (
     <Text
       key={`${item.id}-${key}-${index}`}
       style={[
@@ -51,51 +53,46 @@ const HorizontalTable = ({ data }) => {
           backgroundColor: theme.horizontal_Table.cell,
         },
       ]}
-      accessibilityLabel={`${item[key]} of ${item.id}`} //This will announce each cell's label
+      accessibilityLabel={`${item[key]} of ${item.id}`}
     >
       {item[key]}
     </Text>
   );
 
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        {data.map((section) => ( //For every section
-          <View key={section.title} style={styles.section}>
-            <Text style={styles.sectionTitle}>{section.title}</Text>
+    <FlatList
+      data={data}
+      horizontal={true}
+      keyExtractor={(item, index) => index.toString()}
+      renderItem={({ item }) => (
+        <View>
+          <Text accessibilityRole="header" accessibilityHint="Table Title" style={[styles.sectionTitle, {color: theme.horizontal_Table.title}]}>{item.title}</Text>
+
+          <ScrollView style={styles.section} horizontal={true} showsHorizontalScrollIndicator={false} accessibilityRole='grid'>
             <View style={styles.row}>
-              <FlatList
-                accessibilityRole="grid"
-                keyExtractor={(item, index) => index.toString()}
-                horizontal={true}
-                data={section.data}
-                renderItem={({ item }) => (
-                  <View
-                    key={item.id}
-                    style={[
-                      styles.column,
-                      { borderColor: theme.horizontal_Table.border },
-                    ]}
-                  >
-                    {renderHeader(item.id)}
-                    {Object.keys(item).map((key, index) =>
-                      key !== 'id' ? renderCell(item, key, index) : null
-                    )}
-                  </View>
-                )}
-              />
+              {item.data.map((rowData, rowIndex) => (
+                <View
+                  key={`${item.title}-${rowIndex}`}
+                  style={[
+                    styles.column,
+                    { borderColor: theme.horizontal_Table.border },
+                  ]}
+                >
+                  {renderHeader(rowData.id)}
+                  {Object.keys(rowData).map((key, columnIndex) =>
+                    key !== 'id' ? renderCell(rowData, key, columnIndex) : null
+                  )}
+                </View>
+              ))}
             </View>
-          </View>
-        ))}
-      </View>
-    </ScrollView>
+          </ScrollView>
+        </View>
+      )}
+    />
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-  },
   section: {
     marginRight: 20,
   },
@@ -130,6 +127,3 @@ const styles = StyleSheet.create({
 });
 
 export default HorizontalTable;
-
-
-

@@ -32,6 +32,7 @@ import themeContext from '../Themes/themeContext';
 //Rendering the componenet
 //-------------------------------
 {/* <View>
+    <Text>{selectedValues}</Text> //This will show the selected value ensure its styled
     <Dropdown
         title={"Select a fruit"}
         data={data}

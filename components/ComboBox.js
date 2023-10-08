@@ -31,6 +31,7 @@ import themeContext from '../Themes/themeContext';
 //Rendering the componenet
 //-------------------------------
 {/* <View>
+    <Text>{selectedValues}</Text> //This will display the value ensure its styled
     <ComboBox
         title={"Select a fruit"}
         data={data}

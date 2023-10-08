@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, FlatList } from 'react-native';
 import themeContext from '../Themes/themeContext';
 
-//EXAMPLE TABLE FOR HORIZONTAL DATA:
+//EXAMPLE TABLE FOR TWO VARIABLE DATA:
 //===============================================================
 // const table_data1 = {
 //   columns: ['Year 1', 'Year 2', 'Year 3'],
@@ -17,11 +17,11 @@ import themeContext from '../Themes/themeContext';
 
 // Using the component:
 // =================================================================
-//<TwoVariableTable data={table_data1}/>
+//<TwoVariableTable data={table_data1} title="Table Title/>
 // =================================================================
 
 
-const TwoVariableTable = ({ data }) => {
+const TwoVariableTable = ({ data, title }) => {
   const { theme } = useContext(themeContext);
   const [maxCellWidth, setMaxCellWidth] = React.useState(7);
   const [currentFontSize, setFontSize] = React.useState(15);
@@ -84,6 +84,7 @@ const TwoVariableTable = ({ data }) => {
           <Text
             accessibilityLabel={`${column} Column`}
             accessibilityRole='header'
+            accessibilityHint='Cell Header'
             style={[
               styles.headerText,
               {
@@ -176,6 +177,8 @@ const TwoVariableTable = ({ data }) => {
 
 
   return (
+    <View style={styles.container}>
+    <Text style={[styles.title, {color: theme.twoVar_Table.title}]}>{title}</Text>
     <ScrollView horizontal={true}>
       <FlatList
         accessibilityRole="grid"
@@ -185,12 +188,13 @@ const TwoVariableTable = ({ data }) => {
         renderItem={renderRow}
       />
     </ScrollView>
+  </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'column',
+    margin: 10,
   },
   headerRow: {
     flexDirection: 'row',
@@ -222,6 +226,14 @@ const styles = StyleSheet.create({
   },
   headerText: {},
   rowLabelText: {},
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    color: "black",
+    // textAlign: 'center', // Center the title horizontally
+  },
+  
 });
 
 export default TwoVariableTable;
