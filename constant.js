@@ -50,7 +50,7 @@ export const heading = {
 
   Heading3: React.forwardRef(({ children, style, ...restProps }, ref) => {
     const defaultStyles = {
-      fontSize: 18,
+      fontSize: 16,
       fontWeight: 'bold',
       marginBottom: 16,
       color: 'red', // Default text color

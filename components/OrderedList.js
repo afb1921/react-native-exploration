@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, Text, FlatList, StyleSheet, ScrollView } from 'react-native';
 
 //Theme Managment Imports------------------------------------------
 import themeContext from '../Themes/themeContext';
@@ -92,14 +92,14 @@ const OrderedList = ({ data, numberingStyle }) => {
   );
 
   return (
-    <View>
+    <ScrollView horizontal={true}>
       <FlatList
         accessibilityRole='list'
         data={data}
         keyExtractor={(item, index) => index.toString()}
         renderItem={renderItem}
       />
-    </View>
+    </ScrollView>
   );
 };
 

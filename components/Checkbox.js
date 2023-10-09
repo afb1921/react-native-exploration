@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, ScrollView } from 'react-native';
 import CheckBox from 'expo-checkbox';
 
 //Theme Imports
@@ -60,7 +60,7 @@ const CustomCheckBox = ({ data, title, onValueChange }) => { //Give data, title,
   };
 
   return (
-    <View>
+    <ScrollView>
       <Text style={{ color: theme.checkBox.title }}>{title}</Text>
       <FlatList
         data={data}
@@ -85,7 +85,7 @@ const CustomCheckBox = ({ data, title, onValueChange }) => { //Give data, title,
           </View>
         )}
       />
-    </View>
+    </ScrollView>
   );
 };
 

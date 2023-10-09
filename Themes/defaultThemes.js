@@ -66,8 +66,18 @@ export const darkMode = {
         text: "white", // (color)
         textHighlight: "orange", // (color)
         textHighlightBackground: "white", // (backgroundColor)
-        border: "white", // (borderColor)
     //=================================================
+    },
+
+    horizontalLine: {
+    // Horizontal Line
+    //================================================
+    //---------------------------------
+        //These are used on all the pages
+    //--------------------------------
+        color: "white", // (backgroundColor)
+    //================================================
+
     },
 
     modal: {
@@ -340,7 +350,16 @@ export const lightMode = {
         text: "black", // (color) 
         textHighlight: "red", // (color) 
         textHighlightBackground: "black", // (backgroundColor) 
-        border: "black", // (borderColor) 
+    //================================================
+    },
+
+    horizontalLine: {
+    // Horizontal Line
+    //================================================
+    //---------------------------------
+        //These are used on all the pages
+    //--------------------------------
+        color: "black", // (backgroundColor)
     //================================================
     },
 

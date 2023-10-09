@@ -1,18 +1,24 @@
 import React, { useRef, useContext, useEffect } from 'react';
-import { View, Text, Image, AccessibilityInfo, StyleSheet, ScrollView} from 'react-native';
+import { View, Text, Image, AccessibilityInfo, StyleSheet, ScrollView } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
-import { colors, def_Page, heading } from '../constant';
-
+//Asset Imports
+//============================================================================
+import { colors, heading } from '../constant';
 import { FontAwesome } from '@expo/vector-icons';
 import dog_with_glasses from '../assets/images/dog_With_Glasses.jpg';
+import ocean_video from '../assets/videos/oceanvideo.mp4';
+//============================================================================
 
-import CustomDropdown from '../components/CustomDropdown';
+//Custom Imports
+//============================================================================
+import VideoPlayer from '../components/Videoplayer'
+import HorizontalLine from '../components/HorizontalLine';
+//============================================================================
 
 //Theme Managment Imports==========================================
 import themeContext from '../Themes/themeContext';
 //=================================================================
-
 
 function AltText() {
 
@@ -22,7 +28,7 @@ function AltText() {
 
   //Theme Manangement
   //===============================================================
-  const { theme, toggleButtonRef } = useContext(themeContext);
+  const { theme} = useContext(themeContext);
   //===============================================================
 
 
@@ -31,31 +37,36 @@ function AltText() {
   const firstElementRef = useRef(null);
   const scrollViewRef = useRef(null);
 
-  //When the page loads (everytime) the useFocusEffect is triggered
+   //When the page loads (everytime) the useFocusEffect is triggered
   //This is used to bring focus on the first element
-  useFocusEffect(() => {
-    console.log("focus effect on alt screen")
+  useFocusEffect(
+    React.useCallback(() => {
+
+      console.log("use Focus Effect Alt Text")
 
       //Reset Scroll View to the top of the page
       if (scrollViewRef.current) {
         console.log("Scroll")
         scrollViewRef.current.scrollTo({ y: 0 });
       }
-      //-----------------------------------------------------------
 
-      // Add a time delay before executing the focus logic, 
-      //This is important so the it gives it a chance to find the firstElement during loading.
+      // // Add a time delay before executing the focus logic, 
+      // //This is important so the it gives it a chance to find the firstElement during loading.
       const delay = 250; // Delay in milliseconds
 
       setTimeout(() => {
-        const reactTag = firstElementRef.current._nativeTag;
-        AccessibilityInfo.setAccessibilityFocus(reactTag);
-        console.log('Focus set on Alt Screen');
-      }, delay);
-      
-    }
 
-  );
+        if (firstElementRef.current) {
+          const reactTag = firstElementRef.current._nativeTag;
+          AccessibilityInfo.setAccessibilityFocus(reactTag);
+          console.log('First Element===========n\n'); //Debuging purposes
+
+        }
+      }, delay)
+    }, [])
+
+  )
+
 
   //---------------------------------------------------------------
 
@@ -74,33 +85,29 @@ function AltText() {
             style={styles.containerHeaderText}
             accessibilityLabel="Text Alternatives"
           >
-
             Text Alternatives
           </heading.Heading1>
         </View>
 
         {/* // -----------------------------------------------------------------*/}
 
-        <View style={[styles.altTextInfoContainer, { borderColor: theme.page.border}]}>
+        <View style={[styles.altTextInfoContainer]}>
 
           <heading.Heading2
-            style={[styles.headingContent, { color: theme.page.text}]}
+            style={[styles.headingContent, { color: theme.page.text }]}
             accessibilityLabel="Importance of Alternative Text"
           >
-
             Importance of Alternative Text
           </heading.Heading2>
 
           <FontAwesome
             name="info-circle"
-            style={[styles.altTextInfoIcon, , { color: theme.page.text}]}
+            style={[styles.altTextInfoIcon, , { color: theme.page.text }]}
             importantForAccessibility='no'
             accessible={false}
           />
 
-          <Text
-            style={[styles.textContent, { color: theme.page.text}]}
-          >
+          <Text style={[styles.textContent, { color: theme.page.text }]}>
             Text alternatives are crucial for ensuring
             digital accessibility. They provide a way for
             people with disabilities, especially those who
@@ -109,28 +116,28 @@ function AltText() {
             content, such as images, videos, graphs, charts,
             and more.
           </Text>
-
         </View>
 
-        <View
-          style={styles.imageSectionContainer}
-        >
+        <HorizontalLine style={{backgroundColor: theme.horizontalLine.color}}/>
 
-
-          <Text
-            style={[styles.textContent, { color: theme.page.text}]}
+        <View style={styles.imageSectionContainer}>
+          <heading.Heading2
+            style={[styles.headingContent, { color: theme.page.text }]}
+            accessibilityLabel="Example Image"
           >
-            Displayed under this text is a image.
-          </Text>
+            Example Image
+          </heading.Heading2>
 
           <Image
             source={dog_with_glasses}
             style={styles.imageStyle}
             accessibilityLabel='A Labrador Retriever wearing sun glasses'
             accessible={true}
+            accessibilityRole='image'
+
           />
 
-          <Text style={[styles.textContent, { color: theme.page.text}]}>
+          <Text style={[styles.textContent, { color: theme.page.text }]}>
 
             <Text>
               The image has an accessibilityLabel set to{"\n"}
@@ -146,10 +153,20 @@ function AltText() {
             </Text>
 
           </Text>
+          </View>
 
-          <CustomDropdown options={["Hello World", "Computer Science", "Python"]}/>
+          <View>
+            <heading.Heading2
+              style={[styles.headingContent, { color: theme.page.text }]}
+              accessibilityLabel="Example Video"
+            >
+              Example Video
+          </heading.Heading2>
+            <VideoPlayer video={ocean_video} videoName="ocean" />
+          </View>
 
-        </View>
+
+        
 
 
 
@@ -181,7 +198,6 @@ const styles = StyleSheet.create({
 
   //Alt Text Info section specifc styles
   altTextInfoContainer: {
-    borderBottomWidth: 5,
     alignItems: 'center',
   },
 
@@ -220,6 +236,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
+
   //----------------------------
 
 });

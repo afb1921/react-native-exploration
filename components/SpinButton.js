@@ -23,7 +23,7 @@ import themeContext from '../Themes/themeContext';
 //Rendering the componenet
 //-------------------------------
 {/* <Text>{selectedValues}</Text>
-<RadioButton data={data} title="Select an option" onValueChange={handleValueChangeSpinButton} /> */}
+<RadioButton data={data} title="Select an option" onValueChange={handleChange} /> */}
 //-------------------------------
 
 const SpinButton = ({ title, onValueChange }) => {

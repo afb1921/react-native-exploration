@@ -1,5 +1,5 @@
-import React, {useContext} from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import React, { useContext } from 'react';
+import { View, Text, FlatList, StyleSheet, ScrollView } from 'react-native';
 
 //Theme Managment Imports------------------------------------------
 import themeContext from '../Themes/themeContext';
@@ -23,40 +23,42 @@ import themeContext from '../Themes/themeContext';
 // <UnorderedList data={data} /> 
 // =================================================================
 
-const UnorderedList = ({data}) => {
+const UnorderedList = ({ data }) => {
 
   //Theme Management
   //================================================================
-  const {theme} = useContext(themeContext);
+  const { theme } = useContext(themeContext);
   //================================================================
 
   return (
-    <FlatList
-      accessibilityRole='list'
-      data={data}
-      keyExtractor={(item, index) => index.toString()}
-      renderItem={({ item, index }) => (
-        <View style={styles.listItem}>
-          <View style={styles.bullet}>
-            <Text 
-                style={[styles.bulletText, {color: theme.unorderedList.bullet}]}
+    <ScrollView horizontal={true}>
+      <FlatList
+        accessibilityRole='list'
+        data={data}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item, index }) => (
+          <View style={styles.listItem}>
+            <View style={styles.bullet}>
+              <Text
+                style={[styles.bulletText, { color: theme.unorderedList.bullet }]}
                 importantForAccessibility='no'
                 accessible={false}
-            >
+              >
                 {/* This is the bullet "\u2022"  */}
-                {'\u2022'} 
+                {'\u2022'}
+              </Text>
+            </View>
+            <Text
+              style={[styles.listItemText, { color: theme.unorderedList.text }]}
+              accessibilityLabel={`${item}, Bullet ${index + 1} of ${data.length}`}
+
+            >
+              {item}
             </Text>
           </View>
-          <Text     
-            style={[styles.listItemText, {color: theme.unorderedList.text}]}
-            accessibilityLabel={`${item}, Bullet ${index+1} of ${data.length}`}
-
-          >
-            {item}
-          </Text>
-        </View>
-      )}
-    />
+        )}
+      />
+    </ScrollView>
   );
 };
 
@@ -75,7 +77,7 @@ const styles = StyleSheet.create({
   bulletText: {
     fontSize: 25, // Adjust the font size of the bullet
   },
-  listItemText:{
+  listItemText: {
     fontSize: 15,
   }
 });

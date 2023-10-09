@@ -177,7 +177,7 @@ const ModalSelection = ({ options, title, onValueChange }) => {
 
                         {/* This is the cancel button */}
                         {/* =============================== */}
-                        <TouchableOpacity onPress={handleModalClose} style={styles.cancelButton}>
+                        <TouchableOpacity onPress={handleModalClose} style={styles.cancelButton} accessibilityRole='button'>
                             <Text style={[styles.textContent, { color: theme.modal.itemText}]} role="button">
                                 Cancel
                             </Text>

@@ -1,5 +1,5 @@
 import React, {useContext, useRef} from 'react';
-import { View, TextInput, StyleSheet, Text, AccessibilityInfo, Platform } from 'react-native';
+import { View, TextInput, StyleSheet, Text, AccessibilityInfo, Platform, ScrollView } from 'react-native';
 
 // Theme Management Imports
 //================================================================
@@ -27,7 +27,7 @@ import themeContext from '../Themes/themeContext';
     <Text>{inputValue}</Text>
         <TextField
           title="Hello world!"
-          onValueChange={handleInputChange}
+          onValueChange={handleChange}
         />
 </View> */}
 //-------------------------------
@@ -50,7 +50,7 @@ const onSubmitEditing = () => { //When a value is submitted on the text box
 }
 
   return (
-    <View>
+    <ScrollView>
       <Text
         accessible={false}
         importantForAccessibility="no"
@@ -70,7 +70,7 @@ const onSubmitEditing = () => { //When a value is submitted on the text box
         
         }}
       />
-    </View>
+    </ScrollView>
   );
 };
 

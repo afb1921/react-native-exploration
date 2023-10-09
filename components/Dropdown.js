@@ -1,5 +1,5 @@
 import React, { useContext, useState, useRef } from 'react';
-import { View, Text, TouchableOpacity, FlatList, StyleSheet, AccessibilityInfo } from 'react-native';
+import { View, Text, TouchableOpacity, FlatList, StyleSheet, AccessibilityInfo, ScrollView } from 'react-native';
 
 import themeContext from '../Themes/themeContext';
 
@@ -67,7 +67,7 @@ const Dropdown = ({ data, onValueChange, title }) => {
     const handlePress = (item) => { //Trigger when a item is selected in the dropdown
         console.log("handlePress")
         setSelectedItem(item); //Set the selected item
-        onValueChange(item); 
+        onValueChange(item);
         toggleDropdown();
         handleFocus(dropDownRef)
     };
@@ -76,31 +76,35 @@ const Dropdown = ({ data, onValueChange, title }) => {
 
     return (
         <View style={styles.container}>
-            <Text importantForAccessibility='no' accessible={false} style={{color: theme.dropDown.title}}>{title}</Text>
+            <Text importantForAccessibility='no' accessible={false} style={{ color: theme.dropDown.title }}>{title}</Text>
             <TouchableOpacity
                 ref={dropDownRef}
                 onPress={toggleDropdown}
-                style={[styles.input, {backgroundColor: theme.dropDown.selectedBackgroundColor}]}
+                style={[styles.input, { backgroundColor: theme.dropDown.selectedBackgroundColor }]}
                 accessibilityRole="button"
-                accessibilityHint='Dropdown'
+                accessibilityHint={`${title} Dropdown`}
                 accessibilityState={{
                     expanded: isComboboxExpanded,
                 }}
                 accessibilityLabel={selectedItem}
             >
-                <Text style={{color: theme.dropDown.selectedText}}>{selectedItem}</Text>
+                <Text style={{ color: theme.dropDown.selectedText }}>{selectedItem}</Text>
             </TouchableOpacity>
             {isOpen && (
-                <FlatList
-                    data={[...data]}
-                    keyExtractor={(item) => item.toString()}
-                    renderItem={({ item, index }) => ( //Renders a list of items using data
-                        <TouchableOpacity onPress={() => handlePress(item)} style={{backgroundColor: theme.dropDown.listBackgroundColor, borderWidth: 1, borderColor: theme.dropDown.borderColor}}>
-                            <Text style={[styles.dropdownItem, {color: theme.dropDown.itemText}]} accessibilityLabel={`${item}, ${index + 1} of ${data.length}`}>{item}</Text>
-                        </TouchableOpacity>
-                    )}
+                <ScrollView style={{width: '100%'}} horizontal={true} contentContainerStyle={{ flexGrow: 1 }}>
+                    <FlatList
+                        data={[...data]}
+                        keyExtractor={(item) => item.toString()}
+                        renderItem={({ item, index }) => ( //Renders a list of items using data
+                        <View style={styles.itemContainer}>
+                            <TouchableOpacity onPress={() => handlePress(item)} style={{ backgroundColor: theme.dropDown.listBackgroundColor, borderWidth: 1, borderColor: theme.dropDown.borderColor }}>
+                                <Text style={[styles.dropdownItem, { color: theme.dropDown.itemText }]} accessibilityLabel={`${item}, ${index + 1} of ${data.length}`}>{item}</Text>
+                            </TouchableOpacity>
+                        </View>
+                        )}
 
-                />
+                    />
+                </ScrollView>
             )}
         </View>
     );
@@ -120,11 +124,10 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: '#ccc',
     },
-    inputField: {
-        borderWidth: 1,
-        borderColor: '#ccc',
-        padding: 10,
-    },
+    itemContainer: {
+        flex: 1, // This expands the item to the full width
+      },
+
 });
 
 export default Dropdown;
