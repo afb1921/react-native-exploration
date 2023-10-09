@@ -7,6 +7,39 @@ import { RadioButton } from 'react-native-paper';
 import themeContext from '../Themes/themeContext';
 //==================================================
 
+//EXAMPLE USE IN PAGE
+//================================================
+//This stores the selected Values of the Radio Button
+//--------------------------------
+// const [selectedValues, setSelectedValues] = React.useState([]);
+//--------------------------------
+
+//This handles updating the selected Value for the selected value state (Shown above)
+//NOTE each RadioButton needs its own unique handleChange and using its unique setSelectedValues
+//--------------------------------
+// const handleChange = (value) => {
+//     setSelectedValues(value)
+//   }
+//--------------------------------
+
+//Example Data:
+//--------------------------------
+// const data = [
+//   'Apple',
+//   'Orange',
+//   'Banana',
+//   'Grapes',
+//   // Add more items here
+// ];
+//--------------------------------
+
+//Rendering the componenet
+//-------------------------------
+{/* <Text>Selected Values: {selectedValues}</Text> //Make sure to style the text
+<RadioButton data={data} title="Select an option" onValueChange={handleValueChangeRadio} /> */}
+//-------------------------------
+
+
 const CustomRadioButton = ({ data, title, onValueChange }) => {
     // For Theme Management
     // ================================
