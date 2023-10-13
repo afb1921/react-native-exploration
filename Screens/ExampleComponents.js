@@ -96,7 +96,7 @@ const data = [
 //================================================================
 
 
-function ExampleComponents({appLabelRef}) {
+function ExampleComponents() {
 
 
   const [value, setValue] = useState(null);
@@ -114,28 +114,6 @@ function ExampleComponents({appLabelRef}) {
   //===============================================================
   const firstElementRef = useRef(null);
   const scrollViewRef = useRef(null);
-  const [isScrolling, setIsScrolling] = useState(false);
-
-
-  //During scrolling this will set the focus to the top menu header of the app.
-  //===============================================================
-  const handleScroll = (scrollView) => {
-    if (!isScrolling) {
-      setIsScrolling(true);
-
-      if (appLabelRef.current) {
-        const reactTag = appLabelRef.current._nativeTag;
-        AccessibilityInfo.setAccessibilityFocus(reactTag);
-      }
-
-      setTimeout(() => {
-        setIsScrolling(false);
-        AccessibilityInfo.announceForAccessibility("Page was scrolled, focus set to menu header")
-
-      }, 2000); // Adjust the delay time (in milliseconds) as needed
-    }
-  };
-  //=================================================================
 
   //When the page loads (everytime) the useFocusEffect is triggered
   //This is used to bring focus on the first element

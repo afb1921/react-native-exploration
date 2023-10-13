@@ -16,24 +16,28 @@ import { drawerItemsMain } from './navigation/drawerItemsMain';
 import DrawerContent from './navigation/DrawerContent.js';
 //================================================================
 
-
 //Screen Imports
 //================================================================
 import Subitem1Component from './screens/Subitem1Component';
 import Home from './screens/HomeScreen';
 import ExampleComponents from './screens/ExampleComponents';
+import AccessibilityProperties from './screens/AccessibilityProperties';
+import TableExamples from './screens/example_components/TableExamples';
+import AccordionExample from './screens/example_components/AccordionExample';
+import CheckboxExample from './screens/example_components/CheckboxExample';
+import ComboboxExample from './screens/example_components/ComboboxExample';
+import VideoplayerExample from './screens/example_components/VideoplayerExample';
+import ImageExample from './screens/example_components/ImageExample';
+import ListExamples from './screens/example_components/ListExamples';
+import ModalSelectionExample from './screens/example_components/ModalSelectionExample';
+import ExternalLinkExample from './screens/example_components/ExternalLinkExample';
+import DropdownExample from './screens/example_components/DropdownExample';
+import RadioButtonExample from './screens/example_components/RadioButtonExample';
+import TextFieldExample from './screens/example_components/TextFieldExample';
 //================================================================
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
-
-function Settings2Screen() {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Settings 2 Screen</Text>
-    </View>
-  );
-}
 
 function MainDrawerNavigation() {
   const { theme, setTheme, themeState } = useContext(themeContext);
@@ -48,9 +52,19 @@ function MainDrawerNavigation() {
         <DrawerContent drawerItems={drawerItemsMain} {...props} />
       )}>
       <Drawer.Screen name="Home" component={Home} options={{ headerShown: false }} />
-      <Drawer.Screen name="Subitem1Component" component={Subitem1Component} options={{ headerShown: false }} />
-      <Drawer.Screen name="Settings2" component={Settings2Screen} options={{ headerShown: false }} />
-      <Drawer.Screen name="ExampleComponents" component={ExampleComponents} options={{ headerShown: false }} />
+      <Drawer.Screen name="AccessibilityProperties" component={AccessibilityProperties} options={{ headerShown: false }} />
+      <Drawer.Screen name="Tables" component={TableExamples} options={{ headerShown: false }} />
+      <Drawer.Screen name="Accordion" component={AccordionExample} options={{ headerShown: false }} />
+      <Drawer.Screen name="CheckBox" component={CheckboxExample} options={{ headerShown: false }} />
+      <Drawer.Screen name="ComboBox" component={ComboboxExample} options={{ headerShown: false }} />
+      <Drawer.Screen name="VideoPlayer" component={VideoplayerExample} options={{ headerShown: false }} />
+      <Drawer.Screen name="Image" component={ImageExample} options={{ headerShown: false }} />
+      <Drawer.Screen name="Lists" component={ListExamples} options={{ headerShown: false }} />
+      <Drawer.Screen name="Dropdown" component={DropdownExample} options={{ headerShown: false }} />
+      <Drawer.Screen name="ModalSelection" component={ModalSelectionExample} options={{ headerShown: false }} />
+      <Drawer.Screen name="LinkButton" component={ExternalLinkExample} options={{ headerShown: false }} />
+      <Drawer.Screen name="RadioButton" component={RadioButtonExample} options={{ headerShown: false }} />
+      <Drawer.Screen name="TextField" component={TextFieldExample} options={{ headerShown: false }} />
     </Drawer.Navigator>
   );
 }
