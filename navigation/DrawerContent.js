@@ -31,7 +31,6 @@ function CustomDrawerContent(props) {
 
   useEffect(() => {
     if (!mainDrawer && filteredItems.routes.length > 0) {
-      console.log("tests")
       setTimeout(setAccessibilityFocus, delay);
     }
   }, [mainDrawer, filteredItems]);
@@ -72,7 +71,6 @@ function CustomDrawerContent(props) {
               key={parent.key}
               testID={parent.key}
               onPress={() => {
-                console.log("test"),
                 onItemParentPress(parent.key);
               }}
               style={styles.drawerItemButton}

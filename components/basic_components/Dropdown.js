@@ -1,7 +1,7 @@
 import React, { useContext, useState, useRef } from 'react';
 import { View, Text, TouchableOpacity, FlatList, StyleSheet, AccessibilityInfo, ScrollView } from 'react-native';
 
-import themeContext from '../Themes/themeContext';
+import themeContext from '../../Themes/themeContext';
 
 //EXAMPLE USE IN PAGE
 //================================================

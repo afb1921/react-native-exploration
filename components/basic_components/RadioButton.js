@@ -4,7 +4,7 @@ import { RadioButton } from 'react-native-paper';
 
 //Theme Imports
 //==================================================
-import themeContext from '../Themes/themeContext';
+import themeContext from '../../Themes/themeContext';
 //==================================================
 
 //EXAMPLE USE IN PAGE

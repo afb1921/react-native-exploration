@@ -6,8 +6,8 @@ import { useFocusEffect } from '@react-navigation/native';
 //Custom Imports
 //============================================================================
 import { heading, colors } from '../../constant'
-import HorizontalLine from '../../components/HorizontalLine';
-import Checkbox from '../../components/Checkbox';
+import HorizontalLine from '../../components/basic_components/HorizontalLine';
+import Checkbox from '../../components/basic_components/Checkbox';
 //============================================================================
 
 //Theme Management Import

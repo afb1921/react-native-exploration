@@ -7,7 +7,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import themeContext from '../Themes/themeContext';
 
 
-function ScreenTemplate() {
+function AccessibilityIgnoresInvertColorsProp() {
 
   //Theme Manangement
   //===============================================================
@@ -62,4 +62,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default ScreenTemplate;
+export default AccessibilityIgnoresInvertColorsProp;

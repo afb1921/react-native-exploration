@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { View, StyleSheet } from 'react-native';
 
-import themeContext from '../Themes/themeContext';
+import themeContext from '../../Themes/themeContext';
 
 function HorizontalLine() {
 

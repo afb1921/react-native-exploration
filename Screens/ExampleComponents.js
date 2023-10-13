@@ -6,22 +6,22 @@ import { useFocusEffect } from '@react-navigation/native';
 //Custom Imports
 //============================================================================
 import { heading, colors } from '../constant'
-import HorizontalLine from '../components/HorizontalLine';
-import VideoPlayer from '../components/Videoplayer';
-import HorizontalTable from '../components/HorizontalTable';
-import VerticalTable from '../components/VerticalTable';
-import TwoVariableTable from '../components/TwoVariableTable';
-import OrderedList from '../components/OrderedList';
-import UnorderedList from '../components/UnorderedList';
-import Accordion from '../components/Accordion';
-import Checkbox from '../components/Checkbox';
-import Dropdown from '../components/Dropdown';
-import ComboBox from '../components/ComboBox';
-import ModalSelection from '../components/ModalSelection';
-import RadioButton from '../components/RadioButton';
-import SpinButton from '../components/SpinButton';
-import TextField from '../components/TextField';
-import ExternalLinkButton from '../components/ExternalLinkButton';
+import HorizontalLine from '../components/basic_components/HorizontalLine';
+import VideoPlayer from '../components/basic_components/Videoplayer';
+import HorizontalTable from '../components/basic_components/HorizontalTable';
+import VerticalTable from '../components/basic_components/VerticalTable';
+import TwoVariableTable from '../components/basic_components/TwoVariableTable';
+import OrderedList from '../components/basic_components/OrderedList';
+import UnorderedList from '../components/basic_components/UnorderedList';
+import Accordion from '../components/basic_components/Accordion';
+import Checkbox from '../components/basic_components/Checkbox';
+import Dropdown from '../components/basic_components/Dropdown';
+import ComboBox from '../components/basic_components/ComboBox';
+import ModalSelection from '../components/basic_components/ModalSelection';
+import RadioButton from '../components/basic_components/RadioButton';
+import SpinButton from '../components/basic_components/SpinButton';
+import TextField from '../components/basic_components/TextField';
+import ExternalLinkButton from '../components/basic_components/ExternalLinkButton';
 //============================================================================
 
 //Asset Imports

@@ -6,7 +6,7 @@ import { useFocusEffect } from '@react-navigation/native';
 //Custom Imports
 //============================================================================
 import { heading, colors } from '../../constant'
-import ComboBox from '../../components/ComboBox';
+import ComboBox from '../../components/basic_components/ComboBox';
 //============================================================================
 
 //Theme Management Import

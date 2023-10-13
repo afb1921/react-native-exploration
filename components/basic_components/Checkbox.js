@@ -4,7 +4,7 @@ import CheckBox from 'expo-checkbox';
 
 //Theme Imports
 //==================================================
-import themeContext from '../Themes/themeContext';
+import themeContext from '../../Themes/themeContext';
 //==================================================
 
 //EXAMPLE USE IN PAGE

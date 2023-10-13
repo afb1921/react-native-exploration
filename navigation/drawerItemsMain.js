@@ -23,12 +23,15 @@ export const drawerItemsMain = [
       {nav: def_Page.commonLabel, routeName: 'RadioButton', title: 'Radio Button Example'},
       {nav: def_Page.commonLabel, routeName: 'TextField', title: 'Text Field Example'},
 
-
     ],
   },
   {
     key: 'Accessibility Properties',
     title: 'Accessibility Properties',
-    routes: [{nav: def_Page.commonLabel, routeName: 'AccessibilityProperties'}],
+    routes: [
+      {nav: def_Page.commonLabel, routeName: 'AccessibleProp', title: 'Accessible Property'},
+      {nav: def_Page.commonLabel, routeName: 'AccessibilityLabelProp', title: 'Accessibility Label Property'},
+
+    ],
   },
 ];

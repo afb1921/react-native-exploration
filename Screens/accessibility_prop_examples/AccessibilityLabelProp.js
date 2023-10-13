@@ -5,16 +5,23 @@ import { useFocusEffect } from '@react-navigation/native';
 
 //Asset Imports
 //============================================================================
-import { colors, heading } from '../constant';
+import { colors, heading } from '../../constant';
 import { FontAwesome } from '@expo/vector-icons';
 //============================================================================
 
-import HorizontalLine from '../components/basic_components/HorizontalLine';
+//Component Imports
+//============================================================================
+import HorizontalLine from '../../components/basic_components/HorizontalLine';
+import CodeBlock from '../../components/basic_components/CodeBlock';
+//============================================================================
 
-import themeContext from '../Themes/themeContext';
+//Theme Import
+//============================================================================
+import themeContext from '../../Themes/themeContext';
+//============================================================================
 
 
-function AccessibilityProperties() {
+function AccessibilityLabelProp() {
 
   //Theme Manangement
   //===============================================================
@@ -59,27 +66,22 @@ function AccessibilityProperties() {
   return (
 
     <ScrollView ref={scrollViewRef} style={[styles.container, { backgroundColor: theme.page.contentBackground }]}>
-
       <View>
 
-        <View>
+        {/* // heading.Heading is a custom heading style set in constant.js */}
+        {/* //first Element set here -------------------------------------------*/}
 
-          {/* // heading.Heading is a custom heading style set in constant.js */}
-          {/* //first Element set here -------------------------------------------*/}
+        <View style={styles.containerHeader}>
+          <heading.Heading1
+            ref={firstElementRef}
+            style={styles.containerHeaderText}
+            accessibilityLabel="Accessibility Label Property"
+          >
+            Accessibility Label Property
+          </heading.Heading1>
+        </View>
 
-          <View style={styles.containerHeader}>
-            <heading.Heading1
-              ref={firstElementRef}
-              style={styles.containerHeaderText}
-              accessibilityLabel="Accessibility Properties"
-            >
-              Accessibility Properties
-            </heading.Heading1>
-          </View>
-
-          {/* // -----------------------------------------------------------------*/}
-
-          <View style={[styles.infoContainer]}>
+        <View style={[styles.infoContainer]}>
 
             <heading.Heading2
               style={[styles.headingContent, { color: theme.page.text }]}
@@ -96,41 +98,42 @@ function AccessibilityProperties() {
             />
 
             <Text style={[styles.textContent, { color: theme.page.text }]}>
-            Android and iOS offer APIs that allow apps to work seamlessly with assistive technologies such as VoiceOver on iOS and TalkBack on Android.
+            When a view is marked as accessible, it is a good practice to set an accessibilityLabel on the view, so that people who use VoiceOver know what element they have selected. VoiceOver will read this string when a user selects the associated element.
             </Text>
-            <Text style={[styles.textContent, { color: theme.page.text }]}>
-            Please note that Android and iOS have some differences in their approaches, which can lead to variations in React Native implementations based on the platform.
-            </Text>
-          </View>
         </View>
 
-        <HorizontalLine/>
+        <HorizontalLine />
 
-        <View style={styles.imageSectionContainer}>
+        <View>
           <heading.Heading2 //Heading 2
-            style={[styles.heading2, { color: theme.page.text }]}
-            accessibilityLabel="accessible: property example"
+            style={[styles.heading2, { color: theme.page.text, textAlign: 'center' }]}
+            accessibilityLabel="Example:"
           >
-            accessible
+            Example:
           </heading.Heading2>
-          
-          <View accessible={true}>
-            <Text>Hello</Text>
-            <Text>World</Text>
+
+          <View style={[styles.exampleContainer]} accessible={true}>
+            <Text style={[styles.textContent,{ color: theme.page.text }]}>Hello</Text>
+            <Text style={[styles.textContent,{ color: theme.page.text }]}>this is an example.</Text>
           </View>
 
-          <View></View>
+          <HorizontalLine />
+
+          <View>
+            <heading.Heading2 //Heading 2
+              style={[styles.heading2, { color: theme.page.text, textAlign: 'center' }]}
+              accessibilityLabel="Code Example:"
+            >
+              Code Example:
+            </heading.Heading2>
+          
+            <CodeBlock text="<View accessible={true}>
+              <Text>Hello</Text>
+              <Text>this is an example.</Text>
+              </View>" 
+            />
+          </View>
         </View>
-
-        
-
-
-
-
-
-
-
-
 
 
 
@@ -164,9 +167,33 @@ const styles = StyleSheet.create({
   },
   //----------------------------
 
+  exampleContainer: {
+    alignItems: 'center',
+    paddingVertical: 10,
+  },
+
+  //----------------------------
+
+  //General Styles--- 
+
+  textContent: {        //This style is general text style
+    fontWeight: 'bold',
+    fontSize: 15,
+    textAlign: 'center',
+  },
+  headingContent: {        //This style is general heading style
+    paddingTop: 10,
+    paddingBottom: 5,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+
+  //----------------------------
+
   //Alt Text Info section specifc styles
   infoContainer: {
     alignItems: 'center',
+    paddingBottom: 20,
   },
 
   infoIcon: {
@@ -174,25 +201,7 @@ const styles = StyleSheet.create({
   },
   //----------------------------
 
-    //General Styles--- 
-
-    textContent: {        //This style is general text style
-      paddingTop: 10,
-      paddingBottom: 5,
-      fontWeight: 'bold',
-      fontSize: 18,
-      textAlign: 'center',
-    },
-    headingContent: {        //This style is general heading style
-      paddingTop: 10,
-      paddingBottom: 5,
-      fontWeight: 'bold',
-      textAlign: 'center',
-    },
-  
-    //----------------------------
-
 
 });
 
-export default AccessibilityProperties;
+export default AccessibilityLabelProp;

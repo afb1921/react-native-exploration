@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, FlatList } from 'react-native';
-import themeContext from '../Themes/themeContext';
+import themeContext from '../../Themes/themeContext';
 
 //EXAMPLE TABLE FOR TWO VARIABLE DATA:
 //===============================================================

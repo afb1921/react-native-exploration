@@ -18,8 +18,10 @@ import DrawerContent from './navigation/DrawerContent.js';
 
 //Screen Imports
 //================================================================
-import Subitem1Component from './screens/Subitem1Component';
+
 import Home from './screens/HomeScreen';
+
+//Component Screens
 import ExampleComponents from './screens/ExampleComponents';
 import AccessibilityProperties from './screens/AccessibilityProperties';
 import TableExamples from './screens/example_components/TableExamples';
@@ -34,13 +36,16 @@ import ExternalLinkExample from './screens/example_components/ExternalLinkExampl
 import DropdownExample from './screens/example_components/DropdownExample';
 import RadioButtonExample from './screens/example_components/RadioButtonExample';
 import TextFieldExample from './screens/example_components/TextFieldExample';
+
+//Accessibility Properties Screens
+import AccessibleProp from './screens/accessibility_prop_examples/AccessibleProp'
+import AccessibilityLabelProp from './screens/accessibility_prop_examples/AccessibilityLabelProp';
 //================================================================
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
 function MainDrawerNavigation() {
-  const { theme, setTheme, themeState } = useContext(themeContext);
   return (
     <Drawer.Navigator
       screenOptions={({
@@ -52,7 +57,6 @@ function MainDrawerNavigation() {
         <DrawerContent drawerItems={drawerItemsMain} {...props} />
       )}>
       <Drawer.Screen name="Home" component={Home} options={{ headerShown: false }} />
-      <Drawer.Screen name="AccessibilityProperties" component={AccessibilityProperties} options={{ headerShown: false }} />
       <Drawer.Screen name="Tables" component={TableExamples} options={{ headerShown: false }} />
       <Drawer.Screen name="Accordion" component={AccordionExample} options={{ headerShown: false }} />
       <Drawer.Screen name="CheckBox" component={CheckboxExample} options={{ headerShown: false }} />
@@ -65,6 +69,8 @@ function MainDrawerNavigation() {
       <Drawer.Screen name="LinkButton" component={ExternalLinkExample} options={{ headerShown: false }} />
       <Drawer.Screen name="RadioButton" component={RadioButtonExample} options={{ headerShown: false }} />
       <Drawer.Screen name="TextField" component={TextFieldExample} options={{ headerShown: false }} />
+      <Drawer.Screen name="AccessibleProp" component={AccessibleProp} options={{ headerShown: false }} />
+      <Drawer.Screen name="AccessibilityLabelProp" component={AccessibilityLabelProp} options={{ headerShown: false }} />
     </Drawer.Navigator>
   );
 }

@@ -6,7 +6,7 @@ import { useFocusEffect } from '@react-navigation/native';
 //Custom Imports
 //============================================================================
 import { heading, colors } from '../../constant'
-import VideoPlayer from '../../components/Videoplayer';
+import VideoPlayer from '../../components/basic_components/Videoplayer';
 //============================================================================
 
 //Asset Imports

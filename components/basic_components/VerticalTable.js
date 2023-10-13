@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { View, Text, StyleSheet, FlatList, ScrollView } from 'react-native';
-import themeContext from '../Themes/themeContext';
+import themeContext from '../../Themes/themeContext';
 
 //EXAMPLE TABLE FOR VERTICAL DATA:
 //===============================================================

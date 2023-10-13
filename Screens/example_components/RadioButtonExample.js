@@ -6,8 +6,8 @@ import { useFocusEffect } from '@react-navigation/native';
 //Custom Imports
 //============================================================================
 import { heading, colors } from '../../constant'
-import HorizontalLine from '../../components/HorizontalLine';
-import RadioButton from '../../components/RadioButton';
+import HorizontalLine from '../../components/basic_components/HorizontalLine';
+import RadioButton from '../../components/basic_components/RadioButton';
 //============================================================================
 
 //Theme Management Import

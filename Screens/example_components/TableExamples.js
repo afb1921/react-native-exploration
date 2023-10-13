@@ -6,10 +6,10 @@ import { useFocusEffect } from '@react-navigation/native';
 //Custom Imports
 //============================================================================
 import { heading, colors } from '../../constant'
-import HorizontalLine from '../../components/HorizontalLine';
-import HorizontalTable from '../../components/HorizontalTable';
-import VerticalTable from '../../components/VerticalTable';
-import TwoVariableTable from '../../components/TwoVariableTable';
+import HorizontalLine from '../../components/basic_components/HorizontalLine';
+import HorizontalTable from '../../components/basic_components/HorizontalTable';
+import VerticalTable from '../../components/basic_components/VerticalTable';
+import TwoVariableTable from '../../components/basic_components/TwoVariableTable';
 //============================================================================
 
 //Theme Management Import

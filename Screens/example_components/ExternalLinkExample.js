@@ -6,8 +6,8 @@ import { useFocusEffect } from '@react-navigation/native';
 //Custom Imports
 //============================================================================
 import { heading, colors } from '../../constant'
-import HorizontalLine from '../../components/HorizontalLine';
-import ExternalLinkButton from '../../components/ExternalLinkButton';
+import HorizontalLine from '../../components/basic_components/HorizontalLine';
+import ExternalLinkButton from '../../components/basic_components/ExternalLinkButton';
 //============================================================================
 
 //Theme Management Import

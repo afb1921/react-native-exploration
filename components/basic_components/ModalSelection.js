@@ -3,12 +3,12 @@ import { View, Text, Modal, TouchableOpacity, StyleSheet, AccessibilityInfo } fr
 
 //Custom Imports
 //==================================================
-import { colors } from "../constant.js"
+import { colors } from "../../constant.js"
 //==================================================
 
 //Theme Imports
 //==================================================
-import themeContext from '../Themes/themeContext.js';
+import themeContext from '../../Themes/themeContext.js';
 //==================================================
 
 //EXAMPLE USE IN PAGE

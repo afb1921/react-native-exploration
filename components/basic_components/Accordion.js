@@ -2,11 +2,11 @@ import React, { useContext, useState } from 'react';
 import { View, Text, AccessibilityInfo, StyleSheet, ScrollView } from 'react-native';
 import Collapsible from 'react-native-collapsible';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { colors } from '../constant'
+import { colors } from '../../constant'
 
 //Theme Imports
 //==================================================
-import themeContext from '../Themes/themeContext';
+import themeContext from '../../Themes/themeContext';
 //==================================================
 
 //================================================

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Linking } from 'react-native';
-import {colors} from '../constant'
+import {colors} from '../../constant'
 
 const ExternalLinkButton = ({ url, label }) => {
   const openWebsite = () => {

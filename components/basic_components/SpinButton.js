@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, AccessibilityInfo, ScrollView } from 'react-native';
 
 //Theme Managment Imports------------------------------------------
-import themeContext from '../Themes/themeContext';
+import themeContext from '../../Themes/themeContext';
 //-----------------------------------------------------------------
 
 //EXAMPLE USE IN PAGE

@@ -6,8 +6,8 @@ import { useFocusEffect } from '@react-navigation/native';
 //Custom Imports
 //============================================================================
 import { heading, colors } from '../../constant'
-import HorizontalLine from '../../components/HorizontalLine';
-import ModalSelection from '../../components/ModalSelection';
+import HorizontalLine from '../../components/basic_components/HorizontalLine';
+import ModalSelection from '../../components/basic_components/ModalSelection';
 //============================================================================
 
 //Theme Management Import
@@ -90,7 +90,7 @@ function ModalSelectionExample() {
 
         <View>
           <ModalSelection
-            title="Test Accordion"
+            title="Test Modal Selection"
             options={["Apple", "Orange", "Banana"]}
             onValueChange={handleChange}
           />

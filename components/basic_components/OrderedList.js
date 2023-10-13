@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { View, Text, FlatList, StyleSheet, ScrollView } from 'react-native';
 
 //Theme Managment Imports------------------------------------------
-import themeContext from '../Themes/themeContext';
+import themeContext from '../../Themes/themeContext';
 //-----------------------------------------------------------------
 
 //EXAMPLE DATA FOR ORDEREDLIST
@@ -80,6 +80,7 @@ const OrderedList = ({ data, numberingStyle }) => {
   const renderItem = ({ item, index }) => (
     <View style={styles.listItem}>
       <Text
+        importantForAccessibility='no'
         style={{ color: theme.orderedList.number }}
         accessibilityLabel={`${item.label}, Item ${renderNumber(index)} of ${data.length}`}
       >
@@ -87,6 +88,7 @@ const OrderedList = ({ data, numberingStyle }) => {
       </Text>
       <Text
           style={{color: theme.orderedList.text }}
+          accessibilityLabel={`${item.label}, Item ${renderNumber(index)} of ${data.length}`}
         >
           {` ${item.label}`}
         </Text>
@@ -96,7 +98,7 @@ const OrderedList = ({ data, numberingStyle }) => {
     </View>
   );
 
-  return (
+  return (      
     <ScrollView horizontal={true}>
       <FlatList
         accessibilityRole='list'

@@ -10,23 +10,24 @@ import themeContext from '../Themes/themeContext';
 //Custom Imports---------------------------------------------------
 import { colors, heading } from '../constant';
 import dog_with_glasses from '../assets/images/dog_With_Glasses.jpg';
-import ModalSelection from '../components/ModalSelection';
-import VerticalTable from '../components/VerticalTable';
-import HorizontalTable from '../components/HorizontalTable';
-import TwoVariableTable from '../components/TwoVariableTable';
-import OrderedList from '../components/OrderedList';
-import UnorderedList from '../components/UnorderedList';
-import TextField from '../components/TextField';
+import ModalSelection from '../components/basic_components/ModalSelection';
+import VerticalTable from '../components/basic_components/VerticalTable';
+import HorizontalTable from '../components/basic_components/HorizontalTable';
+import TwoVariableTable from '../components/basic_components/TwoVariableTable';
+import OrderedList from '../components/basic_components/OrderedList';
+import UnorderedList from '../components/basic_components/UnorderedList';
+import TextField from '../components/basic_components/TextField';
 import ocean_video from '../assets/videos/oceanvideo.mp4';
-import Videoplayer from '../components/Videoplayer';
-import RadioButton from '../components/RadioButton';
-import Accordion from '../components/Accordion';
-import CheckBox from '../components/Checkbox';
-import ProgressBar from '../components/ProgressBar';
-import SpinButton from '../components/SpinButton';
-import ComboBox from '../components/ComboBox';
-import Dropdown from '../components/Dropdown';
-import ExternalLinkButton from '../components/ExternalLinkButton';
+import Videoplayer from '../components/basic_components/Videoplayer';
+import RadioButton from '../components/basic_components/RadioButton';
+import Accordion from '../components/basic_components/Accordion';
+import CheckBox from '../components/basic_components/Checkbox';
+import ProgressBar from '../components/basic_components/ProgressBar';
+import SpinButton from '../components/basic_components/SpinButton';
+import ComboBox from '../components/basic_components/ComboBox';
+import Dropdown from '../components/basic_components/Dropdown';
+import ExternalLinkButton from '../components/basic_components/ExternalLinkButton';
+import CodeBlock from '../components/basic_components/CodeBlock';
 //-----------------------------------------------------------------
 
 function HomeScreen() {
@@ -125,10 +126,10 @@ function HomeScreen() {
   //----------------------------------------------------------------
 
 
-  // Focus Managment 
-  //---------------------------------------------------------------
+  // // Focus Managment 
+  // //---------------------------------------------------------------
   const firstElementRef = useRef(null);
-  //----------------------------------------------------------------
+  // //----------------------------------------------------------------
 
   //When the page loads (everytime) the useFocusEffect is triggered
   //This is used to bring focus on the first element
@@ -146,7 +147,7 @@ function HomeScreen() {
         if (firstElementRef.current) {
           const reactTag = firstElementRef.current._nativeTag;
           AccessibilityInfo.setAccessibilityFocus(reactTag);
-          console.log('First Element===========n\n'); //Debuging purposes
+          console.log('First Element\n'); //Debuging purposes
 
         }
       }, delay)
@@ -157,6 +158,8 @@ function HomeScreen() {
 
   return (
     <View style={[styles.container, { backgroundColor: theme.page.contentBackground }]}>
+
+      
 
 
       {/* //first Element set here -------------------------------------------*/}
@@ -244,7 +247,13 @@ function HomeScreen() {
         {/* <TwoVariableTable data={table_data2} title="ttt"/>  */}
    
 
-        <Videoplayer video={ocean_video} videoName="ocean"/>
+        {/* <Videoplayer video={ocean_video} videoName="ocean"/> */}
+        <CodeBlock text="
+        <View accessible={true}>
+          <Text>text one</Text>
+          <Text>text two</Text>
+          </View>"
+        />
 
         {/* <Accordion
           title="Test Title" 

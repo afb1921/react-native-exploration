@@ -3,7 +3,7 @@ import { View, TextInput, StyleSheet, Text, AccessibilityInfo, Platform, ScrollV
 
 // Theme Management Imports
 //================================================================
-import themeContext from '../Themes/themeContext';
+import themeContext from '../../Themes/themeContext';
 //================================================================
 
 //EXAMPLE USE IN PAGE

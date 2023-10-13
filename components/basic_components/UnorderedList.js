@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { View, Text, FlatList, StyleSheet, ScrollView } from 'react-native';
 
 //Theme Managment Imports------------------------------------------
-import themeContext from '../Themes/themeContext';
+import themeContext from '../../Themes/themeContext';
 //-----------------------------------------------------------------
 
 //Example Unordered List Data

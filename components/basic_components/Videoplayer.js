@@ -5,26 +5,26 @@ import Slider from '@react-native-community/slider';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
 
-//Theme Imports
+// Theme Imports
 //==================================================
-import themeContext from '../Themes/themeContext';
+import themeContext from '../../Themes/themeContext';
 //==================================================
 
-const VideoPlayer = ({video, videoName}) => {
-
-  //For Theme Management
-  //================================
+const VideoPlayer = ({ video, videoName }) => {
+// For Theme Management
+//================================
   const { theme } = React.useContext(themeContext);
 //================================
 
   const videoRef = React.useRef(null);
   const [isPlaying, setIsPlaying] = React.useState(false);
   const [sliderValue, setSliderValue] = React.useState(0);
+  const [duration, setDuration] = React.useState(0);
 
   const navigation = useNavigation();
 
   useEffect(() => {
-// Pause video playback when the screen loses focus
+    // Pause video playback when the screen loses focus
     const unsubscribeBlur = navigation.addListener('blur', () => {
       if (videoRef.current && isPlaying) {
         videoRef.current.pauseAsync();
@@ -50,8 +50,19 @@ const VideoPlayer = ({video, videoName}) => {
 
   const onSliderValueChange = (value) => {
     setSliderValue(value);
+  };
+
+  const onSliderSlidingComplete = (value) => {
     if (videoRef.current) {
-      videoRef.current.setPositionAsync(value);
+      const newPosition = value * duration;
+      videoRef.current.setPositionAsync(newPosition);
+    }
+  };
+
+  const onPlaybackStatusUpdate = (status) => {
+    if (status.positionMillis && status.durationMillis) {
+      setSliderValue(status.positionMillis / status.durationMillis);
+      setDuration(status.durationMillis);
     }
   };
 
@@ -67,11 +78,7 @@ const VideoPlayer = ({video, videoName}) => {
         isLooping
         accessibilityLabel={`${videoName}, video screen`}
         shouldPlay={isPlaying}
-        onPlaybackStatusUpdate={(status) => {
-          if (status.positionMillis && status.durationMillis) {
-            setSliderValue(status.positionMillis / status.durationMillis);
-          }
-        }}
+        onPlaybackStatusUpdate={onPlaybackStatusUpdate}
         onError={(error) => console.error('Video Error:', error)}
       />
 
@@ -99,6 +106,7 @@ const VideoPlayer = ({video, videoName}) => {
           maximumValue={1}
           value={sliderValue}
           onValueChange={onSliderValueChange}
+          onSlidingComplete={onSliderSlidingComplete}
           thumbTintColor={theme.videoPlayer.thumbTintColor}
           minimumTrackTintColor={theme.videoPlayer.minimumTrackTintColor}
         />

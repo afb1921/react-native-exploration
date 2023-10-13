@@ -1,6 +1,6 @@
 import React, { useContext, useState, useRef } from 'react';
 import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet, AccessibilityInfo, Platform, ScrollView } from 'react-native';
-import themeContext from '../Themes/themeContext';
+import themeContext from '../../Themes/themeContext';
 //EXAMPLE USE IN PAGE
 //================================================
 //This stores the selected Values of the ComboBox
@@ -86,11 +86,11 @@ const ComboBox = ({ data, onValueChange, title }) => {
 
     return (
         <ScrollView style={styles.container}>
-            <Text importantForAccessibility='no' accessible={false} style={{ color: theme.dropDown.title }}>{title}</Text>
+            <Text importantForAccessibility='no' accessible={false} style={{ color: theme.comboBox.title }}>{title}</Text>
             <TouchableOpacity
                 ref={comboBoxRef}
                 onPress={toggleComboBox}
-                style={[styles.input, { backgroundColor: theme.dropDown.selectedBackgroundColor }]}
+                style={[styles.input, { backgroundColor: theme.comboBox.selectedBackgroundColor }]}
                 accessibilityRole="button"
                 accessibilityHint={`${title} ComboBox`}
                 accessibilityState={{
@@ -98,15 +98,15 @@ const ComboBox = ({ data, onValueChange, title }) => {
                 }}
                 accessibilityLabel={selectedItem}
             >
-                <Text style={{ color: theme.dropDown.selectedText }}>{selectedItem}</Text>
+                <Text style={{ color: theme.comboBox.selectedText }}>{selectedItem}</Text>
             </TouchableOpacity>
             {isOpen && (
                 <ScrollView style={{ width: '100%' }} horizontal={true} contentContainerStyle={{ flexGrow: 1 }}>
                     <View style={styles.itemContainer}>
                         <View>
                             <TextInput
-                                style={[styles.inputField, { color: theme.dropDown.itemText }]}
-                                placeholderTextColor={theme.dropDown.placeholderText}
+                                style={[styles.inputField, { color: theme.comboBox.itemText }]}
+                                placeholderTextColor={theme.comboBox.placeholderText}
                                 placeholder={`Custom Value`}
                                 value={customValue}
                                 onChangeText={handleInputChange}
@@ -119,8 +119,8 @@ const ComboBox = ({ data, onValueChange, title }) => {
                                 data={[...data]}
                                 keyExtractor={(item) => item.toString()}
                                 renderItem={({ item, index }) => (
-                                    <TouchableOpacity onPress={() => handlePress(item)} style={{ backgroundColor: theme.dropDown.listBackgroundColor, borderWidth: 1, borderColor: theme.dropDown.borderColor }}>
-                                        <Text style={[styles.dropdownItem, { color: theme.dropDown.itemText }]} accessibilityLabel={`${item}, ${index + 2} of ${data.length+1}`}>{item}</Text>
+                                    <TouchableOpacity onPress={() => handlePress(item)} style={{ backgroundColor: theme.comboBox.listBackgroundColor, borderWidth: 1, borderColor: theme.comboBox.borderColor }}>
+                                        <Text style={[styles.comboBoxItem, { color: theme.comboBox.itemText }]} accessibilityLabel={`${item}, ${index + 2} of ${data.length+1}`}>{item}</Text>
                                     </TouchableOpacity>
                                 )}
                             />
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
         borderColor: '#ccc',
         padding: 10,
     },
-    dropdownItem: {
+    comboBoxItem: {
         padding: 10,
         borderBottomWidth: 1,
         borderBottomColor: '#ccc',
