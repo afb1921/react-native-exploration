@@ -20,7 +20,35 @@ import HorizontalLine from '../components/HorizontalLine';
 import themeContext from '../Themes/themeContext';
 //=================================================================
 
-function AltText() {
+function AltText({appLabelRef}) {
+  // First Element Set Focus for Screen Reader & Reset Scroll View
+  //===============================================================
+  const firstElementRef = React.useRef(null);
+  const scrollViewRef = React.useRef(null);
+  const [isScrolling, setIsScrolling] = React.useState(false);
+
+
+   //During scrolling this will set the focus to the top menu header of the app.
+  //===============================================================
+  const handleScroll = (scrollView) => {
+    if (!isScrolling) {
+      setIsScrolling(true);
+      console.log('Scroll')
+
+      if (appLabelRef.current) {
+        const reactTag = appLabelRef.current._nativeTag;
+        AccessibilityInfo.setAccessibilityFocus(reactTag);
+      }
+
+      setTimeout(() => {
+        setIsScrolling(false);
+        AccessibilityInfo.announceForAccessibility("Page was scrolled, focus set to menu header")
+
+      }, 2000); // Adjust the delay time (in milliseconds) as needed
+    }
+  };
+  //=================================================================
+
 
   useEffect(() => {
     console.log("use Effect Alt Text")
@@ -30,12 +58,6 @@ function AltText() {
   //===============================================================
   const { theme} = useContext(themeContext);
   //===============================================================
-
-
-  // First Element Set Focus for Screen Reader & Reset Scroll View
-  //===============================================================
-  const firstElementRef = useRef(null);
-  const scrollViewRef = useRef(null);
 
    //When the page loads (everytime) the useFocusEffect is triggered
   //This is used to bring focus on the first element
@@ -72,7 +94,7 @@ function AltText() {
 
   return (
 
-    <ScrollView ref={scrollViewRef} style={[styles.container, { backgroundColor: theme.page.contentBackground }]}>
+    <ScrollView onScroll={handleScroll} ref={scrollViewRef} style={[styles.container, { backgroundColor: theme.page.contentBackground }]}>
 
       <View>
 

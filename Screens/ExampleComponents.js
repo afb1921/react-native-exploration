@@ -21,6 +21,7 @@ import ModalSelection from '../components/ModalSelection';
 import RadioButton from '../components/RadioButton';
 import SpinButton from '../components/SpinButton';
 import TextField from '../components/TextField';
+import ExternalLinkButton from '../components/ExternalLinkButton';
 //============================================================================
 
 //Asset Imports
@@ -95,7 +96,7 @@ const data = [
 //================================================================
 
 
-function ExampleComponents() {
+function ExampleComponents({appLabelRef}) {
 
 
   const [value, setValue] = useState(null);
@@ -113,6 +114,28 @@ function ExampleComponents() {
   //===============================================================
   const firstElementRef = useRef(null);
   const scrollViewRef = useRef(null);
+  const [isScrolling, setIsScrolling] = useState(false);
+
+
+  //During scrolling this will set the focus to the top menu header of the app.
+  //===============================================================
+  const handleScroll = (scrollView) => {
+    if (!isScrolling) {
+      setIsScrolling(true);
+
+      if (appLabelRef.current) {
+        const reactTag = appLabelRef.current._nativeTag;
+        AccessibilityInfo.setAccessibilityFocus(reactTag);
+      }
+
+      setTimeout(() => {
+        setIsScrolling(false);
+        AccessibilityInfo.announceForAccessibility("Page was scrolled, focus set to menu header")
+
+      }, 2000); // Adjust the delay time (in milliseconds) as needed
+    }
+  };
+  //=================================================================
 
   //When the page loads (everytime) the useFocusEffect is triggered
   //This is used to bring focus on the first element
@@ -147,7 +170,12 @@ function ExampleComponents() {
 
   return (
 
-    <ScrollView ref={scrollViewRef} style={[styles.container, { backgroundColor: theme.page.contentBackground }]}>
+    <ScrollView
+      ref={scrollViewRef}
+      keyboardDismissMode='on-drag' 
+      pagingEnabled="false" 
+      style={[styles.container, { backgroundColor: theme.page.contentBackground }]}
+    >
 
       <View>
         {/* // heading.Heading is a custom heading style set in constant.js */}
@@ -281,7 +309,7 @@ function ExampleComponents() {
             title="Test Accordion"
             collapsedData={
               <View>
-                <Text>This is the collapsed data</Text>
+                <Text style={{color: theme.page.text}}>This is the collapsed data</Text>
               </View>
             }
           />
@@ -402,6 +430,19 @@ function ExampleComponents() {
             title="Enter Amount"
             onValueChange={handleChange}
           />
+        </View>
+
+        <View>
+          <heading.Heading2 //Heading 2
+            style={[styles.heading2, { color: theme.page.text }]}
+            accessibilityLabel="External Link Example"
+          >
+            External Link Example
+          </heading.Heading2>
+
+          <ExternalLinkButton url="https://reactnative.dev/docs/accessibility" label="React Native Accessibility Docs"/>
+
+          
         </View>
 
       </View>

@@ -34,10 +34,10 @@ const Accordion = ({ title, collapsedData }) => { //Give Title and collapsedData
 
     const toggleExpand = () => { //When the accordion is triggered it will check to see if its expanded or collapsed, then announce its state.
         if (collapsed == true) {
-            AccessibilityInfo.announceForAccessibility("Expanded Accordion")
+            AccessibilityInfo.announceForAccessibility("Expanded")
         }
         else if (collapsed == false) {
-            AccessibilityInfo.announceForAccessibility("Collapsed Accordion")
+            AccessibilityInfo.announceForAccessibility("Collapsed")
         }
         setCollapsed(!collapsed); //This will set the collapsed state
     }

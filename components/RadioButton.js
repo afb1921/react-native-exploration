@@ -51,7 +51,7 @@ const CustomRadioButton = ({ data, title, onValueChange }) => {
     return (
         <ScrollView horizontal={true} style={styles.container}>
             <View style={{ flexDirection: 'column' }}>
-                <Text style={{ color: theme.spinButton.title }}>{title}</Text>
+                <Text style={{ color: theme.radioButton.title }}>{title}</Text>
                 <FlatList
                     accessibilityRole={"list"}
                     keyExtractor={(item, index) => index.toString()}

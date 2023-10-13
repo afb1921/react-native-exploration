@@ -9,16 +9,17 @@ import themeContext from '../Themes/themeContext';
 //================================================================
 
 
-const DarkModeSwitch = (({ darkModeTheme, setDarkMode, onToggle}) => {
+const DarkModeSwitch = (({onToggle}) => {
 
     //Theme Management
     //================================
-    const { theme, toggleButtonRef } = useContext(themeContext);
+    const { theme, toggleButtonRef, setTheme, themeState } = useContext(themeContext);
     //===============================
 
     const handleToggle = (value) => { //When switch is clicked (it will change the theme)
-      setDarkMode(value);
-      EventRegister.emit('ChangeTheme', value);
+      console.log(themeState)
+      setTheme(!themeState); // Toggle the dark mode state
+      EventRegister.emit('ChangeTheme', !themeState); // Emit the updated state
       onToggle();
     };
   
@@ -36,9 +37,9 @@ const DarkModeSwitch = (({ darkModeTheme, setDarkMode, onToggle}) => {
         {/* The dark mode switch */}
         {/* ============================= */}
         <Switch
-         thumbColor={darkModeTheme ? 'orange' : colors.darkBlue}
+         thumbColor={themeState ? 'orange' : colors.darkBlue}
          trackColor={{ false: colors.lightGreen, true: colors.lightGreen }} // Specify colors for off and on states
-          value={darkModeTheme}
+          value={themeState}
           ref={toggleButtonRef}
           accessibilityLabel='Dark Mode'
           accessibilityRole='switch'

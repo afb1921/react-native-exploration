@@ -80,11 +80,16 @@ const OrderedList = ({ data, numberingStyle }) => {
   const renderItem = ({ item, index }) => (
     <View style={styles.listItem}>
       <Text
-        style={{ color: theme.orderedList.text }}
+        style={{ color: theme.orderedList.number }}
         accessibilityLabel={`${item.label}, Item ${renderNumber(index)} of ${data.length}`}
       >
-        {`${renderNumber(index)}. ${item.label}`}
+        {`${renderNumber(index)}. `}
       </Text>
+      <Text
+          style={{color: theme.orderedList.text }}
+        >
+          {` ${item.label}`}
+        </Text>
       {item.subItems && item.subItems.length > 0 && (
         <OrderedList data={item.subItems} numberingStyle={numberingStyle} />
       )}
@@ -105,7 +110,10 @@ const OrderedList = ({ data, numberingStyle }) => {
 
 const styles = StyleSheet.create({
   listItem: {
-    padding: 8,
+    flexDirection: 'row',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+
   },
 });
 

@@ -19,7 +19,6 @@ export const heading = {
         style={[defaultStyles, style]} // Merge defaultStyles with the provided style prop
         accessibilityRole='header'
         accessible={true}
-        accessibilityHint='This is a level 1 Heading'
       >
         {children}
       </Text>
@@ -41,7 +40,6 @@ export const heading = {
         style={[defaultStyles, style]} // Merge defaultStyles with the provided style prop
         accessibilityRole='header'
         accessible={true}
-        accessibilityHint='This is a level 2 Heading'
       >
         {children}
       </Text>
@@ -62,9 +60,7 @@ export const heading = {
         ref={ref}
         style={[defaultStyles, style]} // Merge defaultStyles with the provided style prop
         accessibilityRole='header'
-        accessible={true}
-        accessibilityHint='This is a level 3 Heading'
-    
+        accessible={true}    
       >
         {children}
       </Text>
@@ -122,4 +118,7 @@ export const def_Page = {
 
   page5Name: "Page 5",
   page5MenuName: "Page 5 (PLACEHOLDER)",
+
+  page6Name: "Subitem1Component",
+  page6MenuName: "Page 6 (PLACEHOLDER)",
 }

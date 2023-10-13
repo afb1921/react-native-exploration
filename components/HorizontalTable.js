@@ -37,6 +37,7 @@ const HorizontalTable = ({ data }) => {
       ]}
       accessibilityRole="header"
       accessibilityHint='cell Header'
+      accessibilityLabel={headerText}
     >
       {headerText}
     </Text>
@@ -54,6 +55,7 @@ const HorizontalTable = ({ data }) => {
         },
       ]}
       accessibilityLabel={`${item[key]} of ${item.id}`}
+      accessibilityRole="text"
     >
       {item[key]}
     </Text>
@@ -66,7 +68,14 @@ const HorizontalTable = ({ data }) => {
       keyExtractor={(item, index) => index.toString()}
       renderItem={({ item }) => (
         <View>
-          <Text accessibilityRole="header" accessibilityHint="Table Title" style={[styles.sectionTitle, {color: theme.horizontal_Table.title}]}>{item.title}</Text>
+          <Text 
+            accessibilityRole="header" 
+            accessibilityHint="Table Title" 
+            style={[styles.sectionTitle, {color: theme.horizontal_Table.title}]}
+            accessibilityLabel={item.title}
+          >
+            {item.title}
+          </Text>
 
           <ScrollView style={styles.section} horizontal={true} showsHorizontalScrollIndicator={false} accessibilityRole='grid'>
             <View style={styles.row}>

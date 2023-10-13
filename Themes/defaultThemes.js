@@ -42,10 +42,10 @@ export const darkMode = {
         //headerIcon is used in 'App.js'
         //titleText is used in 'App.js'
     //------------------------------------------------
-        headerMenu: colors.darkerGrey, //Color of header background for each page
-        titleText: 'white', //Color of title for each page
-        hamburgerIcon: 'white', //Color of hamburger icon
-        headerIcon: colors.brightBlue, //Color for header icon
+        headerMenu: colors.darkerGrey, //(background) of header background for each page
+        titleText: 'white', //(color) Color of title for each page
+        hamburgerIcon: 'white', //(color) Color of hamburger icon
+        headerIcon: colors.brightBlue, //(color) Color for header icon
 
     //Status Bar Colors
     //=================================================
@@ -165,6 +165,7 @@ export const darkMode = {
         //Used in OrderedList.js
     //--------------------------------
         text: 'white', // (color)
+        number: 'orange', // (color)
     //==================================================
     },
 
@@ -303,12 +304,12 @@ export const lightMode = {
         inactive: 'white', // (backgroundColor) Color for inactive navigation Background
         active: colors.darkBlue, // (backgroundColor) Color for active navigation Background
 
-        innerBorder: colors.lighterGrey, // (borderColor) drawer inner border color
-        outerBorder: colors.darkerGrey, // (borderColor) drawer outer border color
+        innerBorder: "black", // (borderColor) drawer inner border color
+        outerBorder: "black", // (borderColor) drawer outer border color
 
-        innerBorderRadius: 0, // (borderRadius) drawer inner border radius
-        borderBottomWidth: 0, // (borderBottomWidth) borderdrawer border bottom width
-        borderLeftWidth: 0, // (borderLeftWidth) drawer border left width
+        innerBorderRadius: 8, // (borderRadius) drawer inner border radius
+        borderBottomWidth: 3, // (borderBottomWidth) drawer border bottom width
+        borderLeftWidth: 5, // (borderLeftWidth) drawer border left width
 
     },
     //===================================================
@@ -447,6 +448,7 @@ export const lightMode = {
         //Used in OrderedList.js
     //--------------------------------
         text: 'black', // (color)
+        number: 'black', // (color)
     //================================================
     },
 
