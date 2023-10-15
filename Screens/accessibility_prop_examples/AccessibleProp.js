@@ -13,12 +13,25 @@ import { FontAwesome } from '@expo/vector-icons';
 //============================================================================
 import HorizontalLine from '../../components/basic_components/HorizontalLine';
 import CodeBlock from '../../components/basic_components/CodeBlock';
+import TwoVariableTable from '../../components/basic_components/TwoVariableTable';
 //============================================================================
 
 //Theme Import
 //============================================================================
 import themeContext from '../../Themes/themeContext';
 //============================================================================
+
+
+//Table
+//============================================================================
+const TwoVarData = {
+  columns: ['Pass/Fail'],
+  rows: [
+    { label: 'IOS-VoiceOver', values: ["PASS"] },
+    { label: 'Android-TalkBack', values: ['PASS'] },
+  ],
+};
+//================================================================
 
 
 function AccessibleProp() {
@@ -83,23 +96,23 @@ function AccessibleProp() {
 
         <View style={[styles.infoContainer]}>
 
-            <heading.Heading2
-              style={[styles.headingContent, { color: theme.page.text }]}
-              accessibilityLabel="Important Information"
-            >
-              Important Information
-            </heading.Heading2>
+          <heading.Heading2
+            style={[styles.headingContent, { color: theme.page.text }]}
+            accessibilityLabel="Important Information"
+          >
+            Important Information
+          </heading.Heading2>
 
-            <FontAwesome
-              name="info-circle"
-              style={[styles.infoIcon, , { color: theme.page.text }]}
-              importantForAccessibility='no'
-              accessible={false}
-            />
+          <FontAwesome
+            name="info-circle"
+            style={[styles.infoIcon, , { color: theme.page.text }]}
+            importantForAccessibility='no'
+            accessible={false}
+          />
 
-            <Text style={[styles.textContent, { color: theme.page.text }]}>
-              When true, indicates that the view is an accessibility element. When a view is an accessibility element, it groups its children into a single selectable component. By default, all touchable elements are accessible.
-            </Text>
+          <Text style={[styles.textContent, { color: theme.page.text }]}>
+            When true, indicates that the view is an accessibility element. When a view is an accessibility element, it groups its children into a single selectable component. By default, all touchable elements are accessible.
+          </Text>
         </View>
 
         <HorizontalLine />
@@ -113,8 +126,8 @@ function AccessibleProp() {
           </heading.Heading2>
 
           <View style={[styles.exampleContainer]} accessible={true}>
-            <Text style={[styles.textContent,{ color: theme.page.text }]}>Hello</Text>
-            <Text style={[styles.textContent,{ color: theme.page.text }]}>this is an example.</Text>
+            <Text style={[styles.textContent, { color: theme.page.text }]}>Hello</Text>
+            <Text style={[styles.textContent, { color: theme.page.text }]}>this is an example.</Text>
           </View>
 
           <HorizontalLine />
@@ -126,17 +139,20 @@ function AccessibleProp() {
             >
               Code Example:
             </heading.Heading2>
-          
+
             <CodeBlock text="<View accessible={true}>
               <Text>Hello</Text>
               <Text>this is an example.</Text>
-              </View>" 
+              </View>"
             />
           </View>
         </View>
 
+        <HorizontalLine />
 
-
+        <View>
+          <TwoVariableTable title="Pass/Fail Information" data={TwoVarData} cellTextStyle={{ fontWeight: 'bold', fontSize: 18 }} titleStyle={{ textAlign: 'center' }} />
+        </View>
 
 
       </View>

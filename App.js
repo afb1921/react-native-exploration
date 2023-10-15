@@ -40,6 +40,9 @@ import TextFieldExample from './screens/example_components/TextFieldExample';
 //Accessibility Properties Screens
 import AccessibleProp from './screens/accessibility_prop_examples/AccessibleProp'
 import AccessibilityLabelProp from './screens/accessibility_prop_examples/AccessibilityLabelProp';
+import AccessibilityHintProp from './screens/accessibility_prop_examples/AccessibilityHintProp';
+import AccessibilityRoleProp from './screens/accessibility_prop_examples/AccessibilityRoleProp';
+import AccessibilityLabelledByProp from './screens/accessibility_prop_examples/android_only/AccessibilityLabelledByProp';
 //================================================================
 
 const Drawer = createDrawerNavigator();
@@ -69,8 +72,13 @@ function MainDrawerNavigation() {
       <Drawer.Screen name="LinkButton" component={ExternalLinkExample} options={{ headerShown: false }} />
       <Drawer.Screen name="RadioButton" component={RadioButtonExample} options={{ headerShown: false }} />
       <Drawer.Screen name="TextField" component={TextFieldExample} options={{ headerShown: false }} />
+
       <Drawer.Screen name="AccessibleProp" component={AccessibleProp} options={{ headerShown: false }} />
       <Drawer.Screen name="AccessibilityLabelProp" component={AccessibilityLabelProp} options={{ headerShown: false }} />
+      <Drawer.Screen name="AccessibilityHintProp" component={AccessibilityHintProp} options={{ headerShown: false }} />
+      <Drawer.Screen name="AccessibilityRoleProp" component={AccessibilityRoleProp} options={{ headerShown: false }} />
+      <Drawer.Screen name="AccessibilityLabelledByProp" component={AccessibilityLabelledByProp} options={{ headerShown: false }} />
+
     </Drawer.Navigator>
   );
 }

@@ -1,6 +1,6 @@
 // AccessibilityProperties.js
 import React, { useRef, useContext } from 'react';
-import { View, Text, ScrollView, StyleSheet, AccessibilityInfo } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, AccessibilityInfo, TouchableOpacity } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
 //Asset Imports
@@ -13,6 +13,7 @@ import { FontAwesome } from '@expo/vector-icons';
 //============================================================================
 import HorizontalLine from '../../components/basic_components/HorizontalLine';
 import CodeBlock from '../../components/basic_components/CodeBlock';
+import TwoVariableTable from '../../components/basic_components/TwoVariableTable';
 //============================================================================
 
 //Theme Import
@@ -21,7 +22,19 @@ import themeContext from '../../Themes/themeContext';
 //============================================================================
 
 
-function AccessibilityLabelProp() {
+//Table
+//============================================================================
+const TwoVarData = {
+  columns: ['Pass/Fail'],
+  rows: [
+    { label: 'IOS-VoiceOver', values: ["PASS"] },
+    { label: 'Android-TalkBack', values: ['PASS'] },
+  ],
+};
+//================================================================
+
+
+function AccessibilityHintProp() {
 
   //Theme Manangement
   //===============================================================
@@ -83,23 +96,26 @@ function AccessibilityLabelProp() {
 
         <View style={[styles.infoContainer]}>
 
-            <heading.Heading2
-              style={[styles.headingContent, { color: theme.page.text }]}
-              accessibilityLabel="Important Information"
-            >
-              Important Information
-            </heading.Heading2>
+          <heading.Heading2
+            style={[styles.headingContent, { color: theme.page.text }]}
+            accessibilityLabel="Important Information"
+          >
+            Important Information
+          </heading.Heading2>
 
-            <FontAwesome
-              name="info-circle"
-              style={[styles.infoIcon, , { color: theme.page.text }]}
-              importantForAccessibility='no'
-              accessible={false}
-            />
+          <FontAwesome
+            name="info-circle"
+            style={[styles.infoIcon, , { color: theme.page.text }]}
+            importantForAccessibility='no'
+            accessible={false}
+          />
 
-            <Text style={[styles.textContent, { color: theme.page.text }]}>
-            When a view is marked as accessible, it is a good practice to set an accessibilityLabel on the view, so that people who use VoiceOver know what element they have selected. VoiceOver will read this string when a user selects the associated element.
-            </Text>
+          <Text style={[styles.textContent, { color: theme.page.text }]}>
+            When a view is marked as accessible, it is a good practice to set an accessibilityLabel on the view, so people know what element they have selected. The label string will be announced when the user selects the associated element.
+          </Text>
+          <Text style={[styles.textContent, { color: theme.page.text }]}>
+            In the example below, the accessibility label would default to "Press me!" however, since the accessibility label is set to "Tap me!" it will be announced instead.
+          </Text>
         </View>
 
         <HorizontalLine />
@@ -112,9 +128,15 @@ function AccessibilityLabelProp() {
             Example:
           </heading.Heading2>
 
-          <View style={[styles.exampleContainer]} accessible={true}>
-            <Text style={[styles.textContent,{ color: theme.page.text }]}>Hello</Text>
-            <Text style={[styles.textContent,{ color: theme.page.text }]}>this is an example.</Text>
+          <View style={[styles.exampleContainer]}>
+            <TouchableOpacity
+              accessible={true}
+              accessibilityLabel="Tap me!"
+              >
+              <View style={{backgroundColor: theme.button.color, borderRadius: 10}}>
+                <Text style={[styles.buttonText, {color: theme.button.text}]}>Press me!</Text>
+              </View>
+            </TouchableOpacity>
           </View>
 
           <HorizontalLine />
@@ -126,19 +148,25 @@ function AccessibilityLabelProp() {
             >
               Code Example:
             </heading.Heading2>
-          
-            <CodeBlock text="<View accessible={true}>
-              <Text>Hello</Text>
-              <Text>this is an example.</Text>
-              </View>" 
+
+            <CodeBlock text="
+              <TouchableOpacity
+              accessible={true}
+              accessibilityLabel='Tap me!'
+              >
+              <View>
+                <Text>Press me!</Text>
+              </View>
+            </TouchableOpacity>"
             />
           </View>
         </View>
 
+        <HorizontalLine />
 
-
-
-
+        <View>
+          <TwoVariableTable title="Pass/Fail Information" data={TwoVarData} cellTextStyle={{ fontWeight: 'bold', fontSize: 18 }} titleStyle={{ textAlign: 'center' }} />
+        </View>
       </View>
 
     </ScrollView>
@@ -201,7 +229,9 @@ const styles = StyleSheet.create({
   },
   //----------------------------
 
-
+  buttonText: {
+    padding: 10,
+  }
 });
 
-export default AccessibilityLabelProp;
+export default AccessibilityHintProp;

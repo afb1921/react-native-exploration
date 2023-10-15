@@ -31,6 +31,9 @@ export const drawerItemsMain = [
     routes: [
       {nav: def_Page.commonLabel, routeName: 'AccessibleProp', title: 'Accessible Property'},
       {nav: def_Page.commonLabel, routeName: 'AccessibilityLabelProp', title: 'Accessibility Label Property'},
+      {nav: def_Page.commonLabel, routeName: 'AccessibilityHintProp', title: 'Accessibility Hint Property'},
+      {nav: def_Page.commonLabel, routeName: 'AccessibilityRoleProp', title: 'Accessibility Role Property'},
+      {nav: def_Page.commonLabel, routeName: 'AccessibilityLabelledByProp', title: 'Accessibility Labelled By Property'},
 
     ],
   },
