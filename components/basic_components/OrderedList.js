@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import { View, Text, FlatList, StyleSheet, ScrollView } from 'react-native';
 
-//Theme Managment Imports------------------------------------------
+//Theme Import
+//================================================
 import themeContext from '../../Themes/themeContext';
-//-----------------------------------------------------------------
+//================================================
 
 //EXAMPLE DATA FOR ORDEREDLIST
 //===============================================================

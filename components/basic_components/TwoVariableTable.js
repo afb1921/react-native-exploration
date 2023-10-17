@@ -1,6 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, FlatList } from 'react-native';
+
+//Theme Import
+//================================================
 import themeContext from '../../Themes/themeContext';
+//================================================
 
 const TwoVariableTable = ({ data, title, cellTextStyle, titleStyle }) => {
   const { theme } = useContext(themeContext);
@@ -136,7 +140,7 @@ const TwoVariableTable = ({ data, title, cellTextStyle, titleStyle }) => {
 
   return (
     <View style={[styles.container, ]}>
-      <Text style={[styles.title, { color: theme.twoVar_Table.title, ...titleStyle}]}>{title}</Text>
+      <Text accessibilityRole='header' style={[styles.title, { color: theme.twoVar_Table.title, ...titleStyle}]}>{title}</Text>
       <ScrollView horizontal={true}>
         <FlatList
           accessibilityRole="grid"

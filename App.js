@@ -18,7 +18,6 @@ import DrawerContent from './navigation/DrawerContent.js';
 
 //Screen Imports
 //================================================================
-
 import Home from './screens/HomeScreen';
 
 //Component Screens
@@ -43,6 +42,10 @@ import AccessibilityLabelProp from './screens/accessibility_prop_examples/Access
 import AccessibilityHintProp from './screens/accessibility_prop_examples/AccessibilityHintProp';
 import AccessibilityRoleProp from './screens/accessibility_prop_examples/AccessibilityRoleProp';
 import AccessibilityLabelledByProp from './screens/accessibility_prop_examples/android_only/AccessibilityLabelledByProp';
+import AccessibilityLiveRegionProp from './screens/accessibility_prop_examples/android_only/AccessibilityLiveRegionProp';
+import AccessibilityElementsHiddenProp from './screens/accessibility_prop_examples/ios_only/AccessibilityElementsHiddenProp';
+import AccessibilityLanguageProp from './screens/accessibility_prop_examples/ios_only/AccessibilityLanguageProp';
+import AccessibilityViewIsModalProp from './screens/accessibility_prop_examples/ios_only/AccessibilityViewIsModalProp';
 //================================================================
 
 const Drawer = createDrawerNavigator();
@@ -60,6 +63,9 @@ function MainDrawerNavigation() {
         <DrawerContent drawerItems={drawerItemsMain} {...props} />
       )}>
       <Drawer.Screen name="Home" component={Home} options={{ headerShown: false }} />
+
+      {/* Components */}
+      {/* ================================================================ */}
       <Drawer.Screen name="Tables" component={TableExamples} options={{ headerShown: false }} />
       <Drawer.Screen name="Accordion" component={AccordionExample} options={{ headerShown: false }} />
       <Drawer.Screen name="CheckBox" component={CheckboxExample} options={{ headerShown: false }} />
@@ -72,12 +78,31 @@ function MainDrawerNavigation() {
       <Drawer.Screen name="LinkButton" component={ExternalLinkExample} options={{ headerShown: false }} />
       <Drawer.Screen name="RadioButton" component={RadioButtonExample} options={{ headerShown: false }} />
       <Drawer.Screen name="TextField" component={TextFieldExample} options={{ headerShown: false }} />
+      {/* ================================================================ */}
 
-      <Drawer.Screen name="AccessibleProp" component={AccessibleProp} options={{ headerShown: false }} />
-      <Drawer.Screen name="AccessibilityLabelProp" component={AccessibilityLabelProp} options={{ headerShown: false }} />
-      <Drawer.Screen name="AccessibilityHintProp" component={AccessibilityHintProp} options={{ headerShown: false }} />
-      <Drawer.Screen name="AccessibilityRoleProp" component={AccessibilityRoleProp} options={{ headerShown: false }} />
-      <Drawer.Screen name="AccessibilityLabelledByProp" component={AccessibilityLabelledByProp} options={{ headerShown: false }} />
+      {/* Accessibility Properties For Both iOS and Android */}
+      {/* ================================================================ */}
+      <Drawer.Screen name="Accessible" component={AccessibleProp} options={{ headerShown: false }} />
+      <Drawer.Screen name="Label" component={AccessibilityLabelProp} options={{ headerShown: false }} />
+      <Drawer.Screen name="Hint" component={AccessibilityHintProp} options={{ headerShown: false }} />
+      <Drawer.Screen name="Role" component={AccessibilityRoleProp} options={{ headerShown: false }} />
+      {/* ================================================================ */}
+
+      {/* Accessibility Properties for Android */}
+      {/* ================================================================ */}
+      <Drawer.Screen name="LabelledBy" component={AccessibilityLabelledByProp} options={{ headerShown: false }} />
+      <Drawer.Screen name="LiveRegion" component={AccessibilityLiveRegionProp} options={{ headerShown: false }} />
+      {/* ================================================================ */}
+
+      {/* Accessibility Properties for iOS */}
+      {/* ================================================================ */}
+      <Drawer.Screen name="ElementsHidden" component={AccessibilityElementsHiddenProp} options={{ headerShown: false }} />
+      <Drawer.Screen name="Language" component={AccessibilityLanguageProp} options={{ headerShown: false }} />
+      <Drawer.Screen name="ViewIsModal" component={AccessibilityViewIsModalProp} options={{ headerShown: false }} />
+
+      {/* ================================================================ */}
+
+
 
     </Drawer.Navigator>
   );

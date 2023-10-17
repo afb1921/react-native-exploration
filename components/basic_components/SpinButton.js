@@ -1,9 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, AccessibilityInfo, ScrollView } from 'react-native';
 
-//Theme Managment Imports------------------------------------------
+//Theme Import
+//================================================
 import themeContext from '../../Themes/themeContext';
-//-----------------------------------------------------------------
+//================================================
 
 //EXAMPLE USE IN PAGE
 //================================================
@@ -29,9 +30,9 @@ import themeContext from '../../Themes/themeContext';
 const SpinButton = ({ title, onValueChange }) => {
 
     //Theme Manangement
-    //-----------------------------------------------
+    //================================================
     const { theme } = useContext(themeContext);
-    //-----------------------------------------------
+    //================================================
 
     const [value, setValue] = useState(0); //The current state, and sets state, the inital value is 0
 

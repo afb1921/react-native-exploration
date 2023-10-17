@@ -3,7 +3,7 @@ import { TouchableOpacity, StyleSheet, AccessibilityInfo } from 'react-native';
 import { DrawerActions} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-//Theme Imports
+//Theme Import
 //================================================================
 import themeContext from '../Themes/themeContext';
 //================================================================
@@ -21,7 +21,7 @@ const HeaderRight = ({navigation}) => {
     const delay = 200
     setTimeout(() => {
       AccessibilityInfo.announceForAccessibility('Opened Menu Drawer');
-      console.log("Opened Menu Drawer ==================")
+      console.log("Opened Menu Drawer")
     }, delay);
     
   };
@@ -35,7 +35,7 @@ const HeaderRight = ({navigation}) => {
         size={30} 
         style={[styles.hamburgerIcon, {color: theme.app_Header.hamburgerIcon}]} 
         accessibilityLabel='Menu Drawer' 
-        accessibilityRole='menu' 
+        accessibilityRole='button' 
       />
     </TouchableOpacity>
   );

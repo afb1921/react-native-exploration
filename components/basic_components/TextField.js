@@ -1,7 +1,7 @@
 import React, {useContext, useRef} from 'react';
 import { View, TextInput, StyleSheet, Text, AccessibilityInfo, Platform, ScrollView } from 'react-native';
 
-// Theme Management Imports
+// Theme Import
 //================================================================
 import themeContext from '../../Themes/themeContext';
 //================================================================

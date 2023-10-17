@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useEffect } from 'react';
+import React, { useRef, useContext, useEffect, useState } from 'react';
 import { View, Text, Image, AccessibilityInfo, StyleSheet, ScrollView } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
@@ -16,16 +16,17 @@ import VideoPlayer from '../components/Videoplayer'
 import HorizontalLine from '../components/HorizontalLine';
 //============================================================================
 
-//Theme Managment Imports==========================================
+//Theme Managment Imports
+//============================================================================
 import themeContext from '../Themes/themeContext';
-//=================================================================
+//============================================================================
 
 function AltText({appLabelRef}) {
   // First Element Set Focus for Screen Reader & Reset Scroll View
   //===============================================================
-  const firstElementRef = React.useRef(null);
-  const scrollViewRef = React.useRef(null);
-  const [isScrolling, setIsScrolling] = React.useState(false);
+  const firstElementRef = useRef(null);
+  const scrollViewRef = useRef(null);
+  const [isScrolling, setIsScrolling] = useState(false);
 
 
    //During scrolling this will set the focus to the top menu header of the app.

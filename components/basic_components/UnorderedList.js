@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import { View, Text, FlatList, StyleSheet, ScrollView } from 'react-native';
 
-//Theme Managment Imports------------------------------------------
+//Theme Import
+//================================================
 import themeContext from '../../Themes/themeContext';
-//-----------------------------------------------------------------
+//================================================
 
 //Example Unordered List Data
 //================================================================
@@ -66,8 +67,6 @@ const styles = StyleSheet.create({
   listItem: {
     flexDirection: 'row',
     padding: 5,
-    // borderBottomWidth: 1,
-    // borderColor: '#ccc',
     textAlign: 'center', // Center text horizontally
     alignItems: 'center', // Center text vertically
   },

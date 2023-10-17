@@ -1,18 +1,18 @@
 import React, { useContext } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-
+//Theme Import
+//================================================
 import themeContext from '../../Themes/themeContext';
+//================================================
 
 const CodeBlock =({text}) => {
 
     const {theme} = useContext(themeContext);
 
     return (
-
         <View style={[styles.container, {backgroundColor: "black"}]}>
             <Text style={{color: "white"}}>{text}</Text>
         </View>
-
     );
 }
 

@@ -1,6 +1,10 @@
 import React, { useContext } from 'react';
 import { View, Text, FlatList, StyleSheet, ScrollView } from 'react-native';
+
+//Theme Import
+//================================================
 import themeContext from '../../Themes/themeContext';
+//================================================
 
 //EXAMPLE TABLE FOR HORIZONTAL DATA:
 //===============================================================

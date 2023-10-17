@@ -1,23 +1,24 @@
 // ScreenTemplate.js
-import React, { useRef, useContext, useState } from 'react';
+import React from 'react';
 import { View, Text, ScrollView, StyleSheet, AccessibilityInfo } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
-
+//Theme Import
+//================================================
 import themeContext from '../Themes/themeContext';
-
+//================================================
 
 function ScreenTemplate() {
 
   //Theme Manangement
   //===============================================================
-  const { theme } = useContext(themeContext);
+  const { theme } = React.useContext(themeContext);
   //===============================================================
 
   // First Element Set Focus for Screen Reader & Reset Scroll View
   //===============================================================
-  const firstElementRef = useRef(null);
-  const scrollViewRef = useRef(null);
+  const firstElementRef = React.useRef(null);
+  const scrollViewRef = React.useRef(null);
   //When the page loads (everytime) the useFocusEffect is triggered
   //This is used to bring focus on the first element
   useFocusEffect(
@@ -44,22 +45,13 @@ function ScreenTemplate() {
   return (
 
     <ScrollView ref={scrollViewRef} style={[styles.container, { backgroundColor: theme.page.contentBackground }]}>
-
       <View>
         <Text ref={firstElementRef}>Welcome to the Page Template Screen!</Text>
-
       </View>
-
     </ScrollView>
-
-
-
   );
 }
-
 const styles = StyleSheet.create({
-
-
 });
 
 export default ScreenTemplate;

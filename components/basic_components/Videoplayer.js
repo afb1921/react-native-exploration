@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useEffect, useRef, useState, useContext } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Video } from 'expo-av';
 import Slider from '@react-native-community/slider';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
 
-// Theme Imports
+// Theme Import
 //==================================================
 import themeContext from '../../Themes/themeContext';
 //==================================================
@@ -13,13 +13,13 @@ import themeContext from '../../Themes/themeContext';
 const VideoPlayer = ({ video, videoName }) => {
 // For Theme Management
 //================================
-  const { theme } = React.useContext(themeContext);
+  const { theme } = useContext(themeContext);
 //================================
 
-  const videoRef = React.useRef(null);
-  const [isPlaying, setIsPlaying] = React.useState(false);
-  const [sliderValue, setSliderValue] = React.useState(0);
-  const [duration, setDuration] = React.useState(0);
+  const videoRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [sliderValue, setSliderValue] = useState(0);
+  const [duration, setDuration] = useState(0);
 
   const navigation = useNavigation();
 

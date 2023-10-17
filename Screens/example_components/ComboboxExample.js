@@ -1,6 +1,5 @@
-// ExampleComponents.js
 import React, { useRef, useContext, useState } from 'react';
-import { View, Text, ScrollView, StyleSheet, AccessibilityInfo, Image } from 'react-native';
+import { View, ScrollView, StyleSheet, AccessibilityInfo, } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
 //Custom Imports

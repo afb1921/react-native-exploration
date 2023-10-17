@@ -138,7 +138,7 @@ const ModalSelection = ({ options, title, onValueChange }) => {
 
             {/* //This is the modal popup displayed when the button is clicked
             ============================================================ */}
-            <Modal visible={showModal} transparent={true} animationType='slide' onRequestClose={handleModalClose} ref={selectedRef}>
+            <Modal visible={showModal} transparent={true} animationType='slide' onRequestClose={handleModalClose} ref={selectedRef} accessibilityViewIsModal={true}>
                 <View style={styles.modalContainer}>
                     <View style={[styles.modalContent, { backgroundColor: theme.modal.background}]}>
                         <View style={[styles.modalHeader, 
@@ -159,7 +159,7 @@ const ModalSelection = ({ options, title, onValueChange }) => {
                                 key={option}
                                 onPress={() => {handleOptionPress(option, index), onValueChange(option)}}
                                 accessibilityLabel={`${option}, Item ${index + 1} of ${options.length}`}
-                                accessibilityRole='menuitem'>
+                                accessibilityRole='button'>
 
                                 <View style={[styles.roundedTextContainer, 
                                     { 

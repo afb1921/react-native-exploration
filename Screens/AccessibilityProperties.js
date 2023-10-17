@@ -9,9 +9,15 @@ import { colors, heading } from '../constant';
 import { FontAwesome } from '@expo/vector-icons';
 //============================================================================
 
+//Component Imports
+//============================================================================
 import HorizontalLine from '../components/basic_components/HorizontalLine';
+//============================================================================
 
+//Theme Imports
+//============================================================================
 import themeContext from '../Themes/themeContext';
+//============================================================================
 
 
 function AccessibilityProperties() {

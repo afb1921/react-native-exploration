@@ -9,8 +9,6 @@ import { colors } from '../../constant'
 import themeContext from '../../Themes/themeContext';
 //==================================================
 
-//================================================
-
 //Example Use:
 //================================================
 {/* <Accordion
@@ -60,9 +58,7 @@ const Accordion = ({ title, collapsedData }) => { //Give Title and collapsedData
                 {collapsedData} 
             </Collapsible>
         </ScrollView>
-
     );
-
 }
 
 const styles = StyleSheet.create({
@@ -80,8 +76,6 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: "bold",
     }
-
-
 });
 
 

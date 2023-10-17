@@ -1,4 +1,3 @@
-// AccessibilityProperties.js
 import React, { useRef, useContext } from 'react';
 import { View, Text, ScrollView, StyleSheet, AccessibilityInfo } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';

@@ -1,9 +1,9 @@
-import React, { useContext, useState} from 'react';
+import React, { useContext} from 'react';
 import { View, Text, Switch} from 'react-native';
 import { EventRegister } from 'react-native-event-listeners';
 import {colors} from '../constant';
 
-//Theme Imports
+//Theme Import
 //================================================================
 import themeContext from '../Themes/themeContext';
 //================================================================

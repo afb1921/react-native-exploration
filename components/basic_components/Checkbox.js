@@ -62,7 +62,6 @@ const CustomCheckBox = ({ data, title, onValueChange }) => { //Give data, title,
   return (
     <ScrollView horizontal={true} style={styles.container}>
       <View style={{ flexDirection: 'column' }}>
-
         <Text style={{ color: theme.checkBox.title }}>{title}</Text>
         <FlatList
           data={data}
@@ -76,7 +75,6 @@ const CustomCheckBox = ({ data, title, onValueChange }) => { //Give data, title,
                 onValueChange={() => { toggleCheckbox(index); onValueChange(item); }} //When a value is changed it will trigger toggleCheckbox and onValueChange
                 accessibilityLabel={(data.length > 1) ? `${item}, ${index + 1} of ${data.length}` : `${item}`}
                 color={checkboxStates[index] ? theme.checkBox.color : theme.checkBox.uncheckedColor}
-
               />
               <Text
                 importantForAccessibility='no'

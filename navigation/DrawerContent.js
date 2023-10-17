@@ -6,12 +6,14 @@ import {
   Text,
   TouchableOpacity,
   SafeAreaView,
-  Image,
   AccessibilityInfo,
 } from 'react-native';
 
+//Theme Imports
+//================================================================
 import DarkModeSwitch from '../components/DarkModeSwitch';
 import themeContext from '../Themes/themeContext';
+//================================================================
 
 function CustomDrawerContent(props) {
   const [mainDrawer, setMainDrawer] = useState(true);
@@ -69,6 +71,7 @@ function CustomDrawerContent(props) {
           return (
             <TouchableOpacity
               key={parent.key}
+              accessibilityRole='menuItem'
               testID={parent.key}
               onPress={() => {
                 onItemParentPress(parent.key);
@@ -111,6 +114,8 @@ function CustomDrawerContent(props) {
           onPress={() => toggleMainDrawer()}
           style={[styles.backButtonRow, {borderColor: theme.page.text}]}
           ref={firstElementRef}
+          accessibilityRole='button'
+          accessibilityHint='Activate to return to the previous menu.'
         >
           <Text style={[styles.backButtonText, styles.itemText, { color: theme.page.text }]}>{'BACK'}</Text>
         </TouchableOpacity>
@@ -121,6 +126,7 @@ function CustomDrawerContent(props) {
             <TouchableOpacity
               key={route.routeName}
               testID={route.routeName}
+              accessibilityRole='menuItem'
               // accessibilityLabel={isActive ? `Current Page, ${route.title} `: `${route.title}`}
               onPress={() =>
                 props.navigation.navigate(route.nav, {

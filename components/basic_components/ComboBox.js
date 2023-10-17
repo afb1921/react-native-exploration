@@ -1,6 +1,11 @@
 import React, { useContext, useState, useRef } from 'react';
 import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet, AccessibilityInfo, Platform, ScrollView } from 'react-native';
+
+//Theme Import
+//================================================
 import themeContext from '../../Themes/themeContext';
+//================================================
+
 //EXAMPLE USE IN PAGE
 //================================================
 //This stores the selected Values of the ComboBox
@@ -120,7 +125,7 @@ const ComboBox = ({ data, onValueChange, title }) => {
                                 keyExtractor={(item) => item.toString()}
                                 renderItem={({ item, index }) => (
                                     <TouchableOpacity onPress={() => handlePress(item)} style={{ backgroundColor: theme.comboBox.listBackgroundColor, borderWidth: 1, borderColor: theme.comboBox.borderColor }}>
-                                        <Text style={[styles.comboBoxItem, { color: theme.comboBox.itemText }]} accessibilityLabel={`${item}, ${index + 2} of ${data.length+1}`}>{item}</Text>
+                                        <Text style={[styles.comboBoxItem, { color: theme.comboBox.itemText }]} accessibilityLabel={`${item}, ${index + 2} of ${data.length + 1}`}>{item}</Text>
                                     </TouchableOpacity>
                                 )}
                             />

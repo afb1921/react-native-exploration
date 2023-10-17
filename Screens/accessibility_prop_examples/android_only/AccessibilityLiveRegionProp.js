@@ -1,6 +1,5 @@
-// AccessibilityProperties.js
-import React, { useRef, useContext } from 'react';
-import { View, Text, ScrollView, StyleSheet, AccessibilityInfo, TextInput } from 'react-native';
+import React, { useRef, useContext, useState } from 'react';
+import { View, Text, ScrollView, StyleSheet, AccessibilityInfo, TouchableWithoutFeedback } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
 //Asset Imports
@@ -37,6 +36,8 @@ const TwoVarData = {
 
 function AccessibilityLiveRegionProp() {
 
+  const [value, setValue] = useState(0);
+
   //Theme Manangement
   //===============================================================
   const { theme } = useContext(themeContext);
@@ -47,7 +48,10 @@ function AccessibilityLiveRegionProp() {
   const firstElementRef = useRef(null);
   const scrollViewRef = useRef(null);
 
-  const onChange=() =>{
+  const incrementValue=() =>{
+    setValue(value+1);
+    console.log(value+1);
+    
 
   }
 
@@ -93,9 +97,9 @@ function AccessibilityLiveRegionProp() {
           <heading.Heading1
             ref={firstElementRef}
             style={styles.containerHeaderText}
-            accessibilityLabel="Accessibility Labelled By Property"
+            accessibilityLabel="Accessibility Live Region Property"
           >
-            Accessibility Labelled By Property
+            Accessibility Live Region Property
           </heading.Heading1>
         </View>
 
@@ -116,8 +120,10 @@ function AccessibilityLiveRegionProp() {
           />
 
           <Text style={[styles.textContent, { color: theme.page.text }]}>
-            A reference to another element nativeID used to build complex forms.
-            The value of accessibilityLabelledBy should match the nativeID of the related element.
+            When components dynamically change, we want TalkBack to alert the end user. This is made possible by the accessibilityLiveRegion property.
+          </Text>
+          <Text style={[styles.textContent, { color: theme.page.text }]}>
+            It can be set to none, polite and assertive: none: Accessibility services should not announce changes to this view. Polite: Accessibility services should announce changes to this view. Assertive; Accessibility services should interrupt ongoing speech to immediately announce changes to this view.
           </Text>
         </View>
 
@@ -126,18 +132,20 @@ function AccessibilityLiveRegionProp() {
         <View>
           <heading.Heading2 //Heading 2
             style={[styles.heading2, { color: theme.page.text, textAlign: 'center' }]}
-            accessibilityLabel="Example:"
+            accessibilityLabel="Example: (For Polite)"
           >
-            Example:
+            Example (For Polite):
           </heading.Heading2>
 
           <View style={[styles.exampleContainer]}>
-            <Text style={{color: theme.page.text}} nativeID="formLabel">Label for Input Field</Text>
-            <TextInput
-              style={{color: theme.page.text, borderColor: theme.page.text, borderWidth: 1, paddingHorizontal: 40}}
-              accessibilityLabel="input"
-              accessibilityLabelledBy="formLabel"
-            />
+            <View>
+              <TouchableWithoutFeedback onPress={incrementValue}>
+                <View style={{backgroundColor: theme.button.color, borderRadius: 10}}>
+                  <Text style={{color: theme.button.text, padding: 10}}>Click me!</Text>
+                </View>
+              </TouchableWithoutFeedback>
+            </View>
+            <Text style={{color: theme.page.text}} accessibilityLiveRegion="polite">Clicked {value} times</Text>
           </View>
 
           <HorizontalLine />
@@ -151,11 +159,14 @@ function AccessibilityLiveRegionProp() {
             </heading.Heading2>
 
             <CodeBlock text="
-              <Text nativeID='formLabel'>Label for Input Field</Text>
-              <TextInput
-                accessibilityLabel='input'
-                accessibilityLabelledBy='formLabel'
-              />"
+              <View>
+              <TouchableWithoutFeedback onPress={incrementValue}>
+                <View>
+                  <Text>Click me!</Text>
+                </View>
+              </TouchableWithoutFeedback>
+            </View>
+            <Text accessibilityLiveRegion='polite'>Clicked {value} times</Text>"
             />
           </View>
         </View>
