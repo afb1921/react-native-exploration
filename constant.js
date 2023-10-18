@@ -84,41 +84,13 @@ export const colors = {
 
 }
 
-export const def_Page = {
+export const def_App = {
 
-  //------------------------------------------------
-  // if setCommonLabel is true commonLabel will replace the pageName Label to be displayed
-  // if setCommonLabel is false pageName will be displayed on the header menu
-
-  setCommonLabel: true, // OPTIONS 'true' or 'false'
-
-  commonLabel: "Accessibility Demo",
+  commonLabel: "Accessibility Demo", //Label for App Header
 
   //***INITAL STATE OF THEME***
   //================================================
   //SWITCHES APP COLORS BETWEEN "lightMode" AND "darkMode" 
   setDarkMode: false, // OPTIONS 'true' or 'false'
   //================================================
-
-  //------------------------------------------------
-
-  drawerTitle: "Demo Pages", // drawerTitle sets the title of the drawer when opened
-
-  page1Name: "Home",  // pageName sets the name of the page when displayed on the header menu (Name displayed outside of drawer)
-  page1MenuName: 'Home', // pageMenuName sets the name displayed inside the drawer (Name displayed inside drawer)
-
-  page2Name: "AltText",
-  page2MenuName: 'Alt Text Info',
-
-  page3Name: "Accessibility Properties",
-  page3MenuName: 'Accessibility Properties',
-
-  page4Name: "Example Components",
-  page4MenuName: 'Example Components',
-
-  page5Name: "Page 5",
-  page5MenuName: "Page 5 (PLACEHOLDER)",
-
-  page6Name: "Subitem1Component",
-  page6MenuName: "Page 6 (PLACEHOLDER)",
 }
