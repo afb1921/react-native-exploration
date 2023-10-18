@@ -9,6 +9,7 @@ import themeContext from '../Themes/themeContext';
 
 //Custom Imports---------------------------------------------------
 import { colors, heading } from '../constant';
+import {resetScroll, accessibilityFocus} from '../functions/accessibility_functions'
 import dog_with_glasses from '../assets/images/dog_With_Glasses.jpg';
 import ModalSelection from '../components/basic_components/ModalSelection';
 import VerticalTable from '../components/basic_components/VerticalTable';
@@ -130,30 +131,13 @@ function HomeScreen() {
   // //---------------------------------------------------------------
   const firstElementRef = useRef(null);
   // //----------------------------------------------------------------
-
   //When the page loads (everytime) the useFocusEffect is triggered
-  //This is used to bring focus on the first element
   useFocusEffect(
     React.useCallback(() => {
-
-      console.log("use Focus Effect Home")
-
-      // // Add a time delay before executing the focus logic, 
-      // //This is important so the it gives it a chance to find the firstElement during loading.
-      const delay = 250; // Delay in milliseconds
-
-      setTimeout(() => {
-
-        if (firstElementRef.current) {
-          const reactTag = firstElementRef.current._nativeTag;
-          AccessibilityInfo.setAccessibilityFocus(reactTag);
-          console.log('First Element\n'); //Debuging purposes
-
-        }
-      }, delay)
+      // resetScroll(scrollViewRef);
+      accessibilityFocus(firstElementRef, 250);
     }, [])
-
-  )
+  ) 
 
 
   return (
@@ -247,13 +231,13 @@ function HomeScreen() {
         {/* <TwoVariableTable data={table_data2} title="ttt"/>  */}
    
 
-        {/* <Videoplayer video={ocean_video} videoName="ocean"/> */}
-        <CodeBlock text="
+        <Videoplayer video={ocean_video} videoName="ocean"/>
+        {/* <CodeBlock text="
         <View accessible={true}>
           <Text>text one</Text>
           <Text>text two</Text>
           </View>"
-        />
+        /> */}
 
         {/* <Accordion
           title="Test Title" 

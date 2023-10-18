@@ -1,10 +1,11 @@
 import React, { useRef, useContext } from 'react';
-import { View, Text, ScrollView, StyleSheet, AccessibilityInfo, TextInput } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, TextInput } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
 //Asset Imports
 //============================================================================
 import { colors, heading } from '../../../constant';
+import {resetScroll, accessibilityFocus} from '../../../functions/accessibility_functions'
 import { FontAwesome } from '@expo/vector-icons';
 //============================================================================
 
@@ -13,7 +14,6 @@ import { FontAwesome } from '@expo/vector-icons';
 import HorizontalLine from '../../../components/basic_components/HorizontalLine';
 import CodeBlock from '../../../components/basic_components/CodeBlock';
 import TwoVariableTable from '../../../components/basic_components/TwoVariableTable';
-import TextField from '../../../components/basic_components/TextField';
 //============================================================================
 
 //Theme Import
@@ -41,43 +41,15 @@ function AccessibilityHintProp() {
   const { theme } = useContext(themeContext);
   //===============================================================
 
-  // First Element Set Focus for Screen Reader & Reset Scroll View
-  //===============================================================
   const firstElementRef = useRef(null);
   const scrollViewRef = useRef(null);
 
-  const onChange=() =>{
-
-  }
-
-  //When the page loads (everytime) the useFocusEffect is triggered
-  //This is used to bring focus on the first element
-  useFocusEffect(
+   //When the page loads (everytime) the useFocusEffect is triggered
+   useFocusEffect(
     React.useCallback(() => {
-
-      console.log("use Focus Effect")
-
-      //Reset Scroll View to the top of the page
-      if (scrollViewRef.current) {
-        console.log("Scroll")
-        scrollViewRef.current.scrollTo({ y: 0 });
-      }
-
-      // // Add a time delay before executing the focus logic, 
-      // //This is important so the it gives it a chance to find the firstElement during loading.
-      const delay = 250; // Delay in milliseconds
-
-      setTimeout(() => {
-
-        if (firstElementRef.current) {
-          const reactTag = firstElementRef.current._nativeTag;
-          AccessibilityInfo.setAccessibilityFocus(reactTag);
-          console.log('First Element\n'); //Debuging purposes
-
-        }
-      }, delay)
+      resetScroll(scrollViewRef);
+      accessibilityFocus(firstElementRef, 250);
     }, [])
-
   )
 
   return (

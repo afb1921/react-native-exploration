@@ -1,11 +1,12 @@
 import React, { useRef, useContext, useState } from 'react';
-import { View, Text, ScrollView, StyleSheet, AccessibilityInfo, TouchableOpacity, Modal } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Modal } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
 //Asset Imports
 //============================================================================
 import { colors, heading } from '../../../constant';
 import { FontAwesome } from '@expo/vector-icons';
+import {resetScroll, accessibilityFocus} from '../../../functions/accessibility_functions'
 //============================================================================
 
 //Component Imports
@@ -41,33 +42,18 @@ function AccessibilityViewIsModalProp() {
   //===============================================================
   const { theme } = useContext(themeContext);
   //===============================================================
-
-  // First Element Set Focus for Screen Reader & Reset Scroll View
-  //===============================================================
+  
   const firstElementRef = useRef(null);
   const scrollViewRef = useRef(null);
 
   //When the page loads (everytime) the useFocusEffect is triggered
-  //This is used to bring focus on the first element
   useFocusEffect(
     React.useCallback(() => {
-      //Reset Scroll View to the top of the page
-      if (scrollViewRef.current) {
-        console.log("Scroll")
-        scrollViewRef.current.scrollTo({ y: 0 });
-      }
-      // // Add a time delay before executing the focus logic, 
-      // //This is important so the it gives it a chance to find the firstElement during loading.
-      const delay = 250; // Delay in milliseconds
-      setTimeout(() => {
-        if (firstElementRef.current) {
-          const reactTag = firstElementRef.current._nativeTag;
-          AccessibilityInfo.setAccessibilityFocus(reactTag);
-        }
-      }, delay)
+      resetScroll(scrollViewRef);
+      accessibilityFocus(firstElementRef, 250);
     }, [])
-
   )
+
   return (
     <ScrollView ref={scrollViewRef} style={[styles.container, { backgroundColor: theme.page.contentBackground }]}>
       <View>

@@ -1,9 +1,16 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Linking } from 'react-native';
-import {colors} from '../../constant'
+
+//Theme Import
+//================================================
+import themeContext from '../../Themes/themeContext';
+//================================================
 
 const ExternalLinkButton = ({ url, label }) => {
+
+  const {theme} = useContext(themeContext);
+
   const openWebsite = () => {
     Linking.openURL(url)
       .then((supported) => {
@@ -17,7 +24,7 @@ const ExternalLinkButton = ({ url, label }) => {
   return (
     <TouchableOpacity onPress={openWebsite} accessibilityRole='link' accessibilityHint={`This will take you to: ${url}`}>
       <View style={styles.button}>
-        <Text style={styles.buttonText}>{label}</Text>
+        <Text style={[styles.buttonText, {borderColor: theme.externalLink.borderColor, color: theme.externalLink.text}]}>{label}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -26,13 +33,10 @@ const ExternalLinkButton = ({ url, label }) => {
 const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
-   
   },
   
   buttonText: {
-    color: colors.darkBlue,
     borderWidth: 2,
-    borderColor: colors.darkBlue,
     fontWeight: 'bold',
     fontSize: 16,  
     borderRadius: 5,

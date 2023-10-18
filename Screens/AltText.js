@@ -1,10 +1,11 @@
-import React, { useRef, useContext, useEffect, useState } from 'react';
+import React, { useRef, useContext, useState } from 'react';
 import { View, Text, Image, AccessibilityInfo, StyleSheet, ScrollView } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
 //Asset Imports
 //============================================================================
 import { colors, heading } from '../constant';
+import {resetScroll, accessibilityFocus} from '../functions/accessibility_functions'
 import { FontAwesome } from '@expo/vector-icons';
 import dog_with_glasses from '../assets/images/dog_With_Glasses.jpg';
 import ocean_video from '../assets/videos/oceanvideo.mp4';
@@ -50,46 +51,18 @@ function AltText({appLabelRef}) {
   };
   //=================================================================
 
-
-  useEffect(() => {
-    console.log("use Effect Alt Text")
-  });
-
   //Theme Manangement
   //===============================================================
   const { theme} = useContext(themeContext);
   //===============================================================
 
-   //When the page loads (everytime) the useFocusEffect is triggered
-  //This is used to bring focus on the first element
+  //When the page loads (everytime) the useFocusEffect is triggered
   useFocusEffect(
     React.useCallback(() => {
-
-      console.log("use Focus Effect Alt Text")
-
-      //Reset Scroll View to the top of the page
-      if (scrollViewRef.current) {
-        console.log("Scroll")
-        scrollViewRef.current.scrollTo({ y: 0 });
-      }
-
-      // // Add a time delay before executing the focus logic, 
-      // //This is important so the it gives it a chance to find the firstElement during loading.
-      const delay = 250; // Delay in milliseconds
-
-      setTimeout(() => {
-
-        if (firstElementRef.current) {
-          const reactTag = firstElementRef.current._nativeTag;
-          AccessibilityInfo.setAccessibilityFocus(reactTag);
-          console.log('First Element===========n\n'); //Debuging purposes
-
-        }
-      }, delay)
+      resetScroll(scrollViewRef);
+      accessibilityFocus(firstElementRef, 250);
     }, [])
-
-  )
-
+  ) 
 
   //---------------------------------------------------------------
 

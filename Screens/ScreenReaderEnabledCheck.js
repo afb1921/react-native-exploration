@@ -9,15 +9,13 @@ import {resetScroll, accessibilityFocus} from '../functions/accessibility_functi
 import themeContext from '../Themes/themeContext';
 //================================================
 
-function ScreenTemplate() {
+function ScreenReaderEnabledCheck() {
 
   //Theme Manangement
   //===============================================================
   const { theme } = React.useContext(themeContext);
   //===============================================================
 
-  // First Element Set Focus for Screen Reader & Reset Scroll View
-  //===============================================================
   const firstElementRef = React.useRef(null);
   const scrollViewRef = React.useRef(null);
 
@@ -27,10 +25,9 @@ function ScreenTemplate() {
       resetScroll(scrollViewRef);
       accessibilityFocus(firstElementRef, 250);
     }, [])
-  ) 
+  )
 
   return (
-
     <ScrollView ref={scrollViewRef} style={[styles.container, { backgroundColor: theme.page.contentBackground }]}>
       <View>
         <Text ref={firstElementRef}>Welcome to the Page Template Screen!</Text>
@@ -41,4 +38,4 @@ function ScreenTemplate() {
 const styles = StyleSheet.create({
 });
 
-export default ScreenTemplate;
+export default ScreenReaderEnabledCheck;

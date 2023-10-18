@@ -8,7 +8,7 @@ import { FontAwesome } from '@expo/vector-icons';
 
 //Custom Imports
 //================================================================
-import { def_Page } from './constant';
+import { def_App } from './constant';
 import { darkMode, lightMode } from './Themes/defaultThemes';
 import themeContext from './Themes/themeContext';
 import HeaderRight from './navigation/HeaderRight';
@@ -19,6 +19,7 @@ import DrawerContent from './navigation/DrawerContent.js';
 //Screen Imports
 //================================================================
 import Home from './screens/HomeScreen';
+import ScreenReaderCheck from './screens/ScreenReaderEnabledCheck.js';
 
 //Component Screens
 import ExampleComponents from './screens/ExampleComponents';
@@ -46,6 +47,7 @@ import AccessibilityLiveRegionProp from './screens/accessibility_prop_examples/a
 import AccessibilityElementsHiddenProp from './screens/accessibility_prop_examples/ios_only/AccessibilityElementsHiddenProp';
 import AccessibilityLanguageProp from './screens/accessibility_prop_examples/ios_only/AccessibilityLanguageProp';
 import AccessibilityViewIsModalProp from './screens/accessibility_prop_examples/ios_only/AccessibilityViewIsModalProp';
+import ImportantForAccessibility from './screens/accessibility_prop_examples/android_only/ImportantForAccessibilityProp';
 //================================================================
 
 const Drawer = createDrawerNavigator();
@@ -63,7 +65,7 @@ function MainDrawerNavigation() {
         <DrawerContent drawerItems={drawerItemsMain} {...props} />
       )}>
       <Drawer.Screen name="Home" component={Home} options={{ headerShown: false }} />
-
+      <Drawer.Screen name="ScreenReaderCheck" component={ScreenReaderCheck} options={{ headerShown: false }} />
       {/* Components */}
       {/* ================================================================ */}
       <Drawer.Screen name="Tables" component={TableExamples} options={{ headerShown: false }} />
@@ -92,6 +94,7 @@ function MainDrawerNavigation() {
       {/* ================================================================ */}
       <Drawer.Screen name="LabelledBy" component={AccessibilityLabelledByProp} options={{ headerShown: false }} />
       <Drawer.Screen name="LiveRegion" component={AccessibilityLiveRegionProp} options={{ headerShown: false }} />
+      <Drawer.Screen name="ImportantForAccessibility" component={ImportantForAccessibility} options={{ headerShown: false }} />
       {/* ================================================================ */}
 
       {/* Accessibility Properties for iOS */}
@@ -99,7 +102,6 @@ function MainDrawerNavigation() {
       <Drawer.Screen name="ElementsHidden" component={AccessibilityElementsHiddenProp} options={{ headerShown: false }} />
       <Drawer.Screen name="Language" component={AccessibilityLanguageProp} options={{ headerShown: false }} />
       <Drawer.Screen name="ViewIsModal" component={AccessibilityViewIsModalProp} options={{ headerShown: false }} />
-
       {/* ================================================================ */}
 
 
@@ -112,7 +114,7 @@ function App() {
 
   //Theme Managment
   //================================================
-  const [themeState, setTheme] = useState(def_Page.setDarkMode); //switches the state of Theme state
+  const [themeState, setTheme] = useState(def_App.setDarkMode); //switches the state of Theme state
   const theme = themeState ? darkMode : lightMode;  ///This controls the inital state of the theme
   const toggleButtonRef = useRef(null); //Reference of toggleButton
   //================================================
@@ -144,7 +146,7 @@ function App() {
             },
           })}
         >
-          <Stack.Screen name={def_Page.commonLabel} component={MainDrawerNavigation} />
+          <Stack.Screen name={def_App.commonLabel} component={MainDrawerNavigation} />
         </Stack.Navigator>
       </NavigationContainer>
 

@@ -1,11 +1,12 @@
 import React, { useRef, useContext } from 'react';
-import { View, Text, ScrollView, StyleSheet, AccessibilityInfo, TextInput } from 'react-native';
+import { View, Text, ScrollView, StyleSheet} from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
 //Asset Imports
 //============================================================================
 import { colors, heading } from '../../../constant';
 import { FontAwesome } from '@expo/vector-icons';
+import {resetScroll, accessibilityFocus} from '../../../functions/accessibility_functions'
 //============================================================================
 
 //Component Imports
@@ -13,7 +14,6 @@ import { FontAwesome } from '@expo/vector-icons';
 import HorizontalLine from '../../../components/basic_components/HorizontalLine';
 import CodeBlock from '../../../components/basic_components/CodeBlock';
 import TwoVariableTable from '../../../components/basic_components/TwoVariableTable';
-import TextField from '../../../components/basic_components/TextField';
 //============================================================================
 
 //Theme Import
@@ -34,50 +34,22 @@ const TwoVarData = {
 //================================================================
 
 
-function AccessibilityHintProp() {
+function ImportantForAccessibility() {
 
   //Theme Manangement
   //===============================================================
   const { theme } = useContext(themeContext);
   //===============================================================
 
-  // First Element Set Focus for Screen Reader & Reset Scroll View
-  //===============================================================
   const firstElementRef = useRef(null);
   const scrollViewRef = useRef(null);
 
-  const onChange=() =>{
-
-  }
-
   //When the page loads (everytime) the useFocusEffect is triggered
-  //This is used to bring focus on the first element
   useFocusEffect(
     React.useCallback(() => {
-
-      console.log("use Focus Effect")
-
-      //Reset Scroll View to the top of the page
-      if (scrollViewRef.current) {
-        console.log("Scroll")
-        scrollViewRef.current.scrollTo({ y: 0 });
-      }
-
-      // // Add a time delay before executing the focus logic, 
-      // //This is important so the it gives it a chance to find the firstElement during loading.
-      const delay = 250; // Delay in milliseconds
-
-      setTimeout(() => {
-
-        if (firstElementRef.current) {
-          const reactTag = firstElementRef.current._nativeTag;
-          AccessibilityInfo.setAccessibilityFocus(reactTag);
-          console.log('First Element\n'); //Debuging purposes
-
-        }
-      }, delay)
+      resetScroll(scrollViewRef);
+      accessibilityFocus(firstElementRef, 250);
     }, [])
-
   )
 
   return (
@@ -92,9 +64,9 @@ function AccessibilityHintProp() {
           <heading.Heading1
             ref={firstElementRef}
             style={styles.containerHeaderText}
-            accessibilityLabel="Accessibility Labelled By Property"
+            accessibilityLabel="Important For Accessibility"
           >
-            Accessibility Labelled By Property
+            Important For Accessibility
           </heading.Heading1>
         </View>
 
@@ -115,8 +87,7 @@ function AccessibilityHintProp() {
           />
 
           <Text style={[styles.textContent, { color: theme.page.text }]}>
-            A reference to another element nativeID used to build complex forms.
-            The value of accessibilityLabelledBy should match the nativeID of the related element.
+            When two UI components with the same parent overlap, default accessibility focus may behave unpredictably. The "importantForAccessibility" property can resolve this issue by determining whether a view triggers accessibility events and is reported to accessibility services. This property offers options such as "auto," "yes," "no," and "no-hide-descendants," where the last option makes accessibility services ignore both the component and its children.
           </Text>
         </View>
 
@@ -131,12 +102,22 @@ function AccessibilityHintProp() {
           </heading.Heading2>
 
           <View style={[styles.exampleContainer]}>
-            <Text style={{color: theme.page.text}} nativeID="formLabel">Label for Input Field</Text>
-            <TextInput
-              style={{color: theme.page.text, borderColor: theme.page.text, borderWidth: 1, paddingHorizontal: 40}}
-              accessibilityLabel="input"
-              accessibilityLabelledBy="formLabel"
-            />
+            <View style={styles.container}>
+              <View
+                style={{ backgroundColor: colors.brightBlue, marginBottom: 10 }}
+                importantForAccessibility="yes">
+                <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center', padding: 5 }}>First layout</Text>
+              </View>
+              <View
+                style={[styles.layout, { backgroundColor: 'red', marginBottom: 10 }]}
+                importantForAccessibility="no-hide-descendants">
+                <Text style={{ fontWeight: 'bold', padding: 5 }}>Second layout</Text>
+              </View>
+            </View>
+            <Text>
+              In the above example, only the first layout is announced by TalkBack.
+              The second layout is completely invisible to TalkBack and other accessibility services due to having important for accessibility set to "no-hide-descendants".
+            </Text>
           </View>
 
           <HorizontalLine />
@@ -150,11 +131,18 @@ function AccessibilityHintProp() {
             </heading.Heading2>
 
             <CodeBlock text="
-              <Text nativeID='formLabel'>Label for Input Field</Text>
-              <TextInput
-                accessibilityLabel='input'
-                accessibilityLabelledBy='formLabel'
-              />"
+              <View style={styles.container}>
+              <View
+                style={{ backgroundColor: colors.brightBlue, marginBottom: 10 }}
+                importantForAccessibility='yes'>
+                <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center', padding: 5 }}>First layout</Text>
+              </View>
+              <View
+                style={[styles.layout, { backgroundColor: 'red', marginBottom: 10 }]}
+                importantForAccessibility='no-hide-descendants'>
+                <Text style={{ fontWeight: 'bold', padding: 5 }}>Second layout</Text>
+              </View>
+            </View>"
             />
           </View>
         </View>
@@ -229,6 +217,6 @@ const styles = StyleSheet.create({
   buttonText: {
     padding: 10,
   }
-});
+})
 
-export default AccessibilityHintProp;
+export default ImportantForAccessibility;
