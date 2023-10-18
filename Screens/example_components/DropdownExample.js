@@ -4,10 +4,11 @@ import { useFocusEffect } from '@react-navigation/native';
 
 //Custom Imports
 //============================================================================
-import { heading, colors } from '../../constant'
+import { colors } from '../../constant'
 import {resetScroll, accessibilityFocus} from '../../functions/accessibility_functions'
 import HorizontalLine from '../../components/basic_components/HorizontalLine';
 import Dropdown from '../../components/basic_components/Dropdown';
+import {heading} from '../../components/headings';
 //============================================================================
 
 //Theme Management Import

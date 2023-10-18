@@ -5,7 +5,8 @@ import { useFocusEffect } from '@react-navigation/native';
 
 //Custom Imports
 //============================================================================
-import { heading, colors } from '../constant'
+import { colors } from '../constant'
+import {heading} from '../components/headings';
 import HorizontalLine from '../components/basic_components/HorizontalLine';
 import VideoPlayer from '../components/basic_components/Videoplayer';
 import HorizontalTable from '../components/basic_components/HorizontalTable';

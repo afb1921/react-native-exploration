@@ -4,9 +4,10 @@ import { useFocusEffect } from '@react-navigation/native';
 
 //Custom Imports
 //============================================================================
-import { heading, colors } from '../../constant'
+import { colors } from '../../constant'
 import {resetScroll, accessibilityFocus} from '../../functions/accessibility_functions'
 import ComboBox from '../../components/basic_components/ComboBox';
+import {heading} from '../../components/headings';
 //============================================================================
 
 //Theme Management Import

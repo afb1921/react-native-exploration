@@ -4,7 +4,7 @@ import { useFocusEffect } from '@react-navigation/native';
 
 //Asset Imports
 //============================================================================
-import { colors, heading } from '../constant';
+import { colors} from '../constant';
 import {resetScroll, accessibilityFocus} from '../functions/accessibility_functions'
 import { FontAwesome } from '@expo/vector-icons';
 import dog_with_glasses from '../assets/images/dog_With_Glasses.jpg';
@@ -13,6 +13,7 @@ import ocean_video from '../assets/videos/oceanvideo.mp4';
 
 //Custom Imports
 //============================================================================
+import {heading} from '../components/headings';
 import VideoPlayer from '../components/Videoplayer'
 import HorizontalLine from '../components/HorizontalLine';
 //============================================================================

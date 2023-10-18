@@ -8,7 +8,8 @@ import themeContext from '../Themes/themeContext';
 //-----------------------------------------------------------------
 
 //Custom Imports---------------------------------------------------
-import { colors, heading } from '../constant';
+import { colors} from '../constant';
+import {heading} from '../components/headings';
 import {resetScroll, accessibilityFocus} from '../functions/accessibility_functions'
 import dog_with_glasses from '../assets/images/dog_With_Glasses.jpg';
 import ModalSelection from '../components/basic_components/ModalSelection';

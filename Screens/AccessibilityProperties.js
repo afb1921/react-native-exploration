@@ -5,13 +5,14 @@ import { useFocusEffect } from '@react-navigation/native';
 
 //Asset Imports
 //============================================================================
-import { colors, heading } from '../constant';
+import { colors} from '../constant';
 import {resetScroll, accessibilityFocus} from '../functions/accessibility_functions'
 import { FontAwesome } from '@expo/vector-icons';
 //============================================================================
 
 //Component Imports
 //============================================================================
+import {heading} from '../components/headings';
 import HorizontalLine from '../components/basic_components/HorizontalLine';
 //============================================================================
 
