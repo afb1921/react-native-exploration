@@ -126,7 +126,7 @@ function CustomDrawerContent(props) {
             <TouchableOpacity
               key={route.routeName}
               testID={route.routeName}
-              accessibilityRole='menuItem'
+              accessibilityRole='button'
               // accessibilityLabel={isActive ? `Current Page, ${route.title} `: `${route.title}`}
               onPress={() =>
                 props.navigation.navigate(route.nav, {

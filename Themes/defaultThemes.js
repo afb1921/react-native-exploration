@@ -279,7 +279,24 @@ export const darkMode = {
         listBackgroundColor: "black", // (backgroundColor)
         borderColor: "white", // (borderColor)
         placeholderText: colors.lightGrey, // (color)
+    },
 
+    externalLink: {
+    //External Link Button
+    //================================================
+        //Used in ExternalLinkButton.js
+    //------------------------------------
+        text: colors.primaryBlue, // (color)
+        borderColor: colors.primaryBlue, // (borderColor)
+    },
+    
+    codeBlock: {
+    //Code Block
+    //================================================
+        //Used in CodeBlock.js
+    //------------------------------------
+        background: 'white', // (backgroundColor)
+        text: 'black', // (color)
     },
 };
 
@@ -561,6 +578,24 @@ export const lightMode = {
         listBackgroundColor: "white", // (backgroundColor)
         borderColor: colors.mediumGrey, // (borderColor)   
         placeholderText: colors.lightGrey, // (color)
-    }
+    },
+
+    externalLink: {
+    //External Link Button
+    //================================================
+        //Used in ExternalLinkButton.js
+    //------------------------------------
+        text: colors.primaryBlue, // (color)
+        borderColor: colors.primaryBlue, // (borderColor)
+    },
+
+    codeBlock: {
+    //Code Block
+    //================================================
+        //Used in CodeBlock.js
+    //------------------------------------
+        background: 'black', // (backgroundColor)
+        text: 'white', // (color)
+    },
 
 };

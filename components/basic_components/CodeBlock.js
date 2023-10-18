@@ -10,8 +10,8 @@ const CodeBlock =({text}) => {
     const {theme} = useContext(themeContext);
 
     return (
-        <View style={[styles.container, {backgroundColor: "black"}]}>
-            <Text style={{color: "white"}}>{text}</Text>
+        <View style={[styles.container, {backgroundColor: theme.codeBlock.background}]}>
+            <Text style={{color: theme.codeBlock.text}}>{text}</Text>
         </View>
     );
 }
