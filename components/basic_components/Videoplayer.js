@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState, useContext } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, AccessibilityInfo } from 'react-native';
 import { Video } from 'expo-av';
-import Slider from '@react-native-community/slider';
+import Slider from "@react-native-community/slider";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
 
@@ -18,24 +18,21 @@ const VideoPlayer = ({ video, videoName }) => {
 
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [videoDuration, setVideoDuration] = useState(null);
   const [sliderValue, setSliderValue] = useState(0);
-  const [duration, setDuration] = useState(0);
 
-  const navigation = useNavigation();
 
   useEffect(() => {
-    // Pause video playback when the screen loses focus
-    const unsubscribeBlur = navigation.addListener('blur', () => {
-      if (videoRef.current && isPlaying) {
-        videoRef.current.pauseAsync();
-        setIsPlaying(false);
-      }
-    });
-
-    return () => {
-      unsubscribeBlur();
-    };
-  }, [navigation, isPlaying]);
+    if (videoRef.current) {
+      videoRef.current.loadAsync(video);
+      videoRef.current.setOnPlaybackStatusUpdate((status) => {
+        if (status.isLoaded) {
+          setVideoDuration(status.durationMillis);
+          setSliderValue(status.positionMillis / status.durationMillis);
+        }
+      });
+    }
+  }, [video]);
 
   const onPlayPausePress = () => {
     if (videoRef.current) {
@@ -48,37 +45,17 @@ const VideoPlayer = ({ video, videoName }) => {
     }
   };
 
-  const onSliderValueChange = (value) => {
-    setSliderValue(value);
-  };
-
-  const onSliderSlidingComplete = (value) => {
-    if (videoRef.current) {
-      const newPosition = value * duration;
-      videoRef.current.setPositionAsync(newPosition);
-    }
-  };
-
-  const onPlaybackStatusUpdate = (status) => {
-    if (status.positionMillis && status.durationMillis) {
-      setSliderValue(status.positionMillis / status.durationMillis);
-      setDuration(status.durationMillis);
-    }
-  };
+  // useEffect(() => {
+  //   console.log(sliderValue)
+  // }, [sliderValue])
 
   return (
     <View style={styles.container}>
       <Video
         style={styles.video}
         ref={videoRef}
-        source={video}
         resizeMode="contain"
-        importantForAccessibility="no"
-        accessible={false}
-        isLooping
-        accessibilityLabel={`${videoName}, video screen`}
         shouldPlay={isPlaying}
-        onPlaybackStatusUpdate={onPlaybackStatusUpdate}
         onError={(error) => console.error('Video Error:', error)}
       />
 
@@ -99,16 +76,49 @@ const VideoPlayer = ({ video, videoName }) => {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.controls}>
+      {/* {videoDuration !== null && (
+        <View style={styles.controls}>
+          <Text>Duration: {Math.floor(videoDuration/1000)}</Text>
+        </View>
+      )} */}
+      <View>
         <Slider
-          style={styles.slider}
-          minimumValue={0}
-          maximumValue={1}
-          value={sliderValue}
-          onValueChange={onSliderValueChange}
-          onSlidingComplete={onSliderSlidingComplete}
+          style={{ width: 200, height: 40 }}
           thumbTintColor={theme.videoPlayer.thumbTintColor}
           minimumTrackTintColor={theme.videoPlayer.minimumTrackTintColor}
+          minimumValue={0}
+          maximumValue={1}
+          maximumTrackTintColor="#000000"
+          value={sliderValue}
+          onValueChange={(value) => {
+            // console.log("sliderChange")
+            setSliderValue(value);
+            AccessibilityInfo.isScreenReaderEnabled().then((isEnabled) => {
+              if (isEnabled) {
+                // console.log("sliderCompelete")
+                if (videoRef.current) {
+                  const newPositionMillis = value * videoDuration;
+                  videoRef.current.setPositionAsync(newPositionMillis);
+                }
+              } else {
+                console.log('Screen reader is not enabled');
+              }
+            });
+
+          }}
+          onSlidingComplete={(value) => {
+            // console.log("sliderCompelete")
+            if (videoRef.current) {
+              const newPositionMillis = value * videoDuration;
+              videoRef.current.setPositionAsync(newPositionMillis);
+            }
+          }}
+          accessibilityValue={{
+            min: 0,          // The minimum value of the range
+            max: 1,          // The maximum value of the range
+            now: sliderValue, // The current value within the range
+          }}
+          importantForAccessibility='yes'
         />
       </View>
     </View>
