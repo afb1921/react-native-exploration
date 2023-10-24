@@ -45,6 +45,19 @@ const VideoPlayer = ({ video, videoName }) => {
     }
   };
 
+  // Pause the video when the screen loses focus
+  const navigation = useNavigation();
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('blur', () => {
+      if (videoRef.current) {
+        videoRef.current.pauseAsync();
+        setIsPlaying(false);
+      }
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+
   // useEffect(() => {
   //   console.log(sliderValue)
   // }, [sliderValue])
@@ -81,14 +94,17 @@ const VideoPlayer = ({ video, videoName }) => {
           <Text>Duration: {Math.floor(videoDuration/1000)}</Text>
         </View>
       )} */}
+
+
       <View>
         <Slider
+          accessibilityLabel={`Slider for ${videoName} video`}
           style={{ width: 200, height: 40 }}
           thumbTintColor={theme.videoPlayer.thumbTintColor}
           minimumTrackTintColor={theme.videoPlayer.minimumTrackTintColor}
           minimumValue={0}
           maximumValue={1}
-          maximumTrackTintColor="#000000"
+          maximumTrackTintColor={theme.videoPlayer.maximumTrackTintColor}
           value={sliderValue}
           onValueChange={(value) => {
             // console.log("sliderChange")
@@ -100,8 +116,6 @@ const VideoPlayer = ({ video, videoName }) => {
                   const newPositionMillis = value * videoDuration;
                   videoRef.current.setPositionAsync(newPositionMillis);
                 }
-              } else {
-                console.log('Screen reader is not enabled');
               }
             });
 
