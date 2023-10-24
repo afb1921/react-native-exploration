@@ -1,6 +1,8 @@
 import React, { useRef, useContext, useState } from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Modal } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Modal, AccessibilityInfo } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
+import CodeHighlighter from "react-native-code-highlighter";
+import { atomOneDarkReasonable } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 //Asset Imports
 //============================================================================
@@ -13,7 +15,6 @@ import {resetScroll, accessibilityFocus} from '../../../functions/accessibility_
 //============================================================================
 import {heading} from '../../../components/headings';
 import HorizontalLine from '../../../components/basic_components/HorizontalLine';
-import CodeBlock from '../../../components/basic_components/CodeBlock';
 import TwoVariableTable from '../../../components/basic_components/TwoVariableTable';
 //============================================================================
 
@@ -46,6 +47,75 @@ function AccessibilityViewIsModalProp() {
   
   const firstElementRef = useRef(null);
   const scrollViewRef = useRef(null);
+  const modalRef = useRef(null);
+
+  const CODE_STR =
+  `          <View style={[styles.exampleContainer]}>
+  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <Modal
+      animationType="slide"
+      transparent={true}
+      visible={modalVisible}
+      onRequestClose={() => {
+        setModalVisible(false);
+      }}
+      accessibilityViewIsModal={true} // Set accessibilityViewIsModal to true for the modal
+    >
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        }}
+      >
+        <View style={{ backgroundColor: 'white', padding: 20, borderRadius: 10 }}>
+          <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 10 }} accessibilityRole='header'>
+            Modal Content
+          </Text>
+          <TouchableOpacity
+            onPress={() => setModalVisible(false)}
+            accessible={true}
+          >
+            <Text style={{ backgroundColor: 'blue', color: 'white', padding: 10, borderRadius: 5 }} accessibilityRole='button'>
+              Close Modal
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => console.log('Button 2 pressed')}
+            accessible={true}
+          >
+            <Text style={{ backgroundColor: 'green', color: 'white', padding: 10, borderRadius: 5 }} accessibilityRole='button'>
+              Button 2
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </Modal>
+
+    <TouchableOpacity
+      onPress={() => setModalVisible(true)}
+      accessible={true}
+      accessibilityRole='button'
+    >
+      <Text style={{ backgroundColor: 'blue', color: 'white', padding: 10, borderRadius: 5 }}>
+        Open Modal
+      </Text>
+    </TouchableOpacity>
+
+    <View style={{ marginTop: 20 }}>
+      <TouchableOpacity
+        onPress={() => console.log('Button 3 pressed')}
+        accessible={true}
+        accessibilityRole='button'
+      >
+        <Text style={{ backgroundColor: 'green', color: 'white', padding: 10, borderRadius: 5 }}>
+          Button 3
+        </Text>
+      </TouchableOpacity>
+    </View>
+  </View>
+</View>`
 
   //When the page loads (everytime) the useFocusEffect is triggered
   useFocusEffect(
@@ -103,7 +173,6 @@ function AccessibilityViewIsModalProp() {
           </heading.Heading2>
 
           <View style={[styles.exampleContainer]}>
-
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
               <Modal
                 animationType="slide"
@@ -127,7 +196,10 @@ function AccessibilityViewIsModalProp() {
                       Modal Content
                     </Text>
                     <TouchableOpacity
-                      onPress={() => setModalVisible(false)}
+                      onPress={() => {
+                        setModalVisible(false); 
+                        accessibilityFocus(modalRef, 100);
+                      }}
                       accessible={true}
                     >
                       <Text style={{ backgroundColor: 'blue', color: 'white', padding: 10, borderRadius: 5 }} accessibilityRole='button'>
@@ -151,7 +223,7 @@ function AccessibilityViewIsModalProp() {
                 accessible={true}
                 accessibilityRole='button'
               >
-                <Text style={{ backgroundColor: 'blue', color: 'white', padding: 10, borderRadius: 5 }}>
+                <Text ref={modalRef} style={{ backgroundColor: 'blue', color: 'white', padding: 10, borderRadius: 5 }}>
                   Open Modal
                 </Text>
               </TouchableOpacity>
@@ -168,7 +240,6 @@ function AccessibilityViewIsModalProp() {
                 </TouchableOpacity>
               </View>
             </View>
-
           </View>
 
           <HorizontalLine />
@@ -181,71 +252,20 @@ function AccessibilityViewIsModalProp() {
               Code Example:
             </heading.Heading2>
 
-            <CodeBlock text="
-              <View>
-              <Modal
-                animationType='slide'
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => {
-                  setModalVisible(false);
-                }}
-                accessibilityViewIsModal={true}
-              >
-                <View>
-                  <View>
-                    <Text accessibilityRole='header'>
-                      Modal Content
-                    </Text>
-                    <TouchableOpacity
-                      onPress={() => setModalVisible(false)}
-                      accessible={true}
-                    >
-                      <Text accessibilityRole='button'>
-                        Close Modal
-                      </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      onPress={() => console.log('Button 2 pressed')}
-                      accessible={true}
-                    >
-                      <Text accessibilityRole='button'>
-                        Button 2
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              </Modal>
-
-              <TouchableOpacity
-                onPress={() => setModalVisible(true)}
-                accessible={true}
-                accessibilityRole='button'
-              >
-                <Text>
-                  Open Modal
-                </Text>
-              </TouchableOpacity>
-
-              <View>
-                <TouchableOpacity
-                  onPress={() => console.log('Button 3 pressed')}
-                  accessible={true}
-                  accessibilityRole='button'
-                >
-                  <Text>
-                    Button 3
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            </View>"
-            />
+            <CodeHighlighter
+              hljsStyle={atomOneDarkReasonable}
+              textStyle={styles.text}
+              language="typescript"
+              containerStyle={styles.codeContainer}
+            >
+              {CODE_STR}
+            </CodeHighlighter>
           </View>
         </View>
 
         <HorizontalLine />
 
-        <View>
+        <View style={{justifyContent: 'center', alignItems: 'center'}}>
           <TwoVariableTable title="Pass/Fail Information" data={TwoVarData} cellTextStyle={{ fontWeight: 'bold', fontSize: 18 }} titleStyle={{ textAlign: 'center' }} />
         </View>
       </View>
@@ -265,7 +285,7 @@ const styles = StyleSheet.create({
   },
   //----------------------------
 
-  //Header Styles relating to "Importance of Text Alternatives"
+  //Header Styles 
   containerHeader: {
     alignItems: 'center', //Aligns content horizontally center
     backgroundColor: colors.primaryBlue,
@@ -286,7 +306,6 @@ const styles = StyleSheet.create({
   //General Styles--- 
 
   textContent: {        //This style is general text style
-    fontWeight: 'bold',
     fontSize: 15,
     textAlign: 'center',
   },
@@ -299,7 +318,7 @@ const styles = StyleSheet.create({
 
   //----------------------------
 
-  //Alt Text Info section specifc styles
+  //Info section specifc styles
   infoContainer: {
     alignItems: 'center',
     paddingBottom: 20,
@@ -312,7 +331,13 @@ const styles = StyleSheet.create({
 
   buttonText: {
     padding: 10,
-  }
+  },
+  codeContainer: {
+		padding: 16,
+		minWidth: "100%",
+    justifyContent: 'center',
+    alignItems: 'center',
+	},
 });
 
 export default AccessibilityViewIsModalProp;

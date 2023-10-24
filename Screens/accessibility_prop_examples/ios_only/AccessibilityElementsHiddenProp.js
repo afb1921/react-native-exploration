@@ -1,6 +1,8 @@
-import React, { useRef, useContext, useState } from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useRef, useContext} from 'react';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity, AccessibilityInfo } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
+import CodeHighlighter from "react-native-code-highlighter";
+import { atomOneDarkReasonable } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 //Asset Imports
 //============================================================================
@@ -13,7 +15,6 @@ import {resetScroll, accessibilityFocus} from '../../../functions/accessibility_
 //============================================================================
 import {heading} from '../../../components/headings';
 import HorizontalLine from '../../../components/basic_components/HorizontalLine';
-import CodeBlock from '../../../components/basic_components/CodeBlock';
 import TwoVariableTable from '../../../components/basic_components/TwoVariableTable';
 //============================================================================
 
@@ -37,8 +38,6 @@ const TwoVarData = {
 
 function AccessibilityElementsHiddenProp() {
 
-  const [value, setValue] = useState(0);
-
   //Theme Manangement
   //===============================================================
   const { theme } = useContext(themeContext);
@@ -46,6 +45,44 @@ function AccessibilityElementsHiddenProp() {
 
   const firstElementRef = useRef(null);
   const scrollViewRef = useRef(null);
+
+  const CODE_STR =
+  `<View style={[styles.exampleContainer]}>
+  <TouchableOpacity
+    accessible={true}
+    style={{backgroundColor: theme.button.color, padding: 5, borderRadius: 5, marginBottom: 5}}
+    accessibilityLabel="Button A"
+    accessibilityHint="This is button A"
+    onPress={() => alert("Button A pressed")}
+  >
+    <Text style={{color: theme.button.text}}>Button A</Text>
+  </TouchableOpacity>
+
+  <TouchableOpacity
+    style={{backgroundColor: theme.button.color, padding: 5, borderRadius: 5, marginBottom: 5}}
+    accessible={true}
+    accessibilityLabel="Button B"
+    accessibilityHint="This is button B"
+    accessibilityElementsHidden={true}
+    onPress={() => alert("Button B pressed")}
+  >
+    <Text style={{color: theme.button.text}}>Button B</Text>
+  </TouchableOpacity>
+</View>`
+
+  const handlePress = () => {
+    AccessibilityInfo.isScreenReaderEnabled().then((isEnabled) => {
+      if (isEnabled) {
+        const delay = 250
+        setTimeout(() => {
+          AccessibilityInfo.announceForAccessibility("You have tapped Button A!")
+        }, delay);
+        
+      } else {
+        Alert.alert("Button A Tapped")
+      }
+    });
+  }
 
    //When the page loads (everytime) the useFocusEffect is triggered
    useFocusEffect(
@@ -108,13 +145,12 @@ function AccessibilityElementsHiddenProp() {
           </heading.Heading2>
 
           <View style={[styles.exampleContainer]}>
-
             <TouchableOpacity
               accessible={true}
               style={{backgroundColor: theme.button.color, padding: 5, borderRadius: 5, marginBottom: 5}}
               accessibilityLabel="Button A"
               accessibilityHint="This is button A"
-              onPress={() => alert("Button A pressed")}
+              onPress={handlePress}
             >
               <Text style={{color: theme.button.text}}>Button A</Text>
             </TouchableOpacity>
@@ -130,7 +166,6 @@ function AccessibilityElementsHiddenProp() {
               <Text style={{color: theme.button.text}}>Button B</Text>
             </TouchableOpacity>
             <Text style={{color: theme.page.text}}>Button B was completely skipped due to having accessibility elements hidden set to True</Text>
-
           </View>
 
           <HorizontalLine />
@@ -143,32 +178,20 @@ function AccessibilityElementsHiddenProp() {
               Code Example:
             </heading.Heading2>
 
-            <CodeBlock text="
-              <TouchableOpacity
-              accessible={true}
-              accessibilityLabel='Button A'
-              accessibilityHint='This is button A'
-              onPress={() => alert('Button A pressed')}
+            <CodeHighlighter
+              hljsStyle={atomOneDarkReasonable}
+              textStyle={styles.text}
+              language="typescript"
+              containerStyle={styles.codeContainer}
             >
-              <Text>Button A</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              accessible={true}
-              accessibilityLabel='Button B'
-              accessibilityHint='This is button B'
-              accessibilityElementsHidden={true} 
-              onPress={() => alert('Button B pressed')}
-            >
-              <Text>Button B</Text>
-            </TouchableOpacity>"
-            />
+              {CODE_STR}
+            </CodeHighlighter>
           </View>
         </View>
 
         <HorizontalLine />
 
-        <View>
+        <View style={{justifyContent: 'center', alignItems: 'center'}}>
           <TwoVariableTable title="Pass/Fail Information" data={TwoVarData} cellTextStyle={{ fontWeight: 'bold', fontSize: 18 }} titleStyle={{ textAlign: 'center' }} />
         </View>
       </View>
@@ -188,7 +211,7 @@ const styles = StyleSheet.create({
   },
   //----------------------------
 
-  //Header Styles relating to "Importance of Text Alternatives"
+  //Header Styles
   containerHeader: {
     alignItems: 'center', //Aligns content horizontally center
     backgroundColor: colors.primaryBlue,
@@ -209,7 +232,6 @@ const styles = StyleSheet.create({
   //General Styles--- 
 
   textContent: {        //This style is general text style
-    fontWeight: 'bold',
     fontSize: 15,
     textAlign: 'center',
   },
@@ -222,7 +244,7 @@ const styles = StyleSheet.create({
 
   //----------------------------
 
-  //Alt Text Info section specifc styles
+  //Info section specifc styles
   infoContainer: {
     alignItems: 'center',
     paddingBottom: 20,
@@ -235,7 +257,13 @@ const styles = StyleSheet.create({
 
   buttonText: {
     padding: 10,
-  }
+  },
+  codeContainer: {
+		padding: 16,
+		minWidth: "100%",
+    justifyContent: 'center',
+    alignItems: 'center',
+	},
 });
 
 export default AccessibilityElementsHiddenProp;

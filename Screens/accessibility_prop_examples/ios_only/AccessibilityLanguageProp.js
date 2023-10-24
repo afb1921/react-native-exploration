@@ -1,6 +1,8 @@
 import React, { useRef, useContext} from 'react';
 import { View, Text, ScrollView, StyleSheet} from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
+import CodeHighlighter from "react-native-code-highlighter";
+import { atomOneDarkReasonable } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 //Asset Imports
 //============================================================================
@@ -44,6 +46,15 @@ function AccessibilityLanguageProp() {
 
   const firstElementRef = useRef(null);
   const scrollViewRef = useRef(null);
+
+  const CODE_STR =
+  `<View style={[styles.exampleContainer]} 
+  accessible={true}
+  accessibilityLabel='Pizza'
+  accessibilityLanguage='it-IT'
+>
+  <Text style={{color: theme.page.text}}>Pizza</Text>
+</View>`
 
    //When the page loads (everytime) the useFocusEffect is triggered
    useFocusEffect(
@@ -120,21 +131,20 @@ function AccessibilityLanguageProp() {
               Code Example:
             </heading.Heading2>
 
-            <CodeBlock text="
-              <View 
-              accessible={true}
-              accessibilityLabel='Pizza'
-              accessibilityLanguage='it-IT'
+            <CodeHighlighter
+              hljsStyle={atomOneDarkReasonable}
+              textStyle={styles.text}
+              language="typescript"
+              containerStyle={styles.codeContainer}
             >
-              <Text>Pizza</Text>
-            </View>"
-            />
+              {CODE_STR}
+            </CodeHighlighter>
           </View>
         </View>
 
         <HorizontalLine />
 
-        <View>
+        <View style={{justifyContent: 'center', alignItems: 'center'}}>
           <TwoVariableTable title="Pass/Fail Information" data={TwoVarData} cellTextStyle={{ fontWeight: 'bold', fontSize: 18 }} titleStyle={{ textAlign: 'center' }} />
         </View>
       </View>
@@ -154,7 +164,7 @@ const styles = StyleSheet.create({
   },
   //----------------------------
 
-  //Header Styles relating to "Importance of Text Alternatives"
+  //Header Styles 
   containerHeader: {
     alignItems: 'center', //Aligns content horizontally center
     backgroundColor: colors.primaryBlue,
@@ -175,7 +185,6 @@ const styles = StyleSheet.create({
   //General Styles--- 
 
   textContent: {        //This style is general text style
-    fontWeight: 'bold',
     fontSize: 15,
     textAlign: 'center',
   },
@@ -188,7 +197,7 @@ const styles = StyleSheet.create({
 
   //----------------------------
 
-  //Alt Text Info section specifc styles
+  //Info section specifc styles
   infoContainer: {
     alignItems: 'center',
     paddingBottom: 20,
@@ -201,7 +210,13 @@ const styles = StyleSheet.create({
 
   buttonText: {
     padding: 10,
-  }
+  },
+  codeContainer: {
+		padding: 16,
+		minWidth: "100%",
+    justifyContent: 'center',
+    alignItems: 'center',
+	},
 });
 
 export default AccessibilityLanguageProp;

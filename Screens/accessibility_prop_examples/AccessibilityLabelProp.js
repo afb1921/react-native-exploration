@@ -1,19 +1,20 @@
 import React, { useRef, useContext } from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity, AccessibilityInfo } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
+import CodeHighlighter from "react-native-code-highlighter";
+import { atomOneDarkReasonable } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 //Asset Imports
 //============================================================================
-import { colors} from '../../constant';
+import { colors } from '../../constant';
 import { FontAwesome } from '@expo/vector-icons';
-import {resetScroll, accessibilityFocus} from '../../functions/accessibility_functions'
+import { resetScroll, accessibilityFocus } from '../../functions/accessibility_functions'
 //============================================================================
 
 //Component Imports
 //============================================================================
-import {heading} from '../../components/headings';
+import { heading } from '../../components/headings';
 import HorizontalLine from '../../components/basic_components/HorizontalLine';
-import CodeBlock from '../../components/basic_components/CodeBlock';
 import TwoVariableTable from '../../components/basic_components/TwoVariableTable';
 //============================================================================
 
@@ -37,6 +38,19 @@ const TwoVarData = {
 
 function AccessibilityHintProp() {
 
+  const CODE_STR =
+    `<View style={[styles.exampleContainer]}>
+    <TouchableOpacity
+      accessible={true}
+      accessibilityLabel="Tap me!"
+      onPress={handlePress}
+    >
+      <View style={{ backgroundColor: theme.button.color, borderRadius: 10 }}>
+        <Text style={[styles.buttonText, { color: theme.button.text }]}>Press me!</Text>
+      </View>
+    </TouchableOpacity>
+  </View>`
+
   //Theme Manangement
   //===============================================================
   const { theme } = useContext(themeContext);
@@ -52,6 +66,20 @@ function AccessibilityHintProp() {
       accessibilityFocus(firstElementRef, 250);
     }, [])
   )
+
+  const handlePress = () =>{
+    AccessibilityInfo.isScreenReaderEnabled().then((isEnabled) => {
+      if (isEnabled) {
+        const delay = 250
+        setTimeout(() => {
+          AccessibilityInfo.announceForAccessibility("You have tapped the button!")
+        }, delay);
+        
+      } else {
+        Alert.alert("Button Tapped")
+      }
+    });
+  }
 
   return (
 
@@ -72,7 +100,6 @@ function AccessibilityHintProp() {
         </View>
 
         <View style={[styles.infoContainer]}>
-
           <heading.Heading2
             style={[styles.headingContent, { color: theme.page.text }]}
             accessibilityLabel="Important Information"
@@ -109,9 +136,10 @@ function AccessibilityHintProp() {
             <TouchableOpacity
               accessible={true}
               accessibilityLabel="Tap me!"
-              >
-              <View style={{backgroundColor: theme.button.color, borderRadius: 10}}>
-                <Text style={[styles.buttonText, {color: theme.button.text}]}>Press me!</Text>
+              onPress={handlePress}
+            >
+              <View style={{ backgroundColor: theme.button.color, borderRadius: 10 }}>
+                <Text style={[styles.buttonText, { color: theme.button.text }]}>Press me!</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -126,30 +154,24 @@ function AccessibilityHintProp() {
               Code Example:
             </heading.Heading2>
 
-            <CodeBlock text="
-              <TouchableOpacity
-              accessible={true}
-              accessibilityLabel='Tap me!'
-              >
-              <View>
-                <Text>Press me!</Text>
-              </View>
-            </TouchableOpacity>"
-            />
+            <CodeHighlighter
+              hljsStyle={atomOneDarkReasonable}
+              textStyle={styles.text}
+              language="typescript"
+              containerStyle={styles.codeContainer}
+            >
+              {CODE_STR}
+            </CodeHighlighter>
           </View>
         </View>
 
         <HorizontalLine />
 
-        <View>
+        <View style={{justifyContent: 'center', alignItems: 'center'}}>
           <TwoVariableTable title="Pass/Fail Information" data={TwoVarData} cellTextStyle={{ fontWeight: 'bold', fontSize: 18 }} titleStyle={{ textAlign: 'center' }} />
         </View>
       </View>
-
     </ScrollView>
-
-
-
   );
 }
 
@@ -161,7 +183,7 @@ const styles = StyleSheet.create({
   },
   //----------------------------
 
-  //Header Styles relating to "Importance of Text Alternatives"
+  //Header Styles
   containerHeader: {
     alignItems: 'center', //Aligns content horizontally center
     backgroundColor: colors.primaryBlue,
@@ -182,7 +204,6 @@ const styles = StyleSheet.create({
   //General Styles--- 
 
   textContent: {        //This style is general text style
-    fontWeight: 'bold',
     fontSize: 15,
     textAlign: 'center',
   },
@@ -195,7 +216,7 @@ const styles = StyleSheet.create({
 
   //----------------------------
 
-  //Alt Text Info section specifc styles
+  //Info section specifc styles
   infoContainer: {
     alignItems: 'center',
     paddingBottom: 20,
@@ -208,7 +229,14 @@ const styles = StyleSheet.create({
 
   buttonText: {
     padding: 10,
-  }
+  },
+
+  codeContainer: {
+		padding: 16,
+		minWidth: "100%",
+    justifyContent: 'center',
+    alignItems: 'center',
+	},
 });
 
 export default AccessibilityHintProp;

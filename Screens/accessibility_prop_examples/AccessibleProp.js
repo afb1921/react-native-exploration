@@ -1,19 +1,20 @@
 import React, { useRef, useContext } from 'react';
-import { View, Text, ScrollView, StyleSheet} from 'react-native';
+import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
+import CodeHighlighter from "react-native-code-highlighter";
+import { atomOneDarkReasonable } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 //Asset Imports
 //============================================================================
-import { colors} from '../../constant';
+import { colors } from '../../constant';
 import { FontAwesome } from '@expo/vector-icons';
-import {resetScroll, accessibilityFocus} from '../../functions/accessibility_functions'
+import { resetScroll, accessibilityFocus } from '../../functions/accessibility_functions'
 //============================================================================
 
 //Component Imports
 //============================================================================
-import {heading} from '../../components/headings';
+import { heading } from '../../components/headings';
 import HorizontalLine from '../../components/basic_components/HorizontalLine';
-import CodeBlock from '../../components/basic_components/CodeBlock';
 import TwoVariableTable from '../../components/basic_components/TwoVariableTable';
 //============================================================================
 
@@ -36,6 +37,13 @@ const TwoVarData = {
 
 
 function AccessibleProp() {
+
+  const CODE_STR = 
+  `<View accessible={true}>
+    <Text>Hello</Text>
+    <Text>this is an example.</Text>
+  </View>`
+
 
   //Theme Manangement
   //===============================================================
@@ -117,27 +125,25 @@ function AccessibleProp() {
               Code Example:
             </heading.Heading2>
 
-            <CodeBlock text="<View accessible={true}>
-              <Text>Hello</Text>
-              <Text>this is an example.</Text>
-              </View>"
-            />
+            <CodeHighlighter
+              hljsStyle={atomOneDarkReasonable}
+              textStyle={styles.text}
+              language="typescript"
+              containerStyle={styles.codeContainer}
+            >
+              {CODE_STR}
+            </CodeHighlighter>
           </View>
         </View>
 
         <HorizontalLine />
 
-        <View>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <TwoVariableTable title="Pass/Fail Information" data={TwoVarData} cellTextStyle={{ fontWeight: 'bold', fontSize: 18 }} titleStyle={{ textAlign: 'center' }} />
         </View>
 
-
       </View>
-
     </ScrollView>
-
-
-
   );
 }
 
@@ -149,7 +155,7 @@ const styles = StyleSheet.create({
   },
   //----------------------------
 
-  //Header Styles relating to "Importance of Text Alternatives"
+  //Header Style
   containerHeader: {
     alignItems: 'center', //Aligns content horizontally center
     backgroundColor: colors.primaryBlue,
@@ -170,7 +176,6 @@ const styles = StyleSheet.create({
   //General Styles--- 
 
   textContent: {        //This style is general text style
-    fontWeight: 'bold',
     fontSize: 15,
     textAlign: 'center',
   },
@@ -183,7 +188,7 @@ const styles = StyleSheet.create({
 
   //----------------------------
 
-  //Alt Text Info section specifc styles
+  //Info section specifc styles
   infoContainer: {
     alignItems: 'center',
     paddingBottom: 20,
@@ -193,6 +198,13 @@ const styles = StyleSheet.create({
     fontSize: 40,
   },
   //----------------------------
+
+  codeContainer: {
+		padding: 16,
+		minWidth: "100%",
+    justifyContent: 'center',
+    alignItems: 'center',
+	},
 
 
 });

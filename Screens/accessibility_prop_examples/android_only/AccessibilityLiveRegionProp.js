@@ -1,6 +1,8 @@
 import React, { useRef, useContext, useState } from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
+import CodeHighlighter from "react-native-code-highlighter";
+import { atomOneDarkReasonable } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 //Asset Imports
 //============================================================================
@@ -13,7 +15,6 @@ import {resetScroll, accessibilityFocus} from '../../../functions/accessibility_
 //============================================================================
 import {heading} from '../../../components/headings';
 import HorizontalLine from '../../../components/basic_components/HorizontalLine';
-import CodeBlock from '../../../components/basic_components/CodeBlock';
 import TwoVariableTable from '../../../components/basic_components/TwoVariableTable';
 //============================================================================
 
@@ -46,6 +47,18 @@ function AccessibilityLiveRegionProp() {
 
   const firstElementRef = useRef(null);
   const scrollViewRef = useRef(null);
+
+  const CODE_STR = 
+  `<View style={[styles.exampleContainer]}>
+  <View>
+    <TouchableWithoutFeedback onPress={incrementValue}>
+      <View style={{backgroundColor: theme.button.color, borderRadius: 10}}>
+        <Text style={{color: theme.button.text, padding: 10}}>Click me!</Text>
+      </View>
+    </TouchableWithoutFeedback>
+  </View>
+  <Text style={{color: theme.page.text}} accessibilityLiveRegion="polite">Clicked {value} times</Text>
+</View>`
 
   const incrementValue=() =>{
     setValue(value+1);
@@ -98,7 +111,7 @@ function AccessibilityLiveRegionProp() {
             When components dynamically change, we want TalkBack to alert the end user. This is made possible by the accessibilityLiveRegion property.
           </Text>
           <Text style={[styles.textContent, { color: theme.page.text }]}>
-            It can be set to none, polite and assertive: none: Accessibility services should not announce changes to this view. Polite: Accessibility services should announce changes to this view. Assertive; Accessibility services should interrupt ongoing speech to immediately announce changes to this view.
+            It can be set to none, polite and assertive: none: Accessibility services should not announce changes to this view. Polite: Accessibility services should announce changes to this view. Assertive: Accessibility services should interrupt ongoing speech to immediately announce changes to this view.
           </Text>
         </View>
 
@@ -133,22 +146,20 @@ function AccessibilityLiveRegionProp() {
               Code Example:
             </heading.Heading2>
 
-            <CodeBlock text="
-              <View>
-              <TouchableWithoutFeedback onPress={incrementValue}>
-                <View>
-                  <Text>Click me!</Text>
-                </View>
-              </TouchableWithoutFeedback>
-            </View>
-            <Text accessibilityLiveRegion='polite'>Clicked {value} times</Text>"
-            />
+            <CodeHighlighter
+              hljsStyle={atomOneDarkReasonable}
+              textStyle={styles.text}
+              language="typescript"
+              containerStyle={styles.codeContainer}
+            >
+              {CODE_STR}
+            </CodeHighlighter>
           </View>
         </View>
 
         <HorizontalLine />
 
-        <View>
+        <View style={{justifyContent: 'center', alignItems: 'center'}}>
           <TwoVariableTable title="Pass/Fail Information" data={TwoVarData} cellTextStyle={{ fontWeight: 'bold', fontSize: 18 }} titleStyle={{ textAlign: 'center' }} />
         </View>
       </View>
@@ -168,7 +179,7 @@ const styles = StyleSheet.create({
   },
   //----------------------------
 
-  //Header Styles relating to "Importance of Text Alternatives"
+  //Header Styles
   containerHeader: {
     alignItems: 'center', //Aligns content horizontally center
     backgroundColor: colors.primaryBlue,
@@ -189,7 +200,6 @@ const styles = StyleSheet.create({
   //General Styles--- 
 
   textContent: {        //This style is general text style
-    fontWeight: 'bold',
     fontSize: 15,
     textAlign: 'center',
   },
@@ -202,7 +212,7 @@ const styles = StyleSheet.create({
 
   //----------------------------
 
-  //Alt Text Info section specifc styles
+  //Info section specifc styles
   infoContainer: {
     alignItems: 'center',
     paddingBottom: 20,
@@ -215,7 +225,13 @@ const styles = StyleSheet.create({
 
   buttonText: {
     padding: 10,
-  }
+  },
+  codeContainer: {
+		padding: 16,
+		minWidth: "100%",
+    justifyContent: 'center',
+    alignItems: 'center',
+	},
 });
 
 export default AccessibilityLiveRegionProp;
