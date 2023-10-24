@@ -22,11 +22,11 @@ const ExternalLinkButton = ({ url, label }) => {
   };
 
   return (
-    <TouchableOpacity onPress={openWebsite} accessibilityRole='link' accessibilityHint={`This will take you to: ${url}`}>
+    // <TouchableOpacity  accessibilityRole='link' accessibilityHint={`This will take you to: ${url}`}>
       <View style={styles.button}>
-        <Text style={[styles.buttonText, {borderColor: theme.externalLink.borderColor, color: theme.externalLink.text}]}>{label}</Text>
+        <Text onPress={openWebsite} accessibilityRole='link' style={[styles.buttonText, {borderColor: theme.externalLink.borderColor, color: theme.externalLink.text}]}>{label}</Text>
       </View>
-    </TouchableOpacity>
+    // </TouchableOpacity>
   );
 };
 

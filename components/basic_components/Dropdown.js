@@ -84,8 +84,7 @@ const Dropdown = ({ data, onValueChange, title }) => {
                 ref={dropDownRef}
                 onPress={toggleDropdown}
                 style={[styles.input, { backgroundColor: theme.dropDown.selectedBackgroundColor }]}
-                accessibilityRole="button"
-                accessibilityHint={`${title} Dropdown`}
+                accessibilityRole="spinbutton"
                 accessibilityState={{
                     expanded: isComboboxExpanded,
                 }}

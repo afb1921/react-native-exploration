@@ -71,7 +71,7 @@ function CustomDrawerContent(props) {
           return (
             <TouchableOpacity
               key={parent.key}
-              accessibilityRole='menuItem'
+              accessibilityRole='button'
               testID={parent.key}
               onPress={() => {
                 onItemParentPress(parent.key);

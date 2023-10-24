@@ -123,8 +123,8 @@ const ModalSelection = ({ options, title, onValueChange }) => {
                     onPress={handleModalClick} 
                     ref={modalRef} 
                     style={[styles.modalButtonContainer, styles.centeredContent, {backgroundColor: theme.button.color}]}
-                    accessibilityLabel={`selected: ${selectedValue} for ${title} popup selection`}
-                    accessibilityRole='button'
+                    accessibilityLabel={`selected: ${selectedValue} for ${title}`}
+                    accessibilityRole='spinbutton'
                 >
                     <Text 
                         style={[styles.textContent, {paddingHorizontal: maxButtonWidth > 220 ? "" : 30, color: theme.button.text}]} 

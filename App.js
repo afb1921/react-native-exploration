@@ -48,6 +48,8 @@ import AccessibilityElementsHiddenProp from './screens/accessibility_prop_exampl
 import AccessibilityLanguageProp from './screens/accessibility_prop_examples/ios_only/AccessibilityLanguageProp';
 import AccessibilityViewIsModalProp from './screens/accessibility_prop_examples/ios_only/AccessibilityViewIsModalProp';
 import ImportantForAccessibility from './screens/accessibility_prop_examples/android_only/ImportantForAccessibilityProp';
+import AccessibilityValueProp from './screens/accessibility_prop_examples/AccessibilityValueProp';
+import AccessibilityStateProp from './screens/accessibility_prop_examples/AccessibilityStateProp';
 //================================================================
 
 const Drawer = createDrawerNavigator();
@@ -88,6 +90,8 @@ function MainDrawerNavigation() {
       <Drawer.Screen name="Label" component={AccessibilityLabelProp} options={{ headerShown: false }} />
       <Drawer.Screen name="Hint" component={AccessibilityHintProp} options={{ headerShown: false }} />
       <Drawer.Screen name="Role" component={AccessibilityRoleProp} options={{ headerShown: false }} />
+      <Drawer.Screen name="Value" component={AccessibilityValueProp} options={{ headerShown: false }} />
+      <Drawer.Screen name="State" component={AccessibilityStateProp} options={{ headerShown: false }} />
       {/* ================================================================ */}
 
       {/* Accessibility Properties for Android */}

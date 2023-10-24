@@ -44,7 +44,8 @@ export const drawerItemsMain = [
       {nav: def_App.commonLabel, routeName: 'ElementsHidden', title: 'Accessibility Elements Hidden'},
       {nav: def_App.commonLabel, routeName: 'Language', title: 'Accessibility Language'},
       {nav: def_App.commonLabel, routeName: 'ViewIsModal', title: 'Accessibility View Is Modal'},
-
+      {nav: def_App.commonLabel, routeName: 'Value', title: 'Accessibility Value'},
+      {nav: def_App.commonLabel, routeName: 'State', title: 'Accessibility State'},
     ],
   },
 ];

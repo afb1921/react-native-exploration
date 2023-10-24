@@ -24,3 +24,29 @@ export function accessibilityFocus(elementRef, delay){
     }, delay)
 }
 //================================================================
+
+export function consolelogScreenReaderStatus(){
+  AccessibilityInfo.isScreenReaderEnabled().then((isEnabled) => {
+    if (isEnabled) {
+      console.log('Screen reader is enabled');
+    } else {
+      console.log('Screen reader is not enabled');
+    }
+  });
+}
+
+//================================================================
+
+export function announceScreenReaderStatus(){
+  AccessibilityInfo.isScreenReaderEnabled().then((isEnabled) => {
+    if (isEnabled) {
+      const delay = 250
+      setTimeout(() => {
+        AccessibilityInfo.announceForAccessibility("Screen reader is enabled")
+      }, delay);
+      
+    } else {
+      Alert.alert("Screen reader is not enabled")
+    }
+  });
+}

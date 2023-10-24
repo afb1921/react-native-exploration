@@ -222,6 +222,7 @@ export const darkMode = {
     //--------------------------------
     thumbTintColor: "orange", // (thumbTintColor)
     minimumTrackTintColor: "orange", // (minimumTrackTintColor)
+    maximumTrackTintColor: "white", // (maximumTrackTintColor)
     play: "orange", // (color)
     pause: "orange", // (color)
     },
@@ -298,6 +299,16 @@ export const darkMode = {
         background: 'white', // (backgroundColor)
         text: 'black', // (color)
     },
+
+    slider:{
+    //Slider
+    //================================================
+        //Theme for Slider
+    //------------------------------------------------
+        thumbTintColor: "orange", // (thumbTintColor)
+        minimumTrackTintColor: "orange", // (minimumTrackTintColor)
+        maximumTrackTintColor: "white", // (maximumTrackTintColor)
+    }
 };
 
 export const lightMode = {
@@ -521,9 +532,9 @@ export const lightMode = {
         //--------------------------------
             //Used in Videoplayer.js
         //--------------------------------
-        
         thumbTintColor: colors.brightBlue, // (thumbTintColor)
         minimumTrackTintColor: colors.brightBlue, // (minimumTrackTintColor)
+        maximumTrackTintColor: "#000000", // (maximumTrackTintColor)
         play: "black", // (color)
         pause: "black", // (color)
     },
@@ -597,5 +608,15 @@ export const lightMode = {
         background: 'black', // (backgroundColor)
         text: 'white', // (color)
     },
+
+    slider:{
+    //Slider
+    //================================================
+        //Theme for Slider
+    //------------------------------------------------
+    thumbTintColor: colors.brightBlue, // (thumbTintColor)
+    minimumTrackTintColor: colors.brightBlue, // (minimumTrackTintColor)
+    maximumTrackTintColor: "#000000", // (maximumTrackTintColor)
+    }
 
 };
