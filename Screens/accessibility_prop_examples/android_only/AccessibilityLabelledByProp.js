@@ -6,17 +6,17 @@ import { atomOneDarkReasonable } from "react-syntax-highlighter/dist/esm/styles/
 
 //Asset Imports
 //============================================================================
-import { colors} from '../../../constant';
-import {resetScroll, accessibilityFocus} from '../../../functions/accessibility_functions'
+import { colors } from '../../../constant';
+import { resetScroll, accessibilityFocus } from '../../../functions/accessibility_functions'
 import { FontAwesome } from '@expo/vector-icons';
 //============================================================================
 
 //Component Imports
 //============================================================================
-import {heading} from '../../../components/headings';
+import { heading } from '../../../components/headings';
 import HorizontalLine from '../../../components/basic_components/HorizontalLine';
-import CodeBlock from '../../../components/basic_components/CodeBlock';
 import TwoVariableTable from '../../../components/basic_components/TwoVariableTable';
+import Accordion from '../../../components/basic_components/Accordion';
 //============================================================================
 
 //Theme Import
@@ -47,8 +47,8 @@ function AccessibilityHintProp() {
   const firstElementRef = useRef(null);
   const scrollViewRef = useRef(null);
 
-  const CODE_STR = 
-  `<View style={[styles.exampleContainer]}>
+  const CODE_STR =
+    `<View style={[styles.exampleContainer]}>
   <Text style={{color: theme.page.text}} nativeID="formLabel">Label for Input Field</Text>
   <TextInput
     style={{color: theme.page.text, borderColor: theme.page.text, borderWidth: 1, paddingHorizontal: 40}}
@@ -57,8 +57,8 @@ function AccessibilityHintProp() {
   />
 </View>`
 
-   //When the page loads (everytime) the useFocusEffect is triggered
-   useFocusEffect(
+  //When the page loads (everytime) the useFocusEffect is triggered
+  useFocusEffect(
     React.useCallback(() => {
       resetScroll(scrollViewRef);
       accessibilityFocus(firstElementRef, 250);
@@ -116,38 +116,36 @@ function AccessibilityHintProp() {
           </heading.Heading2>
 
           <View style={[styles.exampleContainer]}>
-            <Text style={{color: theme.page.text}} nativeID="formLabel">Label for Input Field</Text>
+            <Text style={{ color: theme.page.text }} nativeID="formLabel">Label for Input Field</Text>
             <TextInput
-              style={{color: theme.page.text, borderColor: theme.page.text, borderWidth: 1, paddingHorizontal: 40}}
+              style={{ color: theme.page.text, borderColor: theme.page.text, borderWidth: 1, paddingHorizontal: 40 }}
               accessibilityLabel="input"
               accessibilityLabelledBy="formLabel"
             />
           </View>
 
           <HorizontalLine />
-
+          
           <View>
-            <heading.Heading2 //Heading 2
-              style={[styles.heading2, { color: theme.page.text, textAlign: 'center' }]}
-              accessibilityLabel="Code Example:"
-            >
-              Code Example:
-            </heading.Heading2>
-
-            <CodeHighlighter
-              hljsStyle={atomOneDarkReasonable}
-              textStyle={styles.text}
-              language="typescript"
-              containerStyle={styles.codeContainer}
-            >
-              {CODE_STR}
-            </CodeHighlighter>
+            <Accordion
+              title="Code Example:"
+              collapsedData={
+                <CodeHighlighter
+                  hljsStyle={atomOneDarkReasonable}
+                  textStyle={styles.text}
+                  language="javascript"
+                  containerStyle={styles.codeContainer}
+                >
+                  {CODE_STR}
+                </CodeHighlighter>
+              }
+            />
           </View>
         </View>
 
         <HorizontalLine />
 
-        <View style={{justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
           <TwoVariableTable title="Pass/Fail Information" data={TwoVarData} cellTextStyle={{ fontWeight: 'bold', fontSize: 18 }} titleStyle={{ textAlign: 'center' }} />
         </View>
       </View>
@@ -216,11 +214,11 @@ const styles = StyleSheet.create({
   },
 
   codeContainer: {
-		padding: 16,
-		minWidth: "100%",
+    padding: 16,
+    minWidth: "100%",
     justifyContent: 'center',
     alignItems: 'center',
-	},
+  },
 });
 
 export default AccessibilityHintProp;

@@ -1,6 +1,5 @@
 import React, { useRef, useContext, useState } from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
-import Slider from "@react-native-community/slider";
 import { useFocusEffect } from '@react-navigation/native';
 import CodeHighlighter from "react-native-code-highlighter";
 import { atomOneDarkReasonable } from "react-syntax-highlighter/dist/esm/styles/hljs";
@@ -16,8 +15,8 @@ import { resetScroll, accessibilityFocus } from '../../functions/accessibility_f
 //============================================================================
 import { heading } from '../../components/headings';
 import HorizontalLine from '../../components/basic_components/HorizontalLine';
-import CodeBlock from '../../components/basic_components/CodeBlock';
 import TwoVariableTable from '../../components/basic_components/TwoVariableTable';
+import Accordion from '../../components/basic_components/Accordion';
 //============================================================================
 
 //Theme Import
@@ -68,7 +67,7 @@ function AccessibilityStateProp() {
                     style={{
                         width: 20,
                         height: 20,
-                        backgroundColor: isChecked ? 'green' : 'lightgray',
+                        backgroundColor: isChecked ? colors.primaryBlue : 'lightgray',
                         marginRight: 10,
                     }}
                 ></View>
@@ -162,11 +161,11 @@ function AccessibilityStateProp() {
                                     style={{
                                         width: 20,
                                         height: 20,
-                                        backgroundColor: isChecked ? 'green' : 'lightgray',
+                                        backgroundColor: isChecked ? colors.primaryBlue : 'lightgray',
                                         marginRight: 10,
                                     }}
                                 ></View>
-                                <Text
+                                <Text style={{color: theme.page.text}}
                                 >
                                     Checkbox using an accessibility state property
                                 </Text>
@@ -178,21 +177,19 @@ function AccessibilityStateProp() {
                     <HorizontalLine />
 
                     <View>
-                        <heading.Heading2 //Heading 2
-                            style={[styles.heading2, { color: theme.page.text, textAlign: 'center' }]}
-                            accessibilityLabel="Code Example:"
-                        >
-                            Code Example:
-                        </heading.Heading2>
-
-                        <CodeHighlighter
-                            hljsStyle={atomOneDarkReasonable}
-                            textStyle={styles.text}
-                            language="typescript"
-                            containerStyle={styles.codeContainer}
-                        >
-                            {CODE_STR}
-                        </CodeHighlighter>
+                        <Accordion
+                            title="Code Example:"
+                            collapsedData={
+                                <CodeHighlighter
+                                    hljsStyle={atomOneDarkReasonable}
+                                    textStyle={styles.text}
+                                    language="javascript"
+                                    containerStyle={styles.codeContainer}
+                                >
+                                    {CODE_STR}
+                                </CodeHighlighter>
+                            }
+                        />
                     </View>
                 </View>
 
@@ -202,11 +199,7 @@ function AccessibilityStateProp() {
                     <TwoVariableTable title="Pass/Fail Information" data={TwoVarData} cellTextStyle={{ fontWeight: 'bold', fontSize: 18 }} titleStyle={{ textAlign: 'center' }} />
                 </View>
             </View>
-
         </ScrollView>
-
-
-
     );
 }
 
@@ -218,7 +211,7 @@ const styles = StyleSheet.create({
     },
     //----------------------------
 
-    //Header Styles relating to "Importance of Text Alternatives"
+    //Header Styles
     containerHeader: {
         alignItems: 'center', //Aligns content horizontally center
         backgroundColor: colors.primaryBlue,
@@ -239,7 +232,6 @@ const styles = StyleSheet.create({
     //General Styles--- 
 
     textContent: {        //This style is general text style
-        fontWeight: 'bold',
         fontSize: 15,
         textAlign: 'center',
     },
@@ -252,7 +244,7 @@ const styles = StyleSheet.create({
 
     //----------------------------
 
-    //Alt Text Info section specifc styles
+    //Info section specifc styles
     infoContainer: {
         alignItems: 'center',
         paddingBottom: 20,
@@ -267,11 +259,11 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     codeContainer: {
-		padding: 16,
-		minWidth: "100%",
-    justifyContent: 'center',
-    alignItems: 'center',
-	},
+        padding: 16,
+        minWidth: "100%",
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 });
 
 export default AccessibilityStateProp;

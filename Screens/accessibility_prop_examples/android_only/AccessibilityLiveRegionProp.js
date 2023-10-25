@@ -6,16 +6,17 @@ import { atomOneDarkReasonable } from "react-syntax-highlighter/dist/esm/styles/
 
 //Asset Imports
 //============================================================================
-import { colors} from '../../../constant';
+import { colors } from '../../../constant';
 import { FontAwesome } from '@expo/vector-icons';
-import {resetScroll, accessibilityFocus} from '../../../functions/accessibility_functions'
+import { resetScroll, accessibilityFocus } from '../../../functions/accessibility_functions'
 //============================================================================
 
 //Component Imports
 //============================================================================
-import {heading} from '../../../components/headings';
+import { heading } from '../../../components/headings';
 import HorizontalLine from '../../../components/basic_components/HorizontalLine';
 import TwoVariableTable from '../../../components/basic_components/TwoVariableTable';
+import Accordion from '../../../components/basic_components/Accordion';
 //============================================================================
 
 //Theme Import
@@ -48,8 +49,8 @@ function AccessibilityLiveRegionProp() {
   const firstElementRef = useRef(null);
   const scrollViewRef = useRef(null);
 
-  const CODE_STR = 
-  `<View style={[styles.exampleContainer]}>
+  const CODE_STR =
+    `<View style={[styles.exampleContainer]}>
   <View>
     <TouchableWithoutFeedback onPress={incrementValue}>
       <View style={{backgroundColor: theme.button.color, borderRadius: 10}}>
@@ -60,9 +61,9 @@ function AccessibilityLiveRegionProp() {
   <Text style={{color: theme.page.text}} accessibilityLiveRegion="polite">Clicked {value} times</Text>
 </View>`
 
-  const incrementValue=() =>{
-    setValue(value+1);
-    console.log(value+1);
+  const incrementValue = () => {
+    setValue(value + 1);
+    console.log(value + 1);
   }
 
   //When the page loads (everytime) the useFocusEffect is triggered
@@ -128,38 +129,36 @@ function AccessibilityLiveRegionProp() {
           <View style={[styles.exampleContainer]}>
             <View>
               <TouchableWithoutFeedback onPress={incrementValue}>
-                <View style={{backgroundColor: theme.button.color, borderRadius: 10}}>
-                  <Text style={{color: theme.button.text, padding: 10}}>Click me!</Text>
+                <View style={{ backgroundColor: theme.button.color, borderRadius: 10 }}>
+                  <Text style={{ color: theme.button.text, padding: 10 }}>Click me!</Text>
                 </View>
               </TouchableWithoutFeedback>
             </View>
-            <Text style={{color: theme.page.text}} accessibilityLiveRegion="polite">Clicked {value} times</Text>
+            <Text style={{ color: theme.page.text }} accessibilityLiveRegion="polite">Clicked {value} times</Text>
           </View>
 
           <HorizontalLine />
 
           <View>
-            <heading.Heading2 //Heading 2
-              style={[styles.heading2, { color: theme.page.text, textAlign: 'center' }]}
-              accessibilityLabel="Code Example:"
-            >
-              Code Example:
-            </heading.Heading2>
-
-            <CodeHighlighter
-              hljsStyle={atomOneDarkReasonable}
-              textStyle={styles.text}
-              language="typescript"
-              containerStyle={styles.codeContainer}
-            >
-              {CODE_STR}
-            </CodeHighlighter>
+            <Accordion
+              title="Code Example:"
+              collapsedData={
+                <CodeHighlighter
+                  hljsStyle={atomOneDarkReasonable}
+                  textStyle={styles.text}
+                  language="javascript"
+                  containerStyle={styles.codeContainer}
+                >
+                  {CODE_STR}
+                </CodeHighlighter>
+              }
+            />
           </View>
         </View>
 
         <HorizontalLine />
 
-        <View style={{justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
           <TwoVariableTable title="Pass/Fail Information" data={TwoVarData} cellTextStyle={{ fontWeight: 'bold', fontSize: 18 }} titleStyle={{ textAlign: 'center' }} />
         </View>
       </View>
@@ -227,11 +226,11 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   codeContainer: {
-		padding: 16,
-		minWidth: "100%",
+    padding: 16,
+    minWidth: "100%",
     justifyContent: 'center',
     alignItems: 'center',
-	},
+  },
 });
 
 export default AccessibilityLiveRegionProp;

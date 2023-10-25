@@ -36,16 +36,19 @@ export const drawerItemsMain = [
     routes: [
       {nav: def_App.commonLabel, routeName: 'Accessible', title: 'Accessible'},
       {nav: def_App.commonLabel, routeName: 'Label', title: 'Accessibility Label'},
-      {nav: def_App.commonLabel, routeName: 'Hint', title: 'Accessibility Hint'},
       {nav: def_App.commonLabel, routeName: 'Role', title: 'Accessibility Role'},
+      {nav: def_App.commonLabel, routeName: 'Value', title: 'Accessibility Value'},
+      {nav: def_App.commonLabel, routeName: 'State', title: 'Accessibility State'},
+      {nav: def_App.commonLabel, routeName: 'Hint', title: 'Accessibility Hint'},
+      
       {nav: def_App.commonLabel, routeName: 'LabelledBy', title: 'Accessibility Labelled By'},
       {nav: def_App.commonLabel, routeName: 'LiveRegion', title: 'Accessibility Live Region'},
       {nav: def_App.commonLabel, routeName: 'ImportantForAccessibility', title: 'Important For Accessibility'},
+
       {nav: def_App.commonLabel, routeName: 'ElementsHidden', title: 'Accessibility Elements Hidden'},
       {nav: def_App.commonLabel, routeName: 'Language', title: 'Accessibility Language'},
       {nav: def_App.commonLabel, routeName: 'ViewIsModal', title: 'Accessibility View Is Modal'},
-      {nav: def_App.commonLabel, routeName: 'Value', title: 'Accessibility Value'},
-      {nav: def_App.commonLabel, routeName: 'State', title: 'Accessibility State'},
+      
     ],
   },
 ];

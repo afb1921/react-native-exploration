@@ -1,5 +1,5 @@
 import React, { useRef, useContext, useState } from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, AccessibilityInfo } from 'react-native';
 import Slider from "@react-native-community/slider";
 import { useFocusEffect } from '@react-navigation/native';
 import CodeHighlighter from "react-native-code-highlighter";
@@ -17,6 +17,7 @@ import { resetScroll, accessibilityFocus } from '../../functions/accessibility_f
 import { heading } from '../../components/headings';
 import HorizontalLine from '../../components/basic_components/HorizontalLine';
 import TwoVariableTable from '../../components/basic_components/TwoVariableTable';
+import Accordion from '../../components/basic_components/Accordion';
 //============================================================================
 
 //Theme Import
@@ -48,10 +49,16 @@ function AccessibilityValueProp() {
   const scrollViewRef = useRef(null);
   const [sliderValue, setSliderValue] = useState(0);
 
+  const handleSliderValueChange = (value) => {
+    console.log("Slider Value Changed:", value);
+
+    setSliderValue(value);
+  };
+
   const CODE_STR =
-  `<View style={[styles.exampleContainer]}>
+  `<View style={styles.exampleContainer}>
   <Slider
-    accessibilityRole='adjustable'
+    accessibilityLabel={'Accessibility Value Property Example'}
     style={{ width: 200, height: 40 }}
     thumbTintColor={theme.slider.thumbTintColor}
     minimumTrackTintColor={theme.slider.minimumTrackTintColor}
@@ -59,6 +66,9 @@ function AccessibilityValueProp() {
     maximumValue={1}
     maximumTrackTintColor={theme.slider.maximumTrackTintColor}
     value={sliderValue}
+    onValueChange={(value) => {
+      setSliderValue(value);
+    }}
     accessibilityValue={{
       min: 0,          // The minimum value of the range
       max: 1,          // The maximum value of the range
@@ -134,9 +144,9 @@ function AccessibilityValueProp() {
             Example:
           </heading.Heading2>
 
-          <View style={[styles.exampleContainer]}>
+          <View style={styles.exampleContainer}>
             <Slider
-              accessibilityRole='adjustable'
+              accessibilityLabel={`Accessibility Value Property Example`}
               style={{ width: 200, height: 40 }}
               thumbTintColor={theme.slider.thumbTintColor}
               minimumTrackTintColor={theme.slider.minimumTrackTintColor}
@@ -144,6 +154,9 @@ function AccessibilityValueProp() {
               maximumValue={1}
               maximumTrackTintColor={theme.slider.maximumTrackTintColor}
               value={sliderValue}
+              onValueChange={(value) => {
+                setSliderValue(value);
+              }}
               accessibilityValue={{
                 min: 0,          // The minimum value of the range
                 max: 1,          // The maximum value of the range
@@ -156,27 +169,25 @@ function AccessibilityValueProp() {
           <HorizontalLine />
 
           <View>
-            <heading.Heading2 //Heading 2
-              style={[styles.heading2, { color: theme.page.text, textAlign: 'center' }]}
-              accessibilityLabel="Code Example:"
-            >
-              Code Example:
-            </heading.Heading2>
-
-            <CodeHighlighter
-              hljsStyle={atomOneDarkReasonable}
-              textStyle={styles.text}
-              language="typescript"
-              containerStyle={styles.codeContainer}
-            >
-              {CODE_STR}
-            </CodeHighlighter>
+            <Accordion
+              title="Code Example:"
+              collapsedData={
+                <CodeHighlighter
+                  hljsStyle={atomOneDarkReasonable}
+                  textStyle={styles.text}
+                  language="javascript"
+                  containerStyle={styles.codeContainer}
+                >
+                  {CODE_STR}
+                </CodeHighlighter>
+              }
+            />
           </View>
         </View>
 
         <HorizontalLine />
 
-        <View style={{justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
           <TwoVariableTable title="Pass/Fail Information" data={TwoVarData} cellTextStyle={{ fontWeight: 'bold', fontSize: 18 }} titleStyle={{ textAlign: 'center' }} />
         </View>
       </View>
@@ -244,11 +255,11 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   codeContainer: {
-		padding: 16,
-		minWidth: "100%",
+    padding: 16,
+    minWidth: "100%",
     justifyContent: 'center',
     alignItems: 'center',
-	},
+  },
 });
 
 export default AccessibilityValueProp;

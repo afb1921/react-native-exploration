@@ -16,6 +16,7 @@ import { resetScroll, accessibilityFocus } from '../../functions/accessibility_f
 import { heading } from '../../components/headings';
 import HorizontalLine from '../../components/basic_components/HorizontalLine';
 import TwoVariableTable from '../../components/basic_components/TwoVariableTable';
+import Accordion from '../../components/basic_components/Accordion';
 //============================================================================
 
 //Theme Import
@@ -67,14 +68,14 @@ function AccessibilityHintProp() {
     }, [])
   )
 
-  const handlePress = () =>{
+  const handlePress = () => {
     AccessibilityInfo.isScreenReaderEnabled().then((isEnabled) => {
       if (isEnabled) {
         const delay = 250
         setTimeout(() => {
           AccessibilityInfo.announceForAccessibility("You have tapped the button!")
         }, delay);
-        
+
       } else {
         Alert.alert("Button Tapped")
       }
@@ -147,27 +148,25 @@ function AccessibilityHintProp() {
           <HorizontalLine />
 
           <View>
-            <heading.Heading2 //Heading 2
-              style={[styles.heading2, { color: theme.page.text, textAlign: 'center' }]}
-              accessibilityLabel="Code Example:"
-            >
-              Code Example:
-            </heading.Heading2>
-
-            <CodeHighlighter
-              hljsStyle={atomOneDarkReasonable}
-              textStyle={styles.text}
-              language="typescript"
-              containerStyle={styles.codeContainer}
-            >
-              {CODE_STR}
-            </CodeHighlighter>
+            <Accordion
+              title="Code Example:"
+              collapsedData={
+                <CodeHighlighter
+                  hljsStyle={atomOneDarkReasonable}
+                  textStyle={styles.text}
+                  language="javascript"
+                  containerStyle={styles.codeContainer}
+                >
+                  {CODE_STR}
+                </CodeHighlighter>
+              }
+            />
           </View>
         </View>
 
         <HorizontalLine />
 
-        <View style={{justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
           <TwoVariableTable title="Pass/Fail Information" data={TwoVarData} cellTextStyle={{ fontWeight: 'bold', fontSize: 18 }} titleStyle={{ textAlign: 'center' }} />
         </View>
       </View>
@@ -232,11 +231,11 @@ const styles = StyleSheet.create({
   },
 
   codeContainer: {
-		padding: 16,
-		minWidth: "100%",
+    padding: 16,
+    minWidth: "100%",
     justifyContent: 'center',
     alignItems: 'center',
-	},
+  },
 });
 
 export default AccessibilityHintProp;

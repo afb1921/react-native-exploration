@@ -1,4 +1,4 @@
-import React, { useRef, useContext} from 'react';
+import React, { useRef, useContext } from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity, AccessibilityInfo } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import CodeHighlighter from "react-native-code-highlighter";
@@ -6,16 +6,17 @@ import { atomOneDarkReasonable } from "react-syntax-highlighter/dist/esm/styles/
 
 //Asset Imports
 //============================================================================
-import { colors} from '../../../constant';
+import { colors } from '../../../constant';
 import { FontAwesome } from '@expo/vector-icons';
-import {resetScroll, accessibilityFocus} from '../../../functions/accessibility_functions'
+import { resetScroll, accessibilityFocus } from '../../../functions/accessibility_functions'
 //============================================================================
 
 //Component Imports
 //============================================================================
-import {heading} from '../../../components/headings';
+import { heading } from '../../../components/headings';
 import HorizontalLine from '../../../components/basic_components/HorizontalLine';
 import TwoVariableTable from '../../../components/basic_components/TwoVariableTable';
+import Accordion from '../../../components/basic_components/Accordion';
 //============================================================================
 
 //Theme Import
@@ -47,7 +48,7 @@ function AccessibilityElementsHiddenProp() {
   const scrollViewRef = useRef(null);
 
   const CODE_STR =
-  `<View style={[styles.exampleContainer]}>
+    `<View style={[styles.exampleContainer]}>
   <TouchableOpacity
     accessible={true}
     style={{backgroundColor: theme.button.color, padding: 5, borderRadius: 5, marginBottom: 5}}
@@ -77,15 +78,15 @@ function AccessibilityElementsHiddenProp() {
         setTimeout(() => {
           AccessibilityInfo.announceForAccessibility("You have tapped Button A!")
         }, delay);
-        
+
       } else {
         Alert.alert("Button A Tapped")
       }
     });
   }
 
-   //When the page loads (everytime) the useFocusEffect is triggered
-   useFocusEffect(
+  //When the page loads (everytime) the useFocusEffect is triggered
+  useFocusEffect(
     React.useCallback(() => {
       resetScroll(scrollViewRef);
       accessibilityFocus(firstElementRef, 250);
@@ -147,51 +148,49 @@ function AccessibilityElementsHiddenProp() {
           <View style={[styles.exampleContainer]}>
             <TouchableOpacity
               accessible={true}
-              style={{backgroundColor: theme.button.color, padding: 5, borderRadius: 5, marginBottom: 5}}
+              style={{ backgroundColor: theme.button.color, padding: 5, borderRadius: 5, marginBottom: 5 }}
               accessibilityLabel="Button A"
               accessibilityHint="This is button A"
               onPress={handlePress}
             >
-              <Text style={{color: theme.button.text}}>Button A</Text>
+              <Text style={{ color: theme.button.text }}>Button A</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
-              style={{backgroundColor: theme.button.color, padding: 5, borderRadius: 5, marginBottom: 5}}
+              style={{ backgroundColor: theme.button.color, padding: 5, borderRadius: 5, marginBottom: 5 }}
               accessible={true}
               accessibilityLabel="Button B"
               accessibilityHint="This is button B"
               accessibilityElementsHidden={true}
               onPress={() => alert("Button B pressed")}
             >
-              <Text style={{color: theme.button.text}}>Button B</Text>
+              <Text style={{ color: theme.button.text }}>Button B</Text>
             </TouchableOpacity>
-            <Text style={{color: theme.page.text}}>Button B was completely skipped due to having accessibility elements hidden set to True</Text>
+            <Text style={{ color: theme.page.text }}>Button B was completely skipped due to having accessibility elements hidden set to True</Text>
           </View>
 
           <HorizontalLine />
 
           <View>
-            <heading.Heading2 //Heading 2
-              style={[styles.heading2, { color: theme.page.text, textAlign: 'center' }]}
-              accessibilityLabel="Code Example:"
-            >
-              Code Example:
-            </heading.Heading2>
-
-            <CodeHighlighter
-              hljsStyle={atomOneDarkReasonable}
-              textStyle={styles.text}
-              language="typescript"
-              containerStyle={styles.codeContainer}
-            >
-              {CODE_STR}
-            </CodeHighlighter>
+            <Accordion
+              title="Code Example:"
+              collapsedData={
+                <CodeHighlighter
+                  hljsStyle={atomOneDarkReasonable}
+                  textStyle={styles.text}
+                  language="javascript"
+                  containerStyle={styles.codeContainer}
+                >
+                  {CODE_STR}
+                </CodeHighlighter>
+              }
+            />
           </View>
         </View>
 
         <HorizontalLine />
 
-        <View style={{justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
           <TwoVariableTable title="Pass/Fail Information" data={TwoVarData} cellTextStyle={{ fontWeight: 'bold', fontSize: 18 }} titleStyle={{ textAlign: 'center' }} />
         </View>
       </View>
@@ -259,11 +258,11 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   codeContainer: {
-		padding: 16,
-		minWidth: "100%",
+    padding: 16,
+    minWidth: "100%",
     justifyContent: 'center',
     alignItems: 'center',
-	},
+  },
 });
 
 export default AccessibilityElementsHiddenProp;

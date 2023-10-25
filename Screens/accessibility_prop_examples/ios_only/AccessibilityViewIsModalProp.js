@@ -6,16 +6,17 @@ import { atomOneDarkReasonable } from "react-syntax-highlighter/dist/esm/styles/
 
 //Asset Imports
 //============================================================================
-import { colors} from '../../../constant';
+import { colors } from '../../../constant';
 import { FontAwesome } from '@expo/vector-icons';
-import {resetScroll, accessibilityFocus} from '../../../functions/accessibility_functions'
+import { resetScroll, accessibilityFocus } from '../../../functions/accessibility_functions'
 //============================================================================
 
 //Component Imports
 //============================================================================
-import {heading} from '../../../components/headings';
+import { heading } from '../../../components/headings';
 import HorizontalLine from '../../../components/basic_components/HorizontalLine';
 import TwoVariableTable from '../../../components/basic_components/TwoVariableTable';
+import Accordion from '../../../components/basic_components/Accordion';
 //============================================================================
 
 //Theme Import
@@ -44,13 +45,13 @@ function AccessibilityViewIsModalProp() {
   //===============================================================
   const { theme } = useContext(themeContext);
   //===============================================================
-  
+
   const firstElementRef = useRef(null);
   const scrollViewRef = useRef(null);
   const modalRef = useRef(null);
 
   const CODE_STR =
-  `          <View style={[styles.exampleContainer]}>
+    `          <View style={[styles.exampleContainer]}>
   <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
     <Modal
       animationType="slide"
@@ -197,7 +198,7 @@ function AccessibilityViewIsModalProp() {
                     </Text>
                     <TouchableOpacity
                       onPress={() => {
-                        setModalVisible(false); 
+                        setModalVisible(false);
                         accessibilityFocus(modalRef, 100);
                       }}
                       accessible={true}
@@ -245,27 +246,25 @@ function AccessibilityViewIsModalProp() {
           <HorizontalLine />
 
           <View>
-            <heading.Heading2 //Heading 2
-              style={[styles.heading2, { color: theme.page.text, textAlign: 'center' }]}
-              accessibilityLabel="Code Example:"
-            >
-              Code Example:
-            </heading.Heading2>
-
-            <CodeHighlighter
-              hljsStyle={atomOneDarkReasonable}
-              textStyle={styles.text}
-              language="typescript"
-              containerStyle={styles.codeContainer}
-            >
-              {CODE_STR}
-            </CodeHighlighter>
+            <Accordion
+              title="Code Example:"
+              collapsedData={
+                <CodeHighlighter
+                  hljsStyle={atomOneDarkReasonable}
+                  textStyle={styles.text}
+                  language="javascript"
+                  containerStyle={styles.codeContainer}
+                >
+                  {CODE_STR}
+                </CodeHighlighter>
+              }
+            />
           </View>
         </View>
 
         <HorizontalLine />
 
-        <View style={{justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
           <TwoVariableTable title="Pass/Fail Information" data={TwoVarData} cellTextStyle={{ fontWeight: 'bold', fontSize: 18 }} titleStyle={{ textAlign: 'center' }} />
         </View>
       </View>
@@ -333,11 +332,11 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   codeContainer: {
-		padding: 16,
-		minWidth: "100%",
+    padding: 16,
+    minWidth: "100%",
     justifyContent: 'center',
     alignItems: 'center',
-	},
+  },
 });
 
 export default AccessibilityViewIsModalProp;

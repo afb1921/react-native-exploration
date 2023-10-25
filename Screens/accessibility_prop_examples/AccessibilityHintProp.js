@@ -6,17 +6,17 @@ import { atomOneDarkReasonable } from "react-syntax-highlighter/dist/esm/styles/
 
 //Asset Imports
 //============================================================================
-import { colors} from '../../constant';
+import { colors } from '../../constant';
 import { FontAwesome } from '@expo/vector-icons';
-import {resetScroll, accessibilityFocus} from '../../functions/accessibility_functions'
+import { resetScroll, accessibilityFocus } from '../../functions/accessibility_functions'
 //============================================================================
 
 //Component Imports
 //============================================================================
-import {heading} from '../../components/headings';
+import { heading } from '../../components/headings';
 import HorizontalLine from '../../components/basic_components/HorizontalLine';
-import CodeBlock from '../../components/basic_components/CodeBlock';
 import TwoVariableTable from '../../components/basic_components/TwoVariableTable';
+import Accordion from '../../components/basic_components/Accordion';
 //============================================================================
 
 //Theme Import
@@ -47,8 +47,8 @@ function AccessibilityHintProp() {
   const firstElementRef = useRef(null);
   const scrollViewRef = useRef(null);
 
-  const CODE_STR = 
-  `<View style={[styles.exampleContainer]}>
+  const CODE_STR =
+    `<View style={[styles.exampleContainer]}>
   <TouchableOpacity
     accessibilityLabel="Add Goal!"
     accessibilityHint="Activate to add your goal!"
@@ -67,7 +67,7 @@ function AccessibilityHintProp() {
         setTimeout(() => {
           AccessibilityInfo.announceForAccessibility("You tapped the example button!")
         }, delay);
-        
+
       } else {
         Alert.alert("Example Button Tapped")
       }
@@ -80,7 +80,7 @@ function AccessibilityHintProp() {
       resetScroll(scrollViewRef);
       accessibilityFocus(firstElementRef, 250);
     }, [])
-  ) 
+  )
 
   return (
 
@@ -139,9 +139,9 @@ function AccessibilityHintProp() {
               accessibilityLabel="Add Goal!"
               accessibilityHint="Activate to add your goal!"
               onPress={handlePress}
-              >
-              <View style={{backgroundColor: theme.button.color, borderRadius: 10}}>
-                <Text style={[styles.buttonText, {color: theme.button.text}]}>Add Goal</Text>
+            >
+              <View style={{ backgroundColor: theme.button.color, borderRadius: 10 }}>
+                <Text style={[styles.buttonText, { color: theme.button.text }]}>Add Goal</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -149,27 +149,25 @@ function AccessibilityHintProp() {
           <HorizontalLine />
 
           <View>
-            <heading.Heading2 //Heading 2
-              style={[styles.heading2, { color: theme.page.text, textAlign: 'center' }]}
-              accessibilityLabel="Code Example:"
-            >
-              Code Example:
-            </heading.Heading2>
-
-            <CodeHighlighter
-              hljsStyle={atomOneDarkReasonable}
-              textStyle={styles.text}
-              language="typescript"
-              containerStyle={styles.codeContainer}
-            >
-              {CODE_STR}
-            </CodeHighlighter>
+            <Accordion
+              title="Code Example:"
+              collapsedData={
+                <CodeHighlighter
+                  hljsStyle={atomOneDarkReasonable}
+                  textStyle={styles.text}
+                  language="javascript"
+                  containerStyle={styles.codeContainer}
+                >
+                  {CODE_STR}
+                </CodeHighlighter>
+              }
+            />
           </View>
         </View>
 
         <HorizontalLine />
 
-        <View style={{justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
           <TwoVariableTable title="Pass/Fail Information" data={TwoVarData} cellTextStyle={{ fontWeight: 'bold', fontSize: 18 }} titleStyle={{ textAlign: 'center' }} />
         </View>
 
@@ -235,11 +233,11 @@ const styles = StyleSheet.create({
   },
 
   codeContainer: {
-		padding: 16,
-		minWidth: "100%",
+    padding: 16,
+    minWidth: "100%",
     justifyContent: 'center',
     alignItems: 'center',
-	},
+  },
 });
 
 export default AccessibilityHintProp;
