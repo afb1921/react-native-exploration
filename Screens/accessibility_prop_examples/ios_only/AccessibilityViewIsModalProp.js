@@ -161,6 +161,9 @@ function AccessibilityViewIsModalProp() {
           <Text style={[styles.textContent, { color: theme.page.text }]}>
             The 'accessibilityViewIsModal' property when set to 'true', creates a modal-like experience for accessibility, isolating focus of VoiceOver to a specifc view and its children, while ignoring other sibling views at the same level.
           </Text>
+          <Text style={[styles.textContent, { color: theme.page.text, marginTop: 10 }]}>
+            Please note this is for iOS-VoiceOver only.
+          </Text>
         </View>
 
         <HorizontalLine />
@@ -168,9 +171,9 @@ function AccessibilityViewIsModalProp() {
         <View>
           <heading.Heading2 //Heading 2
             style={[styles.heading2, { color: theme.page.text, textAlign: 'center' }]}
-            accessibilityLabel="iOS Only Example:"
+            accessibilityLabel="Example:"
           >
-            iOS Only Example:
+            Example:
           </heading.Heading2>
 
           <View style={[styles.exampleContainer]}>

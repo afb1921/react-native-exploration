@@ -105,6 +105,9 @@ function ImportantForAccessibility() {
           <Text style={[styles.textContent, { color: theme.page.text }]}>
             When two UI components with the same parent overlap, default accessibility focus may behave unpredictably. The "importantForAccessibility" property can resolve this issue by determining whether a view triggers accessibility events and is reported to accessibility services. This property offers options such as "auto," "yes," "no," and "no-hide-descendants," where the last option makes accessibility services ignore both the component and its children.
           </Text>
+          <Text style={[styles.textContent, { color: theme.page.text, marginTop: 10 }]}>
+              Please note this is for Android-TalkBack only.
+            </Text>
         </View>
 
         <HorizontalLine />
@@ -133,9 +136,6 @@ function ImportantForAccessibility() {
             <Text style={{ color: theme.page.text }}>
               In the above example, only the first layout is announced by TalkBack.
               The second layout is completely invisible to TalkBack due to having important for accessibility set to "no-hide-descendants".
-            </Text>
-            <Text style={{ color: theme.page.text }}>
-              Please note this example is intended for TalkBack and not VoiceOver.
             </Text>
           </View>
 

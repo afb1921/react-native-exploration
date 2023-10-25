@@ -114,6 +114,9 @@ function AccessibilityLiveRegionProp() {
           <Text style={[styles.textContent, { color: theme.page.text }]}>
             It can be set to none, polite and assertive: none: Accessibility services should not announce changes to this view. Polite: Accessibility services should announce changes to this view. Assertive: Accessibility services should interrupt ongoing speech to immediately announce changes to this view.
           </Text>
+          <Text style={[styles.textContent, { color: theme.page.text, marginTop: 10 }]}>
+            Please note this is for Android-TalkBack only.
+          </Text>
         </View>
 
         <HorizontalLine />

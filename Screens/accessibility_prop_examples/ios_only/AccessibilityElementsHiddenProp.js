@@ -1,5 +1,5 @@
 import React, { useRef, useContext } from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity, AccessibilityInfo } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity, AccessibilityInfo, Alert } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import CodeHighlighter from "react-native-code-highlighter";
 import { atomOneDarkReasonable } from "react-syntax-highlighter/dist/esm/styles/hljs";
@@ -133,6 +133,9 @@ function AccessibilityElementsHiddenProp() {
           <Text style={[styles.textContent, { color: theme.page.text }]}>
             For example, in a window that contains sibling views A and B, setting accessibilityElementsHidden to true on view B causes VoiceOver to ignore the elements in the view B. This is similar to the Android property importantForAccessibility='no-hide-descendants'.
           </Text>
+          <Text style={[styles.textContent, { color: theme.page.text, marginTop: 10 }]}>
+            Please note this is for iOS-VoiceOver only.
+          </Text>
         </View>
 
         <HorizontalLine />
@@ -140,9 +143,9 @@ function AccessibilityElementsHiddenProp() {
         <View>
           <heading.Heading2 //Heading 2
             style={[styles.heading2, { color: theme.page.text, textAlign: 'center' }]}
-            accessibilityLabel="iOS Only Example: (This example shows two buttons A and B)"
+            accessibilityLabel="Example: (This example shows two buttons A and B)"
           >
-            iOS Only Example: (This example shows two buttons A and B)
+            Example: (This example shows two buttons A and B)
           </heading.Heading2>
 
           <View style={[styles.exampleContainer]}>

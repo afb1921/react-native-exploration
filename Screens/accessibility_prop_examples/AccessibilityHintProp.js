@@ -1,5 +1,5 @@
 import React, { useRef, useContext } from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity, AccessibilityInfo } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity, AccessibilityInfo, Alert } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import CodeHighlighter from "react-native-code-highlighter";
 import { atomOneDarkReasonable } from "react-syntax-highlighter/dist/esm/styles/hljs";

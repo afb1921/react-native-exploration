@@ -35,8 +35,6 @@ import CodeBlock from '../components/basic_components/CodeBlock';
 //-----------------------------------------------------------------
 
 const HomeScreen = () => {
-  const CODE_STR = `var hello = "world"`;
-
 
   //Theme Manangement-----------------------------------------------
   const { theme } = useContext(themeContext);
@@ -72,18 +70,22 @@ const HomeScreen = () => {
         >
           Home Screen
         </heading.Heading1>
-
       </View>
-      {/* // -----------------------------------------------------------------*/}
-      <CodeHighlighter
-			hljsStyle={atomOneDarkReasonable}
-			textStyle={styles.text}
-			language="typescript"
-		>
-			{CODE_STR}
-		</CodeHighlighter>
 
-  
+      <View style={styles.container2}>
+      <Text style={[styles.textContent, { color: theme.page.text, marginTop: 10 }]}>
+          This project is an exploration of React Native that demos 
+          accessiblity features of the framework, providing examples of components, accessibility property use, and pass/fail
+          information within the app.
+      </Text>
+      <Text style={[styles.textContent, { color: theme.page.text, marginTop: 10 }]}>
+          To learn even more about React Native's Accessibility, please visit the React Native Accessibility Documentation below.
+      </Text>
+      <ExternalLinkButton url="https://reactnative.dev/docs/accessibility" label="React Native Accessibility Docs"/>  
+      </View>
+
+      {/* // -----------------------------------------------------------------*/}
+
     </View>
   );
 }
@@ -91,13 +93,12 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
   },
-
-
   container2: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: 200
   },
   containerHeader: {
     alignItems: 'center', //Aligns content horizontally center
@@ -108,21 +109,10 @@ const styles = StyleSheet.create({
   containerHeaderText: {
     color: "white",
   },
-  iconContainer: {
-    alignItems: 'center',
-  },
-  contentColor: {
-  },
-  label: {
+  textContent: {        //This style is general text style
     fontSize: 18,
-    marginBottom: 10,
+    textAlign: 'center',
   },
-  result: {
-    marginTop: 20,
-    fontSize: 16,
-  },
-
-
 });
 
 export default HomeScreen;

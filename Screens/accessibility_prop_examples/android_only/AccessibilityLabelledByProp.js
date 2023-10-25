@@ -103,6 +103,9 @@ function AccessibilityHintProp() {
             A reference to another element nativeID used to build complex forms.
             The value of accessibilityLabelledBy should match the nativeID of the related element.
           </Text>
+          <Text style={[styles.textContent, { color: theme.page.text, marginTop: 10 }]}>
+            Please note this is for Android-TalkBack only.
+          </Text>
         </View>
 
         <HorizontalLine />
@@ -110,7 +113,7 @@ function AccessibilityHintProp() {
         <View>
           <heading.Heading2 //Heading 2
             style={[styles.heading2, { color: theme.page.text, textAlign: 'center' }]}
-            accessibilityLabel="Example:"
+            accessibilityLabel="Example"
           >
             Example:
           </heading.Heading2>
@@ -118,8 +121,8 @@ function AccessibilityHintProp() {
           <View style={[styles.exampleContainer]}>
             <Text style={{ color: theme.page.text }} nativeID="formLabel">Label for Input Field</Text>
             <TextInput
-              style={{ color: theme.page.text, borderColor: theme.page.text, borderWidth: 1, paddingHorizontal: 40 }}
               accessibilityLabel="input"
+              style={{ color: theme.page.text, borderColor: theme.page.text, borderWidth: 1, paddingHorizontal: 40 }}
               accessibilityLabelledBy="formLabel"
             />
           </View>

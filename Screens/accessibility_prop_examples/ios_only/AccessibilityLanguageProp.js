@@ -101,6 +101,9 @@ function AccessibilityLanguageProp() {
           <Text style={[styles.textContent, { color: theme.page.text }]}>
             By using the accessibilityLanguage property, the screen reader will understand which language to use while reading the element's label, value and hint.
           </Text>
+          <Text style={[styles.textContent, { color: theme.page.text, marginTop: 10 }]}>
+            Please note this is for iOS-VoiceOver only.
+          </Text>
         </View>
 
         <HorizontalLine />
@@ -108,9 +111,9 @@ function AccessibilityLanguageProp() {
         <View>
           <heading.Heading2 //Heading 2
             style={[styles.heading2, { color: theme.page.text, textAlign: 'center' }]}
-            accessibilityLabel="iOS Only Example:"
+            accessibilityLabel="Example:"
           >
-            iOS Only Example:
+            Example:
           </heading.Heading2>
 
           <View style={[styles.exampleContainer]}
