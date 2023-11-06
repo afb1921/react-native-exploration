@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet, AccessibilityInfo, Alert} from 'react-native';
+import { View, Text, ScrollView, StyleSheet} from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import {resetScroll, accessibilityFocus, announceScreenReaderStatus} from '../functions/accessibility_functions'
 import {heading} from '../components/headings';
