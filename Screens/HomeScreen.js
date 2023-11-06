@@ -21,7 +21,7 @@ import TwoVariableTable from '../components/basic_components/TwoVariableTable';
 import OrderedList from '../components/basic_components/OrderedList';
 import UnorderedList from '../components/basic_components/UnorderedList';
 import TextField from '../components/basic_components/TextField';
-import ocean_video from '../assets/videos/oceanvideo.mp4';
+import ocean_video from '../assets/videos/beach.mp4';
 import Videoplayer from '../components/basic_components/Videoplayer';
 import RadioButton from '../components/basic_components/RadioButton';
 import Accordion from '../components/basic_components/Accordion';
@@ -75,8 +75,8 @@ const HomeScreen = () => {
       <View style={styles.container2}>
       <Text style={[styles.textContent, { color: theme.page.text, marginTop: 10 }]}>
           This project is an exploration of React Native that demos 
-          accessiblity features of the framework, providing examples of components, accessibility property use, and pass/fail
-          information within the app.
+          accessibility features of the framework, providing examples of components, accessibility property use, 
+          pass/fail information on whether the platform fully supports the accessibility feature within the app.
       </Text>
       <Text style={[styles.textContent, { color: theme.page.text, marginTop: 10 }]}>
           To learn even more about React Native's Accessibility, please visit the React Native Accessibility Documentation below.

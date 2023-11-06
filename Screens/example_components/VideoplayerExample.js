@@ -12,7 +12,7 @@ import {heading} from '../../components/headings';
 
 //Asset Imports
 //================================================================
-import ocean_video from '../../assets/videos/oceanvideo.mp4';
+import ocean_video from '../../assets/videos/beach.mp4';
 //================================================================
 
 

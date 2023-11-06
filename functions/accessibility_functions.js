@@ -1,4 +1,4 @@
-import {AccessibilityInfo } from 'react-native';
+import {AccessibilityInfo, Alert } from 'react-native';
 
 //Reset Scroll View to the top of the page
 //================================================================

@@ -28,7 +28,7 @@ import ExternalLinkButton from '../components/basic_components/ExternalLinkButto
 //Asset Imports
 //================================================================
 import dog_with_glasses from '../assets/images/dog_With_Glasses.jpg';
-import ocean_video from '../assets/videos/oceanvideo.mp4';
+import ocean_video from '../assets/videos/beach.mp4';
 import {resetScroll, accessibilityFocus} from '../functions/accessibility_functions'
 //================================================================
 
