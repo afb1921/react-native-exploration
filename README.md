@@ -16,8 +16,11 @@ Pass/Fail Platform Support Information.
 Detecting Screen Reader Use.
 It will serve as a good sandbox app to test the accessiblity features.
 
+## Android Device App Installation
+Download the application APK file from the project directory and install it on your android device.
 
-## Getting Started
+
+## Getting Started (Development)
 --------------------------------
 Step 1: Install Node.js and npm (Node Version v20.8.0 recommended)
 Ensure that you have Node.js and npm (Node Package Manager) installed on your system. You can download and install the latest version of Node.js from the official website: https://nodejs.org/
@@ -53,6 +56,7 @@ Press a to run the app on an Android emulator.
 Press i to run the app on an iOS simulator.
 Step 8: Explore and Enjoy!
 Congratulations! You've successfully set up the React Native Expo project on your local environment. Now, you can explore the app, interact with its accessibility features, and view the pass/fail information within the application.
+
 
 
 
