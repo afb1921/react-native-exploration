@@ -14,7 +14,7 @@ export const colors = {
 
 export const def_App = {
 
-  commonLabel: "Accessibility Demo", //Label for App Header
+  commonLabel: "RN Accessibility Demo", //Label for App Header
 
   //***INITAL STATE OF THEME***
   //================================================

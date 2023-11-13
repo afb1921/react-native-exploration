@@ -44,10 +44,10 @@ const HomeScreen = () => {
           ref={firstElementRef} //First Element For Focus set here!
           style={styles.containerHeaderText}
           accessible={true}
-          accessibilityLabel="Home Screen"
+          accessibilityLabel="Home"
           accessibilityRole="header"
         >
-          Home Screen
+          Home
         </heading.Heading1>
       </View>
 

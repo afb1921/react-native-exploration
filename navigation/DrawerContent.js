@@ -160,7 +160,7 @@ function CustomDrawerContent(props) {
         forceInset={{ top: 'always', horizontal: 'never' }}>
         {mainDrawer ? renderMainDrawer() : renderFilteredItemsDrawer()}
       </SafeAreaView>
-      <View style={[styles.centered, { backgroundColor: theme.drawer.outerContent }]}>
+      <View style={[styles.centered, { backgroundColor: theme.drawer.outerContent, paddingBottom: 40}]}>
         <DarkModeSwitch
           onToggle={() => {
             // console.log(toggleButtonRef.current._nativeTag)

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "react-native-sandbox",
-    "slug": "react-native-sandbox",
+    "name": "RN Accessibility",
+    "slug": "rn-accessibility",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -22,15 +22,16 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "Accessibility.Demo.App"
+      "package": "com.robertjboggs.reactnativesandbox"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "c348bbed-28a7-436c-8612-6dadd13d6ea9"
+        "projectId": "bd557852-4039-4730-9569-d4f23892e4a7"
       }
-    }
+    },
+    "owner": "robertjboggs"
   }
 }
