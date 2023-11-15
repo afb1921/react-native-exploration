@@ -1,14 +1,16 @@
-import React, { useRef, useContext} from 'react';
-import { View, Text, ScrollView, StyleSheet} from 'react-native';
+import React, { useRef, useContext } from 'react';
+import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
 //Custom Imports
 //============================================================================
-import {colors } from '../../constant'
-import {resetScroll, accessibilityFocus} from '../../functions/accessibility_functions'
+import { colors } from '../../constant'
+import { resetScroll, accessibilityFocus } from '../../functions/accessibility_functions'
 import HorizontalLine from '../../components/basic_components/HorizontalLine';
 import Accordion from '../../components/basic_components/Accordion';
-import {heading} from '../../components/headings';
+import { heading } from '../../components/headings';
+import NextPageButton from '../../components/NextPageButton';
+import PreviousPageButton from '../../components/PreviousPageButton';
 //============================================================================
 
 //Theme Management Import
@@ -66,6 +68,11 @@ function AccordionExample() {
               </View>
             }
           />
+        </View>
+        <HorizontalLine />
+        <View style={{ flexDirection: "row", justifyContent: 'space-between' }}>
+          <PreviousPageButton PageName="Tables" />
+          <NextPageButton PageName="CheckBox" />
         </View>
       </View>
 

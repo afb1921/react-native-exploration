@@ -1,14 +1,16 @@
 import React, { useRef, useContext, useState } from 'react';
-import { View, ScrollView, StyleSheet} from 'react-native';
-import { useFocusEffect } from '@react-navigation/native';
+import { View, ScrollView, StyleSheet, Text} from 'react-native';
+import { useFocusEffect, useNavigation} from '@react-navigation/native';
 
 //Custom Imports
 //============================================================================
-import {colors } from '../../constant'
+import {colors, def_App } from '../../constant'
 import {resetScroll, accessibilityFocus} from '../../functions/accessibility_functions'
 import HorizontalLine from '../../components/basic_components/HorizontalLine';
 import Checkbox from '../../components/basic_components/Checkbox';
 import {heading} from '../../components/headings';
+import NextPageButton from '../../components/NextPageButton';
+import PreviousPageButton from '../../components/PreviousPageButton';
 //============================================================================
 
 //Theme Management Import
@@ -41,6 +43,14 @@ function CheckboxExample() {
 
   const firstElementRef = useRef(null);
   const scrollViewRef = useRef(null);
+
+  const navigation = useNavigation()
+
+  const nextButtonPress = () => {
+    navigation.navigate(def_App.commonLabel, {
+      screen: 'Accordion',
+    })  
+  }
 
   //When the page loads (everytime) the useFocusEffect is triggered
   useFocusEffect(
@@ -79,6 +89,13 @@ function CheckboxExample() {
             data={data}
             onValueChange={handleChange}
           />
+        </View>
+
+        <HorizontalLine />
+
+        <View style={{ flexDirection: "row", justifyContent: 'space-between' }}>
+          <PreviousPageButton PageName="Accordion" />
+          <NextPageButton PageName="ComboBox" />
         </View>
       </View>
 

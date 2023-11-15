@@ -8,13 +8,15 @@ import { colors } from '../../constant'
 import {resetScroll, accessibilityFocus} from '../../functions/accessibility_functions'
 import VideoPlayer from '../../components/basic_components/Videoplayer';
 import {heading} from '../../components/headings';
+import NextPageButton from '../../components/NextPageButton';
+import PreviousPageButton from '../../components/PreviousPageButton';
+import HorizontalLine from '../../components/basic_components/HorizontalLine';
 //============================================================================
 
 //Asset Imports
 //================================================================
 import ocean_video from '../../assets/videos/beach.mp4';
 //================================================================
-
 
 //Theme Management Import
 //================================================
@@ -66,7 +68,12 @@ function VideoplayerExample() {
           <VideoPlayer video={ocean_video} videoName="ocean" />
         </View>
 
+        <HorizontalLine/>
 
+        <View style={{ flexDirection: "row", justifyContent: 'space-between' }}>
+          <PreviousPageButton PageName="Image" />
+          <NextPageButton PageName="Dropdown" />
+        </View>
 
       </View>
 

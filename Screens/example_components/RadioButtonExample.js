@@ -9,6 +9,8 @@ import {resetScroll, accessibilityFocus} from '../../functions/accessibility_fun
 import HorizontalLine from '../../components/basic_components/HorizontalLine';
 import RadioButton from '../../components/basic_components/RadioButton';
 import {heading} from '../../components/headings';
+import NextPageButton from '../../components/NextPageButton';
+import PreviousPageButton from '../../components/PreviousPageButton';
 //============================================================================
 
 //Theme Management Import
@@ -81,6 +83,13 @@ function RadioButtonExample() {
             data={data}
             onValueChange={handleChange}
           />
+        </View>
+
+        <HorizontalLine />
+
+        <View style={{ flexDirection: "row", justifyContent: 'space-between' }}>
+          <PreviousPageButton PageName="LinkButton" />
+          <NextPageButton PageName="TextField" />
         </View>
 
       </View>

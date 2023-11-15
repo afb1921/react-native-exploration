@@ -1,14 +1,16 @@
 import React, { useRef, useContext, useState } from 'react';
-import { View, ScrollView, StyleSheet} from 'react-native';
+import { View, ScrollView, StyleSheet } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
 //Custom Imports
 //============================================================================
 import { colors } from '../../constant'
-import {resetScroll, accessibilityFocus} from '../../functions/accessibility_functions'
+import { resetScroll, accessibilityFocus } from '../../functions/accessibility_functions'
 import HorizontalLine from '../../components/basic_components/HorizontalLine';
 import ModalSelection from '../../components/basic_components/ModalSelection';
-import {heading} from '../../components/headings';
+import { heading } from '../../components/headings';
+import NextPageButton from '../../components/NextPageButton';
+import PreviousPageButton from '../../components/PreviousPageButton';
 //============================================================================
 
 //Theme Management Import
@@ -45,8 +47,8 @@ function ModalSelectionExample() {
 
     <ScrollView
       ref={scrollViewRef}
-      keyboardDismissMode='on-drag' 
-      pagingEnabled="false" 
+      keyboardDismissMode='on-drag'
+      pagingEnabled="false"
       style={[styles.container, { backgroundColor: theme.page.contentBackground }]}
     >
 
@@ -70,6 +72,13 @@ function ModalSelectionExample() {
             options={["Apple", "Orange", "Banana"]}
             onValueChange={handleChange}
           />
+        </View>
+
+        <HorizontalLine />
+
+        <View style={{ flexDirection: "row", justifyContent: 'space-between' }}>
+          <PreviousPageButton PageName="Dropdown" />
+          <NextPageButton PageName="LinkButton" />
         </View>
 
       </View>

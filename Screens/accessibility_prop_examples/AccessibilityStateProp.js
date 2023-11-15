@@ -17,6 +17,8 @@ import { heading } from '../../components/headings';
 import HorizontalLine from '../../components/basic_components/HorizontalLine';
 import TwoVariableTable from '../../components/basic_components/TwoVariableTable';
 import Accordion from '../../components/basic_components/Accordion';
+import NextPageButton from '../../components/NextPageButton';
+import PreviousPageButton from '../../components/PreviousPageButton';
 //============================================================================
 
 //Theme Import
@@ -165,7 +167,7 @@ function AccessibilityStateProp() {
                                         marginRight: 10,
                                     }}
                                 ></View>
-                                <Text style={{color: theme.page.text}}
+                                <Text style={{ color: theme.page.text }}
                                 >
                                     Checkbox using an accessibility state property
                                 </Text>
@@ -197,6 +199,13 @@ function AccessibilityStateProp() {
 
                 <View>
                     <TwoVariableTable title="Pass/Fail Information" data={TwoVarData} cellTextStyle={{ fontWeight: 'bold', fontSize: 18 }} titleStyle={{ textAlign: 'center' }} />
+                </View>
+
+                <HorizontalLine />
+
+                <View style={{ flexDirection: "row", justifyContent: 'space-between' }}>
+                    <PreviousPageButton PageName="Value" />
+                    <NextPageButton PageName="Hint" />
                 </View>
             </View>
         </ScrollView>

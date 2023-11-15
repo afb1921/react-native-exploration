@@ -1,16 +1,18 @@
-import React, { useRef, useContext} from 'react';
-import { View, ScrollView, StyleSheet} from 'react-native';
+import React, { useRef, useContext } from 'react';
+import { View, ScrollView, StyleSheet } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
 //Custom Imports
 //============================================================================
 import { colors } from '../../constant'
-import {resetScroll, accessibilityFocus} from '../../functions/accessibility_functions'
+import { resetScroll, accessibilityFocus } from '../../functions/accessibility_functions'
 import HorizontalLine from '../../components/basic_components/HorizontalLine';
+import NextPageButton from '../../components/NextPageButton';
+import PreviousPageButton from '../../components/PreviousPageButton';
 import HorizontalTable from '../../components/basic_components/HorizontalTable';
 import VerticalTable from '../../components/basic_components/VerticalTable';
 import TwoVariableTable from '../../components/basic_components/TwoVariableTable';
-import {heading} from '../../components/headings';
+import { heading } from '../../components/headings';
 //============================================================================
 
 //Theme Management Import
@@ -46,7 +48,7 @@ const table_data = [
 //================================================================
 
 
-function ComboboxExample() {
+function TablesExample() {
 
   //Theme Manangement
   //===============================================================
@@ -68,8 +70,8 @@ function ComboboxExample() {
 
     <ScrollView
       ref={scrollViewRef}
-      keyboardDismissMode='on-drag' 
-      pagingEnabled="false" 
+      keyboardDismissMode='on-drag'
+      pagingEnabled="false"
       style={[styles.container, { backgroundColor: theme.page.contentBackground }]}
     >
 
@@ -81,13 +83,13 @@ function ComboboxExample() {
           <heading.Heading1 //Heading 1
             ref={firstElementRef}
             style={styles.containerHeaderText}
-            accessibilityLabel="Tables Examples" 
+            accessibilityLabel="Tables Examples"
           >
             Table Examples
           </heading.Heading1>
         </View>
 
-        
+
 
         <View>
           <View style={styles.tableContainer}>
@@ -121,9 +123,8 @@ function ComboboxExample() {
             <TwoVariableTable data={TwoVarData} title="Year" />
           </View>
         </View>
-
-        
-
+        <HorizontalLine />
+        <NextPageButton PageName="CheckBox" />
       </View>
 
     </ScrollView>
@@ -185,4 +186,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default ComboboxExample;
+export default TablesExample;

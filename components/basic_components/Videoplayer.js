@@ -70,6 +70,7 @@ const VideoPlayer = ({ video, videoName }) => {
         resizeMode="contain"
         shouldPlay={isPlaying}
         onError={(error) => console.error('Video Error:', error)}
+        isLooping={true}
       />
 
       <View style={styles.controls}>

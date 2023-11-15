@@ -17,6 +17,8 @@ import { heading } from '../../components/headings';
 import HorizontalLine from '../../components/basic_components/HorizontalLine';
 import TwoVariableTable from '../../components/basic_components/TwoVariableTable';
 import Accordion from '../../components/basic_components/Accordion';
+import NextPageButton from '../../components/NextPageButton';
+import PreviousPageButton from '../../components/PreviousPageButton';
 //============================================================================
 
 //Theme Import
@@ -139,6 +141,12 @@ function AccessibleProp() {
 
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <TwoVariableTable title="Pass/Fail Information" data={TwoVarData} cellTextStyle={{ fontWeight: 'bold', fontSize: 18 }} titleStyle={{ textAlign: 'center' }} />
+        </View>
+
+        <HorizontalLine />
+
+        <View style={{ flexDirection: "row", justifyContent: 'flex-end' }}>
+          <NextPageButton PageName="Label" />
         </View>
 
       </View>

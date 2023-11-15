@@ -1,13 +1,16 @@
 import React, { useRef, useContext, useState } from 'react';
-import { View, ScrollView, StyleSheet} from 'react-native';
+import { View, ScrollView, StyleSheet } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
 //Custom Imports
 //============================================================================
 import { colors } from '../../constant'
-import {resetScroll, accessibilityFocus} from '../../functions/accessibility_functions'
+import { resetScroll, accessibilityFocus } from '../../functions/accessibility_functions'
 import ComboBox from '../../components/basic_components/ComboBox';
-import {heading} from '../../components/headings';
+import { heading } from '../../components/headings';
+import NextPageButton from '../../components/NextPageButton';
+import PreviousPageButton from '../../components/PreviousPageButton';
+import HorizontalLine from '../../components/basic_components/HorizontalLine';
 //============================================================================
 
 //Theme Management Import
@@ -81,11 +84,15 @@ function ComboboxExample() {
           />
         </View>
 
+        <HorizontalLine />
+
+        <View style={{ flexDirection: "row", justifyContent: 'space-between' }}>
+          <PreviousPageButton PageName="CheckBox" />
+          <NextPageButton PageName="Lists" />
+        </View>
       </View>
 
-    </ScrollView>
-
-
+    </ScrollView >
 
   );
 }

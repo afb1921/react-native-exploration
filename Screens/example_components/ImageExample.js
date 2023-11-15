@@ -1,12 +1,15 @@
-import React, { useRef, useContext} from 'react';
+import React, { useRef, useContext } from 'react';
 import { View, ScrollView, StyleSheet, Image } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
 //Custom Imports
 //============================================================================
 import { colors } from '../../constant'
-import {resetScroll, accessibilityFocus} from '../../functions/accessibility_functions'
-import {heading} from '../../components/headings';
+import { resetScroll, accessibilityFocus } from '../../functions/accessibility_functions'
+import { heading } from '../../components/headings';
+import NextPageButton from '../../components/NextPageButton';
+import PreviousPageButton from '../../components/PreviousPageButton';
+import HorizontalLine from '../../components/basic_components/HorizontalLine';
 //============================================================================
 
 //Asset Imports
@@ -43,8 +46,8 @@ function ImageExample() {
 
     <ScrollView
       ref={scrollViewRef}
-      keyboardDismissMode='on-drag' 
-      pagingEnabled="false" 
+      keyboardDismissMode='on-drag'
+      pagingEnabled="false"
       style={[styles.container, { backgroundColor: theme.page.contentBackground }]}
     >
 
@@ -70,6 +73,13 @@ function ImageExample() {
             accessible={true}
             accessibilityRole='image'
           />
+        </View>
+
+        <HorizontalLine />
+
+        <View style={{ flexDirection: "row", justifyContent: 'space-between' }}>
+          <PreviousPageButton PageName="Lists" />
+          <NextPageButton PageName="VideoPlayer" />
         </View>
       </View>
 

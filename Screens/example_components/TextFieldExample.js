@@ -9,6 +9,7 @@ import {resetScroll, accessibilityFocus} from '../../functions/accessibility_fun
 import HorizontalLine from '../../components/basic_components/HorizontalLine';
 import TextField from '../../components/basic_components/TextField';
 import {heading} from '../../components/headings';
+import PreviousPageButton from '../../components/PreviousPageButton';
 //============================================================================
 
 //Theme Management Import
@@ -65,13 +66,17 @@ function TextFieldExample() {
         </View>
 
         <View>
-
           <TextField
             title="Input a Value!"
             onValueChange={handleChange}
           />
         </View>
 
+        <HorizontalLine />
+
+        <View style={{ flexDirection: "row", justifyContent: 'space-between' }}>
+          <PreviousPageButton PageName="RadioButton" />
+        </View>
       </View>
 
     </ScrollView>

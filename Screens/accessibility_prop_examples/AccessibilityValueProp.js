@@ -18,6 +18,8 @@ import { heading } from '../../components/headings';
 import HorizontalLine from '../../components/basic_components/HorizontalLine';
 import TwoVariableTable from '../../components/basic_components/TwoVariableTable';
 import Accordion from '../../components/basic_components/Accordion';
+import NextPageButton from '../../components/NextPageButton';
+import PreviousPageButton from '../../components/PreviousPageButton';
 //============================================================================
 
 //Theme Import
@@ -187,8 +189,15 @@ function AccessibilityValueProp() {
 
         <HorizontalLine />
 
-        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+        <ScrollView contentContainerStyle={{ justifyContent: 'center', alignItems: 'center' }}>
           <TwoVariableTable title="Pass/Fail Information" data={TwoVarData} cellTextStyle={{ fontWeight: 'bold', fontSize: 18 }} titleStyle={{ textAlign: 'center' }} />
+        </ScrollView>
+
+        <HorizontalLine/>
+
+        <View style={{ flexDirection: "row", justifyContent: 'space-between' }}>
+          <PreviousPageButton PageName="Role" />
+          <NextPageButton PageName="State" />
         </View>
       </View>
 

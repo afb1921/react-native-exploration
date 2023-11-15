@@ -1,14 +1,16 @@
-import React, { useRef, useContext} from 'react';
-import { View, ScrollView, StyleSheet} from 'react-native';
+import React, { useRef, useContext } from 'react';
+import { View, ScrollView, StyleSheet } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
 //Custom Imports
 //============================================================================
 import { colors } from '../../constant'
-import {resetScroll, accessibilityFocus} from '../../functions/accessibility_functions'
+import { resetScroll, accessibilityFocus } from '../../functions/accessibility_functions'
 import HorizontalLine from '../../components/basic_components/HorizontalLine';
 import ExternalLinkButton from '../../components/basic_components/ExternalLinkButton';
-import {heading} from '../../components/headings';
+import { heading } from '../../components/headings';
+import NextPageButton from '../../components/NextPageButton';
+import PreviousPageButton from '../../components/PreviousPageButton';
 //============================================================================
 
 //Theme Management Import
@@ -38,8 +40,8 @@ function ExternalLinkButtonExample() {
 
     <ScrollView
       ref={scrollViewRef}
-      keyboardDismissMode='on-drag' 
-      pagingEnabled="false" 
+      keyboardDismissMode='on-drag'
+      pagingEnabled="false"
       style={[styles.container, { backgroundColor: theme.page.contentBackground }]}
     >
 
@@ -58,7 +60,14 @@ function ExternalLinkButtonExample() {
         </View>
 
         <View>
-          <ExternalLinkButton url="https://reactnative.dev/docs/accessibility" label="React Native Accessibility Docs"/>    
+          <ExternalLinkButton url="https://reactnative.dev/docs/accessibility" label="React Native Accessibility Docs" />
+        </View>
+
+        <HorizontalLine />
+
+        <View style={{ flexDirection: "row", justifyContent: 'space-between' }}>
+          <PreviousPageButton PageName="ModalSelection" />
+          <NextPageButton PageName="RadioButton" />
         </View>
 
       </View>
