@@ -9,7 +9,7 @@ import { colors, def_App } from '../constant'
 
 //Theme Imports
 //==================================================
-import themeContext from '../Themes/themeContext';
+import themeContext from '../themes/themeContext';
 
 
 const NextPageButton = ({PageName}) => {

@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, FlatList, ScrollView } from 'react-native';
 
 //Theme Import
 //================================================
-import themeContext from '../../Themes/themeContext';
+import themeContext from '../../themes/themeContext';
 //================================================
 
 //EXAMPLE TABLE FOR VERTICAL DATA:

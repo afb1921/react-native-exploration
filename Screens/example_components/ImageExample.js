@@ -20,7 +20,7 @@ import dog_with_glasses from '../../assets/images/dog_With_Glasses.jpg';
 
 //Theme Management Import
 //================================================
-import themeContext from '../../Themes/themeContext';
+import themeContext from '../../themes/themeContext';
 //================================================
 
 

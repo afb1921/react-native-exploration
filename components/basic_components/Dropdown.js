@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, FlatList, StyleSheet, AccessibilityInfo, 
 
 //Theme Import
 //================================================
-import themeContext from '../../Themes/themeContext';
+import themeContext from '../../themes/themeContext';
 //================================================
 
 //EXAMPLE USE IN PAGE

@@ -3,7 +3,7 @@ import { View, Text, StyleSheet} from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
 //Theme Managment Imports------------------------------------------
-import themeContext from '../Themes/themeContext';
+import themeContext from '../themes/themeContext';
 //-----------------------------------------------------------------
 
 //Custom Imports---------------------------------------------------

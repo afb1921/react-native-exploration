@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 //Theme Import
 //================================================================
-import themeContext from '../Themes/themeContext';
+import themeContext from '../themes/themeContext';
 //================================================================
 
 const HeaderRight = ({navigation}) => {

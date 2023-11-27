@@ -9,7 +9,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 //Theme Import
 //================================================
-import themeContext from '../Themes/themeContext';
+import themeContext from '../themes/themeContext';
 //================================================
 
 function ScreenReaderEnabledCheck() {

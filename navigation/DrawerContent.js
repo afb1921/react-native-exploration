@@ -12,7 +12,7 @@ import {
 //Theme Imports
 //================================================================
 import DarkModeSwitch from '../components/DarkModeSwitch';
-import themeContext from '../Themes/themeContext';
+import themeContext from '../themes/themeContext';
 //================================================================
 
 function CustomDrawerContent(props) {

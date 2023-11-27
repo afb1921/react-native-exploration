@@ -8,7 +8,7 @@ import { colors } from "../../constant.js"
 
 //Theme Imports
 //==================================================
-import themeContext from '../../Themes/themeContext.js';
+import themeContext from '../../themes/themeContext.js';
 //==================================================
 
 //EXAMPLE USE IN PAGE

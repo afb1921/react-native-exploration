@@ -15,7 +15,7 @@ import HorizontalLine from '../../components/basic_components/HorizontalLine';
 
 //Theme Management Import
 //================================================
-import themeContext from '../../Themes/themeContext';
+import themeContext from '../../themes/themeContext';
 //================================================
 
 //Combo Box Data

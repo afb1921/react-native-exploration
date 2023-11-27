@@ -18,7 +18,7 @@ import HorizontalLine from '../components/basic_components/HorizontalLine';
 
 //Theme Imports
 //============================================================================
-import themeContext from '../Themes/themeContext';
+import themeContext from '../themes/themeContext';
 //============================================================================
 
 

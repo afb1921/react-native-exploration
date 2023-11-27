@@ -9,8 +9,8 @@ import { FontAwesome } from '@expo/vector-icons';
 //Custom Imports
 //================================================================
 import { def_App } from './constant';
-import { darkMode, lightMode } from './Themes/defaultThemes';
-import themeContext from './Themes/themeContext';
+import { darkMode, lightMode } from './themes/defaultThemes.js';
+import themeContext from './themes/themeContext.js';
 import HeaderRight from './navigation/HeaderRight';
 import { drawerItemsMain } from './navigation/drawerItemsMain';
 import DrawerContent from './navigation/DrawerContent.js';
@@ -18,38 +18,38 @@ import DrawerContent from './navigation/DrawerContent.js';
 
 //Screen Imports
 //================================================================
-import Home from './screens/HomeScreen';
+import Home from './screens/HomeScreen.js';
 import ScreenReaderCheck from './screens/ScreenReaderEnabledCheck.js';
 
 //Component Screens
-import ExampleComponents from './screens/ExampleComponents';
-import AccessibilityProperties from './screens/AccessibilityProperties';
-import TableExamples from './screens/example_components/TableExamples';
-import AccordionExample from './screens/example_components/AccordionExample';
-import CheckboxExample from './screens/example_components/CheckboxExample';
-import ComboboxExample from './screens/example_components/ComboboxExample';
-import VideoplayerExample from './screens/example_components/VideoplayerExample';
-import ImageExample from './screens/example_components/ImageExample';
-import ListExamples from './screens/example_components/ListExamples';
-import ModalSelectionExample from './screens/example_components/ModalSelectionExample';
-import ExternalLinkExample from './screens/example_components/ExternalLinkExample';
-import DropdownExample from './screens/example_components/DropdownExample';
-import RadioButtonExample from './screens/example_components/RadioButtonExample';
-import TextFieldExample from './screens/example_components/TextFieldExample';
+import ExampleComponents from './screens/ExampleComponents.js';
+import AccessibilityProperties from './screens/AccessibilityProperties.js';
+import TableExamples from './screens/example_components/TableExamples.js';
+import AccordionExample from './screens/example_components/AccordionExample.js';
+import CheckboxExample from './screens/example_components/CheckboxExample.js';
+import ComboboxExample from './screens/example_components/ComboboxExample.js';
+import VideoplayerExample from './screens/example_components/VideoplayerExample.js';
+import ImageExample from './screens/example_components/ImageExample.js';
+import ListExamples from './screens/example_components/ListExamples.js';
+import ModalSelectionExample from './screens/example_components/ModalSelectionExample.js';
+import ExternalLinkExample from './screens/example_components/ExternalLinkExample.js';
+import DropdownExample from './screens/example_components/DropdownExample.js';
+import RadioButtonExample from './screens/example_components/RadioButtonExample.js';
+import TextFieldExample from './screens/example_components/TextFieldExample.js';
 
 //Accessibility Properties Screens
-import AccessibleProp from './screens/accessibility_prop_examples/AccessibleProp'
-import AccessibilityLabelProp from './screens/accessibility_prop_examples/AccessibilityLabelProp';
-import AccessibilityHintProp from './screens/accessibility_prop_examples/AccessibilityHintProp';
-import AccessibilityRoleProp from './screens/accessibility_prop_examples/AccessibilityRoleProp';
-import AccessibilityLabelledByProp from './screens/accessibility_prop_examples/android_only/AccessibilityLabelledByProp';
-import AccessibilityLiveRegionProp from './screens/accessibility_prop_examples/android_only/AccessibilityLiveRegionProp';
-import AccessibilityElementsHiddenProp from './screens/accessibility_prop_examples/ios_only/AccessibilityElementsHiddenProp';
-import AccessibilityLanguageProp from './screens/accessibility_prop_examples/ios_only/AccessibilityLanguageProp';
-import AccessibilityViewIsModalProp from './screens/accessibility_prop_examples/ios_only/AccessibilityViewIsModalProp';
-import ImportantForAccessibility from './screens/accessibility_prop_examples/android_only/ImportantForAccessibilityProp';
-import AccessibilityValueProp from './screens/accessibility_prop_examples/AccessibilityValueProp';
-import AccessibilityStateProp from './screens/accessibility_prop_examples/AccessibilityStateProp';
+import AccessibleProp from './screens/accessibility_prop_examples/AccessibleProp.js'
+import AccessibilityLabelProp from './screens/accessibility_prop_examples/AccessibilityLabelProp.js';
+import AccessibilityHintProp from './screens/accessibility_prop_examples/AccessibilityHintProp.js';
+import AccessibilityRoleProp from './screens/accessibility_prop_examples/AccessibilityRoleProp.js';
+import AccessibilityLabelledByProp from './screens/accessibility_prop_examples/android_only/AccessibilityLabelledByProp.js';
+import AccessibilityLiveRegionProp from './screens/accessibility_prop_examples/android_only/AccessibilityLiveRegionProp.js';
+import AccessibilityElementsHiddenProp from './screens/accessibility_prop_examples/ios_only/AccessibilityElementsHiddenProp.js';
+import AccessibilityLanguageProp from './screens/accessibility_prop_examples/ios_only/AccessibilityLanguageProp.js';
+import AccessibilityViewIsModalProp from './screens/accessibility_prop_examples/ios_only/AccessibilityViewIsModalProp.js';
+import ImportantForAccessibility from './screens/accessibility_prop_examples/android_only/ImportantForAccessibilityProp.js';
+import AccessibilityValueProp from './screens/accessibility_prop_examples/AccessibilityValueProp.js';
+import AccessibilityStateProp from './screens/accessibility_prop_examples/AccessibilityStateProp.js';
 //================================================================
 
 const Drawer = createDrawerNavigator();

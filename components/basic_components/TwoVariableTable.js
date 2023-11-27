@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView, FlatList } from 'react-native';
 
 //Theme Import
 //================================================
-import themeContext from '../../Themes/themeContext';
+import themeContext from '../../themes/themeContext';
 //================================================
 
 const TwoVariableTable = ({ data, title, cellTextStyle, titleStyle }) => {

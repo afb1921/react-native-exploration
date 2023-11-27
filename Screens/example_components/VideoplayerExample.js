@@ -20,7 +20,7 @@ import ocean_video from '../../assets/videos/beach.mp4';
 
 //Theme Management Import
 //================================================
-import themeContext from '../../Themes/themeContext';
+import themeContext from '../../themes/themeContext';
 //================================================
 
 function VideoplayerExample() {

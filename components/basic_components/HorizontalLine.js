@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native';
 
 //Theme Import
 //================================================
-import themeContext from '../../Themes/themeContext';
+import themeContext from '../../themes/themeContext';
 //================================================
 
 function HorizontalLine() {

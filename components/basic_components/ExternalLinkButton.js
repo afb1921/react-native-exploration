@@ -4,7 +4,7 @@ import { Linking } from 'react-native';
 
 //Theme Import
 //================================================
-import themeContext from '../../Themes/themeContext';
+import themeContext from '../../themes/themeContext';
 //================================================
 
 const ExternalLinkButton = ({ url, label }) => {

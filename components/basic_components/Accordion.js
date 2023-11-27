@@ -6,7 +6,7 @@ import { colors } from '../../constant'
 
 //Theme Imports
 //==================================================
-import themeContext from '../../Themes/themeContext';
+import themeContext from '../../themes/themeContext';
 //==================================================
 
 //Example Use:

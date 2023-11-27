@@ -35,7 +35,7 @@ import {resetScroll, accessibilityFocus} from '../functions/accessibility_functi
 
 //Theme Management Import
 //================================================
-import themeContext from '../Themes/themeContext';
+import themeContext from '../themes/themeContext';
 //================================================
 
 

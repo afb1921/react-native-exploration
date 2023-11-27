@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 
 // Theme Import
 //==================================================
-import themeContext from '../../Themes/themeContext';
+import themeContext from '../../themes/themeContext';
 //==================================================
 
 const VideoPlayer = ({ video, videoName }) => {

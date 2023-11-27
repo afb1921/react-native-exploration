@@ -17,7 +17,7 @@ import { heading } from '../../components/headings';
 
 //Theme Management Import
 //================================================
-import themeContext from '../../Themes/themeContext';
+import themeContext from '../../themes/themeContext';
 //================================================
 
 
